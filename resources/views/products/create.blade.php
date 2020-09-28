@@ -1,0 +1,81 @@
+@extends('layouts.master')
+@section('title') Create Product @endsection
+@section('content')
+
+	@if(session('status'))
+		<div class="alert alert-success">
+			{{session('status')}}
+		</div>
+	@endif
+	<!-- Form Create -->
+    <form id="form_validation" method="POST" enctype="multipart/form-data" action="{{route('products.store')}}">
+    	@csrf
+        <div class="form-group form-float">
+            <div class="form-line">
+                <input type="text" class="form-control" name="Product_name" autocomplete="off" required>
+                <label class="form-label">Product Name</label>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="form-line">
+                <textarea name="description" rows="4" class="form-control no-resize" placeholder="Description" autocomplete="off" required></textarea>
+            </div>
+        </div>
+
+        <h2 class="card-inside-title">Categories</h2>
+        <select name="categories"  id="categories" class="form-control"></select>
+        <br>
+        <h2 class="card-inside-title">Product Image</h2>
+        <div class="form-group">
+         <div class="form-line">
+             <input type="file" name="image" class="form-control" id="image" autocomplete="off">
+            </div>
+        </div>
+
+        <div class="form-group form-float">
+            <div class="form-line">
+                <input type="number" class="form-control" name="price" autocomplete="off" required>
+                <label class="form-label">Product Price</label>
+            </div>
+        </div>
+
+        <div class="form-group form-float">
+            <div class="form-line">
+                <input type="number" class="form-control" name="stock" min="0" value="0" autocomplete="off" required>
+                <label class="form-label">Product Stock</label>
+            </div>
+        </div>
+        
+        <button class="btn btn-primary waves-effect" name="save_action" value="PUBLISH" type="submit">PUBLISH</button>
+        <button class="btn btn-secondary waves-effect" name="save_action" value="DRAFT" type="submit">SAVE AS DRAfT</button>
+    </form>
+    <!-- #END#  -->		
+
+@endsection
+
+@section('footer-scripts')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script>
+    $('#categories').select2({
+      placeholder: 'Select an item',
+      ajax: {
+        url: '{{URL::to('/ajax/categories/search')}}',
+        processResults: function (data) {
+          return {
+            results:  $.map(data, function (item) {
+                  return {
+                        id: item.id,
+                        text: item.name
+                      
+                  }
+              })
+          };
+        }
+        
+      }
+    });
+    </script>
+
+@endsection
