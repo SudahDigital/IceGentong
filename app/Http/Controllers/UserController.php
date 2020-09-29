@@ -60,7 +60,7 @@ class UserController extends Controller
         $new_user->email = $request->get('email');
         $new_user->password = \Hash::make($request->get('password'));
         $new_user->username = $request->get('username');
-        $new_user->roles = json_encode($request->get('roles'));
+        $new_user->roles =$request->get('roles');
         $new_user->address = $request->get('address');
         $new_user->phone = $request->get('phone');
         if($request->file('avatar')){
@@ -107,7 +107,7 @@ class UserController extends Controller
         $user =\App\User::findOrFail($id);
         $user->name = $request->get('name');
         $user->status = $request->get('status');
-        $user->roles = json_encode($request->get('roles'));
+        $user->roles = $request->get('roles');
         $user->phone = $request->get('phone');
         $user->address = $request->get('address');
         if($request->file('avatar')){

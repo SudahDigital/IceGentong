@@ -26,13 +26,10 @@
                         
 		<h2 class="card-inside-title">Roles</h2>
         <div class="form-group">
-            <input type="checkbox" name="roles[]" id="ADMIN" value="ADMIN">
+            <input type="radio" value="ADMIN" name="roles" id="ADMIN">
 			<label for="ADMIN">Administrator</label>
 							&nbsp;
-            <input type="checkbox" name="roles[]" id="STAFF" value="STAFF">
-			<label for="STAFF">Staff</label>
-							&nbsp;
-			<input type="checkbox" name="roles[]" id="CUSTOMER" value="CUSTOMER">
+            <input type="radio" value="CUSTOMER" name="roles" id="CUSTOMER">
 			<label for="CUSTOMER">Customer</label>
         </div>
 

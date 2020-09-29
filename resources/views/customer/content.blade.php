@@ -26,7 +26,7 @@
                         
                         <div id="demo" class="collapse" style="margin-bottom:50px;">
                             <div class="col-md-12" style="margin-bottom: 20px;">
-                            <button type="button" class="btn button_add_to_cart button-collapse" style="margin-right: 50px;">Semua Produk</button>
+                            <button type="button" class="btn button_add_to_cart button-collapse">Semua Produk</button>
                             
                             <button type="button" class="btn button_add_to_cart button-collapse">Special Package</button>
                             

@@ -129,11 +129,7 @@
 		                           <br/>
 		                           <b>Roles:</b>
 		                           <br/>
-		                           @foreach (json_decode($u->roles) as $role)
-		                           <ul>
-								   		<li class="active">{{$role}}</li>
-								   </ul>
-								   @endforeach
+		                           {{$u->roles}}
 		                        </div>
 		                        <div class="modal-footer">
 		                        	<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Close</button>

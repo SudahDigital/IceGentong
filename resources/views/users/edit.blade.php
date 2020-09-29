@@ -36,13 +36,10 @@
 
         <h2 class="card-inside-title">Roles</h2>
         <div class="form-group">
-            <input type="checkbox" name="roles[]" id="ADMIN" value="ADMIN" {{in_array("ADMIN",json_decode($user->roles)) ? 'checked' : ''}}>
+            <input type="radio" value="ADMIN" name="roles" id="ADMIN" {{$user->roles == 'ADMIN' ? 'checked' : ''}}>
 			<label for="ADMIN">Administrator</label>
 							&nbsp;
-            <input type="checkbox" name="roles[]" id="STAFF" value="STAFF" {{in_array("STAFF",json_decode($user->roles)) ? 'checked' : ''}}>
-			<label for="STAFF">Staff</label>
-							&nbsp;
-			<input type="checkbox" name="roles[]" id="CUSTOMER" value="CUSTOMER" {{in_array("CUSTOMER",json_decode($user->roles)) ? 'checked' : ''}}>
+            <input type="radio" value="CUSTOMER" name="roles" id="CUSTOMER" {{$user->roles == 'CUSTOMER' ? 'checked' : ''}}>
 			<label for="CUSTOMER">Customer</label>
         </div>
 
