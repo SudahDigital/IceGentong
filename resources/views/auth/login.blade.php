@@ -1,53 +1,62 @@
-@extends('layouts.app')
-
+@extends('auth.template-auth')
 @section('content')
-
-<form id="sign_in" action="{{ route('login') }}" aria-label="{{ __('Login') }}" method="POST">
-    @csrf
-    <div class="msg"><b>@section('title') Login @endsection</b></div>
-    <div class="input-group">
-        <span class="input-group-addon">
-            <i class="material-icons">email</i>
-        </span>
-        <div class="form-line">
-            <input type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus autocomplete="off" placeholder="Email">
+    <div class="container" style="margin-top: 70px;">
+        <div class="row align-middle">
+            <div class="col-sm-12 col-md-12">
+                <nav aria-label="breadcrumb" class="">
+                    <ol class="breadcrumb px-0 button_breadcrumb">
+                        <li class="breadcrumb-item" style="color: #6a3137 !important;margin-top:30px; font-size:20px;"><a href="{{ url('/') }}"><i class="fa fa-home"></i></a></li>
+                        <li class="breadcrumb-item active" aria-current="page" style="margin-top:30px;">Sign In</li>
+                    </ol>
+                </nav>
+            </div>
         </div>
-        @if ($errors->has('email'))
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $errors->first('email') }}</strong>
-            </span>
-        @endif
+        
+        <div class="col-md-12 login-label">
+            <h1>Sign In</h1>
+            <p> Your Account</p>
+        </div>
+            
+         <div class="row section_content">
+            <div class="col-sm-8 mb-4 offset-2">
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
+                    <div class="card mx-auto contact_card" style="border-radius:15px;">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <input type="email" name="email" class="form-control contact_input @error('email') is-invalid @enderror" placeholder="Email" id="email" required autocomplete="off" autofocus value="{{ old('email') }}">
+                                <!--<label for="email" class="contact_label">{{ __('Email') }}</label>-->
+                                @if ($errors->has('email'))
+                                    <span class="invalid-feedback text-center" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <hr style="border:1px solid rgba(116, 116, 116, 0.507);">
+                            <div class="form-group">
+                                <input type="password" name="password" class="form-control contact_input @error('password') is-invalid @enderror" placeholder="Kata Sandi" id="password" required autocomplete="off" value="{{ old('password') }}">
+                                <!--<label for="password" class="contact_label_pass">{{ __('Kata Sandi') }}</label>-->
+                                @if ($errors->has('password'))
+                                    <span class="invalid-feedback mx-auto" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 login-label" style="margin-top:20px;">
+                        @if (Route::has('password.request'))
+                            <a  href="{{ route('password.request') }}">
+                              <p>{{ __('Forgot Your Password?') }}</p>
+                            </a>
+                        @endif
+                    </div>
+                    <div class="col-md-12 mx-auto text-center">
+                        <button type="submit" class="btn btn_login_form" >{{ __('Sign In') }}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="input-group">
-        <span class="input-group-addon">
-            <i class="material-icons">lock</i>
-        </span>
-        <div class="form-line">
-            <input type="password" class="form-control" name="password" placeholder="Password" required autocomplete="off">
-        </div>
-        @if ($errors->has('password'))
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $errors->first('password') }}</strong>
-            </span>
-        @endif
-    </div>
-    <div class="row">
-        <div class="col-xs-8 p-t-5">
-            <input class="filled-in chk-col-pink" type="checkbox" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }}>
-            <label for="remember">Remember Me</label>
-        </div>
-        <div class="col-xs-4">
-            <button class="btn btn-block bg-pink waves-effect" type="submit">{{ __('Login') }}
-            </button>
-        </div>
-    </div>
-    <div class="row m-t-15 m-b--20">
-       
-        <div class="col-xs-6 align-right">
-            <a class="btn btn-link pl-0" href="{{ route('password.request') }}">
-                {{ __('Forgot Your Password?') }}
-            </a>
-        </div>
-    </div>
-</form>
 @endsection
