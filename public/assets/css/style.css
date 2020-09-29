@@ -132,6 +132,11 @@ body {
   font-weight: bold; 
 }
 
+.button-collapse{
+
+  margin-right: 50px;
+
+}
 
 .warna{
   background:#6a3137;

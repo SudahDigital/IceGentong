@@ -16,7 +16,7 @@
                                     </td>
                                     <td width="75%">
                                         <button type="button" class="btn" data-toggle="collapse" data-target="#demo" style="background-color:#693234; border:none;">
-                                            <i class="fa fa-sliders fa-2x" style="color:#fff;"></i>
+                                            <i class="fas fa-sliders-h fa-2x" style="color:#fff;"></i>
                                         </button>
                                     </td>
                                 </tr>
@@ -24,15 +24,15 @@
                             </table>
                         </div>
                         
-                        <div id="demo" class="collapse">
+                        <div id="demo" class="collapse" style="margin-bottom:50px;">
                             <div class="col-md-12" style="margin-bottom: 20px;">
-                            <button type="button" class="btn button_add_to_cart">Semua Produk</button>
+                            <button type="button" class="btn button_add_to_cart button-collapse" style="margin-right: 50px;">Semua Produk</button>
                             
-                            <button type="button" class="btn button_add_to_cart">Special Package</button>
+                            <button type="button" class="btn button_add_to_cart button-collapse">Special Package</button>
                             
-                            <button type="button" class="btn button_add_to_cart">Deluxe</button>
+                            <button type="button" class="btn button_add_to_cart button-collapse">Deluxe</button>
                             
-                            <button type="button" class="btn button_add_to_cart">Family Pack</button>
+                            <button type="button" class="btn button_add_to_cart button-collapse">Family Pack</button>
                             
                             <button type="button" class="btn button_add_to_cart">Purty Cup</button>
                             </div>
