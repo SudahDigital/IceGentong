@@ -99,48 +99,46 @@
                 </div>
             </div>
         </div>
-
-        <div id="accordion">
-            <div class="card" style="border-radius:10px;">
-                <div id="card-cart" class="card-header" >
-                    <table width="100%" style="margin-bottom: 40px;">
-                        <tbody>
-                            <tr>
-                                <td width="10%" valign="middle">
-                                    <div id="ex4">
-                                        <span class="p1 fa-stack fa-2x has-badge" data-count="5">
-                                            <!--<i class="p2 fa fa-circle fa-stack-2x"></i>-->
-                                            <i class="p3 fa fa-shopping-cart fa-2x" data-count="4b" style="color: #ffffff"></i>
-                                        </span>
-                                    </div> 
-                                </td>
-                                <td width="33%" align="left">
-                                    <h4>Rp.</h4>
-                                </td>
-                                <td width="33%" valign="top">
-                                <a role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" class="collapsed">
-                                        <i class="fas fa-chevron-down" style="color: #ffffff; margin-top:1px; ali"></i>
-                                    </a>
-                                </td>
-                                <td width="33%" align="right">
-                                    <h4>(0 Item)</h4>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div id="collapse-4" class="collapse" data-parent="#accordion"  >
-                    <div class="card-body" >
-                    Detail
-                    </div>
+    </div>
+    
+    
+    <div id="accordion" style="border-color:#6a3137;">
+        <div class="card fixed-bottom" style="border-radius:10px; margin-left:50px;margin-right:50px;">
+            <div id="card-cart" class="card-header" >
+                <table width="100%" style="margin-bottom: 40px;">
+                    <tbody>
+                        <tr>
+                            <td width="10%" valign="middle">
+                                <div id="ex4">
+                                    <span class="p1 fa-stack fa-2x has-badge" data-count="5">
+                                        <!--<i class="p2 fa fa-circle fa-stack-2x"></i>-->
+                                        <i class="p3 fa fa-shopping-cart fa-2x" data-count="4b" style="color: #ffffff"></i>
+                                    </span>
+                                </div> 
+                            </td>
+                            <td width="37%" align="left">
+                                <h4>Rp.</h4>
+                            </td>
+                            <td width="33%" valign="top">
+                            <a role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" class="collapsed">
+                                    <i class="fas fa-chevron-down" style="color: #ffffff; margin-top:1px; ali"></i>
+                                </a>
+                            </td>
+                            <td width="33%" align="right">
+                                <h4>(0 Item)</h4>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="collapse-4" class="collapse" data-parent="#accordion"  >
+                <div class="card-body" >
+                Detail
                 </div>
             </div>
         </div>
-        <br>
-
     </div>
-
-    
+    </div>
             
    
      <!-- Footer section -->
