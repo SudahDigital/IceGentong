@@ -101,8 +101,33 @@
         </div>
     </div>
     
-    
-    <div id="accordion" style="border-color:#6a3137;">
+    <!-- Footer section -->
+    <footer id="footer">
+                
+        <div class="container">
+
+            
+            <div class="row justify-content-center mx-auto" >
+                <img src="{{ asset('assets/image/logo-nav.png') }}" width="55%" height="auto">
+            </div>
+            <br><br>
+            <div class="row justify-content-center mx-auto" >    
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram "></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-twitter "></i></a>
+                </div>
+            </div>
+                <div class="copyright text-center">
+                    <p>@Copyright 2020</p>
+                </div>
+                
+        </div>
+        
+    </footer>
+
+    <div id="accordion">
         <div class="card fixed-bottom" style="border-radius:10px; margin-left:50px;margin-right:50px;">
             <div id="card-cart" class="card-header" >
                 <table width="100%" style="margin-bottom: 40px;">
@@ -138,32 +163,4 @@
             </div>
         </div>
     </div>
-    </div>
-            
-   
-     <!-- Footer section -->
-     <footer id="footer">
-                
-        <div class="container">
-
-            
-            <div class="row justify-content-center mx-auto" >
-                <img src="{{ asset('assets/image/logo-nav.png') }}" width="55%" height="auto">
-            </div>
-            <br><br>
-            <div class="row justify-content-center mx-auto" >    
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram "></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fab fa-twitter "></i></a>
-                </div>
-            </div>
-                <div class="copyright text-center">
-                    <p>@Copyright 2020</p>
-                </div>
-                
-        </div>
-        
-    </footer>
 @endsection
