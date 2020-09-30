@@ -67,11 +67,16 @@
                                     <tbody>
                                     <tr>
                                         <td width="70%" valign="middle" style="padding-right:20px;">
-                                            <form method="post" action="">
+                                            <form method="post" action="{{ route('customer.keranjang.simpan') }}">
                                                 @csrf
-                                                <input type="hidden" id="{{$value->id}}" name="jumlah" value="1">
-                                                <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->price }}">
-                                                <input type="hidden" name="product_id" value="{{$value->id}}">
+                                                @if(Route::has('login'))
+                                                    @auth
+                                                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                                    @endauth
+                                                @endif
+                                                <input type="hidden" id="{{$value->id}}" name="quantity" value="1">
+                                                <input type="hidden" id="harga{{$value->id}}" name="price" value="{{ $value->price }}">
+                                                <input type="hidden" name="Product_id" value="{{$value->id}}">
                                                 <button class="btn btn-block button_add_to_cart" style="font-size: 20px;font-weight: 800; padding:2 15;">Tambah</button>
                                             </form>
                                         </td>
@@ -133,24 +138,24 @@
                 <table width="100%" style="margin-bottom: 40px;">
                     <tbody>
                         <tr>
-                            <td width="10%" valign="middle">
+                            <td width="5%" valign="middle">
                                 <div id="ex4">
-                                    <span class="p1 fa-stack fa-2x has-badge" data-count="5">
+                                    <span class="p1 fa-stack fa-2x has-badge" data-count="0">
                                         <!--<i class="p2 fa fa-circle fa-stack-2x"></i>-->
-                                        <i class="p3 fa fa-shopping-cart fa-2x" data-count="4b" style="color: #ffffff"></i>
+                                        <i class="p3 fa fa-shopping-cart fa-1x" data-count="4b" style="color: #ffffff"></i>
                                     </span>
                                 </div> 
                             </td>
-                            <td width="37%" align="left">
-                                <h4>Rp.</h4>
+                            <td width="25%" align="left" valign="middle">
+                                <h5>Rp.</h5>
                             </td>
-                            <td width="33%" valign="top">
+                            <td width="5%" valign="middle" >
                             <a role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" class="collapsed">
-                                    <i class="fas fa-chevron-down" style="color: #ffffff; margin-top:1px; ali"></i>
+                                    <i class="fas fa-chevron-up" style="color: #ffffff; font-size:2rem;"></i>
                                 </a>
                             </td>
-                            <td width="33%" align="right">
-                                <h4>(0 Item)</h4>
+                            <td width="33%" align="right" valign="middle">
+                                <h5>(0 Item)</h5>
                             </td>
                         </tr>
                     </tbody>
@@ -158,7 +163,24 @@
             </div>
             <div id="collapse-4" class="collapse" data-parent="#accordion"  >
                 <div class="card-body" >
-                Detail
+                    <table width="100%" style="margin-bottom: 40px;">
+                        <tbody>
+                            <tr>
+                                <td width="5%" valign="middle">
+                                     
+                                </td>
+                                <td width="25%" align="left" valign="middle">
+                                   
+                                </td>
+                                <td width="5%" valign="middle" >
+                                
+                                </td>
+                                <td width="33%" align="right" valign="middle">
+                                  
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

@@ -40,5 +40,6 @@ Route::group(['middleware' => ['auth','checkRole:ADMIN']],function(){
 });
 
 Route::group(['middleware' => ['auth','checkRole:CUSTOMER']],function(){
-    Route::post('/keranjang/simpan','user\KeranjangController@simpan')->name('user.keranjang.simpan');
+    Route::post('/keranjang/simpan','CustomerKeranjangController@simpan')->name('customer.keranjang.simpan');
+    Route::get('/keranjang','CustomerKeranjangController@index')->name('customer.keranjang');
 });

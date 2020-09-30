@@ -1361,16 +1361,14 @@ footer.footer .cart .count-cart-three {
   width: 60%;
 } 
 
-#cart-bawah{
-  margin-left: 50px;
-}
+
 
 #ex4 .p1[data-count]:after{
   position:absolute;
-  right:1%;
-  top:-10%;
+  right:30%;
+  top:10%;
   content: attr(data-count);
-  font-size:80%;
+  font-size:50%;
   font-weight: 900;
   padding:0.4em;
   border-radius:100%;
@@ -1379,18 +1377,23 @@ footer.footer .cart .count-cart-three {
   background:#FFD700;
   text-align:center;
   min-width: 1.8em;
+  
 }
 
 #card-cart{
   background-color:#6a3137;
   border-radius:10px; 
   padding-left:70px; 
-  padding-top:20px; 
-  height:100px;
+  height:70px;
+  padding-top:2px;
 }
 
-#card-cart h4{
+#card-cart i{
+  font-size: 4rem;
+}
+
+#card-cart h5{
   color: white;
-  font-weight: 900;
+  font-weight: 600;
 }
 
