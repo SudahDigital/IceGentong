@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth','checkRole:ADMIN']],function(){
 });
 
 Route::group(['middleware' => ['auth','checkRole:CUSTOMER']],function(){
+    Route::get('/home_customer', 'CustomerKeranjangController@index');
     Route::post('/keranjang/simpan','CustomerKeranjangController@simpan')->name('customer.keranjang.simpan');
     Route::get('/keranjang','CustomerKeranjangController@index')->name('customer.keranjang');
 });

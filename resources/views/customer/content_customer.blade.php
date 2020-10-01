@@ -141,7 +141,7 @@
                             <td width="5%" valign="middle">
                                 <div id="ex4">
                                
-                                    <span class="p1 fa-stack fa-2x has-badge" data-count="0">
+                                    <span class="p1 fa-stack fa-2x has-badge" data-count="{{$total_item}}">
                                 
                                         <!--<i class="p2 fa fa-circle fa-stack-2x"></i>-->
                                         <i class="p3 fa fa-shopping-cart fa-1x" data-count="4b" style="color: #ffffff"></i>
@@ -158,7 +158,7 @@
                             </td>
                             <td width="33%" align="right" valign="middle">
                                
-                                <h5>(0 Item)</h5>
+                            <h5>({{$total_item}} Item)</h5>
                                
                             </td>
                         </tr>

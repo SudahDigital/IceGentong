@@ -67,7 +67,7 @@
                     <a href="{{URL::route('contact')}}">Kontak</a>
                 </li>
             </ul>
-
+            
             <ul class="list-unstyled user-auth">
                 <li>
                     <a href="{{route('login')}}" class="login">Masuk</a>

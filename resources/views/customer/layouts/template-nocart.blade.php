@@ -63,7 +63,16 @@
                     <a href="{{URL::route('contact')}}">Kontak Kami</a>
                 </li>
             </ul>
-
+            @if(\Auth::user())
+                <div class="mx-auto text-center">
+                    <form action="{{route('logout')}}" method="POST">
+                        @csrf   
+                            <button class="btn default">
+                                    Sign Out
+                            </button>
+                    </form>
+                </div>
+            @else
             <div class="mx-auto text-center">
                 <a href="{{route('login')}}" class="btn login">Sign In</a>
             </div>
@@ -71,7 +80,7 @@
             <div class="mx-auto text-center">  
                     <a href="{{route('register')}}" class="register">Sign Up</a>
             </div> 
-            
+            @endif
             <div class="mx-auto text-center" style="margin-top: 35px;">
                 <div class="social-icons">
                     <a href="#"><i class="fa fa-facebook" ></i></a>
