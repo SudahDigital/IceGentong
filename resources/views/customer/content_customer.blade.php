@@ -1,106 +1,126 @@
 @extends('customer.layouts.template')
 @section('content')
+    
+    @if($count_data <= 3)
+    <div class="">
+    @else
     <div class="warna">
+    @endif
         <div class="container" style="margin-top:30px;">
             <div class="row align-middle" style="margin-bottom: 20px">
                 <div class="col-sm-12">
                     
-                        <div class="col-md-12 mx-auto">
-                            <table width="100%" style="margin-bottom: 40px;">
-                            <tbody>
-                                <tr>
-                                    <td width="25%">
-                                        <h3 class="title-page" style="font-size: 30px;font-weight: bold;font-style: normal;line-height: 1.37;color: #ffffff; font-family: Open Sans;">
-                                            Filter Category 
-                                        </h3>
-                                    </td>
-                                    <td width="75%">
-                                        <button type="button" class="btn" data-toggle="collapse" data-target="#demo" style="background-color:#693234; border:none;">
-                                            <i class="fas fa-sliders-h fa-2x" style="color:#fff;"></i>
+                    <div class="col-md-12 mx-auto">
+                        <table width="100%" style="margin-bottom: 20px;">
+                        <tbody>
+                            <tr>
+                                <td class="menu-filter">
+                                    @if($count_data <= 3)
+                                    <h3 class="cat_fil" id="cat_fil" style="color: #693234;">
+                                        Filter Category 
+                                    </h3>
+                                    @else
+                                    <h3 class="cat_fil" id="cat_fil" style="color: #ffffff; ">
+                                        Filter Category 
+                                    </h3>
+                                    @endif
+                                </td>
+                                <td width="60%" align="left">
+                                    @if($count_data <=3)
+                                        <button type="button" class="btn" data-toggle="collapse" data-target="#demo" style="background-color:#FDD8AF; border:none;">
+                                            <i class="fas fa-sliders-h tombol" style="color:#693234"></i>
                                         </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                            </table>
-                        </div>
-                        
-                        <div id="demo" class="collapse" style="margin-bottom:50px;">
-                            <div class="col-md-12" style="margin-bottom: 20px;">
-                            <button type="button" class="btn button_add_to_cart button-collapse">Semua Produk</button>
-                            
-                            <button type="button" class="btn button_add_to_cart button-collapse">Special Package</button>
-                            
-                            <button type="button" class="btn button_add_to_cart button-collapse">Deluxe</button>
-                            
-                            <button type="button" class="btn button_add_to_cart button-collapse">Family Pack</button>
-                            
-                            <button type="button" class="btn button_add_to_cart">Purty Cup</button>
-                            </div>
-                            
-                        </div> 
-                        
+                                    @else
+                                    <button type="button" class="btn" data-toggle="collapse" data-target="#demo" style="background-color:#693234; border:none;">
+                                        <i class="fas fa-sliders-h tombol" style="color:#fff;"></i>
+                                    </button>
+                                    @endif
+                                </td>
+                                <!--
+                                <td width="25%" align="right">
+                                    
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb px-0 button_breadcrumb">
+                                                <li class="breadcrumb-item active" aria-current="page" @if($count_data <= 3) style="color: #6a3137;margin-top:30px;" @else style="color: #fff;margin-top:30px;"@endif>Category Family Pack</li>
+                                            </ol>
+                                        </nav>
+                                </td>
+                            -->
+                            </tr>
+                        </tbody>
+                        </table>
+                    </div>
                     
+                    <div id="demo" class="collapse" style="">
+                        <div class="col-md-12" style="margin-bottom: 20px;">
+                        <a href="{{url('/home_customer')}}" type="button" class="btn button_add_to_cart button-collapse">Semua Produk</a>
+                        @foreach($categories as $key => $value)
+                            <a href="{{route('category.index', ['id'=>$value->id] )}}" type="button" class="btn button_add_to_cart button-collapse">{{$value->name}}</a>
+                        @endforeach
+                        </div>
+                    </div> 
+                
                 </div>
                
                 <br>
-                <div class="row section_content">
-                   @foreach($product as $key => $value)
-                    <div class="col-md-4 ">
+                <div class="col-md-12">
+                    <div class="row section_content">
+                    @foreach($product as $key => $value)
+                        <div class="col-md-4 ">
 
-                        <div class="card mx-auto item_product">
-                            <a href="{{URL::route('product_detail', ['id'=>$value->id, 'product_name'=>urlencode($value->Product_name)])}}">
-                                <img style="border-radius:15px; height:250px;" src="{{ asset('storage/'.(($value->image!='') ? $value->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-150 w-100 img-responsive" alt="...">
-                                <!-- <h5 class="card-title product-name px-1 py-2 mb-0" style="background-color: #4db849 !important; color: #fff !important; position: absolute; bottom: 0; width: 100%; opacity: 0.8;">{{$value->product_name}}</h5> -->
-                            </a>
-                            
-                                <div class="float-left px-1 py-2" style="width: 100%;">
-                                    <p class="product-price-header mb-0" style="color:#6a3137 !important; line-height: 1.36;font-size: 25px;font-weight: bold;">
-                                        {{$value->description}}
-                                    </p>
-                                </div>
-                                <div class="float-left px-1 py-2" style=" width: 100%; font-size: 45px; font-weight: 800;">
-                                    <p class="product-price mb-0" id="productPrice{{$value->id}}" style="color:#6a3137; !important; font-family: Open Sans;">Rp {{ number_format($value->price, 0, ',', '.') }}</p>
-                                </div>
+                            <div class="card mx-auto item_product">
+                                <!--<a href="{{URL::route('product_detail', ['id'=>$value->id, 'product_name'=>urlencode($value->Product_name)])}}">-->
+                                    <img style="border-radius:15px; height:250px;" src="{{ asset('storage/'.(($value->image!='') ? $value->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-150 w-100 img-responsive" alt="...">
                                 
+                                    <div class="float-left px-1 py-2" style="width: 100%;">
+                                        <p class="product-price-header mb-0" style="">
+                                            {{$value->description}}
+                                        </p>
+                                    </div>
+                                    <div class="float-left px-1 py-2" style="">
+                                        <p class="product-price mb-0 " id="productPrice{{$value->id}}" style="">Rp {{ number_format($value->price, 0, ',', '.') }}</p>
+                                    </div>
+                                    
+                                    
+                                    <table width="100%" class="hdr_tbl_cart">
+                                        <tbody>
+                                        <tr>
+                                            <td class="tbl_cart" valign="middle" style="">
+                                                <form method="post" action="{{ route('customer.keranjang.simpan') }}">
+                                                    @csrf
+                                                    @if(Route::has('login'))
+                                                        @auth
+                                                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                                        @endauth
+                                                    @endif
+                                                    <input type="hidden" id="{{$value->id}}" name="quantity" value="1">
+                                                    <input type="hidden" id="harga{{$value->id}}" name="price" value="{{ $value->price }}">
+                                                    <input type="hidden" name="Product_id" value="{{$value->id}}">
+                                                    <button class="btn btn-block button_add_to_cart" style="font-size: 20px;font-weight: 800; padding:2 15;">Tambah</button>
+                                                </form>
+                                            </td>
+                                            <td width="10%" align="left" valign="middle">
+                                                <a class="button_minus" onclick="button_minus('{{$value->id}}')" style=""><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                            </td>
+                                            <td width="10%" align="center" valign="middle">
+                                                <p id="show_{{$value->id}}" class="d-inline show" style="">1</p>
+                                            </td>
+                                            <td width="10%" align="right" valign="middle">
+                                                <a class="button_plus float-right " onclick="button_plus('{{$value->id}}')" style=""><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    
                                 
-                                <table width="100%">
-                                    <tbody>
-                                    <tr>
-                                        <td width="70%" valign="middle" style="padding-right:20px;">
-                                            <form method="post" action="{{ route('customer.keranjang.simpan') }}">
-                                                @csrf
-                                                @if(Route::has('login'))
-                                                    @auth
-                                                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                                                    @endauth
-                                                @endif
-                                                <input type="hidden" id="{{$value->id}}" name="quantity" value="1">
-                                                <input type="hidden" id="harga{{$value->id}}" name="price" value="{{ $value->price }}">
-                                                <input type="hidden" name="Product_id" value="{{$value->id}}">
-                                                <button class="btn btn-block button_add_to_cart" style="font-size: 20px;font-weight: 800; padding:2 15;">Tambah</button>
-                                            </form>
-                                        </td>
-                                        <td width="10%" align="left" valign="middle">
-                                            <a class="button_minus" onclick="button_minus('{{$value->id}}')" style=" color:#6a3137;font-size: 20px;font-weight: 800; cursor:pointer;"><i class="fa fa-minus" aria-hidden="true"></i></a>
-                                        </td>
-                                        <td width="10%" align="center" valign="middle">
-                                            <p id="show_{{$value->id}}" class="d-inline" style="color:#6a3137; font-size: 20px;font-weight: 800;">1</p>
-                                        </td>
-                                        <td width="10%" align="right" valign="middle">
-                                            <a class="button_plus float-right " onclick="button_plus('{{$value->id}}')" style="color:#6a3137;font-size: 20px;font-weight: 800; cursor:pointer;"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                
-                            
+                            </div>
+
                         </div>
-
+                    @endforeach
+                            
+                    <div class="row justify-content-md-center mx-auto" >
+                        <div style="margin-top:-7rem; margin-bottom:7rem;">{{ $product->links('vendor.pagination.bootstrap-4') }}</div>
                     </div>
-                @endforeach
-                        
-                <div class="row justify-content-md-center mx-auto" >
-                    <div style="margin-top:-7rem; margin-bottom:7rem;">{{ $product->links('vendor.pagination.bootstrap-4') }}</div>
                 </div>
             </div>
         </div>
@@ -149,7 +169,13 @@
                                 </div> 
                             </td>
                             <td width="25%" align="left" valign="middle">
-                                <h5>Rp.</h5>
+                            <h5 id="total_kr_{{$item->total_price}}">Rp.@if($item!==null)
+                                {{number_format($item->total_price)}}
+                                @else
+                                {{''}}
+                                @endif
+                            
+                            </h5>
                             </td>
                             <td width="5%" valign="middle" >
                             <a role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" class="collapsed">
@@ -159,34 +185,149 @@
                             <td width="33%" align="right" valign="middle">
                                
                             <h5>({{$total_item}} Item)</h5>
-                               
+                             
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div id="collapse-4" class="collapse" data-parent="#accordion"  >
-                <div class="card-body" >
-                    <table width="100%" style="margin-bottom: 40px;">
-                        <tbody>
-                            <tr>
-                                <td width="5%" valign="middle">
-                                     
-                                </td>
-                                <td width="25%" align="left" valign="middle">
-                                   
-                                </td>
-                                <td width="5%" valign="middle" >
+            <div id="collapse-4" class="collapse" data-parent="#accordion" style="overflow-y: auto; max-height:450px; padding:5%; " >
+                <div class="card-body" id="card-detail">
+                    <div class="col-md-12">
+                        <table width="100%" style="margin-bottom: 40px; ">
+                            <tbody>
+                                @foreach($keranjang as $detil)
+                                <tr>
                                 
-                                </td>
-                                <td width="33%" align="right" valign="middle">
-                                  
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                    <td width="25%" valign="middle">
+                                        <img src="{{ asset('storage/'.$detil->image)}}" 
+                                        class="image-detail" alt="...">   
+                                    </td>
+                                    <td width="60%" align="left" valign="top">
+                                        <p class="name-detail">{{ $detil->description}}</p>
+                                        <?php $total=$detil->price * $detil->quantity;?>
+                                        <h1 id="productPrice_kr{{$detil->product_id}}" style="color:#6a3137; !important; font-family: Open Sans;">Rp {{ number_format($total, 0, ',', '.') }}</h1>
+                                        <table width="10%">
+                                            <tbody>
+                                                <tr>
+                                                    
+                                                    <input type="hidden" id="{{$detil->quantity}}" name="quantity" value="{{ $detil->quantity }}">
+                                                    <input type="hidden" id="harga{{$detil->price}}" name="price" value="{{ $detil->price }}">
+                                                    <td width="10px" align="left" valign="middle">
+                                                        <a class="button_minus" onclick="button_minus_kr('{{$detil->product_id}}')" style=" color:#6a3137;font-size: 20px;font-weight: 800; cursor:pointer;"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                                    </td>
+                                                    <td width="10px" align="middle" valign="middle">
+                                                        <p id="show_kr_{{$detil->product_id}}" class="d-inline" style="color:#6a3137; font-size: 20px;font-weight: 800;">{{$detil->quantity}}</p>
+                                                    </td>
+                                                    <td width="10px" align="right" valign="middle">
+                                                        <a class="button_plus float-right " onclick="button_plus_kr('{{$detil->product_id}}')" style="color:#6a3137;font-size: 20px;font-weight: 800; cursor:pointer;"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                    <td width="15%" align="left" valign="top" style="padding-top: 5%;">
+                                        <form method="post" action="{{ route('customer.keranjang.delete') }}">
+                                            @csrf
+                                            <button class="btn button_add_to_cart" 
+                                             style="font-size:20px;font-weight: 800; padding-top:7px; padding-bottom:7px;">X</button>
+                                            <input type="hidden"  name="order_id" value="{{$detil->order_id}}">
+                                            <input type="hidden"  name="quantity" value="{{$detil->quantity}}">
+                                            <input type="hidden"  name="price" value="{{$detil->price}}">
+                                            <input type="hidden"  name="product_id" value="{{$detil->product_id}}">
+                                            <input type="hidden" id="{{$detil->id}}" name="id" value="{{$detil->id}}">
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <div class="mx-auto text-right">
+                            @if($item!==null)    
+                                <div id="bt_beli">
+                                    <?php $href = 'Hello Saya Ingin Membeli %3A%0A';?>
+                                    @foreach($keranjang as $detil)
+                                    @php 
+                                        $href.='*'.$detil->description.'%20(Qty %3A%20'.$detil->quantity.')%0A';
+                                    @endphp
+                                    @endforeach
+                                    <a target="_BLANK" href="https://wa.me/6282113464465?text=<?php echo $href; ?>"
+                                    class="btn">Beli Sekarang</a>
+                                </div>
+                            @endif
+                        </div>
+                        
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        function button_minus_kr(id)
+        {
+            var jumlah = $('#'+id).val();
+            var jumlah = parseInt(jumlah) - 1;
+
+            // AMBIL NILAI HARGA
+            var harga = $('#harga'+id).val();
+            var harga = parseInt(harga) * jumlah;
+
+            //AMBIL NILAI TOTAL
+            var totalkr = $('#tt_'+id).val();
+            var totalkr = parseInt(totalkr) - harga;
+            // UBAH FORMAT UANG INDONESIA
+            var	number_string = harga.toString();
+            var sisa 	= number_string.length % 3;
+            var rupiah 	= number_string.substr(0, sisa);
+            var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+            if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+            }
+
+            harga = "Rp " + rupiah;
+
+            if (jumlah<1) {
+            alert('Jumlah Tidak Boleh Kosong')
+            } else {
+            $('#'+id).val(jumlah);
+            $('#show_kr_'+id).html(jumlah);
+            $('#productPrice_kr'+id).text(harga);
+            $('#totalKr_'+id).text(totalkr);
+            }
+        }
+
+        function button_plus_kr(id)
+        {
+            var jumlah = $('#'+id).val();
+            var jumlah = parseInt(jumlah) + 1;
+
+            // AMBIL NILAI HARGA
+            var harga = $('#harga'+id).val();;
+            var harga = parseInt(harga) * jumlah;
+
+            // UBAH FORMAT UANG INDONESIA
+            var	number_string = harga.toString();
+            var sisa 	= number_string.length % 3;
+            var rupiah 	= number_string.substr(0, sisa);
+            var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+            if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+            }
+
+            harga = "Rp " + rupiah;
+            
+            // alert(jumlah)
+            if (jumlah<1) {
+            alert('Jumlah Tidak Boleh Kosong')
+            } else {
+            $('#'+id).val(jumlah)
+            $('#show_kr_'+id).html(jumlah)
+            $('#productPrice_kr'+id).text(harga);
+            }
+        }
+    </script>
 @endsection

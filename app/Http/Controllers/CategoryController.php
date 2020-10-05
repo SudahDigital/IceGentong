@@ -50,7 +50,7 @@ class CategoryController extends Controller
         $newCategory->name = $name;
         if($request->file('image')){
             $image_path = $request->file('image')->store('category_images','public');
-            $newCategory->image = $image_path;
+            $newCategory->image_category = $image_path;
         }
         $newCategory->create_by = \Auth::user()->id;
         $newCategory->slug = \Str::slug($name,'-');
@@ -97,11 +97,11 @@ class CategoryController extends Controller
         $category->slug = $slug;
 
         if($request->file('image')){
-            if($category->image && file_exists(storage_path('app/public/' .$category->image))){
+            if($category->image_category && file_exists(storage_path('app/public/' .$category->image_category))){
             \Storage::delete('public/' . $category->name);
             }
             $new_image = $request->file('image')->store('category_images','public');
-            $category->image = $new_image;
+            $category->image_category = $new_image;
             }
             $category->update_by = \Auth::user()->id;
             $category->slug = \Str::slug($name);

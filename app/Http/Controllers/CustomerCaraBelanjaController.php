@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 
 class CustomerCaraBelanjaController extends Controller
 {
-    public function index()
-    {    	
-    	return view('customer.carabelanja');
+    public function index(Request $request)
+    {    
+        $kategori = \App\Category::get();	
+    	return view('customer.carabelanja',['kategori'=>$kategori]);
     }
 }

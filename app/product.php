@@ -8,11 +8,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class product extends Model
 {
     use SoftDeletes;
-    public function categories(){
+        public function categories(){
         return $this->belongsToMany('App\Category');
         }
 
-    public function orders(){
+        public function orders(){
         return $this->belongsToMany('App\Order');
         }
+
+        
 }

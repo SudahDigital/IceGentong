@@ -34,7 +34,7 @@ class LoginController extends Controller
         }else if (auth()->user()->roles == 'CUSTOMER') {
             return '/home_customer';
         }
-        return '/';
+        return '/home_customer';
     }
     /**
      * Create a new controller instance.
@@ -52,5 +52,11 @@ class LoginController extends Controller
         return ['email'=>$request->{
             $this->username()
         }, 'password'=>$request->password, 'status'=>'ACTIVE'];
+    }
+
+    public function showLoginForm()
+    {
+        $kategori = \App\Category::get();    
+        return view('auth.login', ['kategori'=> $kategori]);
     }
 }

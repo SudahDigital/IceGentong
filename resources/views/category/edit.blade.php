@@ -28,8 +28,8 @@
         <h2 class="card-inside-title">Image</h2>
         <div class="form-group">
          <div class="form-line">
-            @if($cat_edit->image)
-            <img src="{{asset('storage/'.$cat_edit->image)}}" width="120px"/>
+            @if($cat_edit->image_category)
+            <img src="{{asset('storage/'.$cat_edit->image_category)}}" width="120px"/>
             @else
             No Image
             @endif

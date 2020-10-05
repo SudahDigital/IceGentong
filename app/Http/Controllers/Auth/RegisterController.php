@@ -71,4 +71,10 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    public function showRegistrationForm()
+    {
+        $kategori = \App\Category::get(); 
+        return view('auth.register', ['kategori'=> $kategori]);
+    }
 }

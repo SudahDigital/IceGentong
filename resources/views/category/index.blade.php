@@ -57,8 +57,8 @@
 				<td>{{$no}}</td>
 				<td>{{$c->name}}</td>
 				<td>{{$c->slug}}</td>
-				<td>@if($c->image)
-					<img src="{{asset('storage/'.$c->image)}}" width="50px" height="50px" />
+				<td>@if($c->image_category)
+					<img src="{{asset('storage/'.$c->image_category)}}" width="50px" height="50px" />
 					@else
 					N/A
 					@endif
@@ -103,8 +103,8 @@
 		                           {{$c->name}}
 		                           <br/>
 		                           <br/>
-		                           @if($c->image)
-		                           <img src="{{asset('storage/'.$c->image)}}" width="128px"/>
+		                           @if($c->image_category)
+		                           <img src="{{asset('storage/'.$c->image_category)}}" width="128px"/>
 		                           @else
 		                           No Image
 		                           @endif

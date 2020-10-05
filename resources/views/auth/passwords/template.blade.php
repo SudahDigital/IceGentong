@@ -38,124 +38,17 @@
     @endif
 
     <div class="wrapper">
-         <!-- Sidebar  -->
-         <nav id="sidebar">
-           
-            <div class="sidebar-header mx-auto">
-                @if(\Auth::user())
-                <a href="{{url('/home_customer') }}">
-                @else
-                <a href="{{url('/') }}">
-                @endif
-                    <img src="{{asset('assets/image/logo-nav.png')}}" width="70%" height="auto" class="d-inline-block align-top" alt="" loading="lazy">
-                </a>
-            </div>
-            <ul class="list-unstyled components">
-                <form class="d-md-none d-block px-3" action="">
-                    <div class="input-group mb-4">
-                        <input class="form-control text-center" type="search" name="keyword" placeholder="Search" aria-label="Search" aria-describedby="button-addon">
-                        <!--<div class="input-group-append">
-                            <button class="btn btn-ligth search-sidebar" type="submit" id="button-addon"><i class="fa fa-search"></i></button>
-                        </div>-->
-                    </div>
-                </form>
-                <li class="active">
-                    @if(\Auth::user())
-                    <a href="{{url('/home_customer') }}">Beranda</a>
-                    @else
-                    <a href="{{ url('/') }}">Beranda</a>
-                    @endif
-                </li>
-                <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Produk</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        @if(\Auth::user())
-                            @foreach($categories as $key => $value)
-                                <li>
-                                    <a href="{{route('category.index', ['id'=>$value->id] )}}" style="font-size: 1.1em !important;">{{$value->name}}</a>
-                                </li>
-                            @endforeach
-                        @else
-                            @foreach($kategori as $kat)
-                                <li>
-                                    <a href="{{route('category_user.index', ['id'=>$kat->id] )}}" style="font-size: 1.1em !important;">{{$kat->name}}</a>
-                                </li>
-                            @endforeach
-
-                        @endif
-                    </ul>
-                </li>
-                <li>
-                    @if(\Auth::user())
-                        <a href="{{URL::route('cara_belanja_customer')}}">Cara Berbelanja</a>
-                    @else
-                        <a href="{{URL::route('cara_belanja')}}">Cara Berbelanja</a>
-                    @endif
-                </li>
-                <li>
-                    @if(\Auth::user())
-                        <a href="{{URL::route('contact_customer')}}">Kontak Kami</a>
-                        @else
-                        <a href="{{URL::route('contact')}}">Kontak Kami</a>
-                    @endif
-                    
-                </li>
-
-            </ul>
-
-             @if(\Auth::user())
-                <div class="mx-auto text-center">
-                    <form action="{{route('logout')}}" method="POST">
-                        @csrf   
-                        <div id="log">   
-                            <button class="btn logout">
-                                    Sign Out
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            @else        
-                    <div class="mx-auto text-center">
-                        <a href="{{route('login')}}" class="btn login">Sign In</a>
-                    </div>
-                            
-                    <div class="mx-auto text-center">  
-                            <a href="{{route('register')}}" class="register">Sign Up</a>
-                    </div> 
-               
-            @endif
-            
-            
-            <div class="mx-auto text-center" style="margin-top: 35px;">
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook" ></i></a>
-                    <a href="#"><i class="fab fa-instagram "></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                </div>
-            </div>
-
-         </nav>
+         
 
         <div id="content">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="z-index: 1.5;">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="z-index: 1.5; height:100px;">
                 <div class="container-fluid">
-                    <button type="button" id="sidebarCollapse" class="btn button-burger-menu">
-                        <i class="fa fa-bars fa-2x" style="color:#693234;"></i>
-                    </button>
+                   
                     <a class="navbar-brand" href="{{ url('/') }}" style="position: absolute; left:45%;" >
                         <img src="{{ asset('assets/image/logo-nav.png') }}" width="120px" height="auto" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy" style="left: 70%;">
                     </a>
-                    <form action="{{Auth::user() ? route('search.index') : route('search_user.index')}}" class="form-inline my-2 my-lg-0 ml-auto d-none d-md-inline-block">
-                        <div class="input-group">
-                            <div class="input-group-append">
-                                <button class="btn  my-2 my-sm-0 search_botton_navbar" type="submit" id="button-search-addon" style="border-radius: 50%;"><i class="fa fa-search"></i></button>&nbsp;&nbsp;&nbsp;
-                            </div>
-                            <input class="form-control d-inline-block m-100 search_input_navbar" name="keyword" type="text" value="{{Request::get('keyword')}}" placeholder="Search" aria-label="Search" aria-describedby="button-search-addon">
-                              
-                        </div>
-                    </form>
+                   
                 </div>
             </nav>
 

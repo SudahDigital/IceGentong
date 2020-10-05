@@ -92,7 +92,11 @@
         <nav id="sidebar">
            
             <div class="sidebar-header mx-auto">
-                <a href="{{ url('/') }}">
+                @if(\Auth::user())
+                <a href="{{url('/home_customer') }}">
+                @else
+                <a href="{{url('/') }}">
+                @endif
                     <img src="{{asset('assets/image/logo-nav.png')}}" width="70%" height="auto" class="d-inline-block align-top" alt="" loading="lazy">
                 </a>
             </div>
@@ -106,30 +110,57 @@
                     </div>
                 </form>
                 <li class="active">
+                    @if(\Auth::user())
+                    <a href="{{url('/home_customer') }}">Beranda</a>
+                    @else
                     <a href="{{ url('/') }}">Beranda</a>
+                    @endif
                 </li>
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Produk</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
-                       
+                        @if(\Auth::user())
+                        @foreach($categories as $key => $value)
+                            <li>
+                                <a href="{{route('category.index', ['id'=>$value->id] )}}" style="font-size: 1.1em !important;">{{$value->name}}</a>
+                            </li>
+                        @endforeach
+                        @else
+                            @foreach($kategori as $key => $value)
+                                <li>
+                                    <a href="{{route('category_user.index', ['id'=>$value->id] )}}" style="font-size: 1.1em !important;">{{$value->name}}</a>
+                                </li>
+                            @endforeach
+                        @endif
                     </ul>
                 </li>
                 <li>
-                    <a href="{{URL::route('cara_belanja')}}">Cara Berbelanja</a>
+                    @if(\Auth::user())
+                        <a href="{{URL::route('cara_belanja_customer')}}">Cara Berbelanja</a>
+                    @else
+                        <a href="{{URL::route('cara_belanja')}}">Cara Berbelanja</a>
+                    @endif
                 </li>
                 <li>
-                    <a href="{{URL::route('contact')}}">Kontak Kami</a>
+                    @if(\Auth::user())
+                        <a href="{{URL::route('contact_customer')}}">Kontak Kami</a>
+                        @else
+                        <a href="{{URL::route('contact')}}">Cara Berbelanja</a>
+                    @endif
+                    
                 </li>
 
             </ul>
 
              @if(\Auth::user())
-                <div class="mx-auto text-center">
+                <div class="mx-auto text-center" >
                     <form action="{{route('logout')}}" method="POST">
-                        @csrf   
-                            <button class="btn default">
+                        @csrf
+                        <div id="log">   
+                            <button class="btn logout">
                                     Sign Out
                             </button>
+                        </div>
                     </form>
                 </div>
             @else        
@@ -162,15 +193,19 @@
                     <button type="button" id="sidebarCollapse" class="btn button-burger-menu">
                         <i class="fas fa-bars fa-2x" style="color:#693234;"></i>
                     </button>
+                    @if(\Auth::user())
+                    <a class="navbar-brand nav-center" href="{{url('/home_customer') }}">
+                    @else
                     <a class="navbar-brand nav-center" href="{{ url('/') }}">
+                    @endif
                         <img src="{{ asset('assets/image/logo-nav.png') }}" width="120px" height="auto" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy">
                     </a>
-                    <form action="" class="form-inline my-2 my-lg-0 ml-auto d-none d-md-inline-block">
+                    <form action="{{route('search_user.index')}}" class="form-inline my-2 my-lg-0 ml-auto d-none d-md-inline-block">
                         <div class="input-group">
                             <div class="input-group-append">
                                 <button class="btn  my-2 my-sm-0 search_botton_navbar" type="submit" id="button-search-addon" style="border-radius: 50%;"><i class="fa fa-search"></i></button>&nbsp;&nbsp;&nbsp;
                             </div>
-                            <input class="form-control d-inline-block m-100 search_input_navbar" name="keyword" type="text"  placeholder="Search" aria-label="Search" aria-describedby="button-search-addon">
+                            <input class="form-control d-inline-block m-100 search_input_navbar" name="keyword" type="text" value="{{Request::get('keyword')}}" placeholder="Search" aria-label="Search" aria-describedby="button-search-addon">
                               
                         </div>
                     </form>
@@ -209,11 +244,12 @@
             <!-- Page Content  -->
             @yield('content')
 
-           <!-- Footer -->
-
-
-        </div>
+         </div>
+          
+         
+        
     </div>
+    
 
     <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="edit-modal-label" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
@@ -262,6 +298,8 @@
     </div>
 
     <div class="overlay"></div>
+
+    
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>

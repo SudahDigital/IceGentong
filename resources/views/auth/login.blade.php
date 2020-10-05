@@ -1,4 +1,4 @@
-@extends('auth.template-auth')
+@extends('customer.layouts.template-nocart')
 @section('content')
     <div class="container" style="margin-top: 70px;">
         <div class="row align-middle">
