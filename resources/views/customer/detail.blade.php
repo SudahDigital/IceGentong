@@ -86,5 +86,188 @@
             </div>
         </div>-->
         <br><br><br>
+
+        <div id="accordion">
+            <div class="card fixed-bottom" style="">
+                <div id="card-cart" class="card-header" >
+                    <table width="100%" style="margin-bottom: 40px;">
+                        <tbody>
+                            <tr>
+                                <td width="5%" valign="middle">
+                                    <div id="ex4">
+                                   
+                                        <span class="p1 fa-stack fa-2x has-badge" data-count="{{\Auth::user() ? $total_item : '0'}}">
+                                    
+                                            <!--<i class="p2 fa fa-circle fa-stack-2x"></i>-->
+                                            <i class="p3 fa fa-shopping-cart " data-count="4b" style=""></i>
+                                        </span>
+                                    </div> 
+                                </td>
+                                <td width="25%" align="left" valign="middle">
+                                    @if((\Auth::user())&&($item!==null))
+                                <h5 id="total_kr_{{$item->total_price}}">Rp.
+                                    {{number_format($item->total_price)}}
+                                    @else
+                                <h5 id="total_kr_0">Rp.
+                                    {{''}}
+                                    @endif
+                                
+                                </h5>
+                                </td>
+                                <td width="5%" valign="middle" >
+                                <a id="cv" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" class="collapsed">
+                                        <i class="fas fa-chevron-up" style=""></i>
+                                    </a>
+                                </td>
+                                <td width="33%" align="right" valign="middle">
+                                   
+                                <h5>({{\Auth::user() ? $total_item : '0'}} Item)</h5>
+                                 
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="collapse-4" class="collapse" data-parent="#accordion" style="" >
+                    <div class="card-body" id="card-detail">
+                        <div class="col-md-12">
+                            <table width="100%" style="margin-bottom: 40px; ">
+                                <tbody>
+                                    @if(\Auth::user())
+                                    @foreach($keranjang as $detil)
+                                    <tr>
+                                    
+                                        <td width="25%" valign="middle">
+                                            <img src="{{ asset('storage/'.$detil->image)}}" 
+                                            class="image-detail"  alt="...">   
+                                        </td>
+                                        <td width="60%" align="left" valign="top">
+                                            <p class="name-detail">{{ $detil->description}}</p>
+                                            <?php $total=$detil->price * $detil->quantity;?>
+                                            <h1 id="productPrice_kr{{$detil->product_id}}" style="color:#6a3137; !important; font-family: Open Sans;">Rp {{ number_format($total, 0, ',', '.') }}</h1>
+                                            <table width="10%">
+                                                <tbody>
+                                                    <tr>
+                                                        
+                                                        <input type="hidden" id="{{$detil->quantity}}" name="quantity" value="{{ $detil->quantity }}">
+                                                        <input type="hidden" id="harga{{$detil->price}}" name="price" value="{{ $detil->price }}">
+                                                        <td width="10px" align="left" valign="middle">
+                                                            <a class="button_minus" onclick="button_minus_kr('{{$detil->product_id}}')" style=""><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                                        </td>
+                                                        <td width="10px" align="middle" valign="middle">
+                                                            <p id="show_kr_{{$detil->product_id}}" class="d-inline" style="">{{$detil->quantity}}</p>
+                                                        </td>
+                                                        <td width="10px" align="right" valign="middle">
+                                                            <a class="button_plus float-right " onclick="button_plus_kr('{{$detil->product_id}}')" style=""><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                        <td width="15%" align="left" valign="top" style="padding-top: 5%;">
+                                            <form method="post" action="{{ route('customer.keranjang.delete') }}">
+                                                @csrf
+                                                <button class="btn btn-default" 
+                                                 style="">X</button>
+                                                <input type="hidden"  name="order_id" value="{{$detil->order_id}}">
+                                                <input type="hidden"  name="quantity" value="{{$detil->quantity}}">
+                                                <input type="hidden"  name="price" value="{{$detil->price}}">
+                                                <input type="hidden"  name="product_id" value="{{$detil->product_id}}">
+                                                <input type="hidden" id="{{$detil->id}}" name="id" value="{{$detil->id}}">
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                    @endif
+                                </tbody>
+                            </table>
+                            <div class="mx-auto text-right">
+                                @if((\Auth::user())&&($item!==null))   
+                                    <div id="bt_beli">
+                                        <?php $href = 'Hello Saya Ingin Membeli %3A%0A';?>
+                                        @foreach($keranjang as $detil)
+                                        @php 
+                                            $href.='*'.$detil->description.'%20(Qty %3A%20'.$detil->quantity.')%0A';
+                                        @endphp
+                                        @endforeach
+                                        <a target="_BLANK" href="https://wa.me/6282113464465?text=<?php echo $href; ?>"
+                                        class="btn">Beli Sekarang</a>
+                                    </div>
+                                @endif
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            function button_minus_kr(id)
+            {
+                var jumlah = $('#'+id).val();
+                var jumlah = parseInt(jumlah) - 1;
     
+                // AMBIL NILAI HARGA
+                var harga = $('#harga'+id).val();
+                var harga = parseInt(harga) * jumlah;
+    
+                //AMBIL NILAI TOTAL
+                var totalkr = $('#tt_'+id).val();
+                var totalkr = parseInt(totalkr) - harga;
+                // UBAH FORMAT UANG INDONESIA
+                var	number_string = harga.toString();
+                var sisa 	= number_string.length % 3;
+                var rupiah 	= number_string.substr(0, sisa);
+                var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+    
+                if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+                }
+    
+                harga = "Rp " + rupiah;
+    
+                if (jumlah<1) {
+                alert('Jumlah Tidak Boleh Kosong')
+                } else {
+                $('#'+id).val(jumlah);
+                $('#show_kr_'+id).html(jumlah);
+                $('#productPrice_kr'+id).text(harga);
+                $('#totalKr_'+id).text(totalkr);
+                }
+            }
+    
+            function button_plus_kr(id)
+            {
+                var jumlah = $('#'+id).val();
+                var jumlah = parseInt(jumlah) + 1;
+    
+                // AMBIL NILAI HARGA
+                var harga = $('#harga'+id).val();;
+                var harga = parseInt(harga) * jumlah;
+    
+                // UBAH FORMAT UANG INDONESIA
+                var	number_string = harga.toString();
+                var sisa 	= number_string.length % 3;
+                var rupiah 	= number_string.substr(0, sisa);
+                var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+    
+                if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+                }
+    
+                harga = "Rp " + rupiah;
+                
+                // alert(jumlah)
+                if (jumlah<1) {
+                alert('Jumlah Tidak Boleh Kosong')
+                } else {
+                $('#'+id).val(jumlah)
+                $('#show_kr_'+id).html(jumlah)
+                $('#productPrice_kr'+id).text(harga);
+                }
+            }
+        </script>
+        
 @endsection
