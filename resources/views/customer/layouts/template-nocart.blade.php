@@ -27,7 +27,28 @@
       integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V"
       crossorigin="anonymous"
     />
-
+    <style>
+        @media screen and (max-width: 600px) {
+            .nav-center {
+                position: absolute;
+                left: 30%;
+            }
+        }
+       
+        @media screen and (min-width: 768px) {
+            .nav-center {
+                position: absolute;
+                left: 45%;
+            }
+        }
+        
+        @media screen and (min-width: 1920px) {
+            .nav-center {
+                position: absolute;
+                left: 50%;
+            }
+        }
+    </style>
 </head>
 <body>
      @if ($message = Session::get('success'))
@@ -51,14 +72,7 @@
                 </a>
             </div>
             <ul class="list-unstyled components">
-                <form class="d-md-none d-block px-3" action="">
-                    <div class="input-group mb-4">
-                        <input class="form-control text-center" type="search" name="keyword" placeholder="Search" aria-label="Search" aria-describedby="button-addon">
-                        <!--<div class="input-group-append">
-                            <button class="btn btn-ligth search-sidebar" type="submit" id="button-addon"><i class="fa fa-search"></i></button>
-                        </div>-->
-                    </div>
-                </form>
+                
                 <li class="active">
                     @if(\Auth::user())
                     <a href="{{url('/home_customer') }}">Beranda</a>

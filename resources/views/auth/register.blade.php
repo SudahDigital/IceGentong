@@ -11,8 +11,8 @@
                 </nav>
             </div>
         </div>
-        <div class="row section_content">
-            <div class="col-sm-8 mb-4 offset-2">
+        <div class="row justify-content-center">
+            <div class="col-sm-8">
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
                     <div class="card mx-auto contact_card" style="border-radius:15px;">

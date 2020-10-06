@@ -63,13 +63,14 @@
                 left: 40%;
             }
         }
+       
         @media screen and (min-width: 768px) {
             .nav-center {
                 position: absolute;
                 left: 45%;
             }
         }
-
+        
         @media screen and (min-width: 1920px) {
             .nav-center {
                 position: absolute;
@@ -101,15 +102,28 @@
                 </a>
             </div>
             <ul class="list-unstyled components">
+                <!--
                 <form class="d-md-none d-block px-3" action="">
                     <div class="input-group mb-4">
-                        <input class="form-control text-center" type="search" name="keyword" placeholder="Search" aria-label="Search" aria-describedby="button-addon">
-                        <!--<div class="input-group-append">
+                        <div class="input-group-append">
                             <button class="btn btn-ligth search-sidebar" type="submit" id="button-addon"><i class="fa fa-search"></i></button>
-                        </div>-->
+                        </div>
+                        <input class="form-control text-center" type="search" name="keyword" placeholder="Search" aria-label="Search" aria-describedby="button-addon">
+                        
                     </div>
                 </form>
-                <li class="active">
+                
+                <form class="d-md-none d-block px-3" action="">
+                    <div class="input-group mb-4">
+                        <div class="input-group-append">
+                            <button class="btn  my-2 my-sm-0 search_botton_navbar" type="submit" id="button-search-addon" style="border-radius: 50%;"><i class="fa fa-search"></i></button>&nbsp;&nbsp;&nbsp;
+                        </div>
+                        <input class="form-control d-inline-block m-100 search_input_navbar" name="keyword" type="text" value="{{Request::get('keyword')}}" placeholder="Search" aria-label="Search" aria-describedby="button-search-addon">
+                        
+                    </div>
+                </form>
+                -->
+                <li class="">
                     @if(\Auth::user())
                     <a href="{{url('/home_customer') }}">Beranda</a>
                     @else
@@ -209,6 +223,7 @@
                               
                         </div>
                     </form>
+                    
                 </div>
             </nav>
 

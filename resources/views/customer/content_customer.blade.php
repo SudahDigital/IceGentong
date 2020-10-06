@@ -66,12 +66,12 @@
                 <div class="col-md-12">
                     <div class="row section_content">
                     @foreach($product as $key => $value)
-                        <div class="col-md-4 ">
+                        <div class="col-6 col-lg-4">
 
                             <div class="card mx-auto item_product">
-                                <!--<a href="{{URL::route('product_detail', ['id'=>$value->id, 'product_name'=>urlencode($value->Product_name)])}}">-->
-                                    <img style="border-radius:15px; height:250px;" src="{{ asset('storage/'.(($value->image!='') ? $value->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-150 w-100 img-responsive" alt="...">
-                                
+                                <a href="">
+                                    <img style="" src="{{ asset('storage/'.(($value->image!='') ? $value->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-150 w-100 img-responsive" alt="...">
+                                </a>
                                     <div class="float-left px-1 py-2" style="width: 100%;">
                                         <p class="product-price-header mb-0" style="">
                                             {{$value->description}}
@@ -96,7 +96,7 @@
                                                     <input type="hidden" id="{{$value->id}}" name="quantity" value="1">
                                                     <input type="hidden" id="harga{{$value->id}}" name="price" value="{{ $value->price }}">
                                                     <input type="hidden" name="Product_id" value="{{$value->id}}">
-                                                    <button class="btn btn-block button_add_to_cart" style="font-size: 20px;font-weight: 800; padding:2 15;">Tambah</button>
+                                                    <button class="btn btn-block button_add_to_cart respon" style="">Tambah</button>
                                                 </form>
                                             </td>
                                             <td width="10%" align="left" valign="middle">
@@ -153,7 +153,7 @@
     </footer>
 
     <div id="accordion">
-        <div class="card fixed-bottom" style="border-radius:10px; margin-left:50px;margin-right:50px;">
+        <div class="card fixed-bottom" style="">
             <div id="card-cart" class="card-header" >
                 <table width="100%" style="margin-bottom: 40px;">
                     <tbody>
@@ -164,7 +164,7 @@
                                     <span class="p1 fa-stack fa-2x has-badge" data-count="{{$total_item}}">
                                 
                                         <!--<i class="p2 fa fa-circle fa-stack-2x"></i>-->
-                                        <i class="p3 fa fa-shopping-cart fa-1x" data-count="4b" style="color: #ffffff"></i>
+                                        <i class="p3 fa fa-shopping-cart " data-count="4b" style=""></i>
                                     </span>
                                 </div> 
                             </td>
@@ -178,8 +178,8 @@
                             </h5>
                             </td>
                             <td width="5%" valign="middle" >
-                            <a role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" class="collapsed">
-                                    <i class="fas fa-chevron-up" style="color: #ffffff; font-size:2rem;"></i>
+                            <a id="cv" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" class="collapsed">
+                                    <i class="fas fa-chevron-up" style=""></i>
                                 </a>
                             </td>
                             <td width="33%" align="right" valign="middle">
@@ -191,7 +191,7 @@
                     </tbody>
                 </table>
             </div>
-            <div id="collapse-4" class="collapse" data-parent="#accordion" style="overflow-y: auto; max-height:450px; padding:5%; " >
+            <div id="collapse-4" class="collapse" data-parent="#accordion" style="" >
                 <div class="card-body" id="card-detail">
                     <div class="col-md-12">
                         <table width="100%" style="margin-bottom: 40px; ">
@@ -201,7 +201,7 @@
                                 
                                     <td width="25%" valign="middle">
                                         <img src="{{ asset('storage/'.$detil->image)}}" 
-                                        class="image-detail" alt="...">   
+                                        class="image-detail"  alt="...">   
                                     </td>
                                     <td width="60%" align="left" valign="top">
                                         <p class="name-detail">{{ $detil->description}}</p>
@@ -214,13 +214,13 @@
                                                     <input type="hidden" id="{{$detil->quantity}}" name="quantity" value="{{ $detil->quantity }}">
                                                     <input type="hidden" id="harga{{$detil->price}}" name="price" value="{{ $detil->price }}">
                                                     <td width="10px" align="left" valign="middle">
-                                                        <a class="button_minus" onclick="button_minus_kr('{{$detil->product_id}}')" style=" color:#6a3137;font-size: 20px;font-weight: 800; cursor:pointer;"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                                        <a class="button_minus" onclick="button_minus_kr('{{$detil->product_id}}')" style=""><i class="fa fa-minus" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td width="10px" align="middle" valign="middle">
-                                                        <p id="show_kr_{{$detil->product_id}}" class="d-inline" style="color:#6a3137; font-size: 20px;font-weight: 800;">{{$detil->quantity}}</p>
+                                                        <p id="show_kr_{{$detil->product_id}}" class="d-inline" style="">{{$detil->quantity}}</p>
                                                     </td>
                                                     <td width="10px" align="right" valign="middle">
-                                                        <a class="button_plus float-right " onclick="button_plus_kr('{{$detil->product_id}}')" style="color:#6a3137;font-size: 20px;font-weight: 800; cursor:pointer;"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                        <a class="button_plus float-right " onclick="button_plus_kr('{{$detil->product_id}}')" style=""><i class="fa fa-plus" aria-hidden="true"></i></a>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -229,8 +229,8 @@
                                     <td width="15%" align="left" valign="top" style="padding-top: 5%;">
                                         <form method="post" action="{{ route('customer.keranjang.delete') }}">
                                             @csrf
-                                            <button class="btn button_add_to_cart" 
-                                             style="font-size:20px;font-weight: 800; padding-top:7px; padding-bottom:7px;">X</button>
+                                            <button class="btn btn-default" 
+                                             style="">X</button>
                                             <input type="hidden"  name="order_id" value="{{$detil->order_id}}">
                                             <input type="hidden"  name="quantity" value="{{$detil->quantity}}">
                                             <input type="hidden"  name="price" value="{{$detil->price}}">

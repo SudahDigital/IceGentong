@@ -148,7 +148,7 @@
     </footer>
 
     <div id="accordion">
-        <div class="card fixed-bottom" style="border-radius:10px; margin-left:50px;margin-right:50px;">
+        <div class="card fixed-bottom" style="">
             <div id="card-cart" class="card-header" >
                 <table width="100%" style="margin-bottom: 40px;">
                     <tbody>
@@ -159,7 +159,7 @@
                                     <span class="p1 fa-stack fa-2x has-badge" data-count="0">
                                 
                                         <!--<i class="p2 fa fa-circle fa-stack-2x"></i>-->
-                                        <i class="p3 fa fa-shopping-cart fa-1x" data-count="4b" style="color: #ffffff"></i>
+                                        <i class="fa fa-shopping-cart" data-count="4b" style=""></i>
                                     </span>
                                 </div> 
                             </td>
@@ -168,7 +168,7 @@
                             </td>
                             <td width="5%" valign="middle" >
                             <a id="cv" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" class="collapsed">
-                                    <i  class="fas fa-chevron-up " style="color: #ffffff; font-size:2rem;"></i>
+                                    <i  class="fas fa-chevron-up " style=""></i>
                                 </a>
                             </td>
                             <td width="33%" align="right" valign="middle">
