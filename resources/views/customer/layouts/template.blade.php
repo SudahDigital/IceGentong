@@ -159,7 +159,7 @@
                     @if(\Auth::user())
                         <a href="{{URL::route('contact_customer')}}">Kontak Kami</a>
                         @else
-                        <a href="{{URL::route('contact')}}">Cara Berbelanja</a>
+                        <a href="{{URL::route('contact')}}">Kontak Kami</a>
                     @endif
                     
                 </li>
