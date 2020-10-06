@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 Route::get('/', 'WelcomeController@index');
-Route::get('/customer/product/detail/', 'CustomerProductController@detail')->name('product_detail');
+Route::get('/product/detail/', 'ProductDetailController@detail')->name('product_detail');
 Route::get('/cara-belanja', 'CustomerCaraBelanjaController@index')->name('cara_belanja');
 Route::get('/contact', 'CustomerContactController@index')->name('contact');
 Route::resource('category_user','filterProductUserController');

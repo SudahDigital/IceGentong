@@ -44,6 +44,7 @@
                             </div>
                         </div>
                     </div>
+                   
                     <div class="col-md-12 login-label" style="margin-top:20px;">
                         @if (Route::has('password.request'))
                             <a  href="{{ route('password.request') }}">
@@ -51,6 +52,11 @@
                             </a>
                         @endif
                     </div>
+
+                    <div class="col-md-12 login-label text-center" style="margin-top:20px;">
+                         <p>Belum punya akun..? <a style="color:#6a3137; font-size:20px; font-weight:900;" href="{{ route('register') }}">Sign Up</a></p>
+                    </div>
+                
                     <div class="col-md-12 mx-auto text-center">
                         <button type="submit" class="btn btn_login_form" >{{ __('Sign In') }}
                         </button>
@@ -59,4 +65,6 @@
             </div>
         </div>
     </div>
+    <br>
+    <br>
 @endsection

@@ -1570,6 +1570,9 @@
         font-size: 12px;
     }
 
+    #content .card-img-top{
+        margin-bottom:2rem;
+      }
 
     #footer {
         

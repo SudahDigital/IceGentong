@@ -73,7 +73,7 @@
             </div>
             <ul class="list-unstyled components">
                 
-                <li class="active">
+                <li class="">
                     @if(\Auth::user())
                     <a href="{{url('/home_customer') }}">Beranda</a>
                     @else

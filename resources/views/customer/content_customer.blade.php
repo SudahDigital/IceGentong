@@ -69,7 +69,7 @@
                         <div class="col-6 col-lg-4">
 
                             <div class="card mx-auto item_product">
-                                <a href="">
+                                <a href="{{URL::route('product_detail', ['id'=>$value->id])}}">
                                     <img style="" src="{{ asset('storage/'.(($value->image!='') ? $value->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-150 w-100 img-responsive" alt="...">
                                 </a>
                                     <div class="float-left px-1 py-2" style="width: 100%;">
@@ -169,9 +169,11 @@
                                 </div> 
                             </td>
                             <td width="25%" align="left" valign="middle">
-                            <h5 id="total_kr_{{$item->total_price}}">Rp.@if($item!==null)
+                                @if($item!==null)
+                            <h5 id="total_kr_{{$item->total_price}}">Rp.
                                 {{number_format($item->total_price)}}
                                 @else
+                            <h5 id="total_kr_0">Rp.
                                 {{''}}
                                 @endif
                             
