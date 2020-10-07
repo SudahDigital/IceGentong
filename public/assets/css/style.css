@@ -844,10 +844,18 @@ height: 150px;
     color: #28a745 !important;*/
 }
 
-#content .button_plus:focus, #content .button_minus:focus {
-    /*outline:0px !important;
+#content .button_plus:focus{
+    outline:none;
+    border:none;
     -webkit-appearance:none;
-    box-shadow: none !important;*/
+    box-shadow: none !important;
+}
+
+#content .button_plus:active{
+  outline:none;
+  border:none;
+  -webkit-appearance:none;
+  box-shadow: none !important;
 }
 
 #content .button_add_to_cart {

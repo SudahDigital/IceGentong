@@ -33,40 +33,36 @@
                                     <p class="product-price mb-0 " id="productPrice{{$product->id}}" >Rp {{ number_format($product->price, 0, ',', '.') }}</p>
                                 </div>
                                 
-                                    <table width="100%" class="hdr_tbl_cart">
-                                        <tbody>
-                                        <tr>
-                                            <!--
-                                            <td class="tbl_cart" valign="middle" style="">
-                                            </td>
-                                            -->
-                                            <form method="post" action="{{ route('customer.keranjang.simpan') }}" id="myform">
-                                                    @csrf
-                                                    @if(Route::has('login'))
-                                                        @auth
-                                                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                                                        @endauth
-                                                    @endif
-                                                    
-                                                    <input type="hidden" name="Product_id" value="{{$product->id}}">
-                                                    <!--<button class="btn btn-block button_add_to_cart respon" style="">Tambah</button>-->
-                                               
-                                            
-                                                <td width="7%" align="right" valign="middle">
-                                                    <a class="button_minus" onclick="button_minus('{{$product->id}}')" style=""><i class="fa fa-minus" aria-hidden="true"></i></a>
-                                                </td>
-                                                <td width="7%" align="center" valign="middle">
-                                                    <p id="show_{{$product->id}}" class="d-inline show" style="">0</p>
-                                                    <input type="hidden" id="{{$product->id}}" name="quantity" value="0">
-                                                    <input type="hidden" id="harga{{$product->id}}" name="price" value="{{ $product->price }}">
-                                                </td>
-                                                <td width="7%" align="left" valign="middle">
-                                                    <a href="javascript: submit();" class="button_plus" onclick="button_plus('{{$product->id}}')" style=""><i class="fa fa-plus" aria-hidden="true"></i></a>
-                                                </td>
-                                            </form>
-                                        </tr>
-                                        </tbody>
-                                    </table>
+                                <table width="100%" class="hdr_tbl_cart">
+                                    <tbody>
+                                    <tr><!--
+                                        <td class="tbl_cart" valign="middle" style="">
+                                        </td>-->
+                                        <!--<button class="btn btn-block button_add_to_cart respon" style="">Tambah</button>-->
+                                        <td width="10%" align="right" valign="middle">
+                                             <a class="button_minus" onclick="button_minus('{{$product->id}}')" style=""><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                        </td>
+                                        <td width="10%" align="center" valign="middle">
+                                             <p id="show_{{$product->id}}" class="d-inline show" style="">0</p>
+                                        </td>
+                                        <td width="10%" align="left" valign="middle">
+                                            <form method="post" action="{{ route('customer.keranjang.simpan') }}">
+                                                @csrf
+                                                @if(Route::has('login'))
+                                                    @auth
+                                                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                                    @endauth
+                                                @endif
+                                                <input type="hidden" name="Product_id" value="{{$product->id}}">
+                                                <input type="hidden" id="{{$product->id}}" name="quantity" value="1">
+                                                <input type="hidden" id="harga{{$product->id}}" name="price" value="{{$product->price}}">
+                                                <button class="btn button_plus" onclick="button_plus('{{$product->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                            </form> 
+                                        </td>
+                                        
+                                    </tr>
+                                    </tbody>
+                                </table>
                                         
                             </div>
                         </div>
@@ -101,7 +97,7 @@
                                 <td width="5%" valign="middle">
                                     <div id="ex4">
                                    
-                                        <span class="p1 fa-stack fa-2x has-badge" data-count="{{\Auth::user() ? $total_item : '0'}}">
+                                        <span class="p1 fa-stack fa-2x has-badge" data-count="{{$total_item}}">
                                     
                                             <!--<i class="p2 fa fa-circle fa-stack-2x"></i>-->
                                             <i class="p3 fa fa-shopping-cart " data-count="4b" style=""></i>
@@ -109,7 +105,7 @@
                                     </div> 
                                 </td>
                                 <td width="25%" align="left" valign="middle">
-                                    @if((\Auth::user())&&($item!==null))
+                                    @if($item!==null)
                                 <h5 id="total_kr_{{$item->total_price}}">Rp.
                                     {{number_format($item->total_price)}}
                                     @else
@@ -126,7 +122,7 @@
                                 </td>
                                 <td width="33%" align="right" valign="middle">
                                    
-                                <h5>({{\Auth::user() ? $total_item : '0'}} Item)</h5>
+                                <h5>({{$total_item}} Item)</h5>
                                  
                                 </td>
                             </tr>
@@ -138,7 +134,6 @@
                         <div class="col-md-12">
                             <table width="100%" style="margin-bottom: 40px; ">
                                 <tbody>
-                                    @if(\Auth::user())
                                     @foreach($keranjang as $detil)
                                     <tr>
                                     
@@ -154,17 +149,30 @@
                                                 <tbody>
                                                     <tr>
                                                         
-                                                        <input type="hidden" id="{{$detil->quantity}}" name="quantity" value="{{ $detil->quantity }}">
-                                                        <input type="hidden" id="harga{{$detil->price}}" name="price" value="{{ $detil->price }}">
                                                         <td width="10px" align="left" valign="middle">
-                                                            <a class="button_minus" onclick="button_minus_kr('{{$detil->product_id}}')" style=""><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                                            <form method="post" action="{{ route('customer.keranjang.kurang') }}">
+                                                                @csrf
+                                                                <input type="hidden" name="order_id" value="{{$detil->order_id}}">
+                                                                <input type="hidden" id="harga_kr{{$detil->product_id}}" name="price" value="{{$detil->price}}">
+                                                                <input type="hidden" name="id" value="{{$detil->id}}">
+                                                                <input type="hidden" id="jmlkr_{{$detil->product_id}}" name="quantity" value="{{$detil->quantity}}">    
+                                                                <button class="button_minus" onclick="button_minus_kr('{{$detil->product_id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                                            </form>
                                                         </td>
                                                         <td width="10px" align="middle" valign="middle">
                                                             <p id="show_kr_{{$detil->product_id}}" class="d-inline" style="">{{$detil->quantity}}</p>
                                                         </td>
                                                         <td width="10px" align="right" valign="middle">
-                                                            <a class="button_plus float-right " onclick="button_plus_kr('{{$detil->product_id}}')" style=""><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                            <form method="post" action="{{ route('customer.keranjang.tambah') }}">
+                                                                @csrf
+                                                                <input type="hidden" name="order_id" value="{{$detil->order_id}}">
+                                                                <input type="hidden" id="harga_kr{{$detil->product_id}}" name="price" value="{{$detil->price}}">
+                                                                <input type="hidden" name="id" value="{{$detil->id}}">
+                                                                <input type="hidden" id="jmlkr_{{$detil->product_id}}" name="quantity" value="{{$detil->quantity}}">    
+                                                                <button class="button_plus" onclick="button_plus_kr('{{$detil->product_id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                            </form>
                                                         </td>
+                                                       
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -183,11 +191,10 @@
                                         </td>
                                     </tr>
                                     @endforeach
-                                    @endif
                                 </tbody>
                             </table>
                             <div class="mx-auto text-right">
-                                @if((\Auth::user())&&($item!==null))   
+                                @if($item!==null)    
                                     <div id="bt_beli">
                                         <?php $href = 'Hello Saya Ingin Membeli %3A%0A';?>
                                         @foreach($keranjang as $detil)
@@ -206,14 +213,15 @@
                 </div>
             </div>
         </div>
-        <script>
-            function button_minus_kr(id)
+        
+        <script type='text/javascript'>
+           function button_minus_kr(id)
             {
-                var jumlah = $('#'+id).val();
+                var jumlah = $('#jmlkr_'+id).val();
                 var jumlah = parseInt(jumlah) - 1;
     
                 // AMBIL NILAI HARGA
-                var harga = $('#harga'+id).val();
+                var harga = $('#harga_kr'+id).val();
                 var harga = parseInt(harga) * jumlah;
     
                 //AMBIL NILAI TOTAL
@@ -233,9 +241,9 @@
                 harga = "Rp " + rupiah;
     
                 if (jumlah<1) {
-                alert('Jumlah Tidak Boleh Kosong')
+                alert('Jumlah order minimal 1, jika ingin mengurangi order silahkan delete..')
                 } else {
-                $('#'+id).val(jumlah);
+                $('#jmlkr_'+id).val(jumlah);
                 $('#show_kr_'+id).html(jumlah);
                 $('#productPrice_kr'+id).text(harga);
                 $('#totalKr_'+id).text(totalkr);
@@ -244,11 +252,11 @@
     
             function button_plus_kr(id)
             {
-                var jumlah = $('#'+id).val();
+                var jumlah = $('#jmlkr_'+id).val();
                 var jumlah = parseInt(jumlah) + 1;
     
                 // AMBIL NILAI HARGA
-                var harga = $('#harga'+id).val();;
+                var harga = $('#harga_kr'+id).val();;
                 var harga = parseInt(harga) * jumlah;
     
                 // UBAH FORMAT UANG INDONESIA
@@ -268,17 +276,11 @@
                 if (jumlah<1) {
                 alert('Jumlah Tidak Boleh Kosong')
                 } else {
-                $('#'+id).val(jumlah)
+                $('#jmlkr_'+id).val(jumlah)
                 $('#show_kr_'+id).html(jumlah)
                 $('#productPrice_kr'+id).text(harga);
                 }
             }
-        </script>
-        <script type='text/javascript'>
-            function submit()
-             {
-                document.forms["myform"].submit();
-             }
         </script>
         
 @endsection

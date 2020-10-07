@@ -90,6 +90,44 @@ class CustomerKeranjangController extends Controller
         return redirect()->back()->with('status','Product berhasil dimasukan kekeranjang');
     }
 
+    public function tambah(Request $request){
+            
+        $id = $request->get('id');
+        $order_id = $request->get('order_id');
+        $order_product = order_product::findOrFail($id);
+        $order_product->quantity += 1;
+        $order_product->save();
+        if($order_product->save()){
+                $order = Order::findOrFail($order_id);
+                $order->total_price += $request->get('price');
+                $order->save();
+        }
+           
+            
+        //$order->products()->attach($request->get('Product_id'));
+        
+        return redirect()->back()->with('status','Berhasil menambah produk');
+    }
+
+    public function kurang(Request $request){
+            
+        $id = $request->get('id');
+        $order_id = $request->get('order_id');
+        $order_product = order_product::findOrFail($id);
+        $order_product->quantity -= 1;
+        $order_product->save();
+        if($order_product->save()){
+                $order = Order::findOrFail($order_id);
+                $order->total_price -= $request->get('price');
+                $order->save();
+        }
+           
+            
+        //$order->products()->attach($request->get('Product_id'));
+        
+        return redirect()->back()->with('status','Berhasil mengurangi produk');
+    }
+
     public function delete(Request $request){
 
         $id = $request->get('id');

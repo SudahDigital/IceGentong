@@ -105,7 +105,7 @@
                                                     <input type="hidden" name="Product_id" value="{{$value->id}}">
                                                     <input type="hidden" id="{{$value->id}}" name="quantity" value="1">
                                                     <input type="hidden" id="harga{{$value->id}}" name="price" value="{{$value->price}}">
-                                                    <button class="btn button_plus" onclick="button_plus('{{$value->id}}')" style="background:none; border:none; color:#693234"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                    <button class="btn button_plus" onclick="button_plus('{{$value->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                                 </form> 
                                             </td>
                                             
@@ -213,20 +213,31 @@
                                         <table width="10%">
                                             <tbody>
                                                 <tr>
-                                                    <form method="post" action="{{ route('customer.keranjang.simpan') }}" id="myform">
-                                                        <input type="hidden" name="Product_id" value="{{$value->id}}">
-                                                        <input type="hidden" id="{{$detil->quantity}}" name="quantity" value="{{ $detil->quantity }}">
-                                                        <input type="hidden" id="harga{{$detil->price}}" name="price" value="{{ $detil->price }}">
-                                                        <td width="10px" align="left" valign="middle">
-                                                            <a class="button_minus" onclick="button_minus_kr('{{$detil->product_id}}')" style=""><i class="fa fa-minus" aria-hidden="true"></i></a>
-                                                        </td>
-                                                        <td width="10px" align="middle" valign="middle">
-                                                            <p id="show_kr_{{$detil->product_id}}" class="d-inline" style="">{{$detil->quantity}}</p>
-                                                        </td>
-                                                        <td width="10px" align="right" valign="middle">
-                                                            <a class="button_plus float-right " onclick="button_plus_kr('{{$detil->product_id}}')" style=""><i class="fa fa-plus" aria-hidden="true"></i></a>
-                                                        </td>
-                                                    </form>
+                                                    
+                                                    <td width="10px" align="left" valign="middle">
+                                                        <form method="post" action="{{ route('customer.keranjang.kurang') }}">
+                                                            @csrf
+                                                            <input type="hidden" name="order_id" value="{{$detil->order_id}}">
+                                                            <input type="hidden" id="harga_kr{{$detil->product_id}}" name="price" value="{{$detil->price}}">
+                                                            <input type="hidden" name="id" value="{{$detil->id}}">
+                                                            <input type="hidden" id="jmlkr_{{$detil->product_id}}" name="quantity" value="{{$detil->quantity}}">    
+                                                            <button class="button_minus" onclick="button_minus_kr('{{$detil->product_id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                                        </form>
+                                                    </td>
+                                                    <td width="10px" align="middle" valign="middle">
+                                                        <p id="show_kr_{{$detil->product_id}}" class="d-inline" style="">{{$detil->quantity}}</p>
+                                                    </td>
+                                                    <td width="10px" align="right" valign="middle">
+                                                        <form method="post" action="{{ route('customer.keranjang.tambah') }}">
+                                                            @csrf
+                                                            <input type="hidden" name="order_id" value="{{$detil->order_id}}">
+                                                            <input type="hidden" id="harga_kr{{$detil->product_id}}" name="price" value="{{$detil->price}}">
+                                                            <input type="hidden" name="id" value="{{$detil->id}}">
+                                                            <input type="hidden" id="jmlkr_{{$detil->product_id}}" name="quantity" value="{{$detil->quantity}}">    
+                                                            <button class="button_plus" onclick="button_plus_kr('{{$detil->product_id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                        </form>
+                                                    </td>
+                                                   
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -267,14 +278,15 @@
             </div>
         </div>
     </div>
-    <script>
-        function button_minus_kr(id)
+    
+    <script type='text/javascript'>
+       function button_minus_kr(id)
         {
-            var jumlah = $('#'+id).val();
+            var jumlah = $('#jmlkr_'+id).val();
             var jumlah = parseInt(jumlah) - 1;
 
             // AMBIL NILAI HARGA
-            var harga = $('#harga'+id).val();
+            var harga = $('#harga_kr'+id).val();
             var harga = parseInt(harga) * jumlah;
 
             //AMBIL NILAI TOTAL
@@ -294,9 +306,9 @@
             harga = "Rp " + rupiah;
 
             if (jumlah<1) {
-            alert('Jumlah Tidak Boleh Kosong')
+            alert('Jumlah order minimal 1, jika ingin mengurangi order silahkan delete..')
             } else {
-            $('#'+id).val(jumlah);
+            $('#jmlkr_'+id).val(jumlah);
             $('#show_kr_'+id).html(jumlah);
             $('#productPrice_kr'+id).text(harga);
             $('#totalKr_'+id).text(totalkr);
@@ -305,11 +317,11 @@
 
         function button_plus_kr(id)
         {
-            var jumlah = $('#'+id).val();
+            var jumlah = $('#jmlkr_'+id).val();
             var jumlah = parseInt(jumlah) + 1;
 
             // AMBIL NILAI HARGA
-            var harga = $('#harga'+id).val();;
+            var harga = $('#harga_kr'+id).val();;
             var harga = parseInt(harga) * jumlah;
 
             // UBAH FORMAT UANG INDONESIA
@@ -329,16 +341,10 @@
             if (jumlah<1) {
             alert('Jumlah Tidak Boleh Kosong')
             } else {
-            $('#'+id).val(jumlah)
+            $('#jmlkr_'+id).val(jumlah)
             $('#show_kr_'+id).html(jumlah)
             $('#productPrice_kr'+id).text(harga);
             }
         }
-    </script>
-    <script type='text/javascript'>
-        function submit()
-         {
-            document.forms["myform"].submit();
-         }
     </script>
 @endsection

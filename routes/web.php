@@ -44,6 +44,8 @@ Route::group(['middleware' => ['auth','checkRole:ADMIN']],function(){
 Route::group(['middleware' => ['auth','checkRole:CUSTOMER']],function(){
     Route::get('/home_customer', 'CustomerKeranjangController@index');
     Route::post('/keranjang/simpan','CustomerKeranjangController@simpan')->name('customer.keranjang.simpan');
+    Route::post('/keranjang/tambah','CustomerKeranjangController@tambah')->name('customer.keranjang.tambah');
+    Route::post('/keranjang/kurang','CustomerKeranjangController@kurang')->name('customer.keranjang.kurang');
     Route::post('/keranjang/delete','CustomerKeranjangController@delete')->name('customer.keranjang.delete');
     Route::resource('category','filterProductController');
     Route::resource('search','searchuserController');
