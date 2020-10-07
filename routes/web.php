@@ -22,7 +22,8 @@ Route::get('/contact', 'CustomerContactController@index')->name('contact');
 Route::resource('category_user','filterProductUserController');
 Route::resource('search_user','searchuserController');
 Route::get('/admin', function () {
-    return view('auth.login');
+    $kategori = \App\Category::get();
+    return view('auth.login',['kategori'=>$kategori]);
 });
 
 Route::group(['middleware' => ['auth','checkRole:ADMIN']],function(){

@@ -34,7 +34,7 @@ class LoginController extends Controller
         }else if (auth()->user()->roles == 'CUSTOMER') {
             return '/home_customer';
         }
-        return '/home_customer';
+        return '/';
     }
     /**
      * Create a new controller instance.

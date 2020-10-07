@@ -36,29 +36,34 @@
                                     <table width="100%" class="hdr_tbl_cart">
                                         <tbody>
                                         <tr>
+                                            <!--
                                             <td class="tbl_cart" valign="middle" style="">
-                                                <form method="post" action="{{ route('customer.keranjang.simpan') }}">
+                                            </td>
+                                            -->
+                                            <form method="post" action="{{ route('customer.keranjang.simpan') }}" id="myform">
                                                     @csrf
                                                     @if(Route::has('login'))
                                                         @auth
                                                             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                                         @endauth
                                                     @endif
-                                                    <input type="hidden" id="{{$product->id}}" name="quantity" value="1">
-                                                    <input type="hidden" id="harga{{$product->id}}" name="price" value="{{ $product->price }}">
+                                                    
                                                     <input type="hidden" name="Product_id" value="{{$product->id}}">
-                                                    <button class="btn btn-block button_add_to_cart respon" style="">Tambah</button>
-                                                </form>
-                                            </td>
-                                            <td width="7%" align="left" valign="middle">
-                                                <a class="button_minus" onclick="button_minus('{{$product->id}}')" style=""><i class="fa fa-minus" aria-hidden="true"></i></a>
-                                            </td>
-                                            <td width="7%" align="center" valign="middle">
-                                                <p id="show_{{$product->id}}" class="d-inline show" style="">1</p>
-                                            </td>
-                                            <td width="7%" align="right" valign="middle">
-                                                <a class="button_plus float-right " onclick="button_plus('{{$product->id}}')" style=""><i class="fa fa-plus" aria-hidden="true"></i></a>
-                                            </td>
+                                                    <!--<button class="btn btn-block button_add_to_cart respon" style="">Tambah</button>-->
+                                               
+                                            
+                                                <td width="7%" align="right" valign="middle">
+                                                    <a class="button_minus" onclick="button_minus('{{$product->id}}')" style=""><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                                </td>
+                                                <td width="7%" align="center" valign="middle">
+                                                    <p id="show_{{$product->id}}" class="d-inline show" style="">0</p>
+                                                    <input type="hidden" id="{{$product->id}}" name="quantity" value="0">
+                                                    <input type="hidden" id="harga{{$product->id}}" name="price" value="{{ $product->price }}">
+                                                </td>
+                                                <td width="7%" align="left" valign="middle">
+                                                    <a href="javascript: submit();" class="button_plus" onclick="button_plus('{{$product->id}}')" style=""><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                </td>
+                                            </form>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -268,6 +273,12 @@
                 $('#productPrice_kr'+id).text(harga);
                 }
             }
+        </script>
+        <script type='text/javascript'>
+            function submit()
+             {
+                document.forms["myform"].submit();
+             }
         </script>
         
 @endsection

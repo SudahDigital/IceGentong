@@ -50,8 +50,8 @@ function button_minus(id)
 
     harga = "Rp " + rupiah;
 
-    if (jumlah<1) {
-      alert('Jumlah Tidak Boleh Kosong')
+    if (jumlah<0) {
+      alert('Jumlah Tidak Boleh Kurang dari nol')
     } else {
       $('#'+id).val(jumlah);
       $('#show_'+id).html(jumlah);
@@ -82,8 +82,8 @@ function button_plus(id)
     harga = "Rp " + rupiah;
     
     // alert(jumlah)
-    if (jumlah<1) {
-      alert('Jumlah Tidak Boleh Kosong')
+    if (jumlah < 0) {
+      alert('Jumlah Tidak Boleh kurang dari nol')
     } else {
       $('#'+id).val(jumlah)
       $('#show_'+id).html(jumlah)

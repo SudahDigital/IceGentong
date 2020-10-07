@@ -54,7 +54,7 @@
                     </div>
 
                     <div class="col-md-12 login-label text-center" style="margin-top:20px;">
-                         <p>Belum punya akun..? <a style="color:#6a3137; font-size:20px; font-weight:900;" href="{{ route('register') }}">Sign Up</a></p>
+                         <p>Don't have an account..? <a style="color:#6a3137; font-size:20px; font-weight:900;" href="{{ route('register') }}">Sign Up</a></p>
                     </div>
                 
                     <div class="col-md-12 mx-auto text-center">
