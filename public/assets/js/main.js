@@ -31,7 +31,12 @@
 function button_minus(id)
 {
     var jumlah = $('#'+id).val();
-    var jumlah = parseInt(jumlah) - 1;
+    if(jumlah = 1){
+      var jumlah = parseInt(jumlah) - 2;
+    }else{
+      var jumlah = parseInt(jumlah) - 1;
+    }
+    
 
     // AMBIL NILAI HARGA
     var harga = $('#harga'+id).val();;
@@ -62,7 +67,12 @@ function button_minus(id)
 function button_plus(id)
 {
     var jumlah = $('#'+id).val();
-    var jumlah = parseInt(jumlah) + 1;
+    if(jumlah = 1){
+      var jumlah = 1;
+    }else{
+      var jumlah = parseInt(jumlah) + 1;
+    }
+    
 
     // AMBIL NILAI HARGA
     var harga = $('#harga'+id).val();;

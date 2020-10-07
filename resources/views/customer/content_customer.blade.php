@@ -87,30 +87,28 @@
                                         <tr><!--
                                             <td class="tbl_cart" valign="middle" style="">
                                             </td>-->
-                                            <form method="post" action="{{ route('customer.keranjang.simpan') }}" id="myform">
-                                                @csrf
-                                                @if(Route::has('login'))
-                                                    @auth
-                                                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                                                    @endauth
-                                                @endif
-                                                
-                                                
-                                                <input type="hidden" name="Product_id" value="{{$value->id}}">
-                                                <!--<button class="btn btn-block button_add_to_cart respon" style="">Tambah</button>-->
-                                            
-                                             <td width="10%" align="right" valign="middle">
+                                            <!--<button class="btn btn-block button_add_to_cart respon" style="">Tambah</button>-->
+                                            <td width="10%" align="right" valign="middle">
                                                  <a class="button_minus" onclick="button_minus('{{$value->id}}')" style=""><i class="fa fa-minus" aria-hidden="true"></i></a>
-                                             </td>
-                                             <td width="10%" align="center" valign="middle">
+                                            </td>
+                                            <td width="10%" align="center" valign="middle">
                                                  <p id="show_{{$value->id}}" class="d-inline show" style="">0</p>
-                                                 <input type="hidden" id="{{$value->id}}" name="quantity" value="0">
-                                                 <input type="hidden" id="harga{{$value->id}}" name="price" value="{{ $value->price }}">
-                                             </td>
-                                             <td width="10%" align="left" valign="middle">
-                                                 <a href="javascript: submit();" class="button_plus" onclick="button_plus('{{$value->id}}')" style=""><i class="fa fa-plus" aria-hidden="true"></i></a>
-                                             </td>
-                                            </form>
+                                            </td>
+                                            <td width="10%" align="left" valign="middle">
+                                                <form method="post" action="{{ route('customer.keranjang.simpan') }}">
+                                                    @csrf
+                                                    @if(Route::has('login'))
+                                                        @auth
+                                                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                                        @endauth
+                                                    @endif
+                                                    <input type="hidden" name="Product_id" value="{{$value->id}}">
+                                                    <input type="hidden" id="{{$value->id}}" name="quantity" value="1">
+                                                    <input type="hidden" id="harga{{$value->id}}" name="price" value="{{$value->price}}">
+                                                    <button class="btn button_plus" onclick="button_plus('{{$value->id}}')" style="background:none; border:none; color:#693234"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                </form> 
+                                            </td>
+                                            
                                         </tr>
                                         </tbody>
                                     </table>
@@ -215,18 +213,20 @@
                                         <table width="10%">
                                             <tbody>
                                                 <tr>
-                                                    
-                                                    <input type="hidden" id="{{$detil->quantity}}" name="quantity" value="{{ $detil->quantity }}">
-                                                    <input type="hidden" id="harga{{$detil->price}}" name="price" value="{{ $detil->price }}">
-                                                    <td width="10px" align="left" valign="middle">
-                                                        <a class="button_minus" onclick="button_minus_kr('{{$detil->product_id}}')" style=""><i class="fa fa-minus" aria-hidden="true"></i></a>
-                                                    </td>
-                                                    <td width="10px" align="middle" valign="middle">
-                                                        <p id="show_kr_{{$detil->product_id}}" class="d-inline" style="">{{$detil->quantity}}</p>
-                                                    </td>
-                                                    <td width="10px" align="right" valign="middle">
-                                                        <a class="button_plus float-right " onclick="button_plus_kr('{{$detil->product_id}}')" style=""><i class="fa fa-plus" aria-hidden="true"></i></a>
-                                                    </td>
+                                                    <form method="post" action="{{ route('customer.keranjang.simpan') }}" id="myform">
+                                                        <input type="hidden" name="Product_id" value="{{$value->id}}">
+                                                        <input type="hidden" id="{{$detil->quantity}}" name="quantity" value="{{ $detil->quantity }}">
+                                                        <input type="hidden" id="harga{{$detil->price}}" name="price" value="{{ $detil->price }}">
+                                                        <td width="10px" align="left" valign="middle">
+                                                            <a class="button_minus" onclick="button_minus_kr('{{$detil->product_id}}')" style=""><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                                        </td>
+                                                        <td width="10px" align="middle" valign="middle">
+                                                            <p id="show_kr_{{$detil->product_id}}" class="d-inline" style="">{{$detil->quantity}}</p>
+                                                        </td>
+                                                        <td width="10px" align="right" valign="middle">
+                                                            <a class="button_plus float-right " onclick="button_plus_kr('{{$detil->product_id}}')" style=""><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                        </td>
+                                                    </form>
                                                 </tr>
                                             </tbody>
                                         </table>
