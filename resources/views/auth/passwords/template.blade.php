@@ -45,8 +45,8 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="z-index: 1.5; height:100px;">
                 <div class="container-fluid">
                    
-                    <a class="navbar-brand" href="{{ url('/') }}" style="position: absolute; left:45%;" >
-                        <img src="{{ asset('assets/image/ecim-gentong.png') }}" width="120px" height="auto" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy" style="left: 70%;">
+                    <a class="navbar-brand" href="{{ url('/') }}" style=";" >
+                        <img src="{{ asset('assets/image/ecim-gentong.png') }}" width="120px" height="auto" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy" style="">
                     </a>
                    
                 </div>

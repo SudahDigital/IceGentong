@@ -57,6 +57,7 @@
             padding: 10px;
             display: none;
         }
+        /*
         @media screen and (max-width: 600px) {
             .nav-center {
                 position: absolute;
@@ -64,19 +65,19 @@
             }
         }
        
-        @media screen and (min-width: 768px) {
+        @media screen and (max-width: 768px) {
             .nav-center {
                 position: absolute;
                 left: 45%;
             }
         }
         
-        @media screen and (min-width: 1920px) {
+        @media screen and (max-width: 1920px) {
             .nav-center {
                 position: absolute;
                 left: 50%;
             }
-        }
+        }*/
     </style>
 
 </head>

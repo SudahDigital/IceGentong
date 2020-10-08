@@ -97,7 +97,7 @@
                                 <td width="5%" valign="middle">
                                     <div id="ex4">
                                    
-                                        <span class="p1 fa-stack fa-2x has-badge" data-count="{{$total_item}}">
+                                        <span class="p1 fa-stack fa-2x has-badge" data-count="{{Auth::user() ? $total_item : '0'}}">
                                     
                                             <!--<i class="p2 fa fa-circle fa-stack-2x"></i>-->
                                             <i class="p3 fa fa-shopping-cart " data-count="4b" style=""></i>
@@ -105,7 +105,7 @@
                                     </div> 
                                 </td>
                                 <td width="25%" align="left" valign="middle">
-                                    @if($item!==null)
+                                    @if(Auth::user()&& $item!==null)
                                 <h5 id="total_kr_{{$item->total_price}}">Rp.
                                     {{number_format($item->total_price)}}
                                     @else
@@ -122,7 +122,7 @@
                                 </td>
                                 <td width="33%" align="right" valign="middle">
                                    
-                                <h5>({{$total_item}} Item)</h5>
+                                <h5>{{Auth::user() ? $total_item : ''}} Item)</h5>
                                  
                                 </td>
                             </tr>
@@ -133,7 +133,7 @@
                     <div class="card-body" id="card-detail">
                         <div class="col-md-12">
                             <table width="100%" style="margin-bottom: 40px; ">
-                                <tbody>
+                                <tbody>@if(Auth::user())
                                     @foreach($keranjang as $detil)
                                     <tr>
                                     
@@ -191,10 +191,11 @@
                                         </td>
                                     </tr>
                                     @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                             <div class="mx-auto text-right">
-                                @if($item!==null)    
+                                @if(Auth::user() && $item!==null)    
                                     <div id="bt_beli">
                                         <?php $href = 'Hello Saya Ingin Membeli %3A%0A';?>
                                         @foreach($keranjang as $detil)

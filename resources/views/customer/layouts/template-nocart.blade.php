@@ -27,28 +27,7 @@
       integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V"
       crossorigin="anonymous"
     />
-    <style>
-        @media screen and (max-width: 600px) {
-            .nav-center {
-                position: absolute;
-                left: 30%;
-            }
-        }
-       
-        @media screen and (min-width: 768px) {
-            .nav-center {
-                position: absolute;
-                left: 45%;
-            }
-        }
-        
-        @media screen and (min-width: 1920px) {
-            .nav-center {
-                position: absolute;
-                left: 50%;
-            }
-        }
-    </style>
+    
 </head>
 <body>
      @if ($message = Session::get('success'))
@@ -158,8 +137,8 @@
                     <button type="button" id="sidebarCollapse" class="btn button-burger-menu">
                         <i class="fa fa-bars fa-2x" style="color:#693234;"></i>
                     </button>
-                    <a class="navbar-brand" href="{{ url('/') }}" style="position: absolute; left:45%;" >
-                        <img src="{{ asset('assets/image/ecim-gentong.png') }}" width="120px" height="auto" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy" style="left: 70%;">
+                    <a class="navbar-brand" href="{{ url('/') }}" >
+                        <img src="{{ asset('assets/image/ecim-gentong.png') }}" width="120px" height="auto" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy">
                     </a>
                     <form action="{{Auth::user() ? route('search.index') : route('search_user.index')}}" class="form-inline my-2 my-lg-0 ml-auto d-none d-md-inline-block">
                         <div class="input-group">

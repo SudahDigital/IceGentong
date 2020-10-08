@@ -4,7 +4,7 @@
         <div class="row align-middle">
             <div class="col-sm-12 col-md-12">
                 <nav aria-label="breadcrumb" class="">
-                    <ol class="breadcrumb px-0 button_breadcrumb">
+                    <ol class="breadcrumb px-0 button_breadcrumb kontak">
                         <li class="breadcrumb-item" style="color: #6a3137 !important;margin-top:30px; font-size:20px;"><a href="{{ url('/') }}"><i class="fa fa-home"></i></a></li>
                         <li class="breadcrumb-item active" aria-current="page" style="margin-top:30px;">Kontak Kami</li>
                     </ol>
@@ -46,7 +46,7 @@
                             <div class="row card-body">
 
                                 <div class="col col-md-3">
-                                    <i class="fa fa-phone"></i>
+                                    <i class="fa fa-phone" id="i-kontak"></i>
                                 </div>
                                 <div class="col col-md-9">
                                     <p class="card-title telp">Telepon</p>
@@ -69,11 +69,11 @@
                             <div class="row card-body">
 
                                 <div class="col col-md-3">
-                                    <i class="fa fa-envelope"></i>
+                                    <i class="fa fa-envelope" id="i-envelop"></i>
                                 </div>
                                 <div class="col col-md-9">
-                                    <p class="card-title">Email</p>
-                                    <h5 class="card-title">email@example.com</h5>
+                                    <p class="card-title" id="env">Email</p>
+                                    <h5 class="card-title" id="e_env">email@example.com</h5>
                                 </div>
                             
                             <!--

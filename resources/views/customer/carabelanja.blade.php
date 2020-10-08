@@ -16,10 +16,10 @@
             <div id="cara-belanja">
                 <div class="row card-body">
                 
-                    <div class="col-6 col-md-2 ">
+                    <div class="col-6  col-md-2 card-img-top">
                         <img src="{{asset('assets/image/cari-produk.png')}}" class="card-img-top"  alt="...">
                     </div>
-                    <div class="col-6 col-md-4 card-img-top">
+                    <div class="col-6  col-md-4 card-img-top">
                         <h5 class="card-title">1. Cari Produk</h5>
                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p>
                     </div>

@@ -47,7 +47,7 @@
                 </div>
             </div>    
                         <div class="col-md-12 mx-auto text-center">
-                            <button type="submit" class="btn btn_login_form" >{{ __('Send Password Reset Link') }}
+                            <button type="submit" class="btn btn_login_form reset" >{{ __('Send Password Reset Link') }}
                             </button>
                         </div>
                               
