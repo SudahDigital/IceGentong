@@ -296,19 +296,19 @@
     #content .cara_belanja img{
       width:90px;
       height:auto;
+      margin-left:-30px;
     }
 
     #content .cara_belanja h5{
         font-weight: 900;
         font-size: 18px;
-        
-        margin-right:2px;
+        margin-left:-10px;
+        margin-right:0;
         
     }
 
     #content .cara_belanja p{
-        margin-left:-2rem;
-        margin-right:10px;
+        margin-left:-10px;
         font-size: 14px;
         
     }
