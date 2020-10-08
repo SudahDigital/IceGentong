@@ -68,7 +68,7 @@
                 @else
                 <a href="{{url('/') }}">
                 @endif
-                    <img src="{{asset('assets/image/logo-nav.png')}}" width="70%" height="auto" class="d-inline-block align-top" alt="" loading="lazy">
+                    <img src="{{ asset('assets/image/ecim-gentong.png') }}" width="70%" height="auto" class="d-inline-block align-top" alt="" loading="lazy">
                 </a>
             </div>
             <ul class="list-unstyled components">

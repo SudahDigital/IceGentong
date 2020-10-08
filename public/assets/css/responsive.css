@@ -1160,6 +1160,36 @@
     .warna{
         height:49.5%;
     }
+  
+ #content .cr_bl{
+    
+    margin-left: 1rem;
+    }
+
+
+  #cara-belanja .card-body{
+      padding:0;
+  }
+
+  #cara-belanja .card-img-top{
+      margin-left:-14px;
+  }
+
+  #content .cara_belanja h5{
+    font-weight: 900;
+    font-size: 17px;
+    margin-left:-2.5rem;
+    margin-right:-2.5rem;
+    
+  }
+
+  #content .cara_belanja p{
+    margin-left:-2.5rem;
+    margin-right:-2rem;
+    font-size: 12px;
+    
+  }
+  
 
     #content .button_add_to_cart {
         

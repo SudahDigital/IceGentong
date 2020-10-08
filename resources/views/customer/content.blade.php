@@ -137,7 +137,7 @@
         <div class="container">
 
            <div class="row justify-content-center mx-auto" >
-                <img src="{{ asset('assets/image/logo-nav.png') }}" width="55%" height="auto">
+                <img src="{{ asset('assets/image/ecim-gentong.png') }}" width="55%" height="auto">
             </div>
             <br><br>
             <div class="row justify-content-center mx-auto" >    
