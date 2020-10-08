@@ -46,7 +46,7 @@
                 <div class="container-fluid">
                    
                     <a class="navbar-brand" href="{{ url('/') }}" style="position: absolute; left:45%;" >
-                        <img src="{{ asset('assets/image/logo-nav.png') }}" width="120px" height="auto" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy" style="left: 70%;">
+                        <img src="{{ asset('assets/image/ecim-gentong.png') }}" width="120px" height="auto" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy" style="left: 70%;">
                     </a>
                    
                 </div>

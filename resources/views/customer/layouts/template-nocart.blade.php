@@ -159,7 +159,7 @@
                         <i class="fa fa-bars fa-2x" style="color:#693234;"></i>
                     </button>
                     <a class="navbar-brand" href="{{ url('/') }}" style="position: absolute; left:45%;" >
-                        <img src="{{ asset('assets/image/logo-nav.png') }}" width="120px" height="auto" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy" style="left: 70%;">
+                        <img src="{{ asset('assets/image/ecim-gentong.png') }}" width="120px" height="auto" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy" style="left: 70%;">
                     </a>
                     <form action="{{Auth::user() ? route('search.index') : route('search_user.index')}}" class="form-inline my-2 my-lg-0 ml-auto d-none d-md-inline-block">
                         <div class="input-group">
