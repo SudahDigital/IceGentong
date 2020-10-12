@@ -187,9 +187,6 @@
                                     @endforeach
                                     <tr>
                                         <td align="right" colspan="3">
-                                            
-                                                <!--<a target="_BLANK" href="https://wa.me/6282113464465?text=<?php// echo $href; ?>"
-                                                class="btn">Beli Sekarang</a>-->
                                             @if($total_item > 0)
                                                 <a type="button" class="btn button_add_to_cart" data-toggle="modal" data-target="#myModal">Beli Sekarang</a>
                                             @endif
