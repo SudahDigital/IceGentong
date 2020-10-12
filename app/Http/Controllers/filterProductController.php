@@ -16,6 +16,7 @@ class filterProductController extends Controller
      */
     public function index(Request $request)
     {
+        $session_id = $request->header('User-Agent');
         $category_id = $request->get('id');
         $categories = \App\Category::get();
         $product = DB::table('category_product')
@@ -23,28 +24,32 @@ class filterProductController extends Controller
                     ->leftJoin('categories', 'categories.id', '=', 'category_product.category_id')
                     ->where('categories.id','=',"$category_id")
                     ->paginate(6);
-        $id_user = \Auth::user()->id;
+        
         $count_data = $product->count();
-        $keranjang = DB::select("SELECT orders.user_id, orders.status, 
+        $keranjang = DB::select("SELECT orders.session_id, orders.status, 
                     products.description, products.image, products.price, order_product.id,
                     order_product.order_id,order_product.product_id,order_product.quantity
-                    FROM users, order_product, products, orders WHERE 
-                    orders.id = order_product.order_id AND orders.user_id = users.id AND 
+                    FROM order_product, products, orders WHERE 
+                    orders.id = order_product.order_id AND 
                     order_product.product_id = products.id AND orders.status = 'SUBMIT' 
-                    AND users.id = ' $id_user'");
+                    AND orders.session_id = '$session_id' AND orders.username IS NULL");
         $item = DB::table('orders')
-                    ->join('order_product','order_product.order_id','=','orders.id')
-                    ->join('users','users.id','=','orders.user_id')
-                    ->where('user_id','=',"$id_user")
-                    ->where('orders.status','=','SUBMIT')
-                    ->first();
+                ->where('session_id','=',"$session_id")
+                ->where('orders.status','=','SUBMIT')
+                ->whereNull('username')
+                ->first();
+        $item_name = DB::table('orders')
+                ->join('order_product','order_product.order_id','=','orders.id')
+                ->where('session_id','=',"$session_id")
+                ->whereNull('username')
+                ->first();
 
         $total_item = DB::table('orders')
-                    ->join('order_product','order_product.order_id','=','orders.id')
-                    ->join('users','users.id','=','orders.user_id')
-                    ->where('user_id','=',"$id_user")
-                    ->count();
-        $data=['total_item'=> $total_item, 'keranjang'=>$keranjang, 'product'=>$product,'item'=>$item,'count_data'=>$count_data, 'categories'=>$categories];
+                ->join('order_product','order_product.order_id','=','orders.id')
+                ->where('session_id','=',"$session_id")
+                ->whereNull('username')
+                ->count();
+        $data=['total_item'=> $total_item, 'keranjang'=>$keranjang, 'product'=>$product,'item'=>$item,'item_name'=>$item_name,'count_data'=>$count_data,'categories'=>$categories,];
 
         return view('customer.content_customer',$data);
     }

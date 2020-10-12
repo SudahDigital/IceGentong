@@ -37,11 +37,11 @@
 				</li>
 			</ul>
 		</div>
-		-->
+		
 		<div class="col-md-12">
 			<a href="{{route('products.create')}}" class="btn btn-success pull-right">Create Product</a>
 		</div>
-		
+		-->
 	</div>
 </form>	
 
@@ -77,8 +77,8 @@
 					<span class="badge bg-dark text-light">{{$order->status}}</span>
 					@endif
 				</td>
-				<td>{{$order->user->name}} <br>
-					<small>{{$order->user->email}}</small>
+				<td>{{$order->username}} <br>
+					<small>{{$order->email}}</small>
 				</td>
 				<td>{{$order->totalQuantity}} pc (s)</td>
 				<td>{{$order->created_at}}</td>

@@ -1,5 +1,18 @@
 @extends('customer.layouts.template-nocart')
 @section('content')
+@if(session()->has('status'))
+<div class="container">
+    <div class="row justify-content-center">
+        
+            <div class="alert alert-success" role="alert" style="position:fixed;top:20%; width:80%; z-index:9999; margin: 0 auto; background:#6a3137; border:none; color:#FDD8AF; font-weight:bold;">
+                <button type="button" class="close" data-dismiss="alert">×</button> 
+                {{session()->get('status')}}
+            </div>
+        
+    </div>
+</div>
+
+@endif
         <div class="container" style="margin-top: 80px;">
             <div class="row align-middle">
                 <div class="col-sm-12 col-md-12">
@@ -29,8 +42,8 @@
                             </div>
                             
                             <div>
-                                <div class="float-left p-2">
-                                    <p class="product-price mb-0 " id="productPrice{{$product->id}}" >Rp {{ number_format($product->price, 0, ',', '.') }}</p>
+                                <div class="float-left p-2" >
+                                    <p style="line-height: 1;" class="product-price mb-0 " id="productPrice{{$product->id}}" >Rp {{ number_format($product->price, 0, ',', '.') }}</p>
                                 </div>
                                 
                                 <table width="100%" class="hdr_tbl_cart">
@@ -48,11 +61,7 @@
                                         <td width="10%" align="left" valign="middle">
                                             <form method="post" action="{{ route('customer.keranjang.simpan') }}">
                                                 @csrf
-                                                @if(Route::has('login'))
-                                                    @auth
-                                                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                                                    @endauth
-                                                @endif
+                                                
                                                 <input type="hidden" name="Product_id" value="{{$product->id}}">
                                                 <input type="hidden" id="{{$product->id}}" name="quantity" value="1">
                                                 <input type="hidden" id="harga{{$product->id}}" name="price" value="{{$product->price}}">
@@ -70,22 +79,7 @@
                 </div>
             </div>
         </div>
-        <!--
-        <div class="row section_content">
-            <div class="col-12 mb-5">
-                <div class="mx-auto">
-                    <div class="clearfix">
-                        <form method="post" action="">
-                            
-                            <input type="hidden" id="" name="jumlah" value="1">
-                            <input type="hidden" id="harga" name="harga" value="">
-                            <input type="hidden" name="product_id" value="">
-                            <button class="btn btn-block btn-success button_add_to_cart">Tambah Ke Keranjang</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>-->
+       
         <br><br><br>
 
         <div id="accordion">
@@ -97,7 +91,7 @@
                                 <td width="5%" valign="middle">
                                     <div id="ex4">
                                    
-                                        <span class="p1 fa-stack fa-2x has-badge" data-count="{{Auth::user() ? $total_item : '0'}}">
+                                        <span class="p1 fa-stack fa-2x has-badge" data-count="{{$total_item}}">
                                     
                                             <!--<i class="p2 fa fa-circle fa-stack-2x"></i>-->
                                             <i class="p3 fa fa-shopping-cart " data-count="4b" style=""></i>
@@ -105,7 +99,7 @@
                                     </div> 
                                 </td>
                                 <td width="25%" align="left" valign="middle">
-                                    @if(Auth::user()&& $item!==null)
+                                    @if($item!==null)
                                 <h5 id="total_kr_{{$item->total_price}}">Rp.
                                     {{number_format($item->total_price)}}
                                     @else
@@ -122,7 +116,7 @@
                                 </td>
                                 <td width="33%" align="right" valign="middle">
                                    
-                                <h5>{{Auth::user() ? $total_item : ''}} Item)</h5>
+                                <h5>({{$total_item}} Item)</h5>
                                  
                                 </td>
                             </tr>
@@ -132,8 +126,8 @@
                 <div id="collapse-4" class="collapse" data-parent="#accordion" style="" >
                     <div class="card-body" id="card-detail">
                         <div class="col-md-12">
-                            <table width="100%" style="margin-bottom: 40px; ">
-                                <tbody>@if(Auth::user())
+                            <table width="100%" style="margin-bottom: 40px;">
+                                <tbody>
                                     @foreach($keranjang as $detil)
                                     <tr>
                                     
@@ -177,7 +171,7 @@
                                                 </tbody>
                                             </table>
                                         </td>
-                                        <td width="15%" align="left" valign="top" style="padding-top: 5%;">
+                                        <td width="15%" align="right" valign="top" style="padding-top: 5%;">
                                             <form method="post" action="{{ route('customer.keranjang.delete') }}">
                                                 @csrf
                                                 <button class="btn btn-default" 
@@ -191,30 +185,94 @@
                                         </td>
                                     </tr>
                                     @endforeach
-                                    @endif
+                                    <tr>
+                                        <td align="right" colspan="3">
+                                            @if($total_item > 0)
+                                                <!--<a target="_BLANK" href="https://wa.me/6282113464465?text=<?php// echo $href; ?>"
+                                                class="btn">Beli Sekarang</a>-->
+                                                <a type="button" class="btn button_add_to_cart" data-toggle="modal" data-target="#myModal">Beli Sekarang</a>
+                                            @endif
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
-                            <div class="mx-auto text-right">
-                                @if(Auth::user() && $item!==null)    
-                                    <div id="bt_beli">
-                                        <?php $href = 'Hello Saya Ingin Membeli %3A%0A';?>
-                                        @foreach($keranjang as $detil)
-                                        @php 
-                                            $href.='*'.$detil->description.'%20(Qty %3A%20'.$detil->quantity.')%0A';
-                                        @endphp
-                                        @endforeach
-                                        <a target="_BLANK" href="https://wa.me/6282113464465?text=<?php echo $href; ?>"
-                                        class="btn">Beli Sekarang</a>
-                                    </div>
-                                @endif
-                            </div>
+                            
                             
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+    
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+            
+            <!-- Modal content-->
+            <div class="modal-content" style="background: #FDD8AF">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                   
+                </div>
+                <form method="POST" target="_BLANK" action="{{ route('customer.keranjang.pesan') }}">
+                    @csrf
+                <div class="modal-body">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-12">
+                            
+                                @csrf
+                                <div class="card mx-auto contact_card" style="border-radius:15px;">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                        <input type="text" value="{{$item_name !== null ? $item_name->username : ''}}" name="username" class="form-control contact_input @error('name') is-invalid @enderror" placeholder="Name" id="name" required autocomplete="off" autofocus value="{{ old('name') }}">
+                                            @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
+                                        <div class="form-group">
+                                            <input type="email" value="{{$item_name !== null ? $item_name->email : ''}}" name="email" class="form-control contact_input @error('email') is-invalid @enderror" placeholder="Email" id="email" required autocomplete="off" value="{{ old('email') }}">
+                                             @error('email')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
+                                        <div class="form-group">
+                                            <textarea type="text"  name="address" class="form-control contact_input @error('address') is-invalid @enderror" placeholder="Address" id="address" required autocomplete="off" value="{{ old('address') }}">{{$item_name !== null ? $item_name->address : ''}}</textarea>
+                                            @error('address')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
+                                        <div class="form-group">
+                                            <input type="number" value="{{$item_name !== null ? $item_name->phone : ''}}" name="phone" class="form-control contact_input" placeholder="Phone" id="phone" required autocomplete="off">
+                                            <!--<label for="password-confirm" class="contact_label">{{ __('Konfirmasi Kata Sandi') }}</label>-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mx-auto text-center">
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <input type="hidden" name="id" value="{{$item !==null ? $item->id : ''}}"/>
+                    <button type="submit" class="btn button_add_to_cart" style="background-color: #4AC959;"><i class="fab fa-whatsapp" style="font-weight: bold;"></i> {{__('Pesan') }}</button>
+                </div>
+                </form>
+            </div>
+            
+            </div>
+        </div>
+    
         <script type='text/javascript'>
            function button_minus_kr(id)
             {

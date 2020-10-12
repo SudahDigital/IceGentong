@@ -82,23 +82,14 @@
 
 </head>
 <body>
-    @if ($message = Session::get('success'))
-      <div class="alert alert-success alert-block">
-        <button type="button" class="close" data-dismiss="alert">×</button> 
-          <strong>{{ $message }}</strong>
-      </div>
-    @endif
-
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
            
             <div class="sidebar-header mx-auto">
-                @if(\Auth::user())
-                <a href="{{url('/home_customer') }}">
-                @else
+               
                 <a href="{{url('/') }}">
-                @endif
+               
                     <img src="{{ asset('assets/image/ecim-gentong.png') }}" width="70%" height="auto" class="d-inline-block align-top" alt="" loading="lazy">
                 </a>
             </div>
@@ -125,60 +116,34 @@
                 </form>
                 -->
                 <li class="">
-                    @if(\Auth::user())
-                    <a href="{{url('/home_customer') }}">Beranda</a>
-                    @else
+                   
                     <a href="{{ url('/') }}">Beranda</a>
-                    @endif
+                   
                 </li>
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Produk</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
-                        @if(\Auth::user())
+                        
                         @foreach($categories as $key => $value)
                             <li>
                                 <a href="{{route('category.index', ['id'=>$value->id] )}}" style="font-size: 1.1em !important;">{{$value->name}}</a>
                             </li>
                         @endforeach
-                        @else
-                            @foreach($kategori as $key => $value)
-                                <li>
-                                    <a href="{{route('category_user.index', ['id'=>$value->id] )}}" style="font-size: 1.1em !important;">{{$value->name}}</a>
-                                </li>
-                            @endforeach
-                        @endif
+                        
                     </ul>
                 </li>
                 <li>
-                    @if(\Auth::user())
-                        <a href="{{URL::route('cara_belanja_customer')}}">Cara Berbelanja</a>
-                    @else
-                        <a href="{{URL::route('cara_belanja')}}">Cara Berbelanja</a>
-                    @endif
+                   <a href="{{URL::route('cara_belanja')}}">Cara Berbelanja</a>
                 </li>
                 <li>
-                    @if(\Auth::user())
-                        <a href="{{URL::route('contact_customer')}}">Kontak Kami</a>
-                        @else
-                        <a href="{{URL::route('contact')}}">Kontak Kami</a>
-                    @endif
-                    
+                    <a href="{{URL::route('contact')}}">Kontak Kami</a>
+                </li>
+                <li>
+                    <a href="{{URL::route('riwayat_pemesanan')}}">Riwayat Pesanan</a>
                 </li>
 
             </ul>
-
-             @if(\Auth::user())
-                <div class="mx-auto text-center" >
-                    <form action="{{route('logout')}}" method="POST">
-                        @csrf
-                        <div id="log">   
-                            <button class="btn logout">
-                                    Sign Out
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            @else        
+                    <!--
                     <div class="mx-auto text-center">
                         <a href="{{route('login')}}" class="btn login">Sign In</a>
                     </div>
@@ -186,8 +151,8 @@
                     <div class="mx-auto text-center">  
                             <a href="{{route('register')}}" class="register">Sign Up</a>
                     </div> 
-               
-            @endif
+                    -->
+           
             
             
             <div class="mx-auto text-center" style="margin-top: 35px;">
@@ -208,14 +173,12 @@
                     <button type="button" id="sidebarCollapse" class="btn button-burger-menu">
                         <i class="fas fa-bars fa-2x" style="color:#693234;"></i>
                     </button>
-                    @if(\Auth::user())
-                    <a class="navbar-brand nav-center" href="{{url('/home_customer') }}">
-                    @else
+                   
                     <a class="navbar-brand nav-center" href="{{ url('/') }}">
-                    @endif
+                    
                         <img src="{{ asset('assets/image/ecim-gentong.png') }}" width="120px" height="auto" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy">
                     </a>
-                    <form action="{{route('search_user.index')}}" class="form-inline my-2 my-lg-0 ml-auto d-none d-md-inline-block">
+                    <form action="{{route('search.index')}}" class="form-inline my-2 my-lg-0 ml-auto d-none d-md-inline-block">
                         <div class="input-group">
                             <div class="input-group-append">
                                 <button class="btn  my-2 my-sm-0 search_botton_navbar" type="submit" id="button-search-addon" style="border-radius: 50%;"><i class="fa fa-search"></i></button>&nbsp;&nbsp;&nbsp;
@@ -224,8 +187,9 @@
                               
                         </div>
                     </form>
-                    
+                    <a href="#searh_responsive" class="btn btn-info d-md-none" data-toggle="modal" data-target="#searchModal" style="background:none; border:none;color:#693234;"><i class="fa fa-search"></i></a>
                 </div>
+                
             </nav>
 
             
@@ -261,60 +225,38 @@
             @yield('content')
 
          </div>
-          
+       
          
         
     </div>
     
-
-    <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="edit-modal-label" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="edit-modal-label">Edit Data</h5>
-            <h5 class="fa fa-trash"></h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body" id="attachment-body-content">
-            <form id="edit-form" class="form-horizontal" method="POST" action="">
-              <div class="card text-white bg-dark mb-0">
-                <div class="card-header">
-                  <h2 class="m-0">Edit</h2>
-                </div>
-                <div class="card-body">
-                  <!-- id -->
-                  <div class="form-group">
-                    <label class="col-form-label" for="modal-input-id">Id (just for reference not meant to be shown to the general public) </label>
-                    <input type="text" name="modal-input-id" class="form-control" id="modal-input-id" required>
-                  </div>
-                  <!-- /id -->
-                  <!-- name -->
-                  <div class="form-group">
-                    <label class="col-form-label" for="modal-input-name">Name</label>
-                    <input type="text" name="modal-input-name" class="form-control" id="modal-input-name" required autofocus>
-                  </div>
-                  <!-- /name -->
-                  <!-- description -->
-                  <div class="form-group">
-                    <label class="col-form-label" for="modal-input-description">Email</label>
-                    <input type="text" name="modal-input-description" class="form-control" id="modal-input-description" required>
-                  </div>
-                  <!-- /description -->
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button id="btn-yes" type="button" class="btn btn-primary" data-dismiss="modal">Done</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    
 
     <div class="overlay"></div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="searchModal" role="dialog">
+        <div class="modal-dialog">
+        
+        <!-- Modal content-->
+            <div class="modal-content" style="background: #FDD8AF">
+                <div class="modal-body">
+                    <div class="row justify-content-center">
+                        <form action="{{route('search.index')}}">
+                            <div class="input-group">
+                                <div class="input-group-append">
+                                        <button class="btn search_botton_navbar" type="submit" id="button-search-addon" style="border-radius: 50%;"><i class="fa fa-search"></i></button>
+                                        <input class="form-control d-block search_input_navbar" name="keyword" type="text" value="{{Request::get('keyword')}}" placeholder="Search" aria-label="Search" aria-describedby="button-search-addon">
+                                </div>
+                                    
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    </div>
     
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
@@ -387,6 +329,14 @@
         }
        
     </script>
+
+<script>
+    window.setTimeout(function() {
+      $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+      });
+    }, 4000);
+  </script>
 
 
 </body>

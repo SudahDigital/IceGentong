@@ -22,7 +22,7 @@
         <div class="form-group form-float">
             <div class="form-line">
                 <label class="form-label">Buyer</label>
-                <input type="text" class="form-control" autocomplete="off" value="{{$order->user->name}}" disabled>
+                <input type="text" class="form-control" autocomplete="off" value="{{$order->username}}" disabled>
             </div>
         </div>
 
@@ -37,7 +37,7 @@
             <label class="form-label">Products ({{$order->totalQuantity}})</label>
             <ul>
                 @foreach($order->products as $p)
-                <li>{{$p->Product_name}} <b>({{$p->pivot->quantity}})</b></li>
+                <li>{{$p->description}} <b>({{$p->pivot->quantity}})</b></li>
                 @endforeach
             </ul>
         </div>

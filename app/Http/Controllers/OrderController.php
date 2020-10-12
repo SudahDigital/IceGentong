@@ -17,7 +17,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = \App\Order::with('user')->with('products')->get();//paginate(10);
+        $orders = \App\Order::with('products')->whereNotNull('username')->get();//paginate(10);
         return view('orders.index', ['orders' => $orders]);
     }
 

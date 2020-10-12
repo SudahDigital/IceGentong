@@ -193,7 +193,7 @@ a:focus {
     outline:0px !important;
     -webkit-appearance:none;
     box-shadow: none !important;
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px solid #693234;
 }
 
 .search_input_navbar::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -513,7 +513,8 @@ button.search-sidebar:hover {
 .btn_login_form{
  
   background: #6a3137 !important;
-  color: #ffff!important;font-size: 30px;
+  color: #ffff!important;
+  font-size: 30px;
   font-weight: 800;
   font-family: Open Sans;
   padding-left:2rem;

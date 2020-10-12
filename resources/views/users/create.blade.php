@@ -26,11 +26,12 @@
                         
 		<h2 class="card-inside-title">Roles</h2>
         <div class="form-group">
-            <input type="radio" value="ADMIN" name="roles" id="ADMIN">
+            <input type="radio" value="ADMIN" name="roles" id="ADMIN" checked>
 			<label for="ADMIN">Administrator</label>
-							&nbsp;
+			<!--				&nbsp;
             <input type="radio" value="CUSTOMER" name="roles" id="CUSTOMER">
-			<label for="CUSTOMER">Customer</label>
+            <label for="CUSTOMER">Customer</label>
+            -->
         </div>
 
         <div class="form-group form-float">

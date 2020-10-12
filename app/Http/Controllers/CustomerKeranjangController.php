@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\product;
@@ -13,41 +13,46 @@ class CustomerKeranjangController extends Controller
 {
     
     public function index(Request $request)
-    {
+    {   
+        $session_id = $request->header('User-Agent');
         $categories = \App\Category::all();//paginate(10);
         $product = product::with('categories')->paginate(6);
         $count_data = $product->count();
-        $id_user = \Auth::user()->id;
-        $keranjang = DB::select("SELECT orders.user_id, orders.status, 
+        $keranjang = DB::select("SELECT orders.session_id, orders.status, orders.username, 
                     products.description, products.image, products.price, order_product.id,
                     order_product.order_id,order_product.product_id,order_product.quantity
-                    FROM users, order_product, products, orders WHERE 
-                    orders.id = order_product.order_id AND orders.user_id = users.id AND 
+                    FROM order_product, products, orders WHERE 
+                    orders.id = order_product.order_id AND 
                     order_product.product_id = products.id AND orders.status = 'SUBMIT' 
-                    AND users.id = ' $id_user'");
+                    AND orders.session_id = '$session_id' AND orders.username IS NULL ");
         $item = DB::table('orders')
-                    ->join('order_product','order_product.order_id','=','orders.id')
-                    ->join('users','users.id','=','orders.user_id')
-                    ->where('user_id','=',"$id_user")
+                    ->where('session_id','=',"$session_id")
                     ->where('orders.status','=','SUBMIT')
+                    ->whereNull('orders.username')
+                    ->first();
+        $item_name = DB::table('orders')
+                    ->join('order_product','order_product.order_id','=','orders.id')
+                    ->where('session_id','=',"$session_id")
+                    ->whereNotNull('orders.username')
                     ->first();
         
         $total_item = DB::table('orders')
                     ->join('order_product','order_product.order_id','=','orders.id')
-                    ->join('users','users.id','=','orders.user_id')
-                    ->where('user_id','=',"$id_user")
+                    ->where('session_id','=',"$session_id")
+                    ->whereNull('orders.username')
                     ->count();
-        $data=['total_item'=> $total_item, 'keranjang'=>$keranjang, 'product'=>$product,'item'=>$item,'count_data'=>$count_data,'categories'=>$categories,];
+        $data=['total_item'=> $total_item, 'keranjang'=>$keranjang, 'product'=>$product,'item'=>$item,'item_name'=>$item_name,'count_data'=>$count_data,'categories'=>$categories,];
        
         return view('customer.content_customer',$data);
     }
     
-    public function simpan(Request $request){   
+    public function simpan(Request $request){  
+        $id = $request->header('User-Agent'); 
         $id_product = $request->get('Product_id');
         $quantity=$request->get('quantity');
         $price=$request->get('price');
-        $cek_order = Order::where('user_id','=',$request->get('user_id'))
-        ->where('status','=','SUBMIT')->first();
+        $cek_order = Order::where('session_id','=',"$id")
+        ->where('status','=','SUBMIT')->whereNull('username')->first();
         if($cek_order !== null){
             $order_product = order_product::where('order_id','=',$cek_order->id)
             ->where('product_id','=',$id_product)->first();
@@ -69,7 +74,7 @@ class CustomerKeranjangController extends Controller
         else{
 
             $order = new \App\Order;
-            $order->user_id = $request->get('user_id');
+            $order->session_id = $id;
             //$order->quantity = $quantity;
             $order->invoice_number = date('YmdHis');
             $order->total_price = $price * $quantity;
@@ -157,7 +162,36 @@ class CustomerKeranjangController extends Controller
                                 $orders->save();
                              }
                         }
-                        return redirect()->back()->with('status','Product berhasil dihapus kekeranjang');
+                        return redirect()->back()->with('status','Product berhasil dihapus dari keranjang');
+    }
+
+    public function pesan(Request $request){
+        $id = $request->get('id');
+        $username = $request->get('username');
+        $email = $request->get('email');
+        $address = $request->get('address');
+        $phone = $request->get('phone');
+        $orders = Order::findOrfail($id);
+        $orders->username = $username;
+        $orders->email = $email;
+        $orders->address = $address;
+        $orders->phone = $phone;
+        $orders->save();
+        $href='Hello..,  %0A Nama %3A ' .$username. '%0AEmail %3A ' .$email. '%0A No. Hp %3A' .$phone. '%0A Ingin membeli %3A%0A';
+        if($orders->save()){
+            $pesan = DB::table('order_product')
+                    ->join('orders','order_product.order_id','=','orders.id')
+                    ->join('products','order_product.product_id','=','products.id')
+                    ->where('orders.id','=',"$id")
+                    ->get();
+            foreach($pesan as $key=>$wa){
+                $href.='*'.$wa->description.'%20(Qty %3A%20'.$wa->quantity.')%0A';
+            }
+            $url = "https://wa.me/6281212610009?text=$href";
+            return Redirect::to($url);
+            
+        }
+        
     }
 
    

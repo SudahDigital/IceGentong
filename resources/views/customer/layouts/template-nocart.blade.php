@@ -42,58 +42,34 @@
          <nav id="sidebar">
            
             <div class="sidebar-header mx-auto">
-                @if(\Auth::user())
-                <a href="{{url('/home_customer') }}">
-                @else
                 <a href="{{url('/') }}">
-                @endif
                     <img src="{{ asset('assets/image/ecim-gentong.png') }}" width="70%" height="auto" class="d-inline-block align-top" alt="" loading="lazy">
                 </a>
             </div>
             <ul class="list-unstyled components">
                 
                 <li class="">
-                    @if(\Auth::user())
-                    <a href="{{url('/home_customer') }}">Beranda</a>
-                    @else
                     <a href="{{ url('/') }}">Beranda</a>
-                    @endif
                 </li>
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Produk</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
-                        @if(\Auth::user())
                             @foreach($categories as $key => $value)
                                 <li>
                                     <a href="{{route('category.index', ['id'=>$value->id] )}}" style="font-size: 1.1em !important;">{{$value->name}}</a>
                                 </li>
                             @endforeach
-                        @else
-                            @foreach($kategori as $kat)
-                                <li>
-                                    <a href="{{route('category_user.index', ['id'=>$kat->id] )}}" style="font-size: 1.1em !important;">{{$kat->name}}</a>
-                                </li>
-                            @endforeach
-
-                        @endif
                     </ul>
                 </li>
                 <li>
-                    @if(\Auth::user())
-                        <a href="{{URL::route('cara_belanja_customer')}}">Cara Berbelanja</a>
-                    @else
-                        <a href="{{URL::route('cara_belanja')}}">Cara Berbelanja</a>
-                    @endif
+                    <a href="{{URL::route('cara_belanja')}}">Cara Berbelanja</a>
                 </li>
                 <li>
-                    @if(\Auth::user())
-                        <a href="{{URL::route('contact_customer')}}">Kontak Kami</a>
-                        @else
-                        <a href="{{URL::route('contact')}}">Kontak Kami</a>
-                    @endif
-                    
+                    <a href="{{URL::route('contact')}}">Kontak Kami</a>
                 </li>
-
+                <li>
+                    <a href="{{URL::route('riwayat_pemesanan')}}">Riwayat Pesanan</a>
+                </li>
             </ul>
 
              @if(\Auth::user())
@@ -107,7 +83,8 @@
                         </div>
                     </form>
                 </div>
-            @else        
+            @else    
+                    <!--    
                     <div class="mx-auto text-center">
                         <a href="{{route('login')}}" class="btn login">Sign In</a>
                     </div>
@@ -115,7 +92,7 @@
                     <div class="mx-auto text-center">  
                             <a href="{{route('register')}}" class="register">Sign Up</a>
                     </div> 
-               
+                    -->
             @endif
             
             
@@ -140,7 +117,7 @@
                     <a class="navbar-brand" href="{{ url('/') }}" >
                         <img src="{{ asset('assets/image/ecim-gentong.png') }}" width="120px" height="auto" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy">
                     </a>
-                    <form action="{{Auth::user() ? route('search.index') : route('search_user.index')}}" class="form-inline my-2 my-lg-0 ml-auto d-none d-md-inline-block">
+                    <form action="{{route('search.index')}}" class="form-inline my-2 my-lg-0 ml-auto d-none d-md-inline-block">
                         <div class="input-group">
                             <div class="input-group-append">
                                 <button class="btn  my-2 my-sm-0 search_botton_navbar" type="submit" id="button-search-addon" style="border-radius: 50%;"><i class="fa fa-search"></i></button>&nbsp;&nbsp;&nbsp;
@@ -149,6 +126,7 @@
                               
                         </div>
                     </form>
+                    <a href="#searh_responsive" class="btn btn-info d-md-none" data-toggle="modal" data-target="#searchModal" style="background:none; border:none;color:#693234;"><i class="fa fa-search"></i></a>
                 </div>
             </nav>
 
@@ -161,6 +139,30 @@
     </div>
 
     <div class="overlay"></div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="searchModal" role="dialog">
+        <div class="modal-dialog">
+        
+            <!-- Modal content-->
+            <div class="modal-content" style="background: #FDD8AF">
+                <div class="modal-body">
+                    <div class="row justify-content-center">
+                        <form action="{{route('search.index')}}">
+                            <div class="input-group">
+                                <div class="input-group-append">
+                                        <button class="btn search_botton_navbar" type="submit" id="button-search-addon" style="border-radius: 50%;"><i class="fa fa-search"></i></button>
+                                        <input class="form-control d-block search_input_navbar" name="keyword" type="text" value="{{Request::get('keyword')}}" placeholder="Search" aria-label="Search" aria-describedby="button-search-addon">
+                                </div>
+                                    
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    </div>
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -232,7 +234,13 @@
         }
        
     </script>
-
+    <script>
+        window.setTimeout(function() {
+          $(".alert").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove(); 
+          });
+        }, 4000);
+    </script>
 
 </body>
 

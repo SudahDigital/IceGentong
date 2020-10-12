@@ -12,20 +12,35 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
 Auth::routes();
 Route::get('/', 'WelcomeController@index');
 Route::get('/product/detail/', 'ProductDetailController@detail')->name('product_detail');
-Route::get('/cara-belanja', 'CustomerCaraBelanjaController@index')->name('cara_belanja');
-Route::get('/contact', 'CustomerContactController@index')->name('contact');
-Route::resource('category_user','filterProductUserController');
-Route::resource('search_user','searchuserController');
-Route::get('/admin', function () {
-    $kategori = \App\Category::get();
-    return view('auth.login',['kategori'=>$kategori]);
-});
+Route::get('/cara-belanja', function(){
+        $categories = \App\Category::get();	
+    	return view('customer.carabelanja',['categories'=>$categories]);
+        })->name('cara_belanja');
+Route::get('/contact', function(){
+        $categories = \App\Category::get();	
+        return view('customer.contact',['categories'=>$categories]);
+        })->name('contact');
+Route::get('/home_customer', 'CustomerKeranjangController@index');
+Route::post('/keranjang/simpan','CustomerKeranjangController@simpan')->name('customer.keranjang.simpan');
+Route::post('/keranjang/tambah','CustomerKeranjangController@tambah')->name('customer.keranjang.tambah');
+Route::post('/keranjang/kurang','CustomerKeranjangController@kurang')->name('customer.keranjang.kurang');
+Route::post('/keranjang/delete','CustomerKeranjangController@delete')->name('customer.keranjang.delete');
+Route::post('/keranjang/pesan','CustomerKeranjangController@pesan')->name('customer.keranjang.pesan');
+Route::get('/histori','historiController@index')->name('riwayat_pemesanan');
+Route::resource('category','filterProductController');
+Route::resource('search','searchController');
 
+Route::match(["GET", "POST"], "/register", function(){
+    return redirect("/login");
+})->name("register");
+
+Route::get('/admin', function () {
+    $categories = \App\Category::get();
+    return view('auth.login',['categories'=>$categories]);
+    });
 Route::group(['middleware' => ['auth','checkRole:ADMIN']],function(){
     Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('users','UserController');
@@ -41,23 +56,6 @@ Route::group(['middleware' => ['auth','checkRole:ADMIN']],function(){
     Route::resource('orders', 'OrderController');
 });
 
-Route::group(['middleware' => ['auth','checkRole:CUSTOMER']],function(){
-    Route::get('/home_customer', 'CustomerKeranjangController@index');
-    Route::post('/keranjang/simpan','CustomerKeranjangController@simpan')->name('customer.keranjang.simpan');
-    Route::post('/keranjang/tambah','CustomerKeranjangController@tambah')->name('customer.keranjang.tambah');
-    Route::post('/keranjang/kurang','CustomerKeranjangController@kurang')->name('customer.keranjang.kurang');
-    Route::post('/keranjang/delete','CustomerKeranjangController@delete')->name('customer.keranjang.delete');
-    Route::resource('category','filterProductController');
-    Route::resource('search','searchuserController');
-    Route::get('/informasi/carabelanja', function()
-                    {
-                        $categories = \App\Category::get();
-                        return view('customer.carabelanja',['categories'=>$categories]);
-                    })->name('cara_belanja_customer');
-    Route::get('/informasi/contact', function()
-                    {   
-                        $categories = \App\Category::get();
-                        return view('customer.contact',['categories'=>$categories]);
-                    })->name('contact_customer');
 
-});
+    
+

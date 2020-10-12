@@ -6,12 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    public function user(){
-    return $this->belongsTo('App\User');
-    }
-
+    
     public function products(){
-        return $this->belongsToMany('App\product')->withPivot('quantity');
+        return $this->belongsToMany('App\product','order_product','order_id','product_id')->withPivot('quantity');
     }
 
     public function getTotalQuantityAttribute(){
@@ -21,4 +18,6 @@ class Order extends Model
         }
         return $total_quantity;
     }
+
+        
 }

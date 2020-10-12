@@ -106,11 +106,25 @@
     }
 
     .warna{
-        height:42%;
+        height:46%;
     }
 
     #i-kontak, #i-envelop {
         font-size: 5em;
+    }
+
+    #content .cara_belanja h5{
+        font-weight: 900;
+        font-size: 30px;
+        margin-left:-10px;
+        margin-right:0;
+        
+    }
+
+    #content .cara_belanja p{
+        margin-left:-10px;
+        font-size: 25px;
+        
     }
 }
 
@@ -122,7 +136,7 @@
     }
 
     .warna{
-        height:72%;
+        height:80%;
     }
 
     #i-kontak, #i-envelop {
@@ -145,7 +159,7 @@
   
 
       .warna{
-        height:96%;
+        height:94%;
     }
 
     #i-kontak, #i-envelop {
@@ -194,8 +208,25 @@
       }
 
       .warna{
-        height:85%;
+        height:95%;
     }
+
+    .cat_fil{
+        font-size: 25px;
+        font-weight: 
+        bold;font-style:normal;
+        line-height: 1.37;
+        font-family: Open Sans;
+      }
+      .tombol{
+        font-size: 25px;
+      }
+
+      .button-collapse{
+
+        margin-right: 20px;
+        font-size: 15px;
+      }
 
    
 }
@@ -285,7 +316,7 @@
     }
 
     .warna{
-        height:105%;
+        height:117%;
     }
 
     #content .cr_bl{
@@ -678,7 +709,7 @@
     }
 
     .warna{
-        height:49%;
+        height:48%;
     }
 
     #content .cr_bl{
@@ -694,7 +725,7 @@
       #content .cara_belanja h5{
           font-weight: 900;
           font-size: 18px;
-          
+          margin-left:-7rem;
           margin-right:2px;
           
       }
@@ -702,6 +733,7 @@
       #content .cara_belanja p{
           margin-right:10px;
           font-size: 14px;
+          margin-left:-7rem;
           
       }
 
@@ -1070,7 +1102,7 @@
     }
 
     .warna{
-        height:73%;
+        height:70%;
     }
 
     #content .cr_bl{
@@ -1086,13 +1118,13 @@
       #content .cara_belanja h5{
           font-weight: 900;
           font-size: 18px;
-          
+          margin-left:-4rem;
           margin-right:2px;
           
       }
   
       #content .cara_belanja p{
-          margin-left:-2rem;
+          margin-left:-4rem;
           margin-right:10px;
           font-size: 14px;
           
@@ -1480,13 +1512,13 @@
       #content .cara_belanja h5{
           font-weight: 900;
           font-size: 18px;
-          
+          margin-left:-3rem;
           margin-right:2px;
           
       }
   
       #content .cara_belanja p{
-          margin-left:-2rem;
+          margin-left:-3rem;
           margin-right:10px;
           font-size: 14px;
           
@@ -1857,7 +1889,7 @@
     }
 
     .warna{
-        height:76.5%;
+        height:87%;
     }
 
     #content .cr_bl{
@@ -1869,8 +1901,10 @@
             padding:0;
         }
     
-        #cara-belanja .card-img-top{
-            margin-left:-10px;
+        #content .cara_belanja img{
+            width:90px;
+            height:auto;
+            margin-left:-15px;
         }
     
         #content .cara_belanja h5{
@@ -2256,7 +2290,7 @@
     }
 
     .warna{
-        height:73%;
+        height:82%;
     }
   
     #content .cr_bl{
@@ -2311,9 +2345,11 @@
         padding:0;
     }
 
-    #cara-belanja .card-img-top{
-        margin-left:-10px;
-    }
+    #content .cara_belanja img{
+        width:80px;
+        height:auto;
+        margin-left:-5px;
+      }
 
     #content .cara_belanja h5{
         font-weight: 900;
@@ -2376,6 +2412,7 @@
     #content .product-price {
         font-size: 17px; 
         font-weight: 900;
+    
     }
 
     /*
@@ -2654,7 +2691,7 @@
     }
 
     .warna{
-        height:67%;
+        height:76%;
     }
 
     #content .cr_bl{
@@ -2665,6 +2702,7 @@
     #content .cara_belanja img{
         width:60px;
         height:auto;
+        margin-left:-10px;
       }
   
       #content .cara_belanja h5{

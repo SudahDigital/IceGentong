@@ -38,9 +38,9 @@
         <div class="form-group">
             <input type="radio" value="ADMIN" name="roles" id="ADMIN" {{$user->roles == 'ADMIN' ? 'checked' : ''}}>
 			<label for="ADMIN">Administrator</label>
-							&nbsp;
+			<!--				&nbsp;
             <input type="radio" value="CUSTOMER" name="roles" id="CUSTOMER" {{$user->roles == 'CUSTOMER' ? 'checked' : ''}}>
-			<label for="CUSTOMER">Customer</label>
+			<label for="CUSTOMER">Customer</label>-->
         </div>
 
         <div class="form-group form-float">
