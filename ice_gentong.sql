@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ice_gentong`
+-- Database: `u7590166_ice_gentong`
 --
 
 -- --------------------------------------------------------
