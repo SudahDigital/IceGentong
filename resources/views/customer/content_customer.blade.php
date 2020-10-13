@@ -14,17 +14,17 @@
 </div>
 
 @endif
-    @if($count_data <= 3)
+    @if($count_data <= 4)
     <div class="">
     @else
     <div class="warna">
         
-    @endif
+    
     <div id="shape-1">
                 
     </div>
     <div id="shape-2">
-                
+    @endif           
     </div>
             <div class="container" style="margin-top:30px;">
                 <div class="row align-middle" style="margin-bottom: 20px">
