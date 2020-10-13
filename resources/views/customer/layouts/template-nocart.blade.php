@@ -109,13 +109,16 @@
 
         <div id="content">
 
+            
             <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="z-index: 1.5;">
                 <div class="container-fluid">
                     <button type="button" id="sidebarCollapse" class="btn button-burger-menu">
-                        <i class="fa fa-bars fa-2x" style="color:#693234;"></i>
+                        <i class="fas fa-bars fa-2x" style="color:#693234;"></i>
                     </button>
-                    <a class="navbar-brand" href="{{ url('/') }}" >
-                        <img src="{{ asset('assets/image/ecim-gentong.png') }}" width="120px" height="auto" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy">
+                   
+                    <a class="navbar-brand nav-center" href="{{ url('/') }}">
+                    
+                        <img src="{{ asset('assets/image/ecim-gentong.png') }}" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy">
                     </a>
                     <form action="{{route('search.index')}}" class="form-inline my-2 my-lg-0 ml-auto d-none d-md-inline-block">
                         <div class="input-group">
@@ -126,8 +129,9 @@
                               
                         </div>
                     </form>
-                    <a href="#searh_responsive" class="btn btn-info d-md-none" data-toggle="modal" data-target="#searchModal" style="background:none; border:none;color:#693234;"><i class="fa fa-search"></i></a>
+                    <a href="#searh_responsive" class="btn btn-info d-md-none" data-toggle="modal" data-target="#searchModal" style="background:none; border:none;color:#693234;"><i class="fa fa-search" style="font-size:27px;"></i></a>
                 </div>
+                
             </nav>
 
             <!-- Page Content  -->
