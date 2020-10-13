@@ -176,7 +176,7 @@
                    
                     <a class="navbar-brand nav-center" href="{{ url('/') }}">
                     
-                        <img src="{{ asset('assets/image/ecim-gentong.png') }}" width="120px" height="auto" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy">
+                        <img src="{{ asset('assets/image/ecim-gentong.png') }}" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy">
                     </a>
                     <form action="{{route('search.index')}}" class="form-inline my-2 my-lg-0 ml-auto d-none d-md-inline-block">
                         <div class="input-group">
@@ -187,47 +187,41 @@
                               
                         </div>
                     </form>
-                    <a href="#searh_responsive" class="btn btn-info d-md-none" data-toggle="modal" data-target="#searchModal" style="background:none; border:none;color:#693234;"><i class="fa fa-search"></i></a>
+                    <a href="#searh_responsive" class="btn btn-info d-md-none" data-toggle="modal" data-target="#searchModal" style="background:none; border:none;color:#693234;"><i class="fa fa-search" style="font-size:27px;"></i></a>
                 </div>
                 
             </nav>
 
-            
-                    <!-- BANNER -->
-                    <div role="main" style="margin-top: 5rem;">
-                        <div id="bannerSlide" class="carousel slide" data-ride="carousel" >
-                            <!-- Indicators -->
-                            <ul class="carousel-indicators">
-                                <li data-target="#bannerSlide" data-slide-to="0" class="active"></li>
-                                <!-- <li data-target="#bannerSlide" data-slide-to="1"></li>
-                                <li data-target="#bannerSlide" data-slide-to="2"></li> -->
-                            </ul>
-                            
-                            <!-- The slideshow -->
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="{{ asset('assets/image/banner-min.png') }}" class="w-100 h-100">
-                                </div>
-                            </div>
-                            
-                            <!-- Left and right controls -->
-                            <a class="carousel-control-prev" href="#bannerSlide" data-slide="prev">
-                                <span class="carousel-control-prev-icon"></span>
-                            </a>
-                            <a class="carousel-control-next" href="#bannerSlide" data-slide="next">
-                                <span class="carousel-control-next-icon"></span>
-                            </a>
+    
+            <!-- BANNER -->
+            <div role="main" style="margin-top: 5rem;">
+                <div id="bannerSlide" class="carousel slide" data-ride="carousel" >
+                    <!-- Indicators -->
+                    <ul class="carousel-indicators">
+                        <li data-target="#bannerSlide" data-slide-to="0" class="active"></li>
+                        <!-- <li data-target="#bannerSlide" data-slide-to="1"></li>
+                        <li data-target="#bannerSlide" data-slide-to="2"></li> -->
+                    </ul>
+                    
+                    <!-- The slideshow -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{{ asset('assets/image/banner-min.png') }}" class="w-100 h-100">
                         </div>
-                    </div>    
+                    </div>
+                    
+                    <!-- Left and right controls -->
+                    <a class="carousel-control-prev" href="#bannerSlide" data-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#bannerSlide" data-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
+            </div>    
                
-            
-            <!-- Page Content  -->
             @yield('content')
-
-         </div>
-       
-         
-        
+        </div>
     </div>
     
     
