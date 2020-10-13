@@ -625,15 +625,26 @@ a.register:hover {
 }
 
 #shape-1 {
-  float: left;
-      width: 150px;
-      height: 150px;
-      margin: 20px;
-      shape-outside: circle(50% at 30%);
-      clip-path: circle(50% at 0%);
-      background: lightblue;
+      float: left;
+      width: 50%;
+      height: 30rem;
+      top:10rem;
+      border-top-right-radius: 100%;
+      background:#5D2B30;
       position: absolute;
  }
+
+ #shape-2 {
+  right:0;
+  width: 50%;
+  height: 30rem;
+  top:40rem;
+  border-bottom-left-radius: 100%;
+  background:#ffcc94;
+  /*background:#ffd3a3;*/
+  position: absolute;
+  z-index: ;
+}
 
 #content {
     width: 100%;

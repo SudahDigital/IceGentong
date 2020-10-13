@@ -20,7 +20,12 @@
     <div class="warna">
         
     @endif
-        
+    <div id="shape-1">
+                
+    </div>
+    <div id="shape-2">
+                
+    </div>
             <div class="container" style="margin-top:30px;">
                 <div class="row align-middle" style="margin-bottom: 20px">
                     <div class="col-sm-12">

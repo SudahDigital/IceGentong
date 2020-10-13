@@ -98,6 +98,18 @@
 }*/
 @media (max-width: 2560px){
 
+    #shape-1 {
+        height: 40rem;
+        top:0rem;
+        
+   }
+  
+   #shape-2 {
+    height: 40rem;
+    top:40.6rem;
+    
+  }
+
    .navbar-brand {
         position: absolute;
         left: 46%;
@@ -129,6 +141,19 @@
 
 @media (max-width: 1440px){
 
+
+    #shape-1 {
+        
+        top:9rem;
+        
+   }
+  
+   #shape-2 {
+    
+    top:39.2rem;
+    
+  }
+
     .nav-center img{
         left:-4.7rem;
         position:absolute;
@@ -147,6 +172,28 @@
 }
 
 @media (max-width: 1366px){
+
+    #shape-1 {
+        float: left;
+        width: 50%;
+        height: 30rem;
+        top:10rem;
+        border-top-right-radius: 100%;
+        background:#5D2B30;
+        position: absolute;
+   }
+  
+   #shape-2 {
+    right:0;
+    width: 50%;
+    height: 30rem;
+    top:40rem;
+    border-bottom-left-radius: 100%;
+    background:#ffcc94;
+    /*background:#ffd3a3;*/
+    position: absolute;
+    z-index: ;
+  }
 
     .warna{
         height:40rem;
@@ -177,6 +224,19 @@
 }
 
 @media (max-width: 1024px){
+
+
+    #shape-1 {
+        
+        top:8rem;
+        
+   }
+  
+   #shape-2 {
+    
+    top:38rem;
+    
+  }
 
     #sidebar {
         width: 50%;
@@ -243,6 +303,31 @@
 }
 
 @media (max-width: 768px) {
+
+    #shape-1 {
+        float: left;
+        width: 50%;
+        height: 18rem;
+        top:17.5rem;
+        border-top-right-radius: 100%;
+        /*background:#fff;*/
+        background:#5D2B30;
+        position: absolute;
+   }
+  
+   #shape-2 {
+    right:0;
+    width: 50%;
+    height: 18rem;
+    top:35.5rem;
+    border-bottom-left-radius: 100%;
+    background:#ffcc94;
+    /*background:#5D2B30;*/
+    position: absolute;
+    z-index: ;
+  }
+
+
     #sidebar {
         width: 70%;
         left: -70%;
@@ -642,6 +727,30 @@
 }
 
 @media (max-width: 600px) {
+
+    #shape-1 {
+        float: left;
+        width: 100%;
+        height: 19rem;
+        top:11.8rem;
+        border-top-right-radius: 100%;
+        /*background:#fff;*/
+        background:#5D2B30;
+        position: absolute;
+   }
+  
+   #shape-2 {
+    right:0;
+    width: 100%;
+    height: 19rem;
+    top:31rem;
+    border-bottom-left-radius: 100%;
+    background:#ffcc94;
+    /*background:#5D2B30;*/
+    position: absolute;
+    z-index: ;
+  }
+
     #sidebar {
         width: 70%;
         left: -70%;
@@ -1040,6 +1149,30 @@
 }
 
 @media (max-width: 540px) {
+
+    #shape-1 {
+        float: left;
+        width: 100%;
+        height: 19rem;
+        top:11.8rem;
+        border-top-right-radius: 100%;
+        /*background:#fff;*/
+        background:#5D2B30;
+        position: absolute;
+   }
+  
+   #shape-2 {
+    right:0;
+    width: 100%;
+    height: 19rem;
+    top:31rem;
+    border-bottom-left-radius: 100%;
+    background:#ffcc94;
+    /*background:#5D2B30;*/
+    position: absolute;
+    z-index: ;
+  }
+
     #sidebar {
         width: 70%;
         left: -70%;
@@ -1069,7 +1202,7 @@
     }
 
     .nav-center img{
-        left:-2.8rem;
+        left:-5rem;
         position:absolute;
         top:-2.4rem;
     }
@@ -1438,6 +1571,30 @@
 }
 
 @media (max-width: 480px) {
+
+    #shape-1 {
+        float: left;
+        width: 100%;
+        height: 19rem;
+        top:9.5rem;
+        border-top-right-radius: 100%;
+        /*background:#fff;*/
+        background:#5D2B30;
+        position: absolute;
+   }
+  
+   #shape-2 {
+    right:0;
+    width: 100%;
+    height: 19rem;
+    top:28.7rem;
+    border-bottom-left-radius: 100%;
+    background:#ffcc94;
+    /*background:#5D2B30;*/
+    position: absolute;
+    z-index: ;
+  }
+
     #sidebar {
         width: 70%;
         left: -70%;
@@ -1839,6 +1996,30 @@
 }
 
 @media (max-width: 425px) {
+
+    #shape-1 {
+        float: left;
+        width: 100%;
+        height: 19rem;
+        top:7rem;
+        border-top-right-radius: 100%;
+        /*background:#fff;*/
+        background:#5D2B30;
+        position: absolute;
+   }
+  
+   #shape-2 {
+    right:0;
+    width: 100%;
+    height: 19rem;
+    top:26rem;
+    border-bottom-left-radius: 100%;
+    background:#ffcc94;
+    /*background:#5D2B30;*/
+    position: absolute;
+    z-index: ;
+  }
+
     #sidebar {
         width: 70%;
         left: -70%;
@@ -2248,6 +2429,30 @@
 }
 
 @media (max-width: 411px) {
+
+    #shape-1 {
+        float: left;
+        width: 100%;
+        height: 19rem;
+        top:7rem;
+        border-top-right-radius: 100%;
+        /*background:#fff;*/
+        background:#5D2B30;
+        position: absolute;
+   }
+  
+   #shape-2 {
+    right:0;
+    width: 100%;
+    height: 19rem;
+    top:26rem;
+    border-bottom-left-radius: 100%;
+    background:#ffcc94;
+    /*background:#5D2B30;*/
+    position: absolute;
+    z-index: ;
+  }
+
     #sidebar {
         width: 70%;
         left: -70%;
@@ -2657,6 +2862,32 @@
 }
 
 @media (max-width: 384px) {
+
+
+    #shape-1 {
+        float: left;
+        width: 100%;
+        height: 17rem;
+        top:7.4rem;
+        border-top-right-radius: 100%;
+        /*background:#fff;*/
+        background:#5D2B30;
+        position: absolute;
+   }
+  
+   #shape-2 {
+    right:0;
+    width: 100%;
+    height: 17rem;
+    top:24.5rem;
+    border-bottom-left-radius: 100%;
+    background:#ffcc94;
+    /*background:#5D2B30;*/
+    position: absolute;
+    z-index: ;
+  }
+
+
     #sidebar {
         width: 70%;
         left: -70%;
@@ -3062,6 +3293,30 @@
 }
 
 @media (max-width: 375px) {
+
+    #shape-1 {
+        float: left;
+        width: 100%;
+        height: 17rem;
+        top:7rem;
+        border-top-right-radius: 100%;
+        /*background:#fff;*/
+        background:#5D2B30;
+        position: absolute;
+   }
+  
+   #shape-2 {
+    right:0;
+    width: 100%;
+    height: 18rem;
+    top:24rem;
+    border-bottom-left-radius: 100%;
+    background:#ffcc94;
+    /*background:#5D2B30;*/
+    position: absolute;
+    z-index: ;
+  }
+
     #sidebar {
         width: 70%;
         left: -70%;
@@ -3467,6 +3722,30 @@
 }
 
 @media (max-width: 364px) {
+
+    #shape-1 {
+        float: left;
+        width: 100%;
+        height: 17rem;
+        top:7rem;
+        border-top-right-radius: 100%;
+        /*background:#fff;*/
+        background:#5D2B30;
+        position: absolute;
+   }
+  
+   #shape-2 {
+    right:0;
+    width: 100%;
+    height: 17rem;
+    top:24rem;
+    border-bottom-left-radius: 100%;
+    background:#ffcc94;
+    /*background:#fff;*/
+    position: absolute;
+    z-index: ;
+  }
+
     #sidebar {
         width: 70%;
         left: -70%;
@@ -3871,6 +4150,31 @@
 }
 
 @media (max-width: 338px) {
+
+    #shape-1 {
+        float: left;
+        width: 100%;
+        height: 15rem;
+        top:8rem;
+        border-top-right-radius: 100%;
+        /*background:#fff;*/
+        background:#5D2B30;
+        position: absolute;
+   }
+  
+   #shape-2 {
+    right:0;
+    width: 100%;
+    height: 15rem;
+    top:23.1rem;
+    border-bottom-left-radius: 100%;
+    background:#ffcc94;
+    /*background:#fff;*/
+    position: absolute;
+    z-index: ;
+  }
+
+
     #sidebar {
         width: 70%;
         left: -70%;
@@ -4277,6 +4581,29 @@
 }
 
 @media (max-width: 320px) {
+
+    #shape-1 {
+        float: left;
+        width: 100%;
+        height: 15rem;
+        top:8rem;
+        border-top-right-radius: 100%;
+        background:#5D2B30;
+        position: absolute;
+   }
+  
+   #shape-2 {
+    right:0;
+    width: 100%;
+    height: 15rem;
+    top:23.1rem;
+    border-bottom-left-radius: 100%;
+    background:#ffcc94;
+    /*background:#ffd3a3;*/
+    position: absolute;
+    z-index: ;
+  }
+
     #sidebar {
         width: 70%;
         left: -70%;
@@ -4683,6 +5010,29 @@
 }
 
 @media (max-width: 264px) {
+
+    #shape-1 {
+        float: left;
+        width: 100%;
+        height: 15rem;
+        top:8rem;
+        border-top-right-radius: 100%;
+        background:#5D2B30;
+        position: absolute;
+   }
+  
+   #shape-2 {
+    right:0;
+    width: 100%;
+    height: 15rem;
+    top:23.1rem;
+    border-bottom-left-radius: 100%;
+    background:#ffcc94;
+    /*background:#ffd3a3;*/
+    position: absolute;
+    z-index: ;
+  }
+
     #sidebar {
         width: 70%;
         left: -70%;
