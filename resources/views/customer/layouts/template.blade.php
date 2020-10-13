@@ -187,7 +187,7 @@
                               
                         </div>
                     </form>
-                    <a href="#searh_responsive" class="btn btn-info d-md-none" data-toggle="modal" data-target="#searchModal" style="background:none; border:none;color:#693234;"><i class="fa fa-search" style="font-size:27px;"></i></a>
+                    <a href="#searh_responsive" class="btn btn-info d-md-none" data-toggle="modal" data-target="#searchModal" style="border-radius: 50%; background:#693234;; border:none;"><i class="fa fa-search" style=""></i></a>
                 </div>
                 
             </nav>
