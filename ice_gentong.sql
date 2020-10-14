@@ -1,34 +1,24 @@
--- phpMyAdmin SQL Dump
--- version 5.0.2
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Oct 12, 2020 at 09:24 AM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.4.7
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `u7590166_ice_gentong`
---
-
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Server version:               10.3.24-MariaDB - MariaDB Server
+-- Server OS:                    Linux
+-- HeidiSQL Version:             11.0.0.5919
 -- --------------------------------------------------------
 
---
--- Table structure for table `categories`
---
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
-CREATE TABLE `categories` (
-  `id` int(10) UNSIGNED NOT NULL,
+
+-- Dumping database structure for u7590166_ice_gentong
+CREATE DATABASE IF NOT EXISTS `u7590166_ice_gentong` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `u7590166_ice_gentong`;
+
+-- Dumping structure for table u7590166_ice_gentong.categories
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image_category` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Berisi nama file image tanpa path',
@@ -37,218 +27,269 @@ CREATE TABLE `categories` (
   `delete_by` int(11) DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `categories_slug_unique` (`slug`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `categories`
---
-
+-- Dumping data for table u7590166_ice_gentong.categories: ~4 rows (approximately)
+/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
 INSERT INTO `categories` (`id`, `name`, `slug`, `image_category`, `create_by`, `update_by`, `delete_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'Special Package', 'special-package', 'category_images/s9RT3uZxCKZA3hKWcV8Nfa4AI01cOfiExG0YJR36.png', 2, NULL, NULL, NULL, '2020-10-02 01:54:06', '2020-10-02 01:54:06'),
-(2, 'Deluxe', 'deluxe', 'category_images/tW5WqHXP0lfDu1QbH92Pp9GVyOFMI55bYd3WJJT2.png', 2, NULL, NULL, NULL, '2020-10-02 01:54:29', '2020-10-02 01:54:29'),
-(3, 'Family Package', 'family-package', 'category_images/48gk84p1iR5049BJW7waG9w5aA59DpxsIKyc5n9Z.png', 2, NULL, NULL, NULL, '2020-10-02 01:54:58', '2020-10-02 01:54:58'),
-(4, 'Party Cup', 'party-cup', 'category_images/YnnRH4PlzQMB4BUm8X3QX0QAmlnsIc6zThdnhYoc.png', 2, NULL, NULL, NULL, '2020-10-02 01:55:21', '2020-10-02 01:55:21');
+	(1, 'Deluxe (400ml)', 'deluxe-400ml', 'category_images/dZlKLPJywRf77gTP1AxzNmFrNlfpoZMGjAnsy031.jpeg', 2, 3, NULL, NULL, '2020-10-02 08:54:06', '2020-10-14 07:27:23'),
+	(2, 'Special Package', 'special-package', 'category_images/wNiuWa4un9kMz7RuHXrcQVxpwSZEqtbl9IK0kL2v.jpeg', 2, 3, NULL, NULL, '2020-10-02 08:54:29', '2020-10-14 07:28:21'),
+	(3, 'Family cup (400ml)', 'family-cup-400ml', 'category_images/tINmnDWii36AcsTvF4OTc04Ewl59yAcecuKvbriz.jpeg', 2, 3, NULL, NULL, '2020-10-02 08:54:58', '2020-10-14 07:29:23'),
+	(4, 'Party Cup (60ml)', 'party-cup-60ml', 'category_images/8DWbPZbJhwPMyjAPvaqvFGIPZHJAs1FL2dkaSBJM.jpeg', 2, 3, NULL, NULL, '2020-10-02 08:55:21', '2020-10-14 07:30:39');
+/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `category_product`
---
-
-CREATE TABLE `category_product` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `product_id` int(10) UNSIGNED DEFAULT NULL,
-  `category_id` int(10) UNSIGNED DEFAULT NULL,
+-- Dumping structure for table u7590166_ice_gentong.category_product
+CREATE TABLE IF NOT EXISTS `category_product` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `product_id` int(10) unsigned DEFAULT NULL,
+  `category_id` int(10) unsigned DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `category_product_product_id_foreign` (`product_id`),
+  KEY `category_product_category_id_foreign` (`category_id`),
+  CONSTRAINT `category_product_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
+  CONSTRAINT `category_product_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `category_product`
---
-
+-- Dumping data for table u7590166_ice_gentong.category_product: ~20 rows (approximately)
+/*!40000 ALTER TABLE `category_product` DISABLE KEYS */;
 INSERT INTO `category_product` (`id`, `product_id`, `category_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, NULL, NULL),
-(2, 2, 2, NULL, NULL),
-(3, 3, 3, NULL, NULL),
-(4, 4, 4, NULL, NULL),
-(5, 5, 4, NULL, NULL),
-(6, 6, 3, NULL, NULL);
+	(1, 1, 1, NULL, NULL),
+	(7, 2, 1, NULL, NULL),
+	(8, 3, 1, NULL, NULL),
+	(9, 4, 1, NULL, NULL),
+	(10, 5, 1, NULL, NULL),
+	(11, 6, 1, NULL, NULL),
+	(12, 7, 1, NULL, NULL),
+	(13, 8, 2, NULL, NULL),
+	(14, 9, 2, NULL, NULL),
+	(15, 10, 3, NULL, NULL),
+	(16, 11, 3, NULL, NULL),
+	(17, 12, 3, NULL, NULL),
+	(18, 13, 3, NULL, NULL),
+	(19, 14, 3, NULL, NULL),
+	(20, 15, 3, NULL, NULL),
+	(21, 16, 3, NULL, NULL),
+	(22, 17, 3, NULL, NULL),
+	(23, 18, 3, NULL, NULL),
+	(24, 19, 3, NULL, NULL),
+	(26, 20, 4, NULL, NULL),
+	(27, 21, 4, NULL, NULL),
+	(28, 22, 4, NULL, NULL),
+	(29, 23, 4, NULL, NULL),
+	(30, 24, 4, NULL, NULL),
+	(31, 25, 4, NULL, NULL),
+	(32, 26, 4, NULL, NULL),
+	(33, 27, 4, NULL, NULL),
+	(34, 28, 4, NULL, NULL),
+	(35, 29, 4, NULL, NULL);
+/*!40000 ALTER TABLE `category_product` ENABLE KEYS */;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `customers`
---
-
-CREATE TABLE `customers` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+-- Dumping structure for table u7590166_ice_gentong.customers
+CREATE TABLE IF NOT EXISTS `customers` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `session` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `customer_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `customers_email_unique` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- --------------------------------------------------------
+-- Dumping data for table u7590166_ice_gentong.customers: ~0 rows (approximately)
+/*!40000 ALTER TABLE `customers` DISABLE KEYS */;
+/*!40000 ALTER TABLE `customers` ENABLE KEYS */;
 
---
--- Table structure for table `failed_jobs`
---
-
-CREATE TABLE `failed_jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+-- Dumping structure for table u7590166_ice_gentong.failed_jobs
+CREATE TABLE IF NOT EXISTS `failed_jobs` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- --------------------------------------------------------
+-- Dumping data for table u7590166_ice_gentong.failed_jobs: ~0 rows (approximately)
+/*!40000 ALTER TABLE `failed_jobs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `failed_jobs` ENABLE KEYS */;
 
---
--- Table structure for table `migrations`
---
-
-CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
+-- Dumping structure for table u7590166_ice_gentong.migrations
+CREATE TABLE IF NOT EXISTS `migrations` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `batch` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `migrations`
---
-
+-- Dumping data for table u7590166_ice_gentong.migrations: ~11 rows (approximately)
+/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(38, '2014_10_12_000000_create_users_table', 1),
-(39, '2014_10_12_100000_create_password_resets_table', 1),
-(40, '2019_08_19_000000_create_failed_jobs_table', 1),
-(41, '2020_07_04_140929_penyesuaian_table_users', 1),
-(42, '2020_07_15_063013_create_categories_table', 1),
-(43, '2020_09_25_175720_create_products_table', 1),
-(44, '2020_09_26_080203_penyesuaian_table_products', 1),
-(45, '2020_09_26_164807_create_category_product_table', 1),
-(55, '2020_10_09_093227_create_sessions_table', 6),
-(62, '2020_09_28_042214_create_orders_table', 7),
-(63, '2020_09_28_042951_create_order_product_table', 8);
+	(38, '2014_10_12_000000_create_users_table', 1),
+	(39, '2014_10_12_100000_create_password_resets_table', 1),
+	(40, '2019_08_19_000000_create_failed_jobs_table', 1),
+	(41, '2020_07_04_140929_penyesuaian_table_users', 1),
+	(42, '2020_07_15_063013_create_categories_table', 1),
+	(43, '2020_09_25_175720_create_products_table', 1),
+	(44, '2020_09_26_080203_penyesuaian_table_products', 1),
+	(45, '2020_09_26_164807_create_category_product_table', 1),
+	(55, '2020_10_09_093227_create_sessions_table', 6),
+	(62, '2020_09_28_042214_create_orders_table', 7),
+	(63, '2020_09_28_042951_create_order_product_table', 8);
+/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `orders`
---
-
-CREATE TABLE `orders` (
-  `id` int(10) UNSIGNED NOT NULL,
+-- Dumping structure for table u7590166_ice_gentong.orders
+CREATE TABLE IF NOT EXISTS `orders` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `session_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `username` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `total_price` double(11,2) UNSIGNED NOT NULL,
+  `total_price` double(11,2) unsigned NOT NULL,
   `invoice_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` enum('SUBMIT','PROCESS','FINISH','CANCEL') COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- --------------------------------------------------------
+-- Dumping data for table u7590166_ice_gentong.orders: ~6 rows (approximately)
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` (`id`, `session_id`, `username`, `email`, `address`, `phone`, `total_price`, `invoice_number`, `status`, `created_at`, `updated_at`) VALUES
+	(3, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36', 'zuki', 'setyawanzuky@gmail.com', 'solear', '082113464465', 16000.00, '20201012074950', 'SUBMIT', '2020-10-12 07:49:50', '2020-10-12 07:50:42'),
+	(4, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36', 'nadia', 'Nadia.rahmaningtyas@gmail.com', 'wira', '081398269717', 238000.00, '20201012093516', 'SUBMIT', '2020-10-12 09:35:16', '2020-10-12 09:39:12'),
+	(5, 'Mozilla/5.0 (Linux; Android 10; SM-A515F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Mobile Safari/537.36', 'Nadia', 'Nadia.Rahmaningtyas@gmail.com', 'Vila Mutiara Jl.Merpati Raya 03/01 No.100, Sawah Baru, Ciputat', '08139826717', 139000.00, '20201012094137', 'SUBMIT', '2020-10-12 09:41:37', '2020-10-12 10:08:45'),
+	(6, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36', NULL, NULL, NULL, NULL, 139000.00, '20201012095930', 'SUBMIT', '2020-10-12 09:59:30', '2020-10-12 09:59:30'),
+	(7, 'Mozilla/5.0 (Linux; Android 10; SM-A515F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Mobile Safari/537.36', NULL, NULL, NULL, NULL, 139000.00, '20201012100946', 'SUBMIT', '2020-10-12 10:09:46', '2020-10-12 10:10:04'),
+	(11, 'Mozilla/5.0 (Linux; Android 10; SM-P205) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36', 'Yardi', 'yardizhen@gmail.com', 'Sunter Paradise Thp 2 Paradise 13 Blok Q no 26', '0811945891', 278000.00, '20201013090752', 'SUBMIT', '2020-10-13 09:07:52', '2020-10-13 09:08:42'),
+	(12, 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1', 'Yardi', 'yardizhen@gmail.com', 'Sunter Paradise', '0811945891', 615000.00, '20201013092923', 'SUBMIT', '2020-10-13 09:29:23', '2020-10-14 06:42:22'),
+	(13, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:81.0) Gecko/20100101 Firefox/81.0', NULL, NULL, NULL, NULL, 139000.00, '20201014064403', 'SUBMIT', '2020-10-14 06:44:03', '2020-10-14 06:44:03');
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 
---
--- Table structure for table `order_product`
---
-
-CREATE TABLE `order_product` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `order_id` int(10) UNSIGNED NOT NULL,
-  `product_id` int(10) UNSIGNED NOT NULL,
-  `quantity` int(10) UNSIGNED NOT NULL,
+-- Dumping structure for table u7590166_ice_gentong.order_product
+CREATE TABLE IF NOT EXISTS `order_product` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `order_id` int(10) unsigned NOT NULL,
+  `product_id` int(10) unsigned NOT NULL,
+  `quantity` int(10) unsigned NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `order_product_order_id_foreign` (`order_id`),
+  KEY `order_product_product_id_foreign` (`product_id`),
+  CONSTRAINT `order_product_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
+  CONSTRAINT `order_product_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- --------------------------------------------------------
+-- Dumping data for table u7590166_ice_gentong.order_product: ~9 rows (approximately)
+/*!40000 ALTER TABLE `order_product` DISABLE KEYS */;
+INSERT INTO `order_product` (`id`, `order_id`, `product_id`, `quantity`, `created_at`, `updated_at`) VALUES
+	(4, 3, 5, 1, '2020-10-12 07:49:50', '2020-10-12 07:49:50'),
+	(5, 4, 6, 1, '2020-10-12 09:35:16', '2020-10-12 09:35:16'),
+	(6, 4, 1, 1, '2020-10-12 09:35:29', '2020-10-12 09:35:29'),
+	(8, 5, 1, 1, '2020-10-12 09:41:46', '2020-10-12 09:41:46'),
+	(9, 6, 1, 1, '2020-10-12 09:59:30', '2020-10-12 09:59:30'),
+	(11, 7, 1, 1, '2020-10-12 10:09:49', '2020-10-12 10:09:49'),
+	(15, 11, 1, 2, '2020-10-13 09:07:52', '2020-10-13 09:08:08'),
+	(16, 12, 1, 3, '2020-10-13 09:29:23', '2020-10-13 09:30:13'),
+	(17, 12, 3, 2, '2020-10-13 09:29:31', '2020-10-13 09:29:32'),
+	(18, 13, 2, 1, '2020-10-14 06:44:03', '2020-10-14 06:44:03');
+/*!40000 ALTER TABLE `order_product` ENABLE KEYS */;
 
---
--- Table structure for table `password_resets`
---
-
-CREATE TABLE `password_resets` (
+-- Dumping structure for table u7590166_ice_gentong.password_resets
+CREATE TABLE IF NOT EXISTS `password_resets` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
+  `created_at` timestamp NULL DEFAULT NULL,
+  KEY `password_resets_email_index` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- --------------------------------------------------------
+-- Dumping data for table u7590166_ice_gentong.password_resets: ~0 rows (approximately)
+/*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
+/*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
 
---
--- Table structure for table `products`
---
-
-CREATE TABLE `products` (
-  `id` int(10) UNSIGNED NOT NULL,
+-- Dumping structure for table u7590166_ice_gentong.products
+CREATE TABLE IF NOT EXISTS `products` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `Product_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` double(8,2) NOT NULL,
-  `stock` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `stock` int(10) unsigned NOT NULL DEFAULT 0,
   `created_by` int(11) NOT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `deleted_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
-  `status` enum('PUBLISH','DRAFT') COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `status` enum('PUBLISH','DRAFT') COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `products`
---
-
+-- Dumping data for table u7590166_ice_gentong.products: ~18 rows (approximately)
+/*!40000 ALTER TABLE `products` DISABLE KEYS */;
 INSERT INTO `products` (`id`, `Product_name`, `slug`, `description`, `image`, `price`, `stock`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`, `status`) VALUES
-(1, 'Deluxe', 'deluxe', 'Deluxe Coklat Series Dark Chocolate 400ml', 'products-images/qAItVQRFNnfKHn7xpCzbsCiT7vBdCm2pioEkyTfa.jpeg', 139000.00, 100, 2, NULL, NULL, '2020-10-02 01:57:20', '2020-10-02 01:57:20', NULL, 'PUBLISH'),
-(2, 'Deluxe', 'deluxe', 'Deluxe Strawberry Marmalade 400ml', 'products-images/NEJfnsuJYvRZdonfuWgeiXJqzHouBtsz7R6lMajR.jpeg', 139000.00, 100, 2, NULL, NULL, '2020-10-02 01:58:12', '2020-10-02 01:58:12', NULL, 'PUBLISH'),
-(3, 'Family Cup', 'family-cup', 'Family Cup Greentea 400ml', 'products-images/s8GxVRllYRGO6SR2Qxdr0yzrGJqDdmOXzlJzyzLL.jpeg', 99000.00, 100, 2, NULL, NULL, '2020-10-02 01:59:32', '2020-10-02 01:59:32', NULL, 'PUBLISH'),
-(4, 'Party Cup', 'party-cup', 'Party Cup Avocado 60 ml', 'products-images/HrIJZ2qslx7Avyeprc1Oo0Ih4dYCHy30yB8YcI2m.png', 16000.00, 100, 2, NULL, NULL, '2020-10-02 02:00:21', '2020-10-02 02:00:21', NULL, 'PUBLISH'),
-(5, 'Party Cup', 'party-cup', 'Party Cup Jackfruit 60ml', 'products-images/u4re4LE0586rlKvlo7XmJ6mTfZrmPXNstRtYJxZS.png', 16000.00, 100, 2, NULL, NULL, '2020-10-02 02:01:16', '2020-10-02 02:01:16', NULL, 'PUBLISH'),
-(6, 'Family Cup', 'family-cup', 'Family Cup Vanila 400ml', 'products-images/L4ij68ElvYdZ1RMvwmbUvXtec1jZQDBfFdsOaSNH.png', 99000.00, 100, 2, NULL, NULL, '2020-10-02 02:02:04', '2020-10-02 02:02:04', NULL, 'PUBLISH');
+	(1, 'Strawberry Marmalade', 'Strawberry Marmalade', 'Deluxe Strawberry Marmalade', 'products-images/AGTIySUiVkmDn5T60ZTGlUmj9ajj51v1RgETpxQO.jpeg', 139000.00, 10, 2, 3, NULL, '2020-10-02 08:57:20', '2020-10-14 08:51:00', NULL, 'PUBLISH'),
+	(2, 'Pistachio with sauce', 'Pistachio with sauce', 'Deluxe Pistachio with sauce', 'products-images/V5jRHr4kRddUMU621U9WZqs43i4fn4unsrkwa101.jpeg', 139000.00, 10, 2, 3, NULL, '2020-10-02 08:58:12', '2020-10-14 08:51:24', NULL, 'PUBLISH'),
+	(3, 'Soklat Series', 'Soklat Series', 'Soklat Series : Ruby Chocolate', 'products-images/6Qj264UKC6B33ozCbKbLsXzNyaJYDY0O4gXo2Vrp.jpeg', 139000.00, 10, 2, 3, NULL, '2020-10-02 08:59:32', '2020-10-14 07:58:31', NULL, 'PUBLISH'),
+	(4, 'Soklat Series', 'Soklat Series : White Chocolate', 'Soklat Series : White Chocolate', 'products-images/WwPXqmNl6spCiVXl0SQ3k3c6zqdc7XJOb0qrpjeG.jpeg', 139000.00, 10, 2, 3, NULL, '2020-10-02 09:00:21', '2020-10-14 08:00:15', NULL, 'PUBLISH'),
+	(5, 'Soklat Series', 'Soklat Series : Mint Chocolate', 'Soklat Series : Mint Chocolate', 'products-images/lnY9Kyhh69BfQhfqg2tnRN2nUZh6lwpuEGjOA5TD.jpeg', 139000.00, 10, 2, 3, NULL, '2020-10-02 09:01:16', '2020-10-14 08:01:21', NULL, 'PUBLISH'),
+	(6, 'Soklat Series', 'Soklat Series : Haleznut Heaven', 'Soklat Series : Haleznut Heaven', 'products-images/i1P22ymoBrKxbjtGMSqTJEmKZEsWryf8qTHNrfsz.jpeg', 139000.00, 10, 2, 3, NULL, '2020-10-02 09:02:04', '2020-10-14 08:02:44', NULL, 'PUBLISH'),
+	(7, 'Soklat Series', 'soklat-series', 'Soklat Series : Dark Chocolate', 'products-images/lsdNMUGx8diyuvMwc5dWCZVrPyCLtr8yhfy5wCQj.jpeg', 139000.00, 10, 3, NULL, NULL, '2020-10-14 08:03:40', '2020-10-14 08:03:40', NULL, 'PUBLISH'),
+	(8, 'Special Package', 'special-package', 'Special Package buy 2 get 5', 'products-images/oFN8I7QThoOvG2D1V6KlWC3O5tdlG8QxYjgcoz80.jpeg', 198000.00, 10, 3, NULL, NULL, '2020-10-14 08:05:55', '2020-10-14 08:05:55', NULL, 'PUBLISH'),
+	(9, 'Special Package', 'special-package', 'Special Package Double Happiness', 'products-images/0b1rd5oTJ30TtzOKjPp8Wwdsk0ycDWMie7N2m523.jpeg', 199000.00, 10, 3, NULL, NULL, '2020-10-14 08:06:46', '2020-10-14 08:06:46', NULL, 'PUBLISH'),
+	(10, 'Avocado', 'avocado', 'Family cup Avocado (400ml)', 'products-images/kzTCWwAAvAzCDmqVTyh05XhdQSk1hEQjEIHxOEj5.jpeg', 99000.00, 10, 3, 3, NULL, '2020-10-14 08:09:02', '2020-10-14 08:19:24', NULL, 'PUBLISH'),
+	(11, 'Chocolate', 'chocolate', 'Family Cup Chocolate (400ml)', 'products-images/THKNzldD6qnmblxAM9Nvq5eFQwknMT9RiRTPp8fe.jpeg', 99000.00, 10, 3, 3, NULL, '2020-10-14 08:11:02', '2020-10-14 08:20:26', NULL, 'PUBLISH'),
+	(12, 'Coffee', 'coffee', 'Coffee Family Cup Coffee (400ml)', 'products-images/8cPVQJv7zNLywGhtbMUwgU30TlEfAGAGISSfJmrr.jpeg', 99000.00, 10, 3, 3, NULL, '2020-10-14 08:12:03', '2020-10-14 08:21:42', NULL, 'PUBLISH'),
+	(13, 'Coconut', 'coconut', 'Family Cup Coconut (400ml)', 'products-images/xiJmiOUgVPuWIDISwcLvOm0s7jGRorMzgsEk7vHG.jpeg', 99000.00, 10, 3, 3, NULL, '2020-10-14 08:12:52', '2020-10-14 08:22:46', NULL, 'PUBLISH'),
+	(14, 'Cream and cookies', 'cream-and-cookies', 'Family Cup Cream and cookies (400ml)', 'products-images/WNGUpMaJVZ7BMOy3vlXH7lMBX7IEDa2LNAAIfIYA.jpeg', 99000.00, 10, 3, NULL, NULL, '2020-10-14 08:24:13', '2020-10-14 08:24:13', NULL, 'PUBLISH'),
+	(15, 'Durian', 'durian', 'Family Cup Durian (400ml)', 'products-images/HbbIRc0N9Q8z90EhFBLEzNFHIUvBO4A5n9PKhoas.jpeg', 99000.00, 10, 3, NULL, NULL, '2020-10-14 08:24:58', '2020-10-14 08:24:58', NULL, 'PUBLISH'),
+	(16, 'Jackfruit (Nangka)', 'jackfruit-nangka', 'Family Cup Jackfruit (Nangka) 400ml', 'products-images/p2Vl0fgMMJvTGjRdl4XHOWMjBJ6ur9aPjG5UDF21.jpeg', 99000.00, 10, 3, NULL, NULL, '2020-10-14 08:26:28', '2020-10-14 08:26:28', NULL, 'PUBLISH'),
+	(17, 'Green tea', 'green-tea', 'Family Cup Green tea (400ml)', 'products-images/DuHR8bdb4Y9LULI1P1MCAn8Q2zJMmt1TzO7q03PP.jpeg', 99000.00, 10, 3, NULL, NULL, '2020-10-14 08:27:19', '2020-10-14 08:27:19', NULL, 'PUBLISH'),
+	(18, 'Strawberry', 'strawberry', 'Family Cup Strawberry (400ml)', 'products-images/LsfzrXnv8qAtCH73G8m8raY42FEpaQTwEpyzP5lO.jpeg', 99000.00, 10, 3, NULL, NULL, '2020-10-14 08:28:07', '2020-10-14 08:28:07', NULL, 'PUBLISH'),
+	(19, 'Vanilla', 'vanilla', 'Family Cup Vanilla (400ml)', 'products-images/ALXGleyUhLd4LZMmlYckZEjQHR43px2wdklvm0YO.jpeg', 99000.00, 10, 3, NULL, NULL, '2020-10-14 08:29:17', '2020-10-14 08:29:17', NULL, 'PUBLISH'),
+	(20, 'Avocado', 'avocado', 'Party Cup Avocado (60ml)', 'products-images/s2YprBAZvVl1eKatZfleSVb0OZb1Tq3YVNaUR98h.jpeg', 16000.00, 10, 3, 3, NULL, '2020-10-14 08:33:01', '2020-10-14 08:33:28', NULL, 'PUBLISH'),
+	(21, 'Chocolate', 'chocolate', 'Party Cup Chocolate (60ml)', 'products-images/eC2sumgSNQtSs6DxlDzY8c7ki3WiqkErS3ajWCVs.jpeg', 16000.00, 10, 3, NULL, NULL, '2020-10-14 08:34:35', '2020-10-14 08:34:35', NULL, 'PUBLISH'),
+	(22, 'Coffee', 'coffee', 'Party Cup Coffee (60ml)', 'products-images/9J1SiR2XWJ2shbMhsUprQzPp1dPwtG7e1Y5MGvCZ.jpeg', 16000.00, 10, 3, NULL, NULL, '2020-10-14 08:35:32', '2020-10-14 08:35:32', NULL, 'PUBLISH'),
+	(23, 'Coconut', 'coconut', 'Party Cup Coconut (60ml)', 'products-images/R6OMNmfqFVbY598Qv4M4fOyj7BHn2Te9VGhN8Nvb.jpeg', 16000.00, 10, 3, NULL, NULL, '2020-10-14 08:36:19', '2020-10-14 08:36:19', NULL, 'PUBLISH'),
+	(24, 'Cream and cookies', 'cream-and-cookies', 'Party Cup Cream and cookies (60ml)', 'products-images/sRb3V6s49tTB8v5T3WTI6QOh1b0Gh9yvvBxENPqh.jpeg', 16000.00, 10, 3, NULL, NULL, '2020-10-14 08:37:24', '2020-10-14 08:37:24', NULL, 'PUBLISH'),
+	(25, 'Durian', 'durian', 'Party Cup Durian (60ml)', 'products-images/MOApyf17zWnkqiDSG3g9ilGlikoyHnnTIpdaa0NU.jpeg', 16000.00, 10, 3, NULL, NULL, '2020-10-14 08:38:26', '2020-10-14 08:38:26', NULL, 'PUBLISH'),
+	(26, 'Jackfruit (Nangka)', 'jackfruit-nangka', 'Party Cup Jackfruit (Nangka) 60ml', 'products-images/4qEwupB8AatMQO3DMmOyVJCm54amWQ0y9b7xSOdR.jpeg', 16000.00, 10, 3, NULL, NULL, '2020-10-14 08:39:14', '2020-10-14 08:39:14', NULL, 'PUBLISH'),
+	(27, 'Green tea', 'green-tea', 'Party Cup Green tea (60ml)', 'products-images/sSR1jTisZLRXyTlPQUykg7T8hKgBTKBYv6RjZGFn.jpeg', 16000.00, 10, 3, NULL, NULL, '2020-10-14 08:40:01', '2020-10-14 08:40:01', NULL, 'PUBLISH'),
+	(28, 'Strawberry', 'strawberry', 'Party Cup  Strawberry (60ml)', 'products-images/bk8bOF6xFD7j7ZOPQRND8KolKTojwcK4c4okAgYB.jpeg', 16000.00, 10, 3, NULL, NULL, '2020-10-14 08:40:46', '2020-10-14 08:40:46', NULL, 'PUBLISH'),
+	(29, 'Vanilla', 'vanilla', 'Party Cup Vanilla (60ml)', 'products-images/KbZkEfMVNx43BcBB7A5PbEQtMexdUubbqZC4ru1k.jpeg', 16000.00, 10, 3, NULL, NULL, '2020-10-14 08:41:36', '2020-10-14 08:41:36', NULL, 'PUBLISH');
+/*!40000 ALTER TABLE `products` ENABLE KEYS */;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `sessions`
---
-
-CREATE TABLE `sessions` (
+-- Dumping structure for table u7590166_ice_gentong.sessions
+CREATE TABLE IF NOT EXISTS `sessions` (
   `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `user_id` bigint(20) unsigned DEFAULT NULL,
   `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_agent` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `payload` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_activity` int(11) NOT NULL
+  `last_activity` int(11) NOT NULL,
+  UNIQUE KEY `sessions_id_unique` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `sessions`
---
-
+-- Dumping data for table u7590166_ice_gentong.sessions: ~1 rows (approximately)
+/*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('Dc7YoV1I9WfSDBWuz4GFu2vOFTJUCsWtocISVU8f', 3, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiN3ByRzl3SDE5V2pBc0p4OTdFZjZTd2xQeUJkTHpGR3ZIeDRoYnR5eCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDA6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9pY2UtZ2VudG9uZy9vcmRlcnMiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO30=', 1602486969);
+	('Dc7YoV1I9WfSDBWuz4GFu2vOFTJUCsWtocISVU8f', 3, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiN3ByRzl3SDE5V2pBc0p4OTdFZjZTd2xQeUJkTHpGR3ZIeDRoYnR5eCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDA6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9pY2UtZ2VudG9uZy9vcmRlcnMiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO30=', 1602486969);
+/*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+-- Dumping structure for table u7590166_ice_gentong.users
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
@@ -261,171 +302,18 @@ CREATE TABLE `users` (
   `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` enum('ACTIVE','INACTIVE') COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `status` enum('ACTIVE','INACTIVE') COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`),
+  UNIQUE KEY `users_username_unique` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `users`
---
-
+-- Dumping data for table u7590166_ice_gentong.users: ~0 rows (approximately)
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `username`, `roles`, `address`, `phone`, `avatar`, `status`) VALUES
-(3, 'Admin', 'administrator@admin.com', NULL, '$2y$10$XhqKkS/QcqKtlBmky6l5QOEQ7ICSHoF6ZQ9kpYgNq1KBh2t7C/azy', NULL, '2020-10-03 15:00:14', '2020-10-03 15:00:14', 'Admin', 'ADMIN', 'Jakarta', '082118282828', 'avatars/V9pmCpajJNxsBawF8mQWtVdOKccbojzSvc5PWqe8.png', 'ACTIVE');
+	(3, 'Admin', 'administrator@admin.com', NULL, '$2y$10$XhqKkS/QcqKtlBmky6l5QOEQ7ICSHoF6ZQ9kpYgNq1KBh2t7C/azy', NULL, '2020-10-03 22:00:14', '2020-10-03 22:00:14', 'Admin', 'ADMIN', 'Jakarta', '082118282828', 'avatars/V9pmCpajJNxsBawF8mQWtVdOKccbojzSvc5PWqe8.png', 'ACTIVE');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `categories`
---
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `categories_slug_unique` (`slug`);
-
---
--- Indexes for table `category_product`
---
-ALTER TABLE `category_product`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `category_product_product_id_foreign` (`product_id`),
-  ADD KEY `category_product_category_id_foreign` (`category_id`);
-
---
--- Indexes for table `customers`
---
-ALTER TABLE `customers`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `customers_email_unique` (`email`);
-
---
--- Indexes for table `failed_jobs`
---
-ALTER TABLE `failed_jobs`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `migrations`
---
-ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `orders`
---
-ALTER TABLE `orders`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `order_product`
---
-ALTER TABLE `order_product`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `order_product_order_id_foreign` (`order_id`),
-  ADD KEY `order_product_product_id_foreign` (`product_id`);
-
---
--- Indexes for table `password_resets`
---
-ALTER TABLE `password_resets`
-  ADD KEY `password_resets_email_index` (`email`);
-
---
--- Indexes for table `products`
---
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `sessions`
---
-ALTER TABLE `sessions`
-  ADD UNIQUE KEY `sessions_id_unique` (`id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`),
-  ADD UNIQUE KEY `users_username_unique` (`username`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `categories`
---
-ALTER TABLE `categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `category_product`
---
-ALTER TABLE `category_product`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `customers`
---
-ALTER TABLE `customers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `failed_jobs`
---
-ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `migrations`
---
-ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
-
---
--- AUTO_INCREMENT for table `orders`
---
-ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `order_product`
---
-ALTER TABLE `order_product`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `products`
---
-ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `category_product`
---
-ALTER TABLE `category_product`
-  ADD CONSTRAINT `category_product_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
-  ADD CONSTRAINT `category_product_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
-
---
--- Constraints for table `order_product`
---
-ALTER TABLE `order_product`
-  ADD CONSTRAINT `order_product_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
-  ADD CONSTRAINT `order_product_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
-COMMIT;
-
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
