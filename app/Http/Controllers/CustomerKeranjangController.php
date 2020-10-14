@@ -185,7 +185,7 @@ class CustomerKeranjangController extends Controller
                     ->where('orders.id','=',"$id")
                     ->get();
             foreach($pesan as $key=>$wa){
-                $href.='*'.$wa->description.'%20(Qty %3A%20'.$wa->quantity.')%0A';
+                $href.='*'.$wa->description.'%20(Qty %3A%20'.$wa->quantity.' Pcs)%0A';
             }
             $url = "https://wa.me/6282311988000‬?text=$href";
             return Redirect::to($url);
