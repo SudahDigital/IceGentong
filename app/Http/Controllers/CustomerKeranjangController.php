@@ -177,7 +177,7 @@ class CustomerKeranjangController extends Controller
         $orders->address = $address;
         $orders->phone = $phone;
         $orders->save();
-        $href='Hello..,  %0A Nama %3A ' .$username. '%0AEmail %3A ' .$email. '%0A No. Hp %3A' .$phone. '%0A Ingin membeli %3A%0A';
+        $href='Hello..,  %0ANama %3A '.$username.'%0AEmail %3A '.$email.'%0ANo. Hp %3A' .$phone.'%0AAlamat %3A' .$address.',%0AIngin membeli %3A%0A';
         if($orders->save()){
             $pesan = DB::table('order_product')
                     ->join('orders','order_product.order_id','=','orders.id')
