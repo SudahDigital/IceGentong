@@ -298,6 +298,11 @@
         margin-right: 20px;
         font-size: 15px;
       }
+      #content .button_add_to_cart {
+       
+        padding:13px;
+        
+    }
 
    
 }
@@ -1337,7 +1342,7 @@
         padding:8px;
         color: #ffffff;
         
-        font-size: 16px;
+        font-size: 15px;
         font-weight: 600; 
         padding:2 15;
     }
@@ -3058,7 +3063,7 @@
         border-radius: 5px;
         padding:8px;
         color: #ffffff;
-        font-size: 12px;
+        font-size: 11px;
         font-weight: 600; 
         padding:2 15;
     }
@@ -3487,7 +3492,7 @@
         border-radius: 5px;
         padding:8px;
         color: #ffffff;
-        font-size: 12px;
+        font-size: 11px;
         font-weight: 600; 
         padding:2 15;
     }
@@ -3915,7 +3920,7 @@
         border-radius: 5px;
         padding:8px;
         color: #ffffff;
-        font-size: 12px;
+        font-size: 10px;
         font-weight: 600; 
         padding:2 15;
     }
@@ -4342,7 +4347,7 @@
     padding:8px;
     color: #ffffff;
     
-    font-size: 12px;
+    font-size: 9.5px;
     font-weight: 600; 
     padding:2 15;
     }
@@ -4771,7 +4776,7 @@
     padding:8px;
     color: #ffffff;
     
-    font-size: 12px;
+    font-size: 9px;
     font-weight: 600; 
     padding:2 15;
     }
@@ -4780,7 +4785,7 @@
         margin-left: 3px;
         margin-right: 0;
         margin-bottom:10px;
-        font-size: 12px;
+        font-size: 8px;
         left:-1rem;
         right:-1rem;
         top:-1rem;
@@ -5200,7 +5205,7 @@
     padding:8px;
     color: #ffffff;
     
-    font-size: 12px;
+    font-size: 8px;
     font-weight: 600; 
     padding:2 15;
     }
@@ -5209,7 +5214,7 @@
         margin-left: 3px;
         margin-right: 0;
         margin-bottom:10px;
-        font-size: 12px;
+        font-size: 8px;
         left:-1rem;
         right:-1rem;
         top:-1rem;
