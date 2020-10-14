@@ -136,7 +136,7 @@
                         <div class="col-md-12">
                             <div class="row justify-content-center" >
                                 
-                                    <div class="page" style="margin-top:1rem; margin-bottom:1rem;">{{ $product->appends(Request::all())->links('vendor.pagination.bootstrap-4') }}</div>
+                                    <div class="page" style="margin-top:0; margin-bottom:1rem;">{{ $product->appends(Request::all())->links('vendor.pagination.bootstrap-4') }}</div>
                             </div>
                         </div>        
                     </div>
