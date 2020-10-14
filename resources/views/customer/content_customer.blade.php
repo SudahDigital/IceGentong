@@ -135,7 +135,7 @@
                         @endforeach
                                 
                         <div class="row justify-content-md-center mx-auto" >
-                            <div style="margin-top:-7rem; margin-bottom:7rem;">{{ $product->links('vendor.pagination.bootstrap-4') }}</div>
+                            <div style="margin-top:-4rem; margin-bottom:4rem;">{{ $product->links('vendor.pagination.bootstrap-4') }}</div>
                         </div>
                     </div>
                 </div>
