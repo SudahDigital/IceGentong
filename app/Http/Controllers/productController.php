@@ -134,7 +134,7 @@ class productController extends Controller
         \Storage::delete('public/'. $product->image);
         }
         $new_image_path = $new_image->store('products-images', 'public');
-        $poduct->image = $new_image_path;
+        $product->image = $new_image_path;
         }
         $product->updated_by = \Auth::user()->id;
         $product->status = $request->get('status');
