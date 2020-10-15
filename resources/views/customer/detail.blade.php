@@ -35,7 +35,8 @@
                     <div class="card mx-auto item_product">
                         <div class="card-body m-0 p-0">
                             <div class="float-left px-1 py-2" style="width: 100%;">
-                                <h1 class="roduct-price-header mb-0" style="color:#6a3137 !important; font-weight:900;">{{$product->Product_name}}</h1>
+                                <h4 class="roduct-price-header mb-0" style="color:#6a3137 !important; font-weight:900;">{{$product->Product_name}}</h4>
+                                <hr style="border-top:1px solid #6a3137;">
                                 <p class="product-price-header mb-0" style="">
                                     {{$product->description}}
                                 </p>

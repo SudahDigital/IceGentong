@@ -19,11 +19,14 @@ class filterProductController extends Controller
         $session_id = $request->header('User-Agent');
         $category_id = $request->get('id');
         $categories = \App\Category::get();
-        $product = DB::table('category_product')
+        $product = \App\product::whereHas('categories',function($q) use ($category_id){
+                    return $q->where('category_id','=',$category_id);
+                    })->paginate(6);
+                    /*DB::table('category_product')
                     ->leftJoin('products', 'products.id', '=', 'category_product.product_id')
                     ->leftJoin('categories', 'categories.id', '=', 'category_product.category_id')
                     ->where('categories.id','=',"$category_id")
-                    ->paginate(6);
+                    ->paginate(6);*/
         
         $count_data = $product->count();
         $keranjang = DB::select("SELECT orders.session_id, orders.status, 

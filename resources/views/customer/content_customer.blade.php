@@ -87,7 +87,7 @@
                         <div class="row section_content">
                         @foreach($product as $key => $value)
                             <div class="col-6 col-lg-4">
-    
+                            
                                 <div class="card mx-auto item_product">
                                     <a href="{{URL::route('product_detail', ['id'=>$value->id])}}">
                                         <img style="" src="{{ asset('storage/'.(($value->image!='') ? $value->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-150 w-100 img-responsive" alt="...">
