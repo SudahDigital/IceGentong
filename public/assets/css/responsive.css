@@ -144,13 +144,13 @@
 
     #shape-1 {
         
-        top:9rem;
+        top:1rem;
         
    }
   
    #shape-2 {
     
-    top:39.2rem;
+    top:41rem;
     
   }
 
@@ -161,11 +161,15 @@
     }
 
     .warna{
-        height:70%;
+        height:41rem;
     }
 
     #i-kontak, #i-envelop {
         font-size: 5em;
+    }
+
+    #content .item_product img{
+        height: auto;
     }
 
    
@@ -210,10 +214,6 @@
         height:auto;
     }
 
-
-  
-
-
     #i-kontak, #i-envelop {
         font-size: 5em;
         
@@ -228,13 +228,13 @@
 
     #shape-1 {
         
-        top:8rem;
+        top:6rem;
         
    }
   
    #shape-2 {
     
-    top:38rem;
+    top:36rem;
     
   }
 
@@ -260,7 +260,7 @@
        
     }
     .warna{
-        height:38rem;
+        height:36rem;
     }
 
     #content .product-price {
@@ -302,6 +302,11 @@
        
         padding:13px;
         
+    }
+
+    #content .item_product img{
+        border-radius:15px;
+        height: auto;
     }
 
    
