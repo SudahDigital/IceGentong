@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="col col-md-9">
                                     <p class="card-title telp">Telepon</p>
-                                    <h5 class="card-title no_telp">0812xxxxxxxx</h5>
+                                    <h5 class="card-title no_telp">‭082311988000‬</h5>
                                 </div>
                             <!--
                             <div class="col-12 col-md-6 float-left my-auto d-none d-md-inline-block text-center">
@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="col col-md-9">
                                     <p class="card-title" id="env">Email</p>
-                                    <h5 class="card-title" id="e_env">email@example.com</h5>
+                                    <h5 class="card-title" id="e_env">yardizhen@gmail.com</h5>
                                 </div>
                             
                             <!--
