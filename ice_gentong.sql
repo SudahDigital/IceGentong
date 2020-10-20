@@ -160,9 +160,9 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table u7590166_ice_gentong.orders: ~6 rows (approximately)
+-- Dumping data for table u7590166_ice_gentong.orders: ~9 rows (approximately)
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
 INSERT INTO `orders` (`id`, `session_id`, `username`, `email`, `address`, `phone`, `total_price`, `invoice_number`, `status`, `created_at`, `updated_at`) VALUES
 	(3, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36', 'zuki', 'setyawanzuky@gmail.com', 'solear', '082113464465', 16000.00, '20201012074950', 'SUBMIT', '2020-10-12 07:49:50', '2020-10-12 07:50:42'),
@@ -172,7 +172,10 @@ INSERT INTO `orders` (`id`, `session_id`, `username`, `email`, `address`, `phone
 	(7, 'Mozilla/5.0 (Linux; Android 10; SM-A515F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Mobile Safari/537.36', NULL, NULL, NULL, NULL, 139000.00, '20201012100946', 'SUBMIT', '2020-10-12 10:09:46', '2020-10-12 10:10:04'),
 	(11, 'Mozilla/5.0 (Linux; Android 10; SM-P205) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36', 'Yardi', 'yardizhen@gmail.com', 'Sunter Paradise Thp 2 Paradise 13 Blok Q no 26', '0811945891', 278000.00, '20201013090752', 'SUBMIT', '2020-10-13 09:07:52', '2020-10-13 09:08:42'),
 	(12, 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1', 'Yardi', 'yardizhen@gmail.com', 'Sunter Paradise', '0811945891', 615000.00, '20201013092923', 'SUBMIT', '2020-10-13 09:29:23', '2020-10-14 06:42:22'),
-	(13, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:81.0) Gecko/20100101 Firefox/81.0', NULL, NULL, NULL, NULL, 139000.00, '20201014064403', 'SUBMIT', '2020-10-14 06:44:03', '2020-10-14 06:44:03');
+	(13, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:81.0) Gecko/20100101 Firefox/81.0', NULL, NULL, NULL, NULL, 139000.00, '20201014064403', 'SUBMIT', '2020-10-14 06:44:03', '2020-10-14 06:44:03'),
+	(14, 'Mozilla/5.0 (Linux; Android 9; SM-G950F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.127 Mobile Safari/537.36', 'Test', 'd@k.com', 'Dhdj', '081237472', 139000.00, '20201016104204', 'SUBMIT', '2020-10-16 10:42:04', '2020-10-16 10:42:46'),
+	(16, 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.2 Mobile/15E148 Safari/604.1', NULL, NULL, NULL, NULL, 278000.00, '20201019015216', 'SUBMIT', '2020-10-19 01:52:16', '2020-10-19 01:52:21'),
+	(17, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36', NULL, NULL, NULL, NULL, 556000.00, '20201019061635', 'SUBMIT', '2020-10-19 06:16:35', '2020-10-19 06:49:22');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 
 -- Dumping structure for table u7590166_ice_gentong.order_product
@@ -188,9 +191,9 @@ CREATE TABLE IF NOT EXISTS `order_product` (
   KEY `order_product_product_id_foreign` (`product_id`),
   CONSTRAINT `order_product_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
   CONSTRAINT `order_product_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table u7590166_ice_gentong.order_product: ~9 rows (approximately)
+-- Dumping data for table u7590166_ice_gentong.order_product: ~14 rows (approximately)
 /*!40000 ALTER TABLE `order_product` DISABLE KEYS */;
 INSERT INTO `order_product` (`id`, `order_id`, `product_id`, `quantity`, `created_at`, `updated_at`) VALUES
 	(4, 3, 5, 1, '2020-10-12 07:49:50', '2020-10-12 07:49:50'),
@@ -202,7 +205,11 @@ INSERT INTO `order_product` (`id`, `order_id`, `product_id`, `quantity`, `create
 	(15, 11, 1, 2, '2020-10-13 09:07:52', '2020-10-13 09:08:08'),
 	(16, 12, 1, 3, '2020-10-13 09:29:23', '2020-10-13 09:30:13'),
 	(17, 12, 3, 2, '2020-10-13 09:29:31', '2020-10-13 09:29:32'),
-	(18, 13, 2, 1, '2020-10-14 06:44:03', '2020-10-14 06:44:03');
+	(18, 13, 2, 1, '2020-10-14 06:44:03', '2020-10-14 06:44:03'),
+	(19, 14, 1, 1, '2020-10-16 10:42:04', '2020-10-16 10:42:04'),
+	(21, 16, 1, 2, '2020-10-19 01:52:16', '2020-10-19 01:52:21'),
+	(22, 17, 2, 1, '2020-10-19 06:16:35', '2020-10-19 06:49:15'),
+	(23, 17, 3, 3, '2020-10-19 06:49:21', '2020-10-19 06:49:22');
 /*!40000 ALTER TABLE `order_product` ENABLE KEYS */;
 
 -- Dumping structure for table u7590166_ice_gentong.password_resets
@@ -239,35 +246,35 @@ CREATE TABLE IF NOT EXISTS `products` (
 -- Dumping data for table u7590166_ice_gentong.products: ~18 rows (approximately)
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
 INSERT INTO `products` (`id`, `Product_name`, `slug`, `description`, `image`, `price`, `stock`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`, `status`) VALUES
-	(1, 'Strawberry Marmalade', 'Strawberry Marmalade', 'Deluxe Strawberry Marmalade', 'products-images/AGTIySUiVkmDn5T60ZTGlUmj9ajj51v1RgETpxQO.jpeg', 139000.00, 10, 2, 3, NULL, '2020-10-02 08:57:20', '2020-10-14 08:51:00', NULL, 'PUBLISH'),
-	(2, 'Pistachio with sauce', 'Pistachio with sauce', 'Deluxe Pistachio with sauce', 'products-images/V5jRHr4kRddUMU621U9WZqs43i4fn4unsrkwa101.jpeg', 139000.00, 10, 2, 3, NULL, '2020-10-02 08:58:12', '2020-10-14 08:51:24', NULL, 'PUBLISH'),
-	(3, 'Soklat Series', 'Soklat Series', 'Soklat Series : Ruby Chocolate', 'products-images/6Qj264UKC6B33ozCbKbLsXzNyaJYDY0O4gXo2Vrp.jpeg', 139000.00, 10, 2, 3, NULL, '2020-10-02 08:59:32', '2020-10-14 07:58:31', NULL, 'PUBLISH'),
-	(4, 'Soklat Series', 'Soklat Series : White Chocolate', 'Soklat Series : White Chocolate', 'products-images/WwPXqmNl6spCiVXl0SQ3k3c6zqdc7XJOb0qrpjeG.jpeg', 139000.00, 10, 2, 3, NULL, '2020-10-02 09:00:21', '2020-10-14 08:00:15', NULL, 'PUBLISH'),
-	(5, 'Soklat Series', 'Soklat Series : Mint Chocolate', 'Soklat Series : Mint Chocolate', 'products-images/lnY9Kyhh69BfQhfqg2tnRN2nUZh6lwpuEGjOA5TD.jpeg', 139000.00, 10, 2, 3, NULL, '2020-10-02 09:01:16', '2020-10-14 08:01:21', NULL, 'PUBLISH'),
-	(6, 'Soklat Series', 'Soklat Series : Haleznut Heaven', 'Soklat Series : Haleznut Heaven', 'products-images/i1P22ymoBrKxbjtGMSqTJEmKZEsWryf8qTHNrfsz.jpeg', 139000.00, 10, 2, 3, NULL, '2020-10-02 09:02:04', '2020-10-14 08:02:44', NULL, 'PUBLISH'),
-	(7, 'Soklat Series', 'soklat-series', 'Soklat Series : Dark Chocolate', 'products-images/lsdNMUGx8diyuvMwc5dWCZVrPyCLtr8yhfy5wCQj.jpeg', 139000.00, 10, 3, NULL, NULL, '2020-10-14 08:03:40', '2020-10-14 08:03:40', NULL, 'PUBLISH'),
+	(1, 'Strawberry Marmalade', 'Strawberry Marmalade', 'Deluxe Strawberry Marmalade', 'products-images/T9bqMZHW5kgv15k2gYcFzv0zXefYPJDysmfLz459.jpeg', 139000.00, 10, 2, 3, NULL, '2020-10-02 08:57:20', '2020-10-15 08:53:00', NULL, 'PUBLISH'),
+	(2, 'Pistachio with sauce', 'Pistachio with sauce', 'Deluxe Pistachio with sauce', 'products-images/oJl0j92gUlhtxVhfShDNkfLnnLBEyDJD0YhnU7bT.jpeg', 139000.00, 10, 2, 3, NULL, '2020-10-02 08:58:12', '2020-10-15 08:53:55', NULL, 'PUBLISH'),
+	(3, 'Soklat Series', 'Soklat Series', 'Soklat Series : Ruby Chocolate', 'products-images/qbIQCbJzNR1ZkwHDiU0SlKpGz2Q4T0oRIyTniGZP.jpeg', 139000.00, 10, 2, 3, NULL, '2020-10-02 08:59:32', '2020-10-15 08:45:43', NULL, 'PUBLISH'),
+	(4, 'Soklat Series', 'Soklat Series : White Chocolate', 'Soklat Series : White Chocolate', 'products-images/xuJGeUmrAy4FGB6Jh5yArCLd1sq79oy2x0up47UP.jpeg', 139000.00, 10, 2, 3, NULL, '2020-10-02 09:00:21', '2020-10-15 08:48:28', NULL, 'PUBLISH'),
+	(5, 'Soklat Series', 'Soklat Series : Mint Chocolate', 'Soklat Series : Mint Chocolate', 'products-images/lF4kVrMlTqkLeWw7HmkcOQ33haSlZJhkZ5r1C13F.jpeg', 139000.00, 10, 2, 3, NULL, '2020-10-02 09:01:16', '2020-10-15 08:50:15', NULL, 'PUBLISH'),
+	(6, 'Soklat Series', 'Soklat Series : Haleznut Heaven', 'Soklat Series : Haleznut Heaven', 'products-images/DfBcN9GAFzP3CoITcO0NNXHa0oG0LdIHtszOKTDT.jpeg', 139000.00, 10, 2, 3, NULL, '2020-10-02 09:02:04', '2020-10-15 08:50:59', NULL, 'PUBLISH'),
+	(7, 'Soklat Series', 'soklat-series', 'Soklat Series : Dark Chocolate', 'products-images/H2xLzdEBo3OdS8qHb2sYG67lTCT0M9BB1ChPuKtx.jpeg', 139000.00, 10, 3, 3, NULL, '2020-10-14 08:03:40', '2020-10-15 08:51:40', NULL, 'PUBLISH'),
 	(8, 'Special Package', 'special-package', 'Special Package buy 2 get 5', 'products-images/oFN8I7QThoOvG2D1V6KlWC3O5tdlG8QxYjgcoz80.jpeg', 198000.00, 10, 3, NULL, NULL, '2020-10-14 08:05:55', '2020-10-14 08:05:55', NULL, 'PUBLISH'),
 	(9, 'Special Package', 'special-package', 'Special Package Double Happiness', 'products-images/0b1rd5oTJ30TtzOKjPp8Wwdsk0ycDWMie7N2m523.jpeg', 199000.00, 10, 3, NULL, NULL, '2020-10-14 08:06:46', '2020-10-14 08:06:46', NULL, 'PUBLISH'),
-	(10, 'Avocado', 'avocado', 'Family cup Avocado (400ml)', 'products-images/kzTCWwAAvAzCDmqVTyh05XhdQSk1hEQjEIHxOEj5.jpeg', 99000.00, 10, 3, 3, NULL, '2020-10-14 08:09:02', '2020-10-14 08:19:24', NULL, 'PUBLISH'),
-	(11, 'Chocolate', 'chocolate', 'Family Cup Chocolate (400ml)', 'products-images/THKNzldD6qnmblxAM9Nvq5eFQwknMT9RiRTPp8fe.jpeg', 99000.00, 10, 3, 3, NULL, '2020-10-14 08:11:02', '2020-10-14 08:20:26', NULL, 'PUBLISH'),
-	(12, 'Coffee', 'coffee', 'Coffee Family Cup Coffee (400ml)', 'products-images/8cPVQJv7zNLywGhtbMUwgU30TlEfAGAGISSfJmrr.jpeg', 99000.00, 10, 3, 3, NULL, '2020-10-14 08:12:03', '2020-10-14 08:21:42', NULL, 'PUBLISH'),
-	(13, 'Coconut', 'coconut', 'Family Cup Coconut (400ml)', 'products-images/xiJmiOUgVPuWIDISwcLvOm0s7jGRorMzgsEk7vHG.jpeg', 99000.00, 10, 3, 3, NULL, '2020-10-14 08:12:52', '2020-10-14 08:22:46', NULL, 'PUBLISH'),
-	(14, 'Cream and cookies', 'cream-and-cookies', 'Family Cup Cream and cookies (400ml)', 'products-images/WNGUpMaJVZ7BMOy3vlXH7lMBX7IEDa2LNAAIfIYA.jpeg', 99000.00, 10, 3, NULL, NULL, '2020-10-14 08:24:13', '2020-10-14 08:24:13', NULL, 'PUBLISH'),
-	(15, 'Durian', 'durian', 'Family Cup Durian (400ml)', 'products-images/HbbIRc0N9Q8z90EhFBLEzNFHIUvBO4A5n9PKhoas.jpeg', 99000.00, 10, 3, NULL, NULL, '2020-10-14 08:24:58', '2020-10-14 08:24:58', NULL, 'PUBLISH'),
-	(16, 'Jackfruit (Nangka)', 'jackfruit-nangka', 'Family Cup Jackfruit (Nangka) 400ml', 'products-images/p2Vl0fgMMJvTGjRdl4XHOWMjBJ6ur9aPjG5UDF21.jpeg', 99000.00, 10, 3, NULL, NULL, '2020-10-14 08:26:28', '2020-10-14 08:26:28', NULL, 'PUBLISH'),
-	(17, 'Green tea', 'green-tea', 'Family Cup Green tea (400ml)', 'products-images/DuHR8bdb4Y9LULI1P1MCAn8Q2zJMmt1TzO7q03PP.jpeg', 99000.00, 10, 3, NULL, NULL, '2020-10-14 08:27:19', '2020-10-14 08:27:19', NULL, 'PUBLISH'),
-	(18, 'Strawberry', 'strawberry', 'Family Cup Strawberry (400ml)', 'products-images/LsfzrXnv8qAtCH73G8m8raY42FEpaQTwEpyzP5lO.jpeg', 99000.00, 10, 3, NULL, NULL, '2020-10-14 08:28:07', '2020-10-14 08:28:07', NULL, 'PUBLISH'),
-	(19, 'Vanilla', 'vanilla', 'Family Cup Vanilla (400ml)', 'products-images/ALXGleyUhLd4LZMmlYckZEjQHR43px2wdklvm0YO.jpeg', 99000.00, 10, 3, NULL, NULL, '2020-10-14 08:29:17', '2020-10-14 08:29:17', NULL, 'PUBLISH'),
-	(20, 'Avocado', 'avocado', 'Party Cup Avocado (60ml)', 'products-images/s2YprBAZvVl1eKatZfleSVb0OZb1Tq3YVNaUR98h.jpeg', 16000.00, 10, 3, 3, NULL, '2020-10-14 08:33:01', '2020-10-14 08:33:28', NULL, 'PUBLISH'),
-	(21, 'Chocolate', 'chocolate', 'Party Cup Chocolate (60ml)', 'products-images/eC2sumgSNQtSs6DxlDzY8c7ki3WiqkErS3ajWCVs.jpeg', 16000.00, 10, 3, NULL, NULL, '2020-10-14 08:34:35', '2020-10-14 08:34:35', NULL, 'PUBLISH'),
-	(22, 'Coffee', 'coffee', 'Party Cup Coffee (60ml)', 'products-images/9J1SiR2XWJ2shbMhsUprQzPp1dPwtG7e1Y5MGvCZ.jpeg', 16000.00, 10, 3, NULL, NULL, '2020-10-14 08:35:32', '2020-10-14 08:35:32', NULL, 'PUBLISH'),
-	(23, 'Coconut', 'coconut', 'Party Cup Coconut (60ml)', 'products-images/R6OMNmfqFVbY598Qv4M4fOyj7BHn2Te9VGhN8Nvb.jpeg', 16000.00, 10, 3, NULL, NULL, '2020-10-14 08:36:19', '2020-10-14 08:36:19', NULL, 'PUBLISH'),
-	(24, 'Cream and cookies', 'cream-and-cookies', 'Party Cup Cream and cookies (60ml)', 'products-images/sRb3V6s49tTB8v5T3WTI6QOh1b0Gh9yvvBxENPqh.jpeg', 16000.00, 10, 3, NULL, NULL, '2020-10-14 08:37:24', '2020-10-14 08:37:24', NULL, 'PUBLISH'),
-	(25, 'Durian', 'durian', 'Party Cup Durian (60ml)', 'products-images/MOApyf17zWnkqiDSG3g9ilGlikoyHnnTIpdaa0NU.jpeg', 16000.00, 10, 3, NULL, NULL, '2020-10-14 08:38:26', '2020-10-14 08:38:26', NULL, 'PUBLISH'),
-	(26, 'Jackfruit (Nangka)', 'jackfruit-nangka', 'Party Cup Jackfruit (Nangka) 60ml', 'products-images/4qEwupB8AatMQO3DMmOyVJCm54amWQ0y9b7xSOdR.jpeg', 16000.00, 10, 3, NULL, NULL, '2020-10-14 08:39:14', '2020-10-14 08:39:14', NULL, 'PUBLISH'),
-	(27, 'Green tea', 'green-tea', 'Party Cup Green tea (60ml)', 'products-images/sSR1jTisZLRXyTlPQUykg7T8hKgBTKBYv6RjZGFn.jpeg', 16000.00, 10, 3, NULL, NULL, '2020-10-14 08:40:01', '2020-10-14 08:40:01', NULL, 'PUBLISH'),
-	(28, 'Strawberry', 'strawberry', 'Party Cup  Strawberry (60ml)', 'products-images/bk8bOF6xFD7j7ZOPQRND8KolKTojwcK4c4okAgYB.jpeg', 16000.00, 10, 3, NULL, NULL, '2020-10-14 08:40:46', '2020-10-14 08:40:46', NULL, 'PUBLISH'),
-	(29, 'Vanilla', 'vanilla', 'Party Cup Vanilla (60ml)', 'products-images/KbZkEfMVNx43BcBB7A5PbEQtMexdUubbqZC4ru1k.jpeg', 16000.00, 10, 3, NULL, NULL, '2020-10-14 08:41:36', '2020-10-14 08:41:36', NULL, 'PUBLISH');
+	(10, 'Avocado', 'avocado', 'Family cup Avocado (400ml)', 'products-images/K5TL3FJVeqN8Ae5d4ZTJ7benWLbT2SfDV9lbHGje.jpeg', 99000.00, 10, 3, 3, NULL, '2020-10-14 08:09:02', '2020-10-15 08:55:44', NULL, 'PUBLISH'),
+	(11, 'Chocolate', 'chocolate', 'Family Cup Chocolate (400ml)', 'products-images/7uAMiaT2UJmx4mIacu357psdkFn7T6c8hpCc2lUa.jpeg', 99000.00, 10, 3, 3, NULL, '2020-10-14 08:11:02', '2020-10-15 08:57:17', NULL, 'PUBLISH'),
+	(12, 'Coffee', 'coffee', 'Coffee Family Cup Coffee (400ml)', 'products-images/FFEsRN40VXb1D5AsEAt03zHQFsXwrssn6HOOoDK5.jpeg', 99000.00, 10, 3, 3, NULL, '2020-10-14 08:12:03', '2020-10-15 08:58:16', NULL, 'PUBLISH'),
+	(13, 'Coconut', 'coconut', 'Family Cup Coconut (400ml)', 'products-images/cWDr2we0iGylw5GHQD6U363NeErElf7VWqUXUe6z.jpeg', 99000.00, 10, 3, 3, NULL, '2020-10-14 08:12:52', '2020-10-15 08:59:08', NULL, 'PUBLISH'),
+	(14, 'Cream and cookies', 'cream-and-cookies', 'Family Cup Cream and cookies (400ml)', 'products-images/R0s6LSM4FZtbqrnvrCW1Bgf6hyCzHYW2Csvdz4LV.jpeg', 99000.00, 10, 3, 3, NULL, '2020-10-14 08:24:13', '2020-10-15 08:59:54', NULL, 'PUBLISH'),
+	(15, 'Durian', 'durian', 'Family Cup Durian (400ml)', 'products-images/wxx3zcqOG9JmYksoQk7zgwUcDQwVY7eM3wzxEcyC.jpeg', 99000.00, 10, 3, 3, NULL, '2020-10-14 08:24:58', '2020-10-15 09:00:48', NULL, 'PUBLISH'),
+	(16, 'Jackfruit (Nangka)', 'jackfruit-nangka', 'Family Cup Jackfruit (Nangka) 400ml', 'products-images/sKrNliA8Lkd5UvZ7kvVhYiHDeAq3BI1dG25d93B0.jpeg', 99000.00, 10, 3, 3, NULL, '2020-10-14 08:26:28', '2020-10-15 09:01:38', NULL, 'PUBLISH'),
+	(17, 'Green tea', 'green-tea', 'Family Cup Green tea (400ml)', 'products-images/Er22iBaKy2NpsK63ELxTNLLYaSAlnNVptkuO6AKm.jpeg', 99000.00, 10, 3, 3, NULL, '2020-10-14 08:27:19', '2020-10-15 09:02:52', NULL, 'PUBLISH'),
+	(18, 'Strawberry', 'strawberry', 'Family Cup Strawberry (400ml)', 'products-images/IOAfPIr3t4eujD65oe2Nyuen9BIEeYB5WBtyh3oK.jpeg', 99000.00, 10, 3, 3, NULL, '2020-10-14 08:28:07', '2020-10-15 09:03:47', NULL, 'PUBLISH'),
+	(19, 'Vanilla', 'vanilla', 'Family Cup Vanilla (400ml)', 'products-images/YtZajqzQenTUdwyryz2wkMLlcYzJuB9PB6fjOjlN.jpeg', 99000.00, 10, 3, 3, NULL, '2020-10-14 08:29:17', '2020-10-15 09:04:34', NULL, 'PUBLISH'),
+	(20, 'Avocado', 'avocado', 'Party Cup Avocado (60ml)', 'products-images/QOptEQZ74X9JzSJOA3VfUp5CxTGXN9IYaUEBpCVo.jpeg', 16000.00, 10, 3, 3, NULL, '2020-10-14 08:33:01', '2020-10-15 09:06:05', NULL, 'PUBLISH'),
+	(21, 'Chocolate', 'chocolate', 'Party Cup Chocolate (60ml)', 'products-images/FbzWjCgaDhpCxJdfaOSCaFShBJuUJfYXnRrXr2WG.jpeg', 16000.00, 10, 3, 3, NULL, '2020-10-14 08:34:35', '2020-10-15 09:07:22', NULL, 'PUBLISH'),
+	(22, 'Coffee', 'coffee', 'Party Cup Coffee (60ml)', 'products-images/Hwe5XaRegjuw4Ve9b6NizmWE7QKIeRaFI0G3Kmne.jpeg', 16000.00, 10, 3, 3, NULL, '2020-10-14 08:35:32', '2020-10-15 09:08:23', NULL, 'PUBLISH'),
+	(23, 'Coconut', 'coconut', 'Party Cup Coconut (60ml)', 'products-images/zPGJXYkkHGEBm3NiTecPJGmckQLTegqjTmnSfMXU.jpeg', 16000.00, 10, 3, 3, NULL, '2020-10-14 08:36:19', '2020-10-15 09:09:22', NULL, 'PUBLISH'),
+	(24, 'Cream and cookies', 'cream-and-cookies', 'Party Cup Cream and cookies (60ml)', 'products-images/QRJ4iruebRMgUzPN22jcdG7YJ3JjFp3fEzWjS9OJ.jpeg', 16000.00, 10, 3, 3, NULL, '2020-10-14 08:37:24', '2020-10-15 09:10:20', NULL, 'PUBLISH'),
+	(25, 'Durian', 'durian', 'Party Cup Durian (60ml)', 'products-images/DjAfYHCyjVuYp5anw83KfzUN8nBU1RBmwa3YvuE8.jpeg', 16000.00, 10, 3, 3, NULL, '2020-10-14 08:38:26', '2020-10-15 09:11:15', NULL, 'PUBLISH'),
+	(26, 'Jackfruit (Nangka)', 'jackfruit-nangka', 'Party Cup Jackfruit (Nangka) 60ml', 'products-images/0jHutumq08iNl9swPGSy6Kgvx43zI8kU1H01Omfh.jpeg', 16000.00, 10, 3, 3, NULL, '2020-10-14 08:39:14', '2020-10-15 09:12:03', NULL, 'PUBLISH'),
+	(27, 'Green tea', 'green-tea', 'Party Cup Green tea (60ml)', 'products-images/0Bx5SaBzCy95YVyATZfHISYp4PlElrrlUlrhrio0.jpeg', 16000.00, 10, 3, 3, NULL, '2020-10-14 08:40:01', '2020-10-15 09:12:52', NULL, 'PUBLISH'),
+	(28, 'Strawberry', 'strawberry', 'Party Cup  Strawberry (60ml)', 'products-images/3chcbAOxtiDQVhpGD7lQes2rpWVrlWytp9mxroqz.jpeg', 16000.00, 10, 3, 3, NULL, '2020-10-14 08:40:46', '2020-10-15 09:13:34', NULL, 'PUBLISH'),
+	(29, 'Vanilla', 'vanilla', 'Party Cup Vanilla (60ml)', 'products-images/Py47qdwgpCs98N26XXzLATBhIjVZEb8AztFTL7dS.jpeg', 16000.00, 10, 3, 3, NULL, '2020-10-14 08:41:36', '2020-10-15 09:14:17', NULL, 'PUBLISH');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 
 -- Dumping structure for table u7590166_ice_gentong.sessions
