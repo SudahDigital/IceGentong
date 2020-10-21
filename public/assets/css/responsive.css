@@ -2182,9 +2182,13 @@
     }
 
     .menu-filter{
-        width:22%;
+        width:30%;
         height: auto;
         padding-top:8px;
+    }
+
+    .menu-logo-filter{
+        width:70%;
     }
 
     .warna{
@@ -2609,10 +2613,14 @@
         font-size: 15px;
     }
 
-      .menu-filter{
-        width:23%;
+    .menu-filter{
+        width:30%;
         height: auto;
-        padding-top: 8px;
+        padding-top:8px;
+    }
+
+    .menu-logo-filter{
+        width:70%;
     }
 
     .warna{
@@ -3037,10 +3045,14 @@
         font-size: 15px;
     }
 
-      .menu-filter{
-        width:25%;
+    .menu-filter{
+        width:30%;
         height: auto;
-        
+        padding-top:8px;
+    }
+
+    .menu-logo-filter{
+        width:70%;
     }
 
     .warna{
@@ -3461,10 +3473,14 @@
         font-size: 15px;
     }
 
-      .menu-filter{
-        width:25%;
+    .menu-filter{
+        width:33%;
         height: auto;
-        padding-top:10px;
+        padding-top:8px;
+    }
+
+    .menu-logo-filter{
+        width:67%;
     }
 
     .warna{
@@ -3884,9 +3900,14 @@
         font-size: 15px;
     }
 
-      .menu-filter{
-        width:25%;
+    .menu-filter{
+        width:33%;
         height: auto;
+        padding-top:8px;
+    }
+
+    .menu-logo-filter{
+        width:67%;
     }
 
     .warna{
@@ -4310,9 +4331,14 @@
         font-size: 15px;
     }
 
-      .menu-filter{
-        width:30%;
+    .menu-filter{
+        width:35%;
         height: auto;
+        padding-top:8px;
+    }
+
+    .menu-logo-filter{
+        width:65%;
     }
 
     .warna{
@@ -4733,9 +4759,14 @@
         font-size: 15px;
     }
 
-      .menu-filter{
-        width:35%;
+    .menu-filter{
+        width:37%;
         height: auto;
+        padding-top:8px;
+    }
+
+    .menu-logo-filter{
+        width:63%;
     }
 
     .warna{
@@ -5156,9 +5187,14 @@
         font-size: 13px;
     }
 
-      .menu-filter{
-        width:30%;
+    .menu-filter{
+        width:37%;
         height: auto;
+        padding-top:8px;
+    }
+
+    .menu-logo-filter{
+        width:63%;
     }
 
     .warna{

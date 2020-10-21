@@ -45,7 +45,7 @@
                                         </h3>
                                         @endif
                                     </td>
-                                    <td width="60%" align="left" valign="middle">
+                                    <td width="60%" align="left" valign="middle" class="menu-logo-filter">
                                         @if($count_data <=3)
                                             <button type="button" class="btn" data-toggle="collapse" data-target="#demo" style="background-color:#FDD8AF; border:none;">
                                                 <i class="fas fa-sliders-h tombol" style="color:#693234"></i>
