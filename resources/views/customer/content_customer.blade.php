@@ -31,10 +31,10 @@
                     <div class="col-sm-12">
                         
                         <div class="col-md-12 mx-auto">
-                            <table width="100%" style="margin-bottom: 20px;">
+                            <table width="100%" style="margin-bottom: 20px;" >
                             <tbody>
                                 <tr>
-                                    <td class="menu-filter">
+                                    <td class="menu-filter" valign="middle">
                                         @if($count_data <= 3)
                                         <h3 class="cat_fil" id="cat_fil" style="color: #693234;">
                                             Filter Category 
@@ -45,7 +45,7 @@
                                         </h3>
                                         @endif
                                     </td>
-                                    <td width="60%" align="left">
+                                    <td width="60%" align="left" valign="middle">
                                         @if($count_data <=3)
                                             <button type="button" class="btn" data-toggle="collapse" data-target="#demo" style="background-color:#FDD8AF; border:none;">
                                                 <i class="fas fa-sliders-h tombol" style="color:#693234"></i>
@@ -86,7 +86,7 @@
                     <div class="col-md-12">
                         <div class="row section_content">
                         @foreach($product as $key => $value)
-                            <div class="col-6 col-lg-4">
+                            <div class="col-6 col-md-4">
                             
                                 <div class="card mx-auto item_product">
                                     <a href="{{URL::route('product_detail', ['id'=>$value->id])}}">
@@ -135,8 +135,7 @@
                         @endforeach
                         <div class="col-md-12">
                             <div class="row justify-content-center" >
-                                
-                                    <div class="page" style="margin-top:0; margin-bottom:1rem;">{{ $product->appends(Request::all())->links('vendor.pagination.bootstrap-4') }}</div>
+                                <div class="page" style="margin-top:0; margin-bottom:1rem;">{{ $product->appends(Request::all())->links('vendor.pagination.bootstrap-4') }}</div>
                             </div>
                         </div>        
                     </div>
@@ -148,12 +147,11 @@
     
     <!-- Footer section -->
     <footer id="footer">
-                
         <div class="container">
-
-            
-            <div class="row justify-content-center mx-auto" >
-                <img src="{{ asset('assets/image/ecim-gentong.png') }}" width="55%" height="auto">
+            <div class="row justify-content-center">
+                <div class="col-md-7">
+                   <img src="{{ asset('assets/image/ecim-gentong.png') }}" class="img-thumbnail" style="background-color:transparent; border:none;"> 
+                </div>
             </div>
             <br><br>
             <div class="row justify-content-center mx-auto" >    
@@ -164,12 +162,10 @@
                     <a href="#"><i class="fab fa-twitter "></i></a>
                 </div>
             </div>
-                <div class="copyright text-center">
-                    <p>@Copyright 2020</p>
-                </div>
-                
+            <div class="copyright text-center">
+                <p>@Copyright 2020</p>
+            </div>
         </div>
-        
     </footer>
 
     <div id="accordion">

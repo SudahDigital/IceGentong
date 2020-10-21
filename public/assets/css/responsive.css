@@ -1,112 +1,16 @@
-/*
-@media (max-width: 670px) {
-    .title-page, .button_back, .modal-title {
-        font-size: 5.5vw;
-    }
-
-    .breadcrumb-item {
-        font-size: 4vw;
-    }
-    
-    .form__radio--group {
-        width: 100%; 
-    }
-    .form__radio--group:not(:last-child) {
-        margin-bottom: 3rem; 
-    } 
-
-    #bannerSlide .carousel-inner img {
-        height: 35vh;
-    }
-
-    #content .button_success_block, .button_add_to_cart, .button-pesan, .button_order {
-        font-size: 12px;
-        padding: 6px 0;
-    }
-
-    p, li {
-        font-size: 12px !important;
-    }
-
-    .product-name, th {
-        font-size: 14px;
-    }
-
-    #content .embed-responsive {
-        height: 20vh !important;
-    }
-
-    .product-price, .product-description {
-        font-size: 12px !important;
-        padding-top: 4px;
-        /*width: 10px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;--
-    }
-
-    .product-price-header {
-        font-size: 10px;
-        width: 140px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-
-    #content .button_plus, #content .button_minus {
-        font-size: 12px;
-        width: 18px; 
-        height: 18px;
-        padding: 0 !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        line-height: 18px !important;
-        margin-top: 4%;
-    }
-
-    #content .button_minus+span {
-        font-size: 3vw;
-        margin: 0 !important;
-    }
-
-    #content .total-bottom-fixed {
-        bottom: 2.5rem; 
-    }
-
-    #shoppingCart .img-product img {
-        width: 100%;
-    } 
-
-    footer.footer .cart .count-cart-one {
-        right: 10px;
-        top: 2px;
-        font-size: 12px !important;
-    }
-      
-    footer.footer .cart .count-cart-two {
-        right: 7px;
-        top: 2px;
-        font-size: 12px !important;
-    }
-      
-    footer.footer .cart .count-cart-three {
-        right: 11px;
-        top: 2px;
-        font-size: 12px !important;
-    }
-      
-}*/
 @media (max-width: 2560px){
 
     #shape-1 {
+        width:30%;
         height: 40rem;
-        top:0rem;
+        top:0.8rem;
         
    }
   
    #shape-2 {
+    width:30%;
     height: 40rem;
-    top:40.6rem;
+    top:40.9rem;
     
   }
 
@@ -116,7 +20,7 @@
     }
 
     .warna{
-        height:42%;
+        height:40.9rem;
     }
    
 
@@ -139,17 +43,103 @@
     }
 }
 
+@media (max-width: 1920px){
+
+    #shape-1 {
+        width:30%;
+        height: 40rem;
+        top:0.8rem;
+        
+   }
+  
+   #shape-2 {
+    width:30%;
+    height: 40rem;
+    top:40.9rem;
+    
+  }
+
+   .navbar-brand {
+        position: absolute;
+        left: 46%;
+    }
+
+    .warna{
+        height:40.9rem;
+    }
+   
+
+    #i-kontak, #i-envelop {
+        font-size: 5em;
+    }
+
+    
+
+    #content .cara_belanja p{
+        margin-left:-10px;
+        font-size: 25px;
+        
+    }
+
+    #content .cara_belanja{
+        width:85%;
+        padding-top:40px; 
+        padding-right:40px;
+        padding-left:40px;
+        padding-bottom:0; 
+        border-radius:15px;
+        margin-left: 10px;
+        margin-bottom: 4rem;
+      }
+     
+      #content .cara_belanja img{
+        width:70%; 
+        height: auto;
+       }
+      
+      #content .cara_belanja h5{
+        font-family: Open Sans;
+        font-size: 30px;
+        font-weight: 800;
+        margin-left:0;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.36;
+        letter-spacing: normal;
+        text-align: left;
+        color: #6a3137;
+      }
+
+      #content .cara_belanaja .card-title{
+          min-height: 200px;
+      }
+      
+      #content .cara_belanja p{
+        font-family: Open Sans;
+        margin-left:0;
+        margin-right: 30px;
+        font-size: 20px;
+        font-weight: 600;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.7;
+        letter-spacing: normal;
+        text-align: left;
+        color: #000000;
+      }
+}
+
 @media (max-width: 1440px){
 
 
     #shape-1 {
-        
+        width:50%;
         top:1rem;
         
    }
   
    #shape-2 {
-    
+    width:50%;
     top:41rem;
     
   }
@@ -172,6 +162,53 @@
         height: auto;
     }
 
+    #content .cara_belanja{
+        width:85%;
+        padding-top:40px; 
+        padding-right:40px;
+        padding-left:40px;
+        padding-bottom:0; 
+        border-radius:15px;
+        margin-left: 10px;
+        margin-bottom: 4rem;
+      }
+     
+      #content .cara_belanja img{
+        width:90%; 
+        height: auto;
+       }
+      
+      #content .cara_belanja h5{
+        font-family: Open Sans;
+        font-size: 20px;
+        font-weight: 800;
+        margin-left:0;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.36;
+        letter-spacing: normal;
+        text-align: left;
+        color: #6a3137;
+      }
+
+      #content .cara_belanaja .card-title{
+          min-height: 200px;
+      }
+      
+      #content .cara_belanja p{
+        font-family: Open Sans;
+        margin-left:0;
+        margin-right: 30px;
+        font-size: 14px;
+        font-weight: 600;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.7;
+        letter-spacing: normal;
+        text-align: left;
+        color: #000000;
+      }
+
    
 }
 
@@ -179,7 +216,7 @@
 
     #shape-1 {
         float: left;
-        width: 50%;
+        width: 40%;
         height: 30rem;
         top:10rem;
         border-top-right-radius: 100%;
@@ -189,7 +226,7 @@
   
    #shape-2 {
     right:0;
-    width: 50%;
+    width: 40%;
     height: 30rem;
     top:40rem;
     border-bottom-left-radius: 100%;
@@ -216,9 +253,54 @@
 
     #i-kontak, #i-envelop {
         font-size: 5em;
-        
-       
     }
+
+    #content .cara_belanja{
+        width:85%;
+        padding-top:40px; 
+        padding-right:40px;
+        padding-left:40px;
+        padding-bottom:0; 
+        border-radius:15px;
+        margin-left: 10px;
+        margin-bottom: 4rem;
+      }
+     
+      #content .cara_belanja img{
+        width:90%; 
+        height: auto;
+       }
+      
+      #content .cara_belanja h5{
+        font-family: Open Sans;
+        font-size: 20px;
+        font-weight: 800;
+        margin-left:0;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.36;
+        letter-spacing: normal;
+        text-align: left;
+        color: #6a3137;
+      }
+
+      #content .cara_belanaja .card-title{
+          min-height: 200px;
+      }
+      
+      #content .cara_belanja p{
+        font-family: Open Sans;
+        margin-left:0;
+        margin-right: 30px;
+        font-size: 14px;
+        font-weight: 600;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.7;
+        letter-spacing: normal;
+        text-align: left;
+        color: #000000;
+      }
 
    
 }
@@ -227,14 +309,14 @@
 
 
     #shape-1 {
-        
+        width:50%;
         top:6rem;
         
    }
   
    #shape-2 {
-    
-    top:36rem;
+    width:50%;
+    top:36.2rem;
     
   }
 
@@ -309,6 +391,10 @@
         height: auto;
     }
 
+    .breadcrumb{
+        margin-left:3rem;
+    }
+
    
 }
 
@@ -316,9 +402,9 @@
 
     #shape-1 {
         float: left;
-        width: 50%;
+        width: 40%;
         height: 18rem;
-        top:19rem;
+        top:11.8rem;
         border-top-right-radius: 100%;
         /*background:#fff;*/
         background:#5D2B30;
@@ -327,9 +413,9 @@
   
    #shape-2 {
     right:0;
-    width: 50%;
+    width: 40%;
     height: 18rem;
-    top:37rem;
+    top:30rem;
     border-bottom-left-radius: 100%;
     background:#ffcc94;
     /*background:#5D2B30;*/
@@ -344,7 +430,7 @@
     }
 
     .warna{
-        height:37rem;
+        height:30rem;
     }
     
     #sidebar ul.components {
@@ -413,7 +499,8 @@
     }
 
     .cat_fil{
-        font-size: 20px;
+        margin-left: -10px;
+        font-size: 18px;
         font-weight: bold;
         font-style:normal;
         line-height: 1;
@@ -425,7 +512,7 @@
     }
 
       .menu-filter{
-        width:40%;
+        width:20%;
         height: auto;
     }
 
@@ -503,7 +590,7 @@
         padding:10px;
         color: #ffffff;
         
-        font-size: 20px;
+        font-size: 11px;
         font-weight: 600; 
         padding:2 15;
     }
@@ -515,7 +602,7 @@
         font-size: 40px;
         left:-1.5rem;
         right:-1rem;
-        top:-0.5rem;
+        top:0;
         padding-top:2px;
     }
 
@@ -533,12 +620,12 @@
 
     #content .item_product img{
         border-radius:15px;
-        height: 300px;
+        height: auto;
     }
 
     #content .product-price-header {
         line-height: 1.36;
-        font-size:23px;
+        font-size:17px;
     }
 
     #content .product-price {
@@ -584,12 +671,6 @@
         padding-bottom: 2rem;
     }
 
-    #footer img {
-        width: 90%;
-        height: auto;
-    }
-
-    
     #footer .social-icons a {
         margin-top: 0;
         margin-right: 10px;
@@ -847,7 +928,7 @@
     }
 
       .menu-filter{
-        width:40%;
+        width:25%;
         height: auto;
     }
 
@@ -937,7 +1018,7 @@
         font-size: 40px;
         left:-1.5rem;
         right:-1rem;
-        top:-0.5rem;
+        top:0;
         padding-top:2px;
     }
 
@@ -1004,11 +1085,6 @@
         
         padding-top: 7rem;
         padding-bottom: 2rem;
-    }
-
-    #footer img {
-        width: 90%;
-        height: auto;
     }
 
     
@@ -1270,7 +1346,7 @@
     }
 
       .menu-filter{
-        width:40%;
+        width:22%;
         height: auto;
     }
 
@@ -1359,7 +1435,7 @@
         font-size: 40px;
         left:-1.5rem;
         right:-1rem;
-        top:-0.5rem;
+        top:0;
         padding-top:2px;
     }
 
@@ -1428,12 +1504,6 @@
         padding-bottom: 2rem;
     }
 
-    #footer img {
-        width: 90%;
-        height: auto;
-    }
-
-    
     #footer .social-icons a {
         margin-top: 0;
         margin-right: 10px;
@@ -1692,8 +1762,10 @@
     }
 
       .menu-filter{
-        width:40%;
+        width:25%;
         height: auto;
+        padding-left:9px;
+        padding-top:8px;
     }
 
     .warna{
@@ -1784,7 +1856,7 @@
         font-size: 15px;
         left:-1.5rem;
         right:-1rem;
-        top:-0.5rem;
+        top:0;
         padding-top:2px;
     }
 
@@ -1853,12 +1925,6 @@
         padding-bottom: 2rem;
     }
 
-    #footer img {
-        width: 90%;
-        height: auto;
-    }
-
-    
     #footer .social-icons a {
         margin-top: 0;
         margin-right: 10px;
@@ -2019,16 +2085,16 @@
    }
   
    #shape-2 {
-    right:0;
-    width: 100%;
-    height: 19rem;
-    top:26rem;
-    border-bottom-left-radius: 100%;
-    background:#ffcc94;
-    /*background:#5D2B30;*/
-    position: absolute;
-    z-index: ;
-  }
+        right:0;
+        width: 100%;
+        height: 19rem;
+        top:26rem;
+        border-bottom-left-radius: 100%;
+        background:#ffcc94;
+        /*background:#5D2B30;*/
+        position: absolute;
+        z-index: ;
+    }
 
     #sidebar {
         width: 70%;
@@ -2038,7 +2104,7 @@
     
     
     #sidebar ul.components {
-    padding: 20px 0;
+        padding: 20px 0;
     }
     
     #sidebar ul li a {
@@ -2050,7 +2116,7 @@
         font-size: 12px;
     }
     #sidebar ul li.active>a,
-    a[aria-expanded="true"] {
+        a[aria-expanded="true"] {
         color: white;
         background: #5D2B30;
     
@@ -2104,20 +2170,21 @@
     }
 
     .cat_fil{
-        font-size: 13px;
+        font-size: 14px;
         font-weight: bold;
         font-style:normal;
-        line-height: 1;
+        line-height: 1.4;
         font-family: Open Sans;
-      }
+    }
 
-      .tombol{
+    .tombol{
         font-size: 15px;
     }
 
-      .menu-filter{
-        width:40%;
+    .menu-filter{
+        width:22%;
         height: auto;
+        padding-top:8px;
     }
 
     .warna{
@@ -2125,76 +2192,76 @@
     }
 
     #content .cr_bl{
-    
-        margin-left: 1rem;
-        }
 
-        #cara-belanja .card-body{
-            padding:0;
-        }
-    
-        #content .cara_belanja img{
-            width:90px;
-            height:auto;
-            margin-left:-15px;
-        }
-    
-        #content .cara_belanja h5{
-            font-weight: 900;
-            font-size: 17px;
-            margin-left:-2.5rem;
-            margin-right:-2.5rem;
-            
-        }
-    
-        #content .cara_belanja p{
-            margin-left:-2.5rem;
-            margin-right:-2rem;
-            font-size: 12px;
-            
-        }
-    
-        #content .kontak{
+    margin-left: 1rem;
+    }
+
+    #cara-belanja .card-body{
+        padding:0;
+    }
+
+    #content .cara_belanja img{
+        width:90px;
+        height:auto;
+        margin-left:-15px;
+    }
+
+    #content .cara_belanja h5{
+        font-weight: 900;
+        font-size: 17px;
+        margin-left:-2.5rem;
+        margin-right:-2.5rem;
         
-            margin-left: 0.5rem;
-            margin-bottom : -2rem;
-    
-        }
-    
-        #i-kontak, #i-envelop {
-            font-size: 3.9em;
-            margin-top:1.3rem;
-        }
-    
-        #content .contact_kami h5.no_telp{
-            margin-left:-6rem;
-            font-size: 29px;
-           
-        }
-    
-        #content .contact_kami p.telp{
-            margin-left:-6rem;
-            margin-top: 1rem;
-            font-size: 20px;
-           
-       }
-    
-       #content .contact_kami p{
+    }
+
+    #content .cara_belanja p{
+        margin-left:-2.5rem;
+        margin-right:-10px;
+        font-size: 12px;
         
-        margin-left:5.5rem;
-        margin-top: -4rem;
+    }
+
+    #content .kontak{
+    
+        margin-left: 0.5rem;
+        margin-bottom : -2rem;
+
+    }
+
+    #i-kontak, #i-envelop {
+        font-size: 3.9em;
+        margin-top:1.3rem;
+    }
+
+    #content .contact_kami h5.no_telp{
+        margin-left:-6rem;
+        font-size: 29px;
+        
+    }
+
+    #content .contact_kami p.telp{
+        margin-left:-6rem;
+        margin-top: 1rem;
         font-size: 20px;
-        font-weight: 600;
         
-       }
+    }
+
+    #content .contact_kami p{
     
-      #content .contact_kami h5{
-        margin-left:5.5rem;
-        font-family: Open Sans;
-        font-size: 16px;
-        
-      }
-      
+    margin-left:5.5rem;
+    margin-top: -4rem;
+    font-size: 20px;
+    font-weight: 600;
+    
+    }
+
+    #content .contact_kami h5{
+    margin-left:5.5rem;
+    font-family: Open Sans;
+    font-size: 16px;
+    
+    }
+    
 
     #content .button_add_to_cart {
         
@@ -2209,12 +2276,12 @@
 
     .button-collapse{
         margin-left: 3px;
-        margin-right: 0;
+        margin-right: 5px;
         margin-bottom:10px;
-        font-size: 12px;
+        font-size: 10px;
         left:-1rem;
         right:-1rem;
-        top:-1rem;
+        top:0;
         padding-top:2px;
      }
 
@@ -2285,12 +2352,6 @@
         padding-bottom: 2rem;
     }
 
-    #footer img {
-        width: 90%;
-        height: auto;
-    }
-
-    
     #footer .social-icons a {
         margin-top: 0;
         margin-right: 10px;
@@ -2549,8 +2610,9 @@
     }
 
       .menu-filter{
-        width:40%;
+        width:23%;
         height: auto;
+        padding-top: 8px;
     }
 
     .warna{
@@ -2582,7 +2644,7 @@
     
         #content .cara_belanja p{
             margin-left:-2.5rem;
-            margin-right:-2rem;
+            margin-right:-10px;
             font-size: 12px;
             
         }
@@ -2642,12 +2704,12 @@
 
     .button-collapse{
         margin-left: 3px;
-        margin-right: 0;
+        margin-right: 5px;
         margin-bottom:10px;
-        font-size: 12px;
+        font-size: 10px;
         left:-1rem;
         right:-1rem;
-        top:-1rem;
+        top:0;
         padding-top:2px;
      }
 
@@ -2718,12 +2780,6 @@
         padding-bottom: 2rem;
     }
 
-    #footer img {
-        width: 90%;
-        height: auto;
-    }
-
-    
     #footer .social-icons a {
         margin-top: 0;
         margin-right: 10px;
@@ -2982,8 +3038,9 @@
     }
 
       .menu-filter{
-        width:40%;
+        width:25%;
         height: auto;
+        
     }
 
     .warna{
@@ -3050,16 +3107,16 @@
 
     #content .cara_belanja h5{
         font-weight: 900;
-        font-size: 17px;
+        font-size: 13px;
         margin-left:-2rem;
-        margin-right:-2rem;
+        margin-right:-1rem;
         
     }
 
     #content .cara_belanja p{
         margin-left:-2rem;
-        margin-right:-2rem;
-        font-size: 12px;
+        margin-right:-1rem;
+        font-size: 10px;
         
     }
   
@@ -3075,12 +3132,12 @@
 
     .button-collapse{
         margin-left: 3px;
-        margin-right: 0;
+        margin-right: 5px;
         margin-bottom:10px;
-        font-size: 12px;
+        font-size: 10px;
         left:-1rem;
         right:-1rem;
-        top:-1rem;
+        top:0;
         padding-top:2px;
      }
 
@@ -3149,12 +3206,6 @@
         padding-bottom: 2rem;
     }
 
-    #footer img {
-        width: 90%;
-        height: auto;
-    }
-
-    
     #footer .social-icons a {
         margin-top: 0;
         margin-right: 10px;
@@ -3411,8 +3462,9 @@
     }
 
       .menu-filter{
-        width:40%;
+        width:25%;
         height: auto;
+        padding-top:10px;
     }
 
     .warna{
@@ -3479,16 +3531,16 @@
 
     #content .cara_belanja h5{
         font-weight: 900;
-        font-size: 17px;
+        font-size: 13px;
         margin-left:-2rem;
-        margin-right:-2rem;
+        margin-right:-1rem;
         
     }
 
     #content .cara_belanja p{
         margin-left:-2rem;
-        margin-right:-2rem;
-        font-size: 12px;
+        margin-right:-1rem;
+        font-size: 10px;
         
     }
   
@@ -3509,7 +3561,7 @@
         font-size: 12px;
         left:-1rem;
         right:-1rem;
-        top:-1rem;
+        top:0;
         padding-top:2px;
      }
 
@@ -3577,12 +3629,6 @@
         padding-bottom: 2rem;
     }
 
-    #footer img {
-        width: 90%;
-        height: auto;
-    }
-
-    
     #footer .social-icons a {
         margin-top: 0;
         margin-right: 10px;
@@ -3839,7 +3885,7 @@
     }
 
       .menu-filter{
-        width:40%;
+        width:25%;
         height: auto;
     }
 
@@ -3906,7 +3952,7 @@
 
     #content .cara_belanja h5{
         font-weight: 900;
-        font-size: 17px;
+        font-size: 13px;
         margin-left:-2rem;
         margin-right:-1rem;
         
@@ -3915,7 +3961,7 @@
     #content .cara_belanja p{
         margin-left:-2rem;
         margin-right:-1rem;
-        font-size: 12px;
+        font-size: 10px;
         
     }
   
@@ -3931,12 +3977,12 @@
 
     .button-collapse{
         margin-left: 3px;
-        margin-right: 0;
+        margin-right: 5px;
         margin-bottom:10px;
-        font-size: 12px;
+        font-size: 10px;
         left:-1rem;
         right:-1rem;
-        top:-1rem;
+        top:0;
         padding-top:2px;
      }
 
@@ -4005,12 +4051,6 @@
         padding-bottom: 2rem;
     }
 
-    #footer img {
-        width: 90%;
-        height: auto;
-    }
-
-    
     #footer .social-icons a {
         margin-top: 0;
         margin-right: 10px;
@@ -4271,7 +4311,7 @@
     }
 
       .menu-filter{
-        width:40%;
+        width:30%;
         height: auto;
     }
 
@@ -4292,7 +4332,7 @@
   
       #content .cara_belanja h5{
           font-weight: 900;
-          font-size: 15px;
+          font-size: 13px;
           margin-right:-1rem;
           margin-left:-3rem;
       }
@@ -4358,12 +4398,12 @@
 
     .button-collapse{
         margin-left: 3px;
-        margin-right: 0;
+        margin-right: 1px;
         margin-bottom:10px;
-        font-size: 12px;
+        font-size: 10px;
         left:-1rem;
         right:-1rem;
-        top:-1rem;
+        top:0;
         padding-top:2px;
      }
 
@@ -4436,12 +4476,6 @@
         padding-bottom: 2rem;
     }
 
-    #footer img {
-        width: 90%;
-        height: auto;
-    }
-
-    
     #footer .social-icons a {
         margin-top: 0;
         margin-right: 10px;
@@ -4700,7 +4734,7 @@
     }
 
       .menu-filter{
-        width:40%;
+        width:35%;
         height: auto;
     }
 
@@ -4721,14 +4755,14 @@
   
       #content .cara_belanja h5{
           font-weight: 900;
-          font-size: 15px;
-          margin-right:-2.5rem;
+          font-size: 13px;
+          margin-right:-1rem;
           
       }
   
       #content .cara_belanja p{
-          margin-left:-2rem;
-          margin-right:-2.5rem;
+          margin-left:-3rem;
+          margin-right:-1rem;
           font-size: 10px;
           
       }
@@ -4789,10 +4823,10 @@
         margin-left: 3px;
         margin-right: 0;
         margin-bottom:10px;
-        font-size: 8px;
+        font-size: 6px;
         left:-1rem;
         right:-1rem;
-        top:-1rem;
+        top:0;
         padding-top:2px;
      }
 
@@ -4865,12 +4899,6 @@
         padding-bottom: 2rem;
     }
 
-    #footer img {
-        width: 90%;
-        height: auto;
-    }
-
-    
     #footer .social-icons a {
         margin-top: 0;
         margin-right: 10px;
@@ -5129,7 +5157,7 @@
     }
 
       .menu-filter{
-        width:40%;
+        width:30%;
         height: auto;
     }
 
@@ -5143,21 +5171,22 @@
     }
 
     #content .cara_belanja img{
-        width:60px;
+        width:50px;
         height:auto;
         margin-left:-10px;
       }
   
       #content .cara_belanja h5{
           font-weight: 900;
-          font-size: 15px;
-          margin-right:-2.5rem;
+          font-size: 12px;
+          margin-right:-1rem;
+          margin-left:-2rem;
           
       }
   
       #content .cara_belanja p{
           margin-left:-2rem;
-          margin-right:-2.5rem;
+          margin-right:-1rem;
           font-size: 10px;
           
       }
@@ -5215,13 +5244,13 @@
     }
 
     .button-collapse{
-        margin-left: 3px;
+        margin-left: 2px;
         margin-right: 0;
         margin-bottom:10px;
-        font-size: 6px;
+        font-size: 4px;
         left:-1rem;
         right:-1rem;
-        top:-1rem;
+        top:0;
         padding-top:2px;
      }
 
@@ -5294,12 +5323,6 @@
         padding-bottom: 2rem;
     }
 
-    #footer img {
-        width: 90%;
-        height: auto;
-    }
-
-    
     #footer .social-icons a {
         margin-top: 0;
         margin-right: 10px;

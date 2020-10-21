@@ -21,7 +21,7 @@
                     </div>
                     <div class="col-6  col-md-4 card-img-top">
                         <h5 class="card-title">1. Cari Produk</h5>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p>
+                        <p>Terdapat banyak pilihan produk, dan dapat dilihat dan dicari di halaman utama dan category.</p>
                     </div>
 
                     <div class="col-6 col-md-2 card-img-top">
@@ -29,7 +29,8 @@
                     </div>
                     <div class="col-6 col-md-4 card-img-top">
                         <h5 class="card-title">2. Masukkan Dalam Keranjang Belanja</h5>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p>
+                        <p>Bila sudah menemukannya, masukkan pilihan produk yang kamu
+                            butuhkan dengan menekan tombol (+) pada bagian bawah.</p>
                     </div>
 
                     <div class="col-6 col-md-2 card-img-top">
@@ -37,7 +38,8 @@
                     </div>
                     <div class="col-6 col-md-4 card-img-top">
                         <h5 class="card-title">3. Isi Data</h5>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p>
+                        <p>Proses bisa kamu lanjutkan dengan mengisi data diri. Lalu kamu konfirmasikan daftar ini di halaman Konfirmasi Pemesanan sebelum kamu
+                            mengirimkan kepada admin Ice Gentong.</p>
                     </div>
 
                     <div class="col-6 col-md-2 card-img-top">
@@ -45,7 +47,9 @@
                     </div>
                     <div class="col-6 col-md-4 card-img-top">
                         <h5 class="card-title">4. Konfirmasi Via  Whatsapp</h5>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p>
+                        <p>Bila sudah dipastikan, tinggal tekan tombol Kirim.
+                            Order yang kamu masukkan akan secara otomatis kami buatkan dan kamu tinggal
+                            menyampaikannya kepada admin WhatsApp kami.</p>
                     </div>
                
                 

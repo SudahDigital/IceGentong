@@ -175,7 +175,6 @@
                     </button>
                    
                     <a class="navbar-brand nav-center" href="{{ url('/') }}">
-                    
                         <img src="{{ asset('assets/image/ecim-gentong.png') }}" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy">
                     </a>
                     <form action="{{route('search.index')}}" class="form-inline my-2 my-lg-0 ml-auto d-none d-md-inline-block">
@@ -224,8 +223,6 @@
         </div>
     </div>
     
-    
-
     <div class="overlay"></div>
 
     <!-- Modal -->

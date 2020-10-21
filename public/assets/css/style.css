@@ -173,7 +173,7 @@ a:focus {
 
 .navbar .navbar-brand img {
    width:200px;
-   height:auto;
+   height:90px;
 }
 
 .navbar-btn {
@@ -704,8 +704,6 @@ a.register:hover {
     animation-duration: 2s;
 }
 
-
-
 #content .item_product{
   width:90%; 
   padding:20px; 
@@ -734,13 +732,13 @@ a.register:hover {
 }
 
 #content .cara_belanja img{
-  width:75%; 
+  width:90%; 
   height: auto;
  }
 
 #content .cara_belanja h5{
   font-family: Open Sans;
-  font-size: 18px;
+  font-size: 50px;
   font-weight: 800;
   margin-left:-2rem;
   font-stretch: normal;
@@ -776,6 +774,7 @@ padding-bottom: 0px;
 padding-top:10px;
 height: 150px;
 }
+
 
 #i-kontak {
   font-size: 5em;
