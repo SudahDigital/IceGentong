@@ -67,9 +67,11 @@
                 <li>
                     <a href="{{URL::route('contact')}}">Kontak Kami</a>
                 </li>
+                <!--
                 <li>
                     <a href="{{URL::route('riwayat_pemesanan')}}">Riwayat Pesanan</a>
                 </li>
+                -->
             </ul>
 
              @if(\Auth::user())
