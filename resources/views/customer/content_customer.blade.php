@@ -378,7 +378,7 @@
             </div>
             <div class="modal-footer">
             <input type="hidden" name="id" value="{{$item !==null ? $item->id : ''}}"/>
-                <button type="submit" class="btn button_add_to_cart"  style="background-color: #4AC959;"><i class="fab fa-whatsapp" style="font-weight: bold;"></i> {{__('Pesan') }}</button>
+                <button type="submit" class="btn button_add_to_cart" onclick="pesan_wa()"  style="background-color: #4AC959;"><i class="fab fa-whatsapp" style="font-weight: bold;"></i> {{__('Pesan') }}</button>
             </div>
             </form>
         </div>
@@ -387,6 +387,27 @@
     </div>
 
     <script type='text/javascript'>
+        function pesan_wa(){
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var address = document.getElementById("address").value;
+            var phone = document.getElementById("phone").value;
+            if (name != "" && email!="" && address !="" && phone !="") {
+                Swal.fire({
+                    title: 'Memesan',
+                    text: "Anda melakukan pesanan melalui whatsapp",
+                    icon: 'success',
+                    showCancelButton: false,
+                    confirmButtonText: "Ok",
+                    confirmButtonColor: '#4db849'
+                    }).then(function(){ 
+                        location.reload();
+                    });
+                }else{
+                    alert('Anda harus mengisi data dengan lengkap !');
+                }
+        }
+
         function button_minus(id)
         {
             var jumlah = $('#jmlbrg_'+id).val();

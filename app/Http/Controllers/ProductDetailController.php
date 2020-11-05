@@ -29,7 +29,7 @@ class ProductDetailController extends Controller
         $item_name = DB::table('orders')
                     ->join('order_product','order_product.order_id','=','orders.id')
                     ->where('session_id','=',"$session_id")
-                    ->whereNull('username')
+                    ->whereNotNull('orders.username')
                     ->first();
         
         $total_item = DB::table('orders')
