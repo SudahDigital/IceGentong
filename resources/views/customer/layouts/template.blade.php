@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
     <title>Ice-Gentong</title>
 
     <link rel="icon" href="{{ asset('assets/image/logo-nav.png')}}" type="image/png" sizes="16x16">
@@ -26,62 +25,40 @@
       integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V"
       crossorigin="anonymous"
     />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <style type="text/css">
-        .hidden {
-            margin-top: 0px;
-            height: 0px;
-            -webkit-transition: height 0.5s linear;
-               -moz-transition: height 0.5s linear;
-                -ms-transition: height 0.5s linear;
-                 -o-transition: height 0.5s linear;
-                    transition: height 0.5s linear;
+        .preloader{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background-color: #fff;
         }
 
-        .hidden.open {
-             height: 500px;
-             -webkit-transition: height 0.5s linear;
-                -moz-transition: height 0.5s linear;
-                 -ms-transition: height 0.5s linear;
-                  -o-transition: height 0.5s linear;
-                     transition: height 0.5s linear;
+        .preloader .loading {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            font: 14px arial;
         }
-        .scroll { 
-                /*height: 500px; */
-                overflow-x: hidden; 
-                overflow-y: auto; 
-                text-align:justify; 
-            } 
-        .proses_to_chart_slide{
-            position:fixed;
-            bottom: 10px;
-            padding: 10px;
-            display: none;
-        }
-        /*
-        @media screen and (max-width: 600px) {
-            .nav-center {
-                position: absolute;
-                left: 40%;
-            }
-        }
-       
-        @media screen and (max-width: 768px) {
-            .nav-center {
-                position: absolute;
-                left: 45%;
-            }
-        }
-        
-        @media screen and (max-width: 1920px) {
-            .nav-center {
-                position: absolute;
-                left: 50%;
-            }
-        }*/
     </style>
-
+    <script>
+        $(document).ready(function(){
+          $(".preloader").fadeOut();
+        })
+    </script>
 </head>
 <body>
+    
+    <div class="preloader" id="preloader">
+        <div class="loading">
+          <img src="{{ asset('assets/image/preload.gif') }}" width="80">
+          <p style="font-weight:900;line-height:2;color:#6a3137;margin-left: -10%;">Harap Tunggu</p>
+        </div>
+    </div>
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
@@ -168,7 +145,6 @@
         </nav>
         
         <div id="content">
-
             <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="z-index: 1.5;">
                 <div class="container-fluid">
                     <button type="button" id="sidebarCollapse" class="btn button-burger-menu">
@@ -196,12 +172,12 @@
             <!-- BANNER -->
             <div role="main" style="margin-top: 5rem;">
                 <div id="bannerSlide" class="carousel slide" data-ride="carousel" >
-                    <!-- Indicators -->
+                    <!-- Indicators 
                     <ul class="carousel-indicators">
                         <li data-target="#bannerSlide" data-slide-to="0" class="active"></li>
-                        <!-- <li data-target="#bannerSlide" data-slide-to="1"></li>
-                        <li data-target="#bannerSlide" data-slide-to="2"></li> -->
-                    </ul>
+                         <li data-target="#bannerSlide" data-slide-to="1"></li>
+                        <li data-target="#bannerSlide" data-slide-to="2"></li> 
+                    </ul>-->
                     
                     <!-- The slideshow -->
                     <div class="carousel-inner">
@@ -210,13 +186,14 @@
                         </div>
                     </div>
                     
-                    <!-- Left and right controls -->
+                    <!-- Left and right controls 
                     <a class="carousel-control-prev" href="#bannerSlide" data-slide="prev">
                         <span class="carousel-control-prev-icon"></span>
                     </a>
                     <a class="carousel-control-next" href="#bannerSlide" data-slide="next">
                         <span class="carousel-control-next-icon"></span>
                     </a>
+                    -->
                 </div>
             </div>    
                
@@ -263,6 +240,7 @@
     <script src="{{ asset('assets/js/main.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>-->
+    
     <script type="text/javascript">
     
     $(document).ready(function() {  

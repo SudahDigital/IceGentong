@@ -27,17 +27,12 @@
 
 // list product
 
-
+/*
 function button_minus(id)
 {
     var jumlah = $('#'+id).val();
-    if(jumlah = 1){
-      var jumlah = parseInt(jumlah) - 2;
-    }else{
-      var jumlah = parseInt(jumlah) - 1;
-    }
+    var jumlah = parseInt(jumlah) - 1;
     
-
     // AMBIL NILAI HARGA
     var harga = $('#harga'+id).val();;
     var harga = parseInt(harga) * jumlah;
@@ -67,11 +62,8 @@ function button_minus(id)
 function button_plus(id)
 {
     var jumlah = $('#'+id).val();
-    if(jumlah = 1){
-      var jumlah = 1;
-    }else{
-      var jumlah = parseInt(jumlah) + 1;
-    }
+    var jumlah = parseInt(jumlah) + 1;
+    
     
 
     // AMBIL NILAI HARGA
@@ -99,7 +91,7 @@ function button_plus(id)
       $('#show_'+id).html(jumlah)
       $('#productPrice'+id).text(harga);
     }
-}
+}*/
 
 function button_minus_detail(id)
 {

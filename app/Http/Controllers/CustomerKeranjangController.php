@@ -95,6 +95,42 @@ class CustomerKeranjangController extends Controller
         return redirect()->back()->with('status','Product berhasil dimasukan kekeranjang');
     }
 
+    public function min_order(Request $request){  
+        $id = $request->header('User-Agent'); 
+        $id_product = $request->get('Product_id');
+        $quantity=$request->get('quantity');
+        $price=$request->get('price');
+        $cek_order = Order::where('session_id','=',"$id")
+        ->where('status','=','SUBMIT')->whereNull('username')->first();
+        if($cek_order !== null){
+            $order_product = order_product::where('order_id','=',$cek_order->id)
+            ->where('product_id','=',$id_product)->first();
+            if(($order_product!== null) AND ($order_product->quantity > 1)){
+                $order_product->quantity -= $quantity;
+                $order_product->save();
+                $cek_order->total_price -= $price * $quantity;
+                $cek_order->save();
+                return redirect()->back()->with('status','Product berhasil dikurang dari keranjang');
+                }else if(($order_product !== null) and ($order_product->quantity <= 1)){
+                        $delete = DB::table('order_product')->where('id', $order_product->id)->delete();
+                        if($delete){
+                            $cek_order_product = order_product::where('order_id','=',$cek_order->id)->count();
+                            if($cek_order_product < 1){
+                                $delete_order = DB::table('orders')->where('id', $cek_order->id)->delete();
+                            }
+                            else{
+                                $cek_order->total_price -= $price * $quantity;
+                                $cek_order->save();
+                            }
+                            return redirect()->back()->with('status','Product berhasil dihapus dari keranjang');
+                        }
+                        
+                    }
+        }
+        return redirect()->back();
+       
+    }
+
     public function tambah(Request $request){
             
         $id = $request->get('id');
@@ -121,7 +157,20 @@ class CustomerKeranjangController extends Controller
         $order_product = order_product::findOrFail($id);
 
         if($order_product->quantity < 2){
-            return redirect()->back(); 
+            $delete = DB::table('order_product')->where('id', $id)->delete();   
+            if($delete)
+            {   
+                $cek_order_product = order_product::where('order_id','=',$order_id)->first();
+                if($cek_order_product == null){
+                    DB::table('orders')->where('id', $order_id)->delete();
+                }
+                else{
+                        $order = Order::findOrFail($order_id);
+                        $order->total_price -= $request->get('price');
+                        $order->save();
+                    }
+                return redirect()->back()->with('status','Berhasil menghapus produk dari keranjang');
+            }
         }
         else{
 
@@ -132,9 +181,8 @@ class CustomerKeranjangController extends Controller
                 $order = Order::findOrFail($order_id);
                 $order->total_price -= $request->get('price');
                 $order->save();
+                return redirect()->back()->with('status','Berhasil mengurangi produk');
             }
-            return redirect()->back()->with('status','Berhasil mengurangi produk');
-
         } 
         
     }

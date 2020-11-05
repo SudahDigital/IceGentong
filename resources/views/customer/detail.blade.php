@@ -54,17 +54,43 @@
                                         </td>-->
                                         <!--<button class="btn btn-block button_add_to_cart respon" style="">Tambah</button>-->
                                         <td width="10%" align="right" valign="middle">
-                                             <a class="button_minus" onclick="button_minus('{{$product->id}}')" style=""><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                            <form method="post" action="{{ route('customer.keranjang.min_order') }}">
+                                                @csrf
+                                                <input type="hidden" name="Product_id" value="{{$product->id}}">
+                                                <input type="hidden" id="" name="quantity" value="1">
+                                                <input type="hidden" id="harga{{$product->id}}" name="price" value="{{$product->price}}">
+                                                <button class="btn button_minus" onclick="button_minus('{{$product->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                            </form>
                                         </td>
                                         <td width="10%" align="center" valign="middle">
-                                             <p id="show_{{$product->id}}" class="d-inline show" style="">0</p>
+                                            <?php 
+                                            $user = \Request::header('User-Agent'); 
+                                            $view_pesan = \DB::select("SELECT orders.session_id, orders.status, orders.username, 
+                                                        products.description, products.image, products.price, order_product.id,
+                                                        order_product.order_id,order_product.product_id,order_product.quantity
+                                                        FROM order_product, products, orders WHERE 
+                                                        orders.id = order_product.order_id AND order_product.product_id = $product->id AND 
+                                                        order_product.product_id = products.id AND orders.status = 'SUBMIT' 
+                                                        AND orders.session_id = '$user' AND orders.username IS NULL ");
+                                            $hitung = count($view_pesan);
+                                                if($hitung > 0){
+                                                    foreach ($view_pesan as $key => $k) {
+                                                    echo '<p id="show_'.$product->id.'" class="d-inline show" style="">'.$k->quantity.'</p>';
+                                                    echo '<input type="hidden" id="jmlbrg_'.$product->id.'" name="quantity" value="'.$k->quantity.'">';
+                                                    }
+                                                }
+                                                else{
+                                                    echo '<input type="hidden" id="jmlbrg_'.$product->id.'" name="quantity" value="0">';
+                                                    echo '<p id="show_'.$product->id.'" class="d-inline show" style="">0</p>';
+                                                }
+                                            ?>
                                         </td>
                                         <td width="10%" align="left" valign="middle">
                                             <form method="post" action="{{ route('customer.keranjang.simpan') }}">
                                                 @csrf
                                                 
                                                 <input type="hidden" name="Product_id" value="{{$product->id}}">
-                                                <input type="hidden" id="{{$product->id}}" name="quantity" value="1">
+                                                <input type="hidden" id="" name="quantity" value="1">
                                                 <input type="hidden" id="harga{{$product->id}}" name="price" value="{{$product->price}}">
                                                 <button class="btn button_plus" onclick="button_plus('{{$product->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                             </form> 
@@ -273,6 +299,71 @@
         </div>
     
         <script type='text/javascript'>
+            function button_minus(id)
+            {
+                var jumlah = $('#jmlbrg_'+id).val();
+                var jumlah = parseInt(jumlah) - 1;
+                
+                // AMBIL NILAI HARGA
+                var harga = $('#harga'+id).val();;
+                var harga = parseInt(harga) * jumlah;
+    
+                // UBAH FORMAT UANG INDONESIA
+                var	number_string = harga.toString();
+                var sisa 	= number_string.length % 3;
+                var rupiah 	= number_string.substr(0, sisa);
+                var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+    
+                if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+                }
+    
+                harga = "Rp " + rupiah;
+    
+                if (jumlah<0) {
+                alert('Jumlah Tidak Boleh Kurang dari nol')
+                } else {
+                $('#'+id).val(jumlah);
+                $('#show_'+id).html(jumlah);
+                //$('#productPrice'+id).text(harga);
+                }
+            }
+    
+            function button_plus(id)
+            {
+                var jumlah = $('#jmlbrg_'+id).val();
+                var jumlah = parseInt(jumlah) + 1;
+                
+                
+    
+                // AMBIL NILAI HARGA
+                var harga = $('#harga'+id).val();;
+                var harga = parseInt(harga) * jumlah;
+    
+                // UBAH FORMAT UANG INDONESIA
+                var	number_string = harga.toString();
+                var sisa 	= number_string.length % 3;
+                var rupiah 	= number_string.substr(0, sisa);
+                var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+    
+                if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+                }
+    
+                harga = "Rp " + rupiah;
+                
+                // alert(jumlah)
+                if (jumlah < 0) {
+                alert('Jumlah Tidak Boleh kurang dari nol')
+                } else {
+                $('#'+id).val(jumlah)
+                $('#show_'+id).html(jumlah)
+                //$('#productPrice'+id).text(harga);
+                }
+            }
+            
            function button_minus_kr(id)
             {
                 var jumlah = $('#jmlkr_'+id).val();
@@ -298,7 +389,7 @@
     
                 harga = "Rp " + rupiah;
     
-                if (jumlah<1) {
+                if (jumlah<0) {
                 alert('Jumlah order minimal 1, jika ingin mengurangi order silahkan delete..')
                 } else {
                 $('#jmlkr_'+id).val(jumlah);

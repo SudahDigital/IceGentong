@@ -19,5 +19,5 @@ class Order extends Model
         return $total_quantity;
     }
 
-        
+      
 }
