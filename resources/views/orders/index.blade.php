@@ -50,13 +50,13 @@
 		<thead>
 			<tr>
 				<th>No</th>
-				<th>Invoice number</th>
 				<th>Status</th>
-				<th>Buyer</th>
+				<th width="25%">Buyer</th>
+				<th width="20%">Order Product</th>
 				<th>Total quantity</th>
 				<th>Order date</th>
 				<th>Total price</th>
-				<th width="20%">Action</th>
+				<th width="5%">Action</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -65,7 +65,6 @@
 			<?php $no++;?>
 			<tr>
 				<td>{{$no}}</td>
-				<td>{{$order->invoice_number}}</td>
 				<td>
 					@if($order->status == "SUBMIT")
 					<span class="badge bg-warning text-light">{{$order->status}}</span>
@@ -77,15 +76,24 @@
 					<span class="badge bg-dark text-light">{{$order->status}}</span>
 					@endif
 				</td>
-				<td>{{$order->username}} <br>
-					<small>{{$order->email}}</small>
+				<td><small><b>Name :</b> {{$order->username}}</small><br>
+					<small><b>Email :</b> {{$order->email}}</small><br>
+					<small><b>Addr :</b> {{$order->address}}</small><br>
+					<small><b>Phone :</b> {{$order->phone}}</small>
+				</td>
+				<td align="left">
+					<ul>
+						@foreach($order->products as $p)
+						<li><small>{{$p->description}} <b>({{$p->pivot->quantity}})</b></small></li>
+						@endforeach
+					</ul>
 				</td>
 				<td>{{$order->totalQuantity}} pc (s)</td>
 				<td>{{$order->created_at}}</td>
 				<td>{{number_format($order->total_price)}}</td>
 				
 				<td>
-					<a class="btn btn-info btn-xs" href="{{route('orders.edit',[$order->id])}}"><i class="material-icons">edit</i></a>&nbsp;
+					<a class="btn btn-info btn-xs" href="{{route('orders.edit',[$order->id])}}">Details</a>&nbsp;
 				</td>
 			</tr>
 			@endforeach

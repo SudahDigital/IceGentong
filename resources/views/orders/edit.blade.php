@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title') Edit Order @endsection
+@section('title') Details Order @endsection
 @section('content')
 
 	@if(session('status'))
@@ -11,19 +11,23 @@
     <form id="form_validation" method="POST" action="{{route('orders.update', [$order->id])}}">
         @csrf
         <input type="hidden" name="_method" value="PUT">
-
+        <!--
         <div class="form-group form-float">
             <div class="form-line">
                 <label class="form-label">Invoice number</label>
-                <input type="text" class="form-control" autocomplete="off" value="{{$order->invoice_number}}" disabled>
+                <input type="text" class="form-control" autocomplete="off" value="" disabled>
             </div>
         </div>
-
+        -->
         <div class="form-group form-float">
-            <div class="form-line">
-                <label class="form-label">Buyer</label>
-                <input type="text" class="form-control" autocomplete="off" value="{{$order->username}}" disabled>
-            </div>
+            <label class="form-label">Buyer</label>
+                <ul>
+                    <li><b>Name :</b> {{$order->username}}</li>
+                    <li><b>Email :</b> {{$order->email}}</li>
+                    <li><b>Addr :</b> {{$order->address}}</li>
+                    <li><b>Phone :</b> {{$order->phone}}</li>
+                </ul>
+                    <!--<input type="text" class="form-control" autocomplete="off" value="" disabled>-->
         </div>
 
         <div class="form-group form-float">
