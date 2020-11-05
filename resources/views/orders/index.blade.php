@@ -51,8 +51,8 @@
 			<tr>
 				<th>No</th>
 				<th>Status</th>
-				<th width="25%">Buyer</th>
-				<th width="20%">Order Product</th>
+				<th width="30%">Buyer</th>
+				<th width="20%" style="padding-left: 5%;">Order Product</th>
 				<th>Total quantity</th>
 				<th>Order date</th>
 				<th>Total price</th>
@@ -82,7 +82,7 @@
 					<small><b>Phone :</b> {{$order->phone}}</small>
 				</td>
 				<td align="left">
-					<ul>
+					<ul style="margin-left: 0;">
 						@foreach($order->products as $p)
 						<li><small>{{$p->description}} <b>({{$p->pivot->quantity}})</b></small></li>
 						@endforeach
