@@ -216,7 +216,7 @@
                             <h5 id="total_kr_{{$item->total_price}}">Rp.
                                 {{number_format($item->total_price)}}
                                 @else
-                            <h5 id="total_kr_0">Rp.
+                            <h5 id="total_kr_0">Rp. 0
                                 {{''}}
                                 @endif
                             
