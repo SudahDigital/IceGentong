@@ -35,6 +35,8 @@
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="{{asset('bsb/css/themes/all-themes.css')}}" rel="stylesheet" />
+
+    <link href="netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 </head>
 
 <body class="theme-cyan">
@@ -120,12 +122,16 @@
                                 
                                     <form action="{{route('logout')}}" method="POST">
                                     @csrf   
-                                        <button class="btn btn-default btn-lg">
+                                        <button class="btn btn-default ">
                                                 &nbsp;<i class="material-icons">input</i>
                                                 &nbsp;Sign Out
                                         </button>
                                     </form>
-                                
+                                    <a href="{{route('changepass')}}" class="btn btn-default">
+                                        &nbsp;<i class="material-icons">settings</i>
+                                        &nbsp;Change Password
+                                    </a>
+                                   
                                 
                             </ul>
                         </div>

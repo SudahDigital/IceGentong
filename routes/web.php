@@ -44,6 +44,8 @@ Route::get('/admin', function () {
     });
 
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/users/change_password', 'changePasswordController@index')->name('changepass');
+    Route::post('/users/post/change_password', 'changePasswordController@changepassword')->name('post.changepass');
     Route::resource('users','UserController');
     Route::get('/categories/trash', 'CategoryController@trash')->name('categories.trash');
     Route::get('/categories/{id}/restore', 'CategoryController@restore')->name('categories.restore');
