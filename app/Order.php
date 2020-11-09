@@ -8,7 +8,7 @@ class Order extends Model
 {
     
     public function products(){
-        return $this->belongsToMany('App\product','order_product','order_id','product_id')->withPivot('quantity');
+        return $this->belongsToMany('App\product')->withPivot('quantity','id');
     }
 
     public function getTotalQuantityAttribute(){
@@ -19,5 +19,4 @@ class Order extends Model
         return $total_quantity;
     }
 
-      
 }

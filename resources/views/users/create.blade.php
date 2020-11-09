@@ -6,8 +6,8 @@
 		<div class="alert alert-success">
 			{{session('status')}}
 		</div>
-	@endif
-	<!-- Form Create -->
+    @endif
+    <!-- Form Create -->
     <form id="form_validation" method="POST" enctype="multipart/form-data" action="{{route('users.store')}}">
     	@csrf
         <div class="form-group form-float">
@@ -16,22 +16,21 @@
                 <label class="form-label">Name</label>
             </div>
         </div>
-                                
+        <!--                        
         <div class="form-group form-float">
             <div class="form-line">
                 <input type="text" class="form-control" name="username" autocomplete="off" required>
                 <label class="form-label">UserName</label>
             </div>
         </div>
-                        
+        -->               
 		<h2 class="card-inside-title">Roles</h2>
         <div class="form-group">
-            <input type="radio" value="ADMIN" name="roles" id="ADMIN" checked>
-			<label for="ADMIN">Administrator</label>
-			<!--				&nbsp;
-            <input type="radio" value="CUSTOMER" name="roles" id="CUSTOMER">
-            <label for="CUSTOMER">Customer</label>
-            -->
+            <input class="form-control {{$errors->first('roles') ? "is-invalid" : "" }}" type="radio" name="roles[]" id="ADMIN" value="SUPERADMIN"> <label for="ADMIN">Super Admin</label>
+            <input class="form-control {{$errors->first('roles') ? "is-invalid" : "" }}" type="radio" name="roles[]" id="STAFF" value="ADMIN"> <label for="STAFF">Admin</label>
+            <div class="invalid-feedback">
+                {{$errors->first('roles')}}
+            </div>
         </div>
 
         <div class="form-group form-float">
@@ -64,20 +63,42 @@
 
         <div class="form-group form-float">
             <div class="form-line">
-                <input type="password" class="form-control" name="password" required>
-                <label class="form-label">Password</label>
+                <input type="password" class="form-control {{$errors->first('password') ? "is-invalid" : ""}}" name="password" id="password" required>
+                <label for="password" class="form-label">Password</label>
+                <div class="invalid-feedback">
+                    {{$errors->first('password')}}
+                </div>
             </div>
         </div>
 
         <div class="form-group form-float">
             <div class="form-line">
-                <input type="password" class="form-control" name="password_confirmation" required>
-                <label class="form-label">Password Confirmation</label>
+                <input type="password" class="form-control {{$errors->first('password_confirmation') ? "is-invalid" : ""}}" name="password_confirmation" id="password_confirmation" required>
+                <label for="password_confirmation" class="form-label">Password Confirmation</label>
+                <div class="invalid-feedback">
+                    {{$errors->first('password_confirmation')}}
+                </div>
             </div>
         </div>
                         
-        <button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
+        <button id="btnSubmit" class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
     </form>
     <!-- #END#  -->		
 
+@endsection
+@section('footer-scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmit").click(function () {
+            var password = $("#password").val();
+            var confirmPassword = $("#password_confirmation").val();
+            if (password != confirmPassword) {
+                Swal.fire('Passwords Do not Match');
+                return false;
+            }
+            return true;
+        });
+    });
+</script>
 @endsection

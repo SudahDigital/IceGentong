@@ -93,7 +93,8 @@
 				<td>{{number_format($order->total_price)}}</td>
 				
 				<td>
-					<a class="btn btn-info btn-xs" href="{{route('orders.edit',[$order->id])}}">Details</a>&nbsp;
+					<a class="btn btn-info btn-xs btn-block" href="{{route('orders.detail',[$order->id])}}">Details</a>&nbsp;
+					<a style="margin-top:0;" class="btn btn-success btn-xs btn-block" href="{{route('order_edit',[$order->id])}}">Edit</a>&nbsp;
 				</td>
 			</tr>
 			@endforeach

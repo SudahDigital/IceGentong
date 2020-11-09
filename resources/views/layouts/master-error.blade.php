@@ -70,141 +70,11 @@
     </div>
     <!-- #END# Search Bar -->
     <!-- Top Bar -->
-    <nav class="navbar">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
-                <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="#">ICE GENTONG</a>
-            </div>
-            <div class="collapse navbar-collapse" id="navbar-collapse">
-                <!--
-                <ul class="nav navbar-nav navbar-right">
-                    Call Search 
-                    <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
-                     #END# Call Search
-                    
-                    <li class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li>
-                </ul>
-                -->
-            </div>
-        </div>
-    </nav>
+    
     <!-- #Top Bar -->
     <section>
         <!-- Left Sidebar -->
-        <aside id="leftsidebar" class="sidebar">
-            <!-- User Info -->
-            <div class="user-info">
-                <div class="image">
-                    @if(\Auth::user())
-                    <img src="{{asset('storage/'.Auth::user()->avatar)}}" width="48" height="48" alt="User" />
-                    @endif
-                </div>
-                <div class="info-container">
-                    @if(\Auth::user())
-                    
-                        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}</div>
-                        <div class="email">{{Auth::user()->email}}</div>
-                        <div class="btn-group user-helper-dropdown">
-                            <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
-                            <ul class="dropdown-menu pull-right">
-                                <!--
-                                <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
-                                <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
-                                <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
-                                <li role="separator" class="divider"></li>
-                                -->
-                                
-                                    <form action="{{route('logout')}}" method="POST">
-                                    @csrf   
-                                        <button class="btn btn-default btn-lg">
-                                                &nbsp;<i class="material-icons">input</i>
-                                                &nbsp;Sign Out
-                                        </button>
-                                    </form>
-                                
-                                
-                            </ul>
-                        </div>
-                    
-                    @endif
-                </div>
-            </div>
-            <!-- #User Info -->
-            <!-- Menu -->
-            <div class="menu">
-                <ul class="list">
-                    <li class="header">MAIN NAVIGATION</li>
-                    <li class="{{ request()->routeIs('home') ? 'active' : '' }}">
-                        <a href="{{route('home')}}">
-                            <i class="material-icons">home</i>
-                            <span>Home</span>
-                        </a>
-                    </li>
-                    
-                    <li class="{{request()->routeIs('users.index') ? 'active' : '' }}">
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">people</i>
-                            <span>Manage Users</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li class="{{request()->routeIs('users.index') ? 'active' : '' }}">
-                                <a href="{{route('users.index')}}">List User</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="{{request()->routeIs('categories.index') ? 'active' : ''}}">
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">label</i>
-                            <span>Manage Categories</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li class="{{request()->routeIs('categories.index') ? 'active' : '' }}">
-                                <a href="{{route('categories.index')}}">Categories</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="{{request()->routeIs('products.index') ? 'active' : ''}}">
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">local_drink</i>
-                            <span>Manage Products</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li class="{{request()->routeIs('products.index') ? 'active' : '' }}">
-                                <a href="{{route('products.index')}}">Products</a>
-                            </li>
-                        </ul>
-                        
-                    </li>
-
-                    <li class="{{request()->routeIs('orders.index') ? 'active' : ''}}">
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">shopping_cart</i>
-                            <span>Manage Orders</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li class="{{request()->routeIs('orders.index') ? 'active' : '' }}">
-                                <a href="{{route('orders.index')}}">Orders</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <!-- #Menu -->
-            <!-- Footer -->
-            <div class="legal">
-                <div class="copyright">
-                    &copy; 2020 <a href="javascript:void(0);"> Ice Gentong</a>
-                </div>
-                
-            </div>
-            <!-- #Footer -->
-        </aside>
+        
         <!-- #END# Left Sidebar -->
         <!-- Right Sidebar -->
         <aside id="rightsidebar" class="right-sidebar">
@@ -353,18 +223,8 @@
 
     <section class="content">
         <div class="container-fluid">
-            <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="header">
-                            <h2><b>@yield('title')</b></h2>
-                        </div>
-                        <div class="body">   
-                            @yield('content')
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
+            @yield('content')
         </div>
     </section>
 
@@ -416,13 +276,7 @@
 
     <!-- Demo Js -->
     <script src="{{asset('bsb/js/demo.js')}}"></script>
-    <script>
-        window.setTimeout(function() {
-        $(".alert").fadeTo(500, 0).slideUp(500, function(){
-            $(this).remove(); 
-        });
-        }, 2000);
-    </script>
+    
     @yield('footer-scripts')
 </body>
 

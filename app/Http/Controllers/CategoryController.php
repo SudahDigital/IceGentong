@@ -8,9 +8,13 @@ use Illuminate\Support\Facades\Gate;
 
 class CategoryController extends Controller
 {   
-    public function __construct()
-    {
-        $this->middleware('auth');
+    public function __construct(){
+        $this->middleware(function($request, $next){
+            
+            if(Gate::allows('manage-categories')) return $next($request);
+
+            abort(403, 'Anda tidak memiliki cukup hak akses');
+        });
     }
     /**
      * Display a listing of the resource.
@@ -91,10 +95,10 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $name = $request->get('name');
-        $slug = $request->get('slug');
+        //$slug = $request->get('slug');
         $category = \App\Category::findOrFail($id);
         $category->name = $name;
-        $category->slug = $slug;
+        //$category->slug = $slug;
 
         if($request->file('image')){
             if($category->image_category && file_exists(storage_path('app/public/' .$category->image_category))){

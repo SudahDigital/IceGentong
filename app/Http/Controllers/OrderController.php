@@ -1,14 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Gate;
 
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
+    public function __construct(){
+        $this->middleware(function($request, $next){
+            
+            if(Gate::allows('manage-orders')) return $next($request);
+
+            abort(403, 'Anda tidak memiliki cukup hak akses');
+        });
     }
     /**
      * Display a listing of the resource.
@@ -17,7 +22,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = \App\Order::with('products')->whereNotNull('username')->get();//paginate(10);
+        $orders = \App\Order::with('products')->whereNotNull('username')
+        ->orderBy('id', 'DESC')->get();//paginate(10);
         return view('orders.index', ['orders' => $orders]);
     }
 
@@ -61,8 +67,7 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        $order = \App\Order::findOrFail($id);
-        return view('orders.edit', ['order' => $order]);
+        //
     }
 
     /**
@@ -80,7 +85,7 @@ class OrderController extends Controller
 
         $order->save();
       
-        return redirect()->route('orders.edit', [$order->id])->with('status', 'Order status succesfully updated');
+        return redirect()->route('orders.detail', [$order->id])->with('status', 'Order status succesfully updated');
     }
 
     /**
@@ -92,5 +97,11 @@ class OrderController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function detail($id)
+    {
+        $order = \App\Order::findOrFail($id);
+        return view('orders.detail', ['order' => $order]);
     }
 }

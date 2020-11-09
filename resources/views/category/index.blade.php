@@ -44,7 +44,6 @@
 			<tr>
 				<th>No</th>
 				<th>Name</th>
-				<th>Slug</th>
 				<th>Image</th>
 				<th width="20%">Actions</th>
 			</tr>
@@ -56,7 +55,6 @@
 			<tr>
 				<td>{{$no}}</td>
 				<td>{{$c->name}}</td>
-				<td>{{$c->slug}}</td>
 				<td>@if($c->image_category)
 					<img src="{{asset('storage/'.$c->image_category)}}" width="50px" height="50px" />
 					@else
@@ -107,13 +105,14 @@
 		                           <img src="{{asset('storage/'.$c->image_category)}}" width="128px"/>
 		                           @else
 		                           No Image
-		                           @endif
+								   @endif
+								   <!--
 		                           <br/>
 		                           <br/>
 		                           <b>Category Slug:</b>
 		                           <br/>
 		                           {{$c->slug}}
-		                           
+		                           -->
 		                        </div>
 		                        <div class="modal-footer">
 		                        	<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Close</button>

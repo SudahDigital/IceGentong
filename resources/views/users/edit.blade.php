@@ -18,13 +18,14 @@
             </div>
         </div>
         
+        <!--
         <div class="form-group form-float">
             <div class="form-line">
                 <input type="text" class="form-control" value="{{$user->username}}" name="username" autocomplete="off" required disabled>
                 <label class="form-label">UserName</label>
             </div>
         </div>
-
+        -->
         <h2 class="card-inside-title">Status</h2>
         <div class="form-group">
             <input type="radio" value="ACTIVE" name="status" id="ACTIVE" {{$user->status == 'ACTIVE' ? 'checked' : ''}}>
@@ -36,11 +37,28 @@
 
         <h2 class="card-inside-title">Roles</h2>
         <div class="form-group">
-            <input type="radio" value="ADMIN" name="roles" id="ADMIN" {{$user->roles == 'ADMIN' ? 'checked' : ''}}>
-			<label for="ADMIN">Administrator</label>
-			<!--				&nbsp;
-            <input type="radio" value="CUSTOMER" name="roles" id="CUSTOMER" {{$user->roles == 'CUSTOMER' ? 'checked' : ''}}>
-			<label for="CUSTOMER">Customer</label>-->
+            <input 
+            type="radio"
+            {{in_array("SUPERADMIN", json_decode($user->roles)) ? "checked" : ""}} 
+            name="roles[]" 
+            class="form-control {{$errors->first('roles') ? "is-invalid" : "" }}"
+            id="ADMIN" 
+            value="SUPERADMIN"> 
+            <label for="ADMIN">Super Admin</label>
+
+            <input 
+            type="radio"
+            {{in_array("ADMIN", json_decode($user->roles)) ? "checked" : ""}} 
+            name="roles[]" 
+            class="form-control {{$errors->first('roles') ? "is-invalid" : "" }}"
+            id="STAFF" 
+            value="ADMIN"> 
+            <label for="STAFF">Admin</label>
+
+            <div class="invalid-feedback">
+                {{$errors->first('roles')}}
+            </div>
+            
         </div>
 
         <div class="form-group form-float">

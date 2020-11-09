@@ -42,7 +42,7 @@ Route::get('/admin', function () {
     $categories = \App\Category::get();
     return view('auth.login',['categories'=>$categories]);
     });
-Route::group(['middleware' => ['auth','checkRole:ADMIN']],function(){
+
     Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('users','UserController');
     Route::get('/categories/trash', 'CategoryController@trash')->name('categories.trash');
@@ -54,8 +54,11 @@ Route::group(['middleware' => ['auth','checkRole:ADMIN']],function(){
     Route::get('/products/{id}/restore', 'productController@restore')->name('products.restore');
     Route::delete('/products/{products}/delete-permanent','productController@deletePermanent')->name('products.delete-permanent');
     Route::resource('products', 'productController');
+    Route::get('/orders/{id}/edit_order', 'OrderEditController@edit')->name('order_edit');
+    Route::post('/orders/edit_order_update', 'OrderEditController@update')->name('order_edit_update');
+    Route::get('/orders/{id}/detail', 'OrderController@detail')->name('orders.detail');
     Route::resource('orders', 'OrderController');
-});
+
 
 
     

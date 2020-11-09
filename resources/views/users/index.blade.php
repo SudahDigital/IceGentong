@@ -36,7 +36,6 @@
 			<tr>
 				<th>No</th>
 				<th>Name</th>
-				<th>UserName</th>
 				<th>Email</th>
 				<th>Avatar</th>
 				<th>Status</th>
@@ -50,7 +49,7 @@
 			<tr>
 				<td>{{$no}}</td>
 				<td>{{$u->name}}</td>
-				<td>{{$u->username}}</td>
+				
 				<td>{{$u->email}}</td>
 				<td>@if($u->avatar)
 					<img src="{{asset('storage/'.$u->avatar)}}" width="50px" height="50px" />
