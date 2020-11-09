@@ -62,7 +62,7 @@ class UserController extends Controller
     {
         $validation = \Validator::make($request->all(),[
             "name" => "required|min:5|max:100",
-            "username" => "required|min:5|max:20|unique:users",
+            //"username" => "required|min:5|max:20|unique:users",
             "roles" => "required",
             "address" => "required|min:20|max:200",
             "avatar" => "required",
