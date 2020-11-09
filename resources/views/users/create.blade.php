@@ -7,6 +7,11 @@
 			{{session('status')}}
 		</div>
     @endif
+    @if(session('error'))
+		<div class="alert alert-success">
+			{{session('error')}}
+		</div>
+    @endif
     <!-- Form Create -->
     <form id="form_validation" method="POST" enctype="multipart/form-data" action="{{route('users.store')}}">
     	@csrf

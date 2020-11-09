@@ -83,8 +83,12 @@ class UserController extends Controller
         $new_user->avatar =$file;
         }
         $new_user->save();
+        if ( $new_user->save()){
+            return redirect()->route('users.create')->with('status','User Succsessfully Created');
+        }else{
+            return redirect()->route('users.create')->with('error','User Not Succsessfully Created');
+        }
         
-        return redirect()->route('users.create')->with('status','User Succsessfully Created');
        
         
         
