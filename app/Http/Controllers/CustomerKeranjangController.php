@@ -89,7 +89,7 @@ class CustomerKeranjangController extends Controller
             }
 
         }
-            
+        //return response()->json(['return' => 'some data']);    
         //$order->products()->attach($request->get('Product_id'));
         
         return redirect()->back()->with('status','Product berhasil dimasukan kekeranjang');
@@ -133,7 +133,7 @@ class CustomerKeranjangController extends Controller
 
     public function tambah(Request $request){
             
-        $id = $request->get('id');
+        $id = $request->get('id_detil');
         $order_id = $request->get('order_id');
         $order_product = order_product::findOrFail($id);
         $order_product->quantity += 1;
@@ -152,7 +152,7 @@ class CustomerKeranjangController extends Controller
 
     public function kurang(Request $request){
             
-        $id = $request->get('id');
+        $id = $request->get('id_detil');
         $order_id = $request->get('order_id');
         $order_product = order_product::findOrFail($id);
 
@@ -242,5 +242,232 @@ class CustomerKeranjangController extends Controller
         
     }
 
-   
+    public function ajax_cart(Request $request)
+    {   
+        $session_id = $request->header('User-Agent');
+        $total_item = DB::table('orders')
+                    ->join('order_product','order_product.order_id','=','orders.id')
+                    ->where('session_id','=',"$session_id")
+                    ->whereNull('orders.username')
+                    ->count();
+        if ($total_item < 1){
+            echo '<div id="accordion">
+                    <div class="card fixed-bottom" style="">
+                        <div id="card-cart" class="card-header" >
+                            <table width="100%" style="margin-bottom: 40px;">
+                                <tbody>
+                                    <tr>
+                                        <td width="5%" valign="middle">
+                                            <div id="ex4">
+                                        
+                                                <span class="p1 fa-stack fa-2x has-badge" data-count="0">
+                                            
+                                                    <!--<i class="p2 fa fa-circle fa-stack-2x"></i>-->
+                                                    <i class="p3 fa fa-shopping-cart " data-count="4b" style=""></i>
+                                                </span>
+                                            </div> 
+                                        </td>
+                                        <td width="25%" align="left" valign="middle">
+                                            <h5 id="total_kr_">Rp.0</h5>
+                                        </td>
+                                        <td width="5%" valign="middle" >
+                                        <a id="cv" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" class="collapsed">
+                                                <i class="fas fa-chevron-up" style=""></i>
+                                            </a>
+                                        </td>
+                                        <td width="33%" align="right" valign="middle">
+                                        
+                                        <h5>(0 Item)</h5>
+                                        
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="collapse-4" class="collapse" data-parent="#accordion" style="" >
+                            <div class="card-body" id="card-detail">
+                                <div class="col-md-12">
+                                
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>';
+        }
+        else
+        {
+        $session_id = $request->header('User-Agent');
+        $keranjang = DB::select("SELECT orders.session_id, orders.status, orders.username, 
+                    products.description, products.image, products.price, order_product.id,
+                    order_product.order_id,order_product.product_id,order_product.quantity
+                    FROM order_product, products, orders WHERE 
+                    orders.id = order_product.order_id AND 
+                    order_product.product_id = products.id AND orders.status = 'SUBMIT' 
+                    AND orders.session_id = '$session_id' AND orders.username IS NULL ");
+        $item = DB::table('orders')
+                    ->where('session_id','=',"$session_id")
+                    ->where('orders.status','=','SUBMIT')
+                    ->whereNull('orders.username')
+                    ->first();
+        $item_name = DB::table('orders')
+                    ->join('order_product','order_product.order_id','=','orders.id')
+                    ->where('session_id','=',"$session_id")
+                    ->whereNotNull('orders.username')
+                    ->first();
+        $item_price = $item->total_price;
+        echo 
+        '<div id="accordion">
+            <div class="card fixed-bottom" style="">
+                <div id="card-cart" class="card-header" >
+                    <table width="100%" style="margin-bottom: 40px;">
+                        <tbody>
+                            <tr>
+                                <td width="5%" valign="middle">
+                                    <div id="ex4">
+                                
+                                        <span class="p1 fa-stack fa-2x has-badge" data-count="'.$total_item.'">
+                                    
+                                            <!--<i class="p2 fa fa-circle fa-stack-2x"></i>-->
+                                            <i class="p3 fa fa-shopping-cart " data-count="4b" style=""></i>
+                                        </span>
+                                    </div> 
+                                </td>
+                                <td width="25%" align="left" valign="middle">
+                                    <h5 id="total_kr_">Rp.'.number_format(($item_price) , 0, ',', '.').'</h5>
+                                </td>
+                                <td width="5%" valign="middle" >
+                                <a id="cv" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" class="collapsed">
+                                        <i class="fas fa-chevron-up" style=""></i>
+                                    </a>
+                                </td>
+                                <td width="33%" align="right" valign="middle">
+                                
+                                <h5>('.$total_item.'&nbsp;Item)</h5>
+                                
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="collapse-4" class="collapse" data-parent="#accordion" style="" >
+                    <div class="card-body" id="card-detail">
+                        <div class="col-md-12">
+                            <table width="100%" style="margin-bottom: 40px;">
+                                <tbody>';
+                                    foreach($keranjang as $detil){
+                                    echo'<tr>
+                                    
+                                        <td width="25%" valign="middle">
+                                            <img src="'.asset('storage/'.$detil->image).'" 
+                                            class="image-detail"  alt="...">   
+                                        </td>
+                                        <td width="60%" align="left" valign="top">
+                                            <p class="name-detail">'.$detil->description.'</p>';
+                                            $total=$detil->price * $detil->quantity;
+                                            echo'<h1 id="productPrice_kr'.$detil->product_id.'" style="color:#6a3137; !important; font-family: Open Sans;">Rp. '.number_format($total, 0, ',', '.').'</h1>
+                                            <table width="10%">
+                                                <tbody>
+                                                    <tr>
+                                                        
+                                                        <td width="10px" align="left" valign="middle">
+                                                        <input type="hidden" id="order_id'.$detil->product_id.'" name="order_id" value="'.$detil->order_id.'">
+                                                        <input type="hidden" id="harga_kr'.$detil->product_id.'" name="price" value="'.$detil->price.'">
+                                                        <input type="hidden" id="id_detil'.$detil->product_id.'" value="'.$detil->id.'">
+                                                        <input type="hidden" id="jmlkr_'.$detil->product_id.'" name="quantity" value="'.$detil->quantity.'">    
+                                                        <button class="button_minus" onclick="button_minus_kr('.$detil->product_id.')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                                            
+                                                        </td>
+                                                        <td width="10px" align="middle" valign="middle">
+                                                            <p id="show_kr_'.$detil->product_id.'" class="d-inline" style="">'.$detil->quantity.'</p>
+                                                        </td>
+                                                        <td width="10px" align="right" valign="middle">
+                                                            <button class="button_plus" onclick="button_plus_kr('.$detil->product_id.')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                        </td>
+                                                    
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                        <td width="15%" align="right" valign="top" style="padding-top: 5%;">
+                                            <button class="btn btn-default" onclick="delete_kr('.$detil->product_id.')" style="">X</button>
+                                            <input type="hidden"  id="order_id_delete'.$detil->product_id.'" name="order_id" value="'.$detil->order_id.'">
+                                            <input type="hidden"  id="quantity_delete'.$detil->product_id.'" name="quantity" value="'.$detil->quantity.'">
+                                            <input type="hidden"  id="price_delete'.$detil->product_id.'" name="price" value="'.$detil->price.'">
+                                            <input type="hidden"  id="product_id_delete'.$detil->product_id.'"name="product_id" value="'.$detil->product_id.'">
+                                            <input type="hidden" id="id_delete'.$detil->product_id.'" name="id" value="'.$detil->id.'">
+                                        </td>
+                                    </tr>';
+                                    }
+                                    echo '<tr>
+                                        <td align="right" colspan="3">';
+                                                if($total_item > 0){
+                                                echo '<a type="button" class="btn button_add_to_cart" data-toggle="modal" data-target="#my_modal_ajax">Beli Sekarang</a>';
+                                                }
+                                        echo'</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="my_modal_ajax" role="dialog">
+                <div class="modal-dialog">
+                
+                <!-- Modal content-->
+                <div class="modal-content" style="background: #FDD8AF">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    
+                    </div>
+                    <form method="POST" target="_BLANK" action="'.route('customer.keranjang.pesan').'">
+                    <input type="hidden" name="_token" value="'.csrf_token();echo'">
+                    <div class="modal-body">
+                        <div class="row justify-content-center">
+                            <div class="col-sm-12">
+                                
+                                    <div class="card mx-auto contact_card" style="border-radius:15px;">
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <input type="text" value="';if($item_name !== null){echo $item_name->username;}else{echo '';} echo'" name="username" class="form-control contact_input" placeholder="Name" id="name" required autocomplete="off" autofocus>
+                                                
+                                            </div>
+                                            <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
+                                            <div class="form-group">
+                                                <input type="email" value="';if($item_name !== null){echo $item_name->email;}else{echo '';} echo'" name="email" class="form-control contact_input" placeholder="Email" id="email" required autocomplete="off" >
+                                            </div>
+                                            <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
+                                            <div class="form-group">
+                                                <textarea type="text"  name="address" class="form-control contact_input" placeholder="Address" id="address" required autocomplete="off" ">';if($item_name !== null){echo $item_name->address;}else{echo '';} echo'</textarea>
+                                            </div>
+                                            <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
+                                            <div class="form-group">
+                                                <input type="number" value="';if($item_name !== null){echo $item_name->phone;}else{echo '';} echo'" name="phone" class="form-control contact_input" placeholder="Phone" id="phone" required autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mx-auto text-center">
+                                        
+                                    </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    <input type="hidden" id="order_id_pesan" name="id" value="';if($item !== null){echo $item->id;}else{echo '';} echo'"/>
+                        <button type="submit" class="btn button_add_to_cart" onclick="pesan_wa()"  style="background-color: #4AC959;"><i class="fab fa-whatsapp" style="font-weight: bold;"></i>Pesan</button>
+                    </div>
+                    </form>
+                </div>
+                
+                </div>
+            </div>
+        </div>';
+        }
+    }
+
 }

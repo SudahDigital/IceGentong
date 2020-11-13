@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>Ice-Gentong</title>
 
     <link rel="icon" href="{{ asset('assets/image/logo-nav.png')}}" type="image/png" sizes="16x16">
@@ -240,10 +241,9 @@
     <script src="{{ asset('assets/js/main.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>-->
-    
     <script type="text/javascript">
     
-    $(document).ready(function() {  
+        $(document).ready(function() {  
             /*$('#edit-modal').on('show.bs.modal', function() {
                 var el = $(".edit-item-trigger-clicked"); // See how its usefull right here? 
                 var row = el.closest(".data-row");

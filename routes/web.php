@@ -24,6 +24,7 @@ Route::get('/contact', function(){
         return view('customer.contact',['categories'=>$categories]);
         })->name('contact');
 Route::get('/home_customer', 'CustomerKeranjangController@index');
+Route::get('/home_cart', 'CustomerKeranjangController@ajax_cart');
 Route::post('/keranjang/simpan','CustomerKeranjangController@simpan')->name('customer.keranjang.simpan');
 Route::post('/keranjang/min_order','CustomerKeranjangController@min_order')->name('customer.keranjang.min_order');
 Route::post('/keranjang/tambah','CustomerKeranjangController@tambah')->name('customer.keranjang.tambah');
