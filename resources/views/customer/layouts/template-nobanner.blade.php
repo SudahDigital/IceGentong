@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+    <meta charset="UTF-8">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -59,35 +60,74 @@
           <p style="font-weight:900;line-height:2;color:#6a3137;margin-left: -10%;">Harap Tunggu</p>
         </div>
     </div>
+     @if ($message = Session::get('success'))
+      <div class="alert alert-success alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button> 
+          <strong>{{ $message }}</strong>
+      </div>
+    @endif
+
     <div class="wrapper">
-        <!-- Sidebar  -->
-        <nav id="sidebar">
+         <!-- Sidebar  -->
+         <nav id="sidebar">
+           
             <div class="sidebar-header mx-auto">
                 <a href="{{url('/') }}">
                     <img src="{{ asset('assets/image/ecim-gentong.png') }}" width="70%" height="auto" class="d-inline-block align-top" alt="" loading="lazy">
                 </a>
             </div>
             <ul class="list-unstyled components">
+                
                 <li class="">
-                   <a href="{{ url('/') }}">Beranda</a>
+                    <a href="{{ url('/') }}">Beranda</a>
                 </li>
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Produk</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
-                        @foreach($categories as $key => $value)
-                            <li>
-                                <a href="{{route('category.index', ['id'=>$value->id] )}}" style="font-size: 1.1em !important;">{{$value->name}}</a>
-                            </li>
-                        @endforeach
+                            @foreach($categories as $key => $value)
+                                <li>
+                                    <a href="{{route('category.index', ['id'=>$value->id] )}}" style="font-size: 1.1em !important;">{{$value->name}}</a>
+                                </li>
+                            @endforeach
                     </ul>
                 </li>
                 <li>
-                   <a href="{{URL::route('cara_belanja')}}">Cara Berbelanja</a>
+                    <a href="{{URL::route('cara_belanja')}}">Cara Berbelanja</a>
                 </li>
                 <li>
                     <a href="{{URL::route('contact')}}">Kontak Kami</a>
                 </li>
+                <!--
+                <li>
+                    <a href="{{URL::route('riwayat_pemesanan')}}">Riwayat Pesanan</a>
+                </li>
+                -->
             </ul>
+
+             @if(\Auth::user())
+                <div class="mx-auto text-center">
+                    <form action="{{route('logout')}}" method="POST">
+                        @csrf   
+                        <div id="log">   
+                            <button class="btn logout">
+                                    Sign Out
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            @else    
+                    <!--    
+                    <div class="mx-auto text-center">
+                        <a href="{{route('login')}}" class="btn login">Sign In</a>
+                    </div>
+                            
+                    <div class="mx-auto text-center">  
+                            <a href="{{route('register')}}" class="register">Sign Up</a>
+                    </div> 
+                    -->
+            @endif
+            
+            
             <div class="mx-auto text-center" style="margin-top: 35px;">
                 <div class="social-icons">
                     <a href="https://www.facebook.com/Gentongicecream/"  target="_blank"><i class="fab fa-facebook" ></i></a>
@@ -96,9 +136,12 @@
                     <a href="https://twitter.com/kedaigentong?s=08" target="_blank"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
-        </nav>
-        <!--content-->
+
+         </nav>
+
         <div id="content">
+
+            
             <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="z-index: 1.5;">
                 <div class="container-fluid">
                     <button type="button" id="sidebarCollapse" class="btn button-burger-menu">
@@ -106,6 +149,7 @@
                     </button>
                    
                     <a class="navbar-brand nav-center" href="{{ url('/') }}">
+                    
                         <img src="{{ asset('assets/image/ecim-gentong.png') }}" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy">
                     </a>
                     <form action="{{route('search.index')}}" class="form-inline my-2 my-lg-0 ml-auto d-none d-md-inline-block">
@@ -119,30 +163,24 @@
                     </form>
                     <a href="#searh_responsive" class="btn btn-info d-md-none" data-toggle="modal" data-target="#searchModal" style="border-radius: 50%; background:#693234;; border:none;"><i class="fa fa-search" style=""></i></a>
                 </div>
+                
             </nav>
-            <!-- BANNER -->
-            <div role="main" style="margin-top: 5rem;">
-                <div id="bannerSlide" class="carousel slide" data-ride="carousel" >
-                    <!-- The slideshow -->
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="{{ asset('assets/image/banner-min.png') }}" class="w-100 h-100">
-                        </div>
-                    </div>
-                </div>
-            </div>    
-               
+
+            <!-- Page Content  -->
             @yield('content')
+
+           
 
         </div>
     </div>
-    
+
     <div class="overlay"></div>
 
-    <!-- Modal search -->
+    <!-- Modal -->
     <div class="modal fade" id="searchModal" role="dialog">
         <div class="modal-dialog">
-        <!-- Modal content-->
+        
+            <!-- Modal content-->
             <div class="modal-content" style="background: #FDD8AF">
                 <div class="modal-body">
                     <div class="row justify-content-center">
@@ -158,9 +196,9 @@
                     </div>
                 </div>
             </div>
+        
         </div>
     </div>
-    
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -171,6 +209,7 @@
     <!-- jQuery Custom Scroller CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="{{ asset('assets/js/main.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>-->
     <script type="text/javascript">
@@ -189,7 +228,7 @@
             $('.collapse.in').toggleClass('in');
             $('a[aria-expanded=true]').attr('aria-expanded', 'false');
         });
-
+        
         function pesan_wa()
         {
             var name = document.getElementById("name").value;
@@ -211,7 +250,7 @@
                 alert('Anda harus mengisi data dengan lengkap !');
             }
         }
-        
+
         function button_minus(id)
         {   
             var jumlah = $('#jmlbrg_'+id).val();
@@ -240,7 +279,7 @@
                 else 
                 {
                     $('#jmlbrg_'+id).val(jumlah);
-                    $('#show_'+id).text(jumlah);
+                    $('#show_'+id).html(jumlah);
                     var Product_id = $('#Product_id'+id).val();
                     var quantity = $('#quantity_add'+id).val();
                     var price = $('#harga'+id).val();
@@ -312,38 +351,41 @@
                 var quantity = $('#quantity_add'+id).val();
                 var price = $('#harga'+id).val();
                 
+                
                 $.ajaxSetup({
                             headers: {
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                             }
                         });
-                $.ajax({
-                    url : '{{URL::to('/keranjang/simpan')}}',
-                    type:'POST',
-                    data:{
-                        Product_id : Product_id,
-                        quantity : quantity,
-                        price : price
-                    },              
-                    success: function (data){
-                        console.log(data);
-                        //$('#'+id).val(jumlah);
-                        //$('#show_'+id).html(jumlah);
-                        //$('#productPrice'+id).text(harga);
-
                         $.ajax({
-                            url : '{{URL::to('/home_cart')}}',
-                            type : 'GET',
-                            success: function (response) {
-                            // We get the element having id of display_info and put the response inside it
-                            $('#accordion' ).html(response);
+                            url : '{{URL::to('/keranjang/simpan')}}',
+                            type:'POST',
+                            data:{
+                                Product_id : Product_id,
+                                quantity : quantity,
+                                price : price
+                            },              
+                            success: function (data) {
+                            console.log(data);
+                            //$('#'+id).val(jumlah);
+                            //$('#show_'+id).html(jumlah);
+                            //$('#productPrice'+id).text(harga);
+                                $.ajax({
+                                    url : '{{URL::to('/home_cart')}}',
+                                    type : 'GET',
+                                    success: function (response) {
+                                    // We get the element having id of display_info and put the response inside it
+                                    $('#accordion' ).html(response);
+                                    
+                                    }
+                                });
+                            },
+                            error: function (data) {
+                            console.log('Error:', data);
                             }
-                        });                                
-                    },
-                    error: function (data) {
-                    console.log('Error:', data);
-                    }
-                });
+                        });
+
+                        
             }
         }
 
@@ -573,15 +615,15 @@
                 Swal.fire('Yes!');
             });
         });
-    
-        window.setTimeout(function() {
-        $(".alert").fadeTo(500, 0).slideUp(500, function(){
-            $(this).remove(); 
-        });
-        }, 4000);
-
-        
     </script>
+    <script>
+        window.setTimeout(function() {
+          $(".alert").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove(); 
+          });
+        }, 4000);
+    </script>
+
 </body>
 
 </html>

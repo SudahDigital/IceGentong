@@ -45,7 +45,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="z-index: 1.5; height:100px;">
                 <div class="container-fluid">
                    
-                    <a class="navbar-brand" href="{{ url('/') }}" style=";" >
+                    <a class="navbar-brand nav-center" href="{{ url('/') }}" style=";" >
                         <img src="{{ asset('assets/image/ecim-gentong.png') }}" width="120px" height="auto" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy" style="">
                     </a>
                    
@@ -60,8 +60,6 @@
         </div>
     </div>
 
-    <div class="overlay"></div>
-
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <!-- Popper.JS -->
@@ -71,69 +69,8 @@
     <!-- jQuery Custom Scroller CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="{{ asset('assets/js/main.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>-->
-    <script type="text/javascript">
-    
-    $(document).ready(function() {  
-            /*$('#edit-modal').on('show.bs.modal', function() {
-                var el = $(".edit-item-trigger-clicked"); // See how its usefull right here? 
-                var row = el.closest(".data-row");
-
-                // get the data
-                var id = el.data('item-id');
-                var name = row.children(".name").text();
-                var description = row.children(".description").text();
-
-                // fill the data in the input fields
-                $("#modal-input-id").val(id);
-                $("#modal-input-name").val(name);
-                $("#modal-input-description").val(description);
-
-            }) */
-
-            $('#btn-yes').on('click', function(){
-                var id_modal = $("#modal-input-id").val();
-                Swal.fire('Yes!');
-            });
-        });
-
-        function valDel(id){
-            // $('#edit-modal').modal('show');
-            Swal.fire({
-              title: 'Hapus barang ?',
-              text: "Item ini akan di hapus dari keranjangmu",
-              icon: 'warning',
-              showCancelButton: true,
-              confirmButtonColor: '#4db849',
-              cancelButtonColor: '#d33',
-              confirmButtonText: 'Hapus',
-              cancelButtonText: "Batal"
-            }).then((result) => {
-              if (result.isConfirmed) {
-
-                $.ajax({
-                    type: "GET",
-                    url: "{{url('/cart/delete')}}"+'/'+id,
-                    data: {id:id},
-                    success: function (data) {
-                        Swal.fire({
-                           title: 'Sukses',
-                           text: 'Item ini berhasil di hapus',
-                           icon: 'success'}).then(function(){ 
-                        location.reload();
-                        });
-                    }         
-                });
-              }
-              
-            });
-        }
-       
-    </script>
-
-
 </body>
 
 </html>

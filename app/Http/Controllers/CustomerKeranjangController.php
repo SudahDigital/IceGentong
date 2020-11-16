@@ -9,6 +9,7 @@ use App\order_product;
 use App\Order;
 
 
+
 class CustomerKeranjangController extends Controller
 {
     
@@ -284,7 +285,7 @@ class CustomerKeranjangController extends Controller
                                 </tbody>
                             </table>
                         </div>
-                        <div id="collapse-4" class="collapse" data-parent="#accordion" style="" >
+                        <div  class="collapse" data-parent="#accordion" style="" >
                             <div class="card-body" id="card-detail">
                                 <div class="col-md-12">
                                 
@@ -299,13 +300,10 @@ class CustomerKeranjangController extends Controller
         else
         {
         $session_id = $request->header('User-Agent');
-        $keranjang = DB::select("SELECT orders.session_id, orders.status, orders.username, 
-                    products.description, products.image, products.price, order_product.id,
-                    order_product.order_id,order_product.product_id,order_product.quantity
-                    FROM order_product, products, orders WHERE 
-                    orders.id = order_product.order_id AND 
-                    order_product.product_id = products.id AND orders.status = 'SUBMIT' 
-                    AND orders.session_id = '$session_id' AND orders.username IS NULL ");
+        $keranjang = \App\Order::with('products')
+                    ->where('status','=','SUBMIT')
+                    ->where('session_id','=',"$session_id")
+                    ->whereNull('username')->get();
         $item = DB::table('orders')
                     ->where('session_id','=',"$session_id")
                     ->where('orders.status','=','SUBMIT')
@@ -327,7 +325,7 @@ class CustomerKeranjangController extends Controller
                                 <td width="5%" valign="middle">
                                     <div id="ex4">
                                 
-                                        <span class="p1 fa-stack fa-2x has-badge" data-count="'.$total_item.'">
+                                        <span id="" class="p1 fa-stack fa-2x has-badge" data-count="'.$total_item.'">
                                     
                                             <!--<i class="p2 fa fa-circle fa-stack-2x"></i>-->
                                             <i class="p3 fa fa-shopping-cart " data-count="4b" style=""></i>
@@ -335,7 +333,8 @@ class CustomerKeranjangController extends Controller
                                     </div> 
                                 </td>
                                 <td width="25%" align="left" valign="middle">
-                                    <h5 id="total_kr_">Rp.'.number_format(($item_price) , 0, ',', '.').'</h5>
+                                    <h5 id="total_kr_">Rp.&nbsp;'.number_format(($item_price) , 0, ',', '.').'</h5>
+                                    <input type="hidden" id="total_kr_val" value="'.$item_price.'">
                                 </td>
                                 <td width="5%" valign="middle" >
                                 <a id="cv" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" class="collapsed">
@@ -356,49 +355,51 @@ class CustomerKeranjangController extends Controller
                         <div class="col-md-12">
                             <table width="100%" style="margin-bottom: 40px;">
                                 <tbody>';
-                                    foreach($keranjang as $detil){
-                                    echo'<tr>
-                                    
-                                        <td width="25%" valign="middle">
-                                            <img src="'.asset('storage/'.$detil->image).'" 
-                                            class="image-detail"  alt="...">   
-                                        </td>
-                                        <td width="60%" align="left" valign="top">
-                                            <p class="name-detail">'.$detil->description.'</p>';
-                                            $total=$detil->price * $detil->quantity;
-                                            echo'<h1 id="productPrice_kr'.$detil->product_id.'" style="color:#6a3137; !important; font-family: Open Sans;">Rp. '.number_format($total, 0, ',', '.').'</h1>
-                                            <table width="10%">
-                                                <tbody>
-                                                    <tr>
-                                                        
-                                                        <td width="10px" align="left" valign="middle">
-                                                        <input type="hidden" id="order_id'.$detil->product_id.'" name="order_id" value="'.$detil->order_id.'">
-                                                        <input type="hidden" id="harga_kr'.$detil->product_id.'" name="price" value="'.$detil->price.'">
-                                                        <input type="hidden" id="id_detil'.$detil->product_id.'" value="'.$detil->id.'">
-                                                        <input type="hidden" id="jmlkr_'.$detil->product_id.'" name="quantity" value="'.$detil->quantity.'">    
-                                                        <button class="button_minus" onclick="button_minus_kr('.$detil->product_id.')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                    foreach($keranjang as $order){
+                                        foreach($order->products as $detil){
+                                        echo'<tr>
+                                            <td width="25%" valign="middle">
+                                                <img src="'.asset('storage/'.$detil->image).'" 
+                                                class="image-detail"  alt="...">   
+                                            </td>
+                                            <td width="60%" align="left" valign="top">
+                                                <p class="name-detail">'.$detil->description.'</p>';
+                                                $total=$detil->price * $detil->pivot->quantity;
+                                                echo'<h1 id="productPrice_kr'.$detil->id.'" style="color:#6a3137; !important; font-family: Open Sans;">Rp.&nbsp;'.number_format($total, 0, ',', '.').'</h1>
+                                                <table width="10%">
+                                                    <tbody>
+                                                        <tr id="response-id'.$detil->id.'">
                                                             
-                                                        </td>
-                                                        <td width="10px" align="middle" valign="middle">
-                                                            <p id="show_kr_'.$detil->product_id.'" class="d-inline" style="">'.$detil->quantity.'</p>
-                                                        </td>
-                                                        <td width="10px" align="right" valign="middle">
-                                                            <button class="button_plus" onclick="button_plus_kr('.$detil->product_id.')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                                        </td>
-                                                    
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                        <td width="15%" align="right" valign="top" style="padding-top: 5%;">
-                                            <button class="btn btn-default" onclick="delete_kr('.$detil->product_id.')" style="">X</button>
-                                            <input type="hidden"  id="order_id_delete'.$detil->product_id.'" name="order_id" value="'.$detil->order_id.'">
-                                            <input type="hidden"  id="quantity_delete'.$detil->product_id.'" name="quantity" value="'.$detil->quantity.'">
-                                            <input type="hidden"  id="price_delete'.$detil->product_id.'" name="price" value="'.$detil->price.'">
-                                            <input type="hidden"  id="product_id_delete'.$detil->product_id.'"name="product_id" value="'.$detil->product_id.'">
-                                            <input type="hidden" id="id_delete'.$detil->product_id.'" name="id" value="'.$detil->id.'">
-                                        </td>
-                                    </tr>';
+                                                            <td width="10px" align="left" valign="middle">
+                                                            <input type="hidden" id="order_id'.$detil->id.'" name="order_id" value="'.$order->id.'">
+                                                            <input type="hidden" id="harga_kr'.$detil->id.'" name="price" value="'.$detil->price.'">
+                                                            <input type="hidden" id="id_detil'.$detil->id.'" value="'.$detil->pivot->id.'">
+                                                            <input type="hidden" id="jmlkr_'.$detil->id.'" name="quantity" value="'.$detil->pivot->quantity.'">    
+                                                            <button class="button_minus" onclick="button_minus_kr('.$detil->id.')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                                                
+                                                            </td>
+                                                            <td width="10px" align="middle" valign="middle">
+                                                                <p id="show_kr_'.$detil->id.'" class="d-inline" style="">'.$detil->pivot->quantity.'</p>
+                                                            </td>
+                                                            <td width="10px" align="right" valign="middle">
+                                                                <button class="button_plus" onclick="button_plus_kr('.$detil->id.')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                            </td>
+                                                        
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td width="15%" align="right" valign="top" style="padding-top: 5%;">
+                                                <button class="btn btn-default" onclick="delete_kr('.$detil->id.')" style="">X</button>
+                                                <input type="hidden"  id="order_id_delete'.$detil->id.'" name="order_id" value="'.$order->id.'">
+                                                <input type="hidden"  id="quantity_delete'.$detil->id.'" name="quantity" value="'.$detil->pivot->quantity.'">
+                                                <input type="hidden"  id="price_delete'.$detil->id.'" name="price" value="'.$detil->price.'">
+                                                <input type="hidden"  id="product_id_delete'.$detil->id.'"name="product_id" value="'.$detil->id.'">
+                                                <input type="hidden" id="id_delete'.$detil->id.'" name="id" value="'.$detil->pivot->id.'">
+                                            </td>
+                                        </tr>';
+                                        
+                                        }
                                     }
                                     echo '<tr>
                                         <td align="right" colspan="3">';

@@ -1,4 +1,4 @@
-@extends('customer.layouts.template-nocart')
+@extends('customer.layouts.template-nobanner')
 @section('content')
     <div class="container" style="margin-top: 70px;">
         <div class="row align-middle">

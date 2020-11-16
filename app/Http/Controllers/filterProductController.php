@@ -22,12 +22,6 @@ class filterProductController extends Controller
         $product = \App\product::whereHas('categories',function($q) use ($category_id){
                     return $q->where('category_id','=',$category_id);
                     })->paginate(6);
-                    /*DB::table('category_product')
-                    ->leftJoin('products', 'products.id', '=', 'category_product.product_id')
-                    ->leftJoin('categories', 'categories.id', '=', 'category_product.category_id')
-                    ->where('categories.id','=',"$category_id")
-                    ->paginate(6);*/
-        
         $count_data = $product->count();
         $keranjang = DB::select("SELECT orders.session_id, orders.status, 
                     products.description, products.image, products.price, order_product.id,

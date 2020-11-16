@@ -147,8 +147,6 @@ body {
   height:360px;
 }
 
-
-
 a,
 a:hover,
 a:focus {
@@ -316,9 +314,6 @@ a:focus {
   opacity: 0; 
 }
 
-
-
-
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
@@ -428,17 +423,13 @@ a[aria-expanded="true"] {
 }
 
 #collapse-4{
-
   overflow-y: auto; 
   max-height:450px; 
   padding:5%;
-
 }
 
 .collapse{
-   
   margin-bottom:50px;
-
 }
 
 a[data-toggle="collapse"] {

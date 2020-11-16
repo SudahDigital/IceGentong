@@ -44,23 +44,24 @@ Route::get('/admin', function () {
     return view('auth.login',['categories'=>$categories]);
     });
 
-    Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/users/change_password', 'changePasswordController@index')->name('changepass');
-    Route::post('/users/post/change_password', 'changePasswordController@changepassword')->name('post.changepass');
-    Route::resource('users','UserController');
-    Route::get('/categories/trash', 'CategoryController@trash')->name('categories.trash');
-    Route::get('/categories/{id}/restore', 'CategoryController@restore')->name('categories.restore');
-    Route::delete('/categories/{category}/delete-permanent','CategoryController@deletePermanent')->name('categories.delete-permanent');
-    Route::resource('categories','CategoryController');
-    Route::get('/ajax/categories/search', 'CategoryController@ajaxSearch');
-    Route::get('/products/trash', 'productController@trash')->name('products.trash');
-    Route::get('/products/{id}/restore', 'productController@restore')->name('products.restore');
-    Route::delete('/products/{products}/delete-permanent','productController@deletePermanent')->name('products.delete-permanent');
-    Route::resource('products', 'productController');
-    Route::get('/orders/{id}/edit_order', 'OrderEditController@edit')->name('order_edit');
-    Route::post('/orders/edit_order_update', 'OrderEditController@update')->name('order_edit_update');
-    Route::get('/orders/{id}/detail', 'OrderController@detail')->name('orders.detail');
-    Route::resource('orders', 'OrderController');
+//Admin
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/users/change_password', 'changePasswordController@index')->name('changepass');
+Route::post('/users/post/change_password', 'changePasswordController@changepassword')->name('post.changepass');
+Route::resource('users','UserController');
+Route::get('/categories/trash', 'CategoryController@trash')->name('categories.trash');
+Route::get('/categories/{id}/restore', 'CategoryController@restore')->name('categories.restore');
+Route::delete('/categories/{category}/delete-permanent','CategoryController@deletePermanent')->name('categories.delete-permanent');
+Route::resource('categories','CategoryController');
+Route::get('/ajax/categories/search', 'CategoryController@ajaxSearch');
+Route::get('/products/trash', 'productController@trash')->name('products.trash');
+Route::get('/products/{id}/restore', 'productController@restore')->name('products.restore');
+Route::delete('/products/{products}/delete-permanent','productController@deletePermanent')->name('products.delete-permanent');
+Route::resource('products', 'productController');
+Route::get('/orders/{id}/edit_order', 'OrderEditController@edit')->name('order_edit');
+Route::post('/orders/edit_order_update', 'OrderEditController@update')->name('order_edit_update');
+Route::get('/orders/{id}/detail', 'OrderController@detail')->name('orders.detail');
+Route::resource('orders', 'OrderController');
 
 
 
