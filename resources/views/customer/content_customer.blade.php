@@ -75,8 +75,8 @@
                     <div class="col-md-12">
                         <div class="row section_content">
                         @foreach($product as $key => $value)
-                        <div class="col-6 col-md-4">
-                            <div class="card mx-auto item_product">
+                        <div class="col-6 col-md-4 d-flex">
+                            <div class="card mx-auto d-flex item_product">
                                 <a href="{{URL::route('product_detail', ['id'=>$value->id])}}">
                                     <img style="" src="{{ asset('storage/'.(($value->image!='') ? $value->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-150 w-100 img-responsive" alt="...">
                                 </a>
@@ -131,7 +131,7 @@
                         @endforeach
                         <div class="col-md-12">
                             <div class="row justify-content-center" >
-                                <div class="page paging" style="margin-top:0; margin-bottom:1rem;">{{ $product->appends(Request::all())->onEachSide(0)->links('vendor.pagination.bootstrap-4') }}</div>
+                                <div class="page paging" style="margin-top:0; margin-bottom:1rem;">{{ $product->appends(Request::all())->onEachSide(1)->links('vendor.pagination.bootstrap-4') }}</div>
                             </div>
                         </div>        
                     </div>
