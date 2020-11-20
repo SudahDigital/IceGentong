@@ -1627,6 +1627,18 @@ footer.footer .cart .count-cart-three {
   padding-bottom:7px;
 }
 
+.bt-wa{
+  font-size:25px;
+}
+
+.bt-wa:hover{
+  outline:0px !important;
+  -webkit-appearance:none;
+  -webkit-transform: translateY(-3px);
+  transform: translateY(-3px);
+  box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.3); 
+}
+
 
 
 

@@ -274,52 +274,47 @@
                     <div class="modal-body">
                         <div class="row justify-content-center">
                             <div class="col-sm-12">
-                                
-                                    <div class="card mx-auto contact_card" style="border-radius:15px;">
-                                        <div class="card-body">
-                                            <div class="form-group">
-                                            <input type="text" value="{{$item_name !== null ? $item_name->username : ''}}" name="username" class="form-control contact_input @error('name') is-invalid @enderror" placeholder="Name" id="name" required autocomplete="off" autofocus value="{{ old('name') }}">
-                                                @error('name')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
-                                            <div class="form-group">
-                                                <input type="email" value="{{$item_name !== null ? $item_name->email : ''}}" name="email" class="form-control contact_input @error('email') is-invalid @enderror" placeholder="Email" id="email" required autocomplete="off" value="{{ old('email') }}">
-                                                @error('email')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
-                                            <div class="form-group">
-                                                <textarea type="text"  name="address" class="form-control contact_input @error('address') is-invalid @enderror" placeholder="Address" id="address" required autocomplete="off" value="{{ old('address') }}">{{$item_name !== null ? $item_name->address : ''}}</textarea>
-                                                @error('address')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
-                                            <div class="form-group">
-                                                <input type="number" value="{{$item_name !== null ? $item_name->phone : ''}}" name="phone" class="form-control contact_input" placeholder="Phone" id="phone" required autocomplete="off">
-                                                <!--<label for="password-confirm" class="contact_label">{{ __('Konfirmasi Kata Sandi') }}</label>-->
-                                            </div>
+                                <div class="card contact_card" style="border-radius:15px;">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                        <input type="text" value="{{$item_name !== null ? $item_name->username : ''}}" name="username" class="form-control contact_input @error('name') is-invalid @enderror" placeholder="Name" id="name" required autocomplete="off" autofocus value="{{ old('name') }}">
+                                            @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
+                                        <div class="form-group">
+                                            <input type="email" value="{{$item_name !== null ? $item_name->email : ''}}" name="email" class="form-control contact_input @error('email') is-invalid @enderror" placeholder="Email" id="email" required autocomplete="off" value="{{ old('email') }}">
+                                            @error('email')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
+                                        <div class="form-group">
+                                            <textarea type="text"  name="address" class="form-control contact_input @error('address') is-invalid @enderror" placeholder="Address" id="address" required autocomplete="off" value="{{ old('address') }}">{{$item_name !== null ? $item_name->address : ''}}</textarea>
+                                            @error('address')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
+                                        <div class="form-group">
+                                            <input type="text" value="{{$item_name !== null ? $item_name->phone : ''}}" name="phone" minlength="10" maxlength="13" class="form-control contact_input" placeholder="Phone" id="phone" required autocomplete="off">
+                                            <!--<label for="password-confirm" class="contact_label">{{ __('Konfirmasi Kata Sandi') }}</label>-->
                                         </div>
                                     </div>
-                                    <div class="col-md-12 mx-auto text-center">
-                                        
-                                    </div>
-                                
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                     <input type="hidden" id="order_id_pesan" name="id" value="{{$item !==null ? $item->id : ''}}"/>
-                        <button type="submit" class="btn button_add_to_cart" onclick="pesan_wa()"  style="background-color: #4AC959;"><i class="fab fa-whatsapp" style="font-weight: bold;"></i> {{__('Pesan') }}</button>
+                        <button type="submit" class="btn btn-block bt-wa" onclick="pesan_wa()"  style="color:#fff; background-color:#6a3137; "><i class="fab fa-whatsapp" style="font-weight: bold;"></i> &nbsp;{{__('Pesan') }}</button>
                     </div>
                     </form>
                 </div>

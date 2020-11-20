@@ -4661,6 +4661,10 @@
 }
 
 @media (max-width: 320px) {
+    
+    .bt-wa{
+        font-size:22px;
+    }
 
     #shape-1 {
         float: left;
