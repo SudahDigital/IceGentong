@@ -131,7 +131,7 @@
                         @endforeach
                         <div class="col-md-12">
                             <div class="row justify-content-center" >
-                                <div class="page paging" style="margin-top:0; margin-bottom:1rem;">{{ $product->appends(Request::all())->onEachSide(0)->links('vendor.pagination.bootstrap-4') }}</div>
+                                <div class="page paging" style="margin-top:0; margin-bottom:1rem;">{{ $product->appends(Request::all())->onEachSide(5)->links('vendor.pagination.bootstrap-4') }}</div>
                             </div>
                         </div>        
                     </div>
