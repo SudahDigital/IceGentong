@@ -261,7 +261,7 @@
                 </div>
                 <div class="modal-footer">
                 <input type="hidden" name="id" value="{{$item !==null ? $item->id : ''}}"/>
-                    <button type="submit" class="btn button_add_to_cart" onclick="pesan_wa()" style="background-color: #4AC959;"><i class="fab fa-whatsapp" style="font-weight: bold;"></i> {{__('Pesan') }}</button>
+                    <button type="submit" class="btn btn-block bt-wa" onclick="pesan_wa()" style="background-color: #6a3137;"><i class="fab fa-whatsapp" style="font-weight: bold;"></i> {{__('Pesan') }}</button>
                 </div>
                 </form>
             </div>
