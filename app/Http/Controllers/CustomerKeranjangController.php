@@ -460,7 +460,7 @@ class CustomerKeranjangController extends Controller
                     </div>
                     <div class="modal-footer">
                     <input type="hidden" id="order_id_pesan" name="id" value="';if($item !== null){echo $item->id;}else{echo '';} echo'"/>
-                        <button type="submit" class="btn btn-block bt-wa" onclick="pesan_wa()"  style="color:#fff;background-color: #6a3137;"><i class="fab fa-whatsapp" style="font-weight: bold;"></i>Pesan</button>
+                        <button type="submit" class="btn btn-block bt-wa" onclick="pesan_wa()"  style="color:#fff;background-color: #6a3137;"><i class="fab fa-whatsapp" style="font-weight: bold;"></i>&nbsp;Pesan</button>
                     </div>
                     </form>
                 </div>

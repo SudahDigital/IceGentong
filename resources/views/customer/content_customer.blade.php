@@ -86,9 +86,9 @@
                                     </p>
                                 </div>
                                 <div class="float-left px-1 py-2" style="">
-                                    <p style="line-height:1;" class="product-price mb-0 " id="productPrice{{$value->id}}" style="">Rp {{ number_format($value->price, 0, ',', '.') }}</p>
+                                    <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value->id}}" style="">Rp {{ number_format($value->price, 0, ',', '.') }}</p>
                                 </div>
-                                <table width="100%" class="hdr_tbl_cart">
+                                <table width="100%" class="hdr_tbl_cart" style="bottom: 0">
                                     <tbody>
                                         <tr>
                                             <td width="10%" align="right" valign="middle">
