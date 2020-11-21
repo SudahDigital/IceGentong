@@ -447,7 +447,7 @@ class CustomerKeranjangController extends Controller
                                             </div>
                                             <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
                                             <div class="form-group">
-                                                <input type="number" value="';if($item_name !== null){echo $item_name->phone;}else{echo '';} echo'" name="phone" class="form-control contact_input" placeholder="Phone" id="phone" required autocomplete="off">
+                                                <input type="text" minlength="10" maxlength="13" value="';if($item_name !== null){echo $item_name->phone;}else{echo '';} echo'" name="phone" class="form-control contact_input" placeholder="Phone" id="phone" required autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
