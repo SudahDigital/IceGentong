@@ -17,6 +17,7 @@ class searchController extends Controller
             $session_id = $request->header('User-Agent');
             $keyword = $request->get('keyword') ? $request->get('keyword') : '';
             $categories = \App\Category::get();
+            $cat_count = $categories->count();
             $product = \App\product::with('categories')->where("description", "LIKE", "%$keyword%")->paginate(6);
             $count_data = $product->count();
             $keranjang = DB::select("SELECT orders.session_id, orders.status, orders.username, 
@@ -42,7 +43,7 @@ class searchController extends Controller
                         ->where('session_id','=',"$session_id")
                         ->whereNull('username')
                     ->count();
-            $data=['total_item'=> $total_item, 'keranjang'=>$keranjang, 'product'=>$product,'item'=>$item,'item_name'=>$item_name,'count_data'=>$count_data,'categories'=>$categories,];
+            $data=['total_item'=> $total_item, 'keranjang'=>$keranjang, 'product'=>$product,'item'=>$item,'item_name'=>$item_name,'count_data'=>$count_data,'categories'=>$categories,'cat_count'=>$cat_count];
        
         return view('customer.content_customer',$data);
 
