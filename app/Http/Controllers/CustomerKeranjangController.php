@@ -17,7 +17,8 @@ class CustomerKeranjangController extends Controller
     {   
         $session_id = $request->header('User-Agent');
         $categories = \App\Category::all();//paginate(10);
-        $product = product::with('categories')->paginate(6);
+        $cat_count = $categories->count();
+        $product = product::with('categories')->get();//->paginate(6);
         $count_data = $product->count();
         $keranjang = DB::select("SELECT orders.session_id, orders.status, orders.username, 
                     products.description, products.image, products.price, order_product.id,
@@ -42,7 +43,7 @@ class CustomerKeranjangController extends Controller
                     ->where('session_id','=',"$session_id")
                     ->whereNull('orders.username')
                     ->count();
-        $data=['total_item'=> $total_item, 'keranjang'=>$keranjang, 'product'=>$product,'item'=>$item,'item_name'=>$item_name,'count_data'=>$count_data,'categories'=>$categories,];
+        $data=['total_item'=> $total_item, 'keranjang'=>$keranjang, 'product'=>$product,'item'=>$item,'item_name'=>$item_name,'count_data'=>$count_data,'categories'=>$categories,'cat_count'=>$cat_count];
        
         return view('customer.content_customer',$data);
     }

@@ -22,6 +22,7 @@
             <div class="container" style="margin-top:30px;">
                 <div class="row align-middle" style="margin-bottom: 20px">
                     <div class="col-sm-12">
+                        @if($cat_count > 5)
                         <div class="col-md-12 mx-auto">
                             <table width="100%" style="margin-bottom: 20px;" >
                             <tbody>
@@ -69,7 +70,15 @@
                                 <a href="{{route('category.index', ['id'=>$value->id] )}}" type="button" class="btn button_add_to_cart button-collapse">{{$value->name}}</a>
                             @endforeach
                             </div>
-                        </div> 
+                        </div>
+                        @else
+                        <div class="col-md-12" style="margin-bottom: 20px;">
+                            <a href="{{url('/home_customer')}}" type="button" class="btn button_add_to_cart button-collapse">Semua Produk</a>
+                            @foreach($categories as $key => $value)
+                                <a href="{{route('category.index', ['id'=>$value->id] )}}" type="button" class="btn button_add_to_cart button-collapse">{{$value->name}}</a>
+                            @endforeach
+                        </div>
+                        @endif
                     </div>
                     <br>
                     <div class="col-md-12">
@@ -129,11 +138,13 @@
                             </div>
                         </div>
                         @endforeach
+                        <!--
                         <div class="col-md-12">
                             <div class="row justify-content-center" >
-                                <div class="page paging" style="margin-top:0; margin-bottom:1rem;">{{ $product->appends(Request::all())->onEachSide(5)->links('vendor.pagination.bootstrap-4') }}</div>
+                            <div class="page paging" style="margin-top:0; margin-bottom:1rem;">/*$product->appends(Request::all())->onEachSide(5)->links('vendor.pagination.bootstrap-4') */</div>
                             </div>
-                        </div>        
+                        </div>
+                        -->        
                     </div>
                 </div>
             </div>

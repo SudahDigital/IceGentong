@@ -218,7 +218,7 @@
         float: left;
         width: 40%;
         height: 30rem;
-        top:10rem;
+        top:11rem;
         border-top-right-radius: 100%;
         background:#5D2B30;
         position: absolute;
@@ -228,7 +228,7 @@
     right:0;
     width: 40%;
     height: 30rem;
-    top:40rem;
+    top:41rem;
     border-bottom-left-radius: 100%;
     background:#ffcc94;
     /*background:#ffd3a3;*/
@@ -237,7 +237,7 @@
   }
 
     .warna{
-        height:40rem;
+        height:41rem;
     }
 
     .nav-center img{
@@ -377,8 +377,8 @@
 
       .button-collapse{
 
-        margin-right: 20px;
-        font-size: 15px;
+        margin-right: 5px;
+        font-size: 5px;
       }
       #content .button_add_to_cart {
        
@@ -404,7 +404,7 @@
         float: left;
         width: 40%;
         height: 18rem;
-        top:11.8rem;
+        top:12.8rem;
         border-top-right-radius: 100%;
         /*background:#fff;*/
         background:#5D2B30;
@@ -415,7 +415,7 @@
     right:0;
     width: 40%;
     height: 18rem;
-    top:30rem;
+    top:31rem;
     border-bottom-left-radius: 100%;
     background:#ffcc94;
     /*background:#5D2B30;*/
@@ -430,7 +430,7 @@
     }
 
     .warna{
-        height:30rem;
+        height:31rem;
     }
     
     #sidebar ul.components {
@@ -596,11 +596,11 @@
     }
 
     .button-collapse{
-        margin-left: 8px;
+        margin-left:-10px;
         margin-right: 10px;
         margin-bottom:20px;
-        font-size: 40px;
-        left:-1.5rem;
+        font-size: 16px;
+        left:0;
         right:-1rem;
         top:0;
         padding-top:2px;
@@ -824,7 +824,7 @@
         float: left;
         width: 100%;
         height: 19rem;
-        top:11.8rem;
+        top:16.8rem;
         border-top-right-radius: 100%;
         /*background:#fff;*/
         background:#5D2B30;
@@ -835,7 +835,7 @@
     right:0;
     width: 100%;
     height: 19rem;
-    top:31rem;
+    top:36rem;
     border-bottom-left-radius: 100%;
     background:#ffcc94;
     /*background:#5D2B30;*/
@@ -849,7 +849,7 @@
     }
 
     .warna{
-        height:31rem;
+        height:36rem;
     }
     
     #sidebar ul.components {
@@ -1242,7 +1242,7 @@
         float: left;
         width: 100%;
         height: 19rem;
-        top:11.8rem;
+        top:16.8rem;
         border-top-right-radius: 100%;
         /*background:#fff;*/
         background:#5D2B30;
@@ -1253,7 +1253,7 @@
     right:0;
     width: 100%;
     height: 19rem;
-    top:31rem;
+    top:36rem;
     border-bottom-left-radius: 100%;
     background:#ffcc94;
     /*background:#5D2B30;*/
@@ -1267,7 +1267,7 @@
     }
 
     .warna{
-        height:31rem;
+        height:36rem;
     }
     
     #sidebar ul.components {
@@ -1658,7 +1658,7 @@
         float: left;
         width: 100%;
         height: 19rem;
-        top:9.5rem;
+        top:12.5rem;
         border-top-right-radius: 100%;
         /*background:#fff;*/
         background:#5D2B30;
@@ -1669,7 +1669,7 @@
     right:0;
     width: 100%;
     height: 19rem;
-    top:28.7rem;
+    top:31.7rem;
     border-bottom-left-radius: 100%;
     background:#ffcc94;
     /*background:#5D2B30;*/
@@ -1771,7 +1771,7 @@
     }
 
     .warna{
-        height:29rem;
+        height:32rem;
     }
 
     #content .cr_bl{
@@ -2079,7 +2079,7 @@
         float: left;
         width: 100%;
         height: 19rem;
-        top:7rem;
+        top:9.5rem;
         border-top-right-radius: 100%;
         /*background:#fff;*/
         background:#5D2B30;
@@ -2090,7 +2090,7 @@
         right:0;
         width: 100%;
         height: 19rem;
-        top:26rem;
+        top:28.5rem;
         border-bottom-left-radius: 100%;
         background:#ffcc94;
         /*background:#5D2B30;*/
@@ -2194,7 +2194,7 @@
     }
 
     .warna{
-        height:26rem;
+        height:28.5rem;
     }
 
     #content .cr_bl{
@@ -2509,7 +2509,7 @@
         float: left;
         width: 100%;
         height: 19rem;
-        top:7rem;
+        top:9.5rem;
         border-top-right-radius: 100%;
         /*background:#fff;*/
         background:#5D2B30;
@@ -2520,7 +2520,7 @@
     right:0;
     width: 100%;
     height: 19rem;
-    top:26rem;
+    top:28.5rem;
     border-bottom-left-radius: 100%;
     background:#ffcc94;
     /*background:#5D2B30;*/
@@ -2624,7 +2624,7 @@
     }
 
     .warna{
-        height:26rem;
+        height:28.5rem;
     }
 
     #content .cr_bl{
@@ -2944,7 +2944,7 @@
         float: left;
         width: 100%;
         height: 17rem;
-        top:7.4rem;
+        top:10rem;
         border-top-right-radius: 100%;
         /*background:#fff;*/
         background:#5D2B30;
@@ -2955,7 +2955,7 @@
     right:0;
     width: 100%;
     height: 17rem;
-    top:24.5rem;
+    top:27rem;
     border-bottom-left-radius: 100%;
     background:#ffcc94;
     /*background:#5D2B30;*/
@@ -3058,7 +3058,7 @@
     }
 
     .warna{
-        height:24.5rem;
+        height:27rem;
     }
   
     #content .cr_bl{
@@ -3375,7 +3375,7 @@
         float: left;
         width: 100%;
         height: 17rem;
-        top:7rem;
+        top:9.5rem;
         border-top-right-radius: 100%;
         /*background:#fff;*/
         background:#5D2B30;
@@ -3386,7 +3386,7 @@
     right:0;
     width: 100%;
     height: 18rem;
-    top:24rem;
+    top:26.5rem;
     border-bottom-left-radius: 100%;
     background:#ffcc94;
     /*background:#5D2B30;*/
@@ -3488,7 +3488,7 @@
     }
 
     .warna{
-        height:24.5rem;
+        height:27rem;
     }
   
     #content .cr_bl{
@@ -3804,7 +3804,7 @@
         float: left;
         width: 100%;
         height: 17rem;
-        top:7rem;
+        top:9.5rem;
         border-top-right-radius: 100%;
         /*background:#fff;*/
         background:#5D2B30;
@@ -3815,7 +3815,7 @@
     right:0;
     width: 100%;
     height: 17rem;
-    top:24rem;
+    top:26.5rem;
     border-bottom-left-radius: 100%;
     background:#ffcc94;
     /*background:#fff;*/
@@ -3917,7 +3917,7 @@
     }
 
     .warna{
-        height:24.5rem;
+        height:27rem;
     }
   
     #content .cr_bl{
@@ -4233,7 +4233,7 @@
         float: left;
         width: 100%;
         height: 15rem;
-        top:8rem;
+        top:11rem;
         border-top-right-radius: 100%;
         /*background:#fff;*/
         background:#5D2B30;
@@ -4244,7 +4244,7 @@
     right:0;
     width: 100%;
     height: 15rem;
-    top:23.1rem;
+    top:26.1rem;
     border-bottom-left-radius: 100%;
     background:#ffcc94;
     /*background:#fff;*/
@@ -4350,7 +4350,7 @@
     }
 
     .warna{
-        height:23rem;
+        height:26rem;
     }
 
     #content .cr_bl{
@@ -4669,7 +4669,7 @@
     #shape-1 {
         float: left;
         width: 100%;
-        height: 15rem;
+        height: 19rem;
         top:8rem;
         border-top-right-radius: 100%;
         background:#5D2B30;
@@ -4680,7 +4680,7 @@
     right:0;
     width: 100%;
     height: 15rem;
-    top:23.1rem;
+    top:27.1rem;
     border-bottom-left-radius: 100%;
     background:#ffcc94;
     /*background:#ffd3a3;*/
@@ -4785,7 +4785,7 @@
     }
 
     .warna{
-        height:23rem;
+        height:27rem;
     }
 
     #content .cr_bl{
