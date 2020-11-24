@@ -1431,7 +1431,7 @@
     }
 
     .button-collapse{
-        margin-left: 30px;
+        margin-left: 10px;
         margin-right: 0;
         margin-bottom:20px;
         font-size: 40px;
@@ -1852,7 +1852,7 @@
     }
 
     .button-collapse{
-        margin-left: 20px;
+        margin-left: 10px;
         margin-right: 0;
         margin-bottom:10px;
         font-size: 15px;
@@ -2711,10 +2711,10 @@
     }
 
     .button-collapse{
-        margin-left: 3px;
-        margin-right: 5px;
+        margin-left: 2px;
+        margin-right: 0;
         margin-bottom:10px;
-        font-size: 10px;
+        font-size: 8px;
         left:-1rem;
         right:-1rem;
         top:0;
@@ -3145,8 +3145,8 @@
     }
 
     .button-collapse{
-        margin-left: 3px;
-        margin-right: 5px;
+        margin-left: 1px;
+        margin-right: 1px;
         margin-bottom:10px;
         font-size: 10px;
         left:-1rem;
@@ -3575,10 +3575,10 @@
     }
 
     .button-collapse{
-        margin-left: 3px;
+        margin-left: 1px;
         margin-right: 0;
         margin-bottom:10px;
-        font-size: 12px;
+        font-size: 8px;
         left:-1rem;
         right:-1rem;
         top:0;
@@ -4003,10 +4003,10 @@
     }
 
     .button-collapse{
-        margin-left: 3px;
-        margin-right: 5px;
+        margin-left: 0;
+        margin-right: 0;
         margin-bottom:10px;
-        font-size: 10px;
+        font-size: 6px;
         left:-1rem;
         right:-1rem;
         top:0;
@@ -4422,24 +4422,24 @@
     #content .button_add_to_cart {
         
     border-radius: 5px;
-    padding:8px;
+    padding:9px;
     color: #ffffff;
-    
-    font-size: 9.5px;
+    font-size: 8px;
     font-weight: 600; 
-    padding:2 15;
+    padding:4 10;
     }
 
     .button-collapse{
-        margin-left: 3px;
-        margin-right: 1px;
+        margin-left: 0;
+        margin-right: 0;
         margin-bottom:10px;
-        font-size: 10px;
+        font-size: 8px;
         left:-1rem;
         right:-1rem;
         top:0;
-        padding-top:2px;
-     }
+        padding:0 0;
+
+    }
 
      .collapse{
         margin-bottom:10px;
@@ -4670,7 +4670,7 @@
         float: left;
         width: 100%;
         height: 19rem;
-        top:8rem;
+        top:6rem;
         border-top-right-radius: 100%;
         background:#5D2B30;
         position: absolute;
@@ -4680,7 +4680,7 @@
     right:0;
     width: 100%;
     height: 15rem;
-    top:27.1rem;
+    top:25.1rem;
     border-bottom-left-radius: 100%;
     background:#ffcc94;
     /*background:#ffd3a3;*/
@@ -4785,7 +4785,7 @@
     }
 
     .warna{
-        height:27rem;
+        height:25rem;
     }
 
     #content .cr_bl{
@@ -4857,12 +4857,12 @@
     #content .button_add_to_cart {
         
     border-radius: 5px;
-    padding:8px;
+    padding:10px;
     color: #ffffff;
     
-    font-size: 9px;
+    font-size: 7px;
     font-weight: 600; 
-    padding:2 15;
+    padding:2 8;
     }
 
     .button-collapse{
