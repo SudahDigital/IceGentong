@@ -27,6 +27,8 @@
       crossorigin="anonymous"
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5EG4YYH5S"></script>
     <style type="text/css">
         .preloader{
             position: fixed;
@@ -581,6 +583,14 @@
         }, 4000);
 
         
+    </script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'G-Q5EG4YYH5S');
     </script>
 </body>
 
