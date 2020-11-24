@@ -4667,13 +4667,13 @@
     }
 
     #shape-1 {
-        float: left;
-        width: 100%;
-        height: 19rem;
-        top:6rem;
-        border-top-right-radius: 100%;
-        background:#5D2B30;
-        position: absolute;
+    float: left;
+    width: 100%;
+    height: 19rem;
+    top:6rem;
+    border-top-right-radius: 100%;
+    background:#5D2B30;
+    position: absolute;
    }
   
    #shape-2 {
