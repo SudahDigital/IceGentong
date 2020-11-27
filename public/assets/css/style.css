@@ -438,6 +438,12 @@ a[aria-expanded="true"] {
   }
 }
 
+@media (max-width: 425px){
+  #collapse-4 .card-body{
+    height: 90vh;
+  }
+}
+
 .collapse{
   margin-bottom:50px;
 }
