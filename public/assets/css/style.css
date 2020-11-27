@@ -424,8 +424,18 @@ a[aria-expanded="true"] {
 
 #collapse-4{
   overflow-y: auto; 
-  max-height:450px; 
+  /*max-height:450px;*/ 
   padding:5%;
+}
+
+#collapse-4 .card-body{
+  height: 60vh;
+}
+
+@media (max-width: 768px){
+  #collapse-4 .card-body{
+    height: 78vh;
+  }
 }
 
 .collapse{

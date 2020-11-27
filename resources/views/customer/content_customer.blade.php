@@ -212,8 +212,8 @@
                     </tbody>
                 </table>
             </div>
-            <div id="{{$total_item > 0 ? 'collapse-4' : '' }}" class="collapse" data-parent="#accordion" style="" >
-                <div class="card-body" id="card-detail">
+            <div id="{{$total_item > 0 ? 'collapse-4' : '' }}" class="collapse" data-parent="#accordion">
+                <div class="card-body" id="card-detail" style="">
                     <div class="col-md-12">
                         <table width="100%" style="margin-bottom: 40px;">
                             <tbody>
