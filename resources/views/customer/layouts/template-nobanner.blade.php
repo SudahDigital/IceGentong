@@ -62,7 +62,7 @@
           <p style="font-weight:900;line-height:2;color:#6a3137;margin-left: -10%;">Harap Tunggu</p>
         </div>
     </div>
-     @if ($message = Session::get('success'))
+    @if ($message = Session::get('success'))
       <div class="alert alert-success alert-block">
         <button type="button" class="close" data-dismiss="alert">×</button> 
           <strong>{{ $message }}</strong>
@@ -300,7 +300,7 @@
                                 price : price
                             },              
                             success: function (data) {
-                            console.log(data);
+                            //console.log(data);
                             //$('#'+id).val(jumlah);
                             //$('#show_'+id).html(jumlah);
                             //$('#productPrice'+id).text(harga);
@@ -368,7 +368,7 @@
                                 price : price
                             },              
                             success: function (data) {
-                            console.log(data);
+                            //console.log(data);
                             //$('#'+id).val(jumlah);
                             //$('#show_'+id).html(jumlah);
                             //$('#productPrice'+id).text(harga);
@@ -590,7 +590,7 @@
                         price : price_delete
                     },              
                     success: function (data) {
-                    console.log(data);
+                    //console.log(data);
                     //$('#'+id).val(jumlah);
                     $('#jmlbrg_'+id).val(jumlah);
                     $('#show_'+id).html(jumlah);

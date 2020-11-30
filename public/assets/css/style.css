@@ -444,6 +444,13 @@ a[aria-expanded="true"] {
   }
 }
 
+ .beli-sekarang {
+  position: fixed;
+  display: none;
+  right: 15px;
+  bottom: 70px;
+}
+
 .collapse{
   margin-bottom:50px;
 }
@@ -663,6 +670,16 @@ a.register:hover {
     right: 0;
     
 }
+
+#product_list{
+  margin-bottom: -5rem;
+}
+
+@media (max-width: 768px){
+  #product_list{
+     margin-bottom: -2.5rem;
+   }
+  }
 
 .cat_fil{
   font-size: 30px;
@@ -1361,11 +1378,6 @@ height: 150px;
     font-size: 25px;
     font-weight: 800;
 }
-
-
-
-
-
 
 footer.footer {
   padding: 10px 20px;

@@ -404,15 +404,18 @@ class CustomerKeranjangController extends Controller
                                     }
                                     echo '<tr>
                                         <td align="right" colspan="3">';
-                                                if($total_item > 0){
-                                                echo '<a type="button" class="btn button_add_to_cart" data-toggle="modal" data-target="#my_modal_ajax">Beli Sekarang</a>';
-                                                }
+                                                
                                         echo'</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                    <div class="fixed-bottom p-4">';
+                        if($total_item > 0){
+                        echo '<a type="button" class="btn btn-block button_add_to_cart" data-toggle="modal" data-target="#my_modal_ajax">Beli Sekarang</a>';
+                        }
+                    echo'</div>
                 </div>
             </div>
             

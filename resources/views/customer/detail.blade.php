@@ -189,14 +189,17 @@
                                 @endforeach
                                 <tr>
                                     <td align="right" colspan="3">
-                                        @if($total_item > 0)
-                                        <a type="button" class="btn button_add_to_cart" data-toggle="modal" data-target="#my_modal_content">Beli Sekarang</a>
-                                        @endif
+                                        
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
+                </div>
+                <div class="fixed-bottom p-3">
+                    @if($total_item > 0)
+                        <a type="button" class="btn btn-block button_add_to_cart" data-toggle="modal" data-target="#my_modal_content">Beli Sekarang</a>
+                    @endif
                 </div>
             </div>
         </div>

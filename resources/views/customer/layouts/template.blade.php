@@ -47,6 +47,74 @@
             transform: translate(-50%,-50%);
             font: 14px arial;
         }
+
+        #fvpp-blackout {
+            display: none;
+            z-index: 499;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: #000;
+            opacity: 0.5;
+        }
+
+        #my-welcome-message {
+            display: none;
+            z-index: 500;
+            position: fixed;
+            width: 70%;
+            left: 15%;
+            top: 20%;
+            padding: 0;
+            background: #FDD8AF;
+            box-shadow: 5px 10px 18px #0000;
+        }
+
+        .button_welcome {
+            font-family: Open Sans;
+            text-decoration: none;
+            display: inline-block;
+            transition: .2s all;
+            position: relative;
+            z-index: 0;
+            border: none;
+            border-radius: 5px;
+            padding:2px 15px;
+            background-color: #5D2B30 !important;
+            font-size: 15px;
+            font-weight: 800; 
+            padding:2 15;
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+        }
+
+        .button_welcome:hover {
+            outline:0px !important;
+            -webkit-appearance:none;
+            -webkit-transform: translateY(-3px);
+            transform: translateY(-3px);
+            box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.3); 
+        }
+
+        @media (max-width: 425px){
+            .button_welcome {
+                padding:2px 5px;
+                font-size: 10px;
+                padding:2 5;
+                bottom: 5px;
+                right: 10px;
+                font-weight: 300;
+            }
+
+            #my-welcome-message {
+                width: 90%;
+                left: 5%;
+                top: 25%;
+            }
+        }
     </style>
     <script>
         $(document).ready(function(){
@@ -61,6 +129,11 @@
           <p style="font-weight:900;line-height:2;color:#6a3137;margin-left: -10%;">Harap Tunggu</p>
         </div>
     </div>
+
+    <div id="my-welcome-message">
+        <img src="{{ asset('assets/image/banner-cara-belanja.jpg') }}" class="w-100 h-100" alt="banner-cara-belanja">
+    </div>
+
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
@@ -124,13 +197,30 @@
             </nav>
             <!-- BANNER -->
             <div role="main" style="margin-top: 5rem;">
-                <div id="bannerSlide" class="carousel slide" data-ride="carousel" >
+                <div id="bannerSlide" class="carousel slide" data-ride="carousel"><!--data-interval="5000"-->
+                    <!-- Indicators -->
+                    <ul class="carousel-indicators">
+                        <li data-target="#bannerSlide" data-slide-to="0" class="active"></li>
+                        <li data-target="#bannerSlide" data-slide-to="1"></li>
+                    </ul>
+
                     <!-- The slideshow -->
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="{{ asset('assets/image/banner-min.png') }}" class="w-100 h-100">
+                            <img src="{{ asset('assets/image/banner-min.png') }}" class="w-100 h-100" alt="main-banner">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{ asset('assets/image/banner-cara-belanja.jpg') }}" class="w-100 h-100" alt="banner-cara-belanja">
                         </div>
                     </div>
+
+                    <!-- Left and right controls -->
+                    <a class="carousel-control-prev" href="#bannerSlide" data-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#bannerSlide" data-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
                 </div>
             </div>    
                
@@ -174,10 +264,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="{{ asset('assets/js/jquery.firstVisitPopup.js')}}"></script>
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>-->
     <script type="text/javascript">
         //$('#accordion').collapse('show').height('auto');
-        
+
+        //popup first page
+        $(function () {
+				$('#my-welcome-message').firstVisitPopup({
+					cookieName : 'homepage',
+					showAgainSelector: '#show-message'
+				});
+            });
+            
+        //sidebar
         $("#sidebar").mCustomScrollbar({
             theme: "minimal"
         });
@@ -263,7 +363,7 @@
                                 price : price
                             },              
                             success: function (data) {
-                            console.log(data);
+                            //console.log(data);
                             //$('#'+id).val(jumlah);
                             //$('#show_'+id).html(jumlah);
                             //$('#productPrice'+id).text(harga);
@@ -330,7 +430,7 @@
                         price : price
                     },              
                     success: function (data){
-                        console.log(data);
+                        //console.log(data);
                         //$('#'+id).val(jumlah);
                         //$('#show_'+id).html(jumlah);
                         //$('#productPrice'+id).text(harga);
@@ -550,7 +650,7 @@
                         price : price_delete
                     },              
                     success: function (data) {
-                    console.log(data);
+                    //console.log(data);
                     //$('#'+id).val(jumlah);
                     $('#jmlbrg_'+id).val(jumlah);
                     $('#show_'+id).html(jumlah);

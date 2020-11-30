@@ -2,15 +2,15 @@
 
     #shape-1 {
         width:30%;
-        height: 40rem;
-        top:0.8rem;
+        height: 38.8rem;
+        top:0;
         
    }
   
    #shape-2 {
     width:30%;
-    height: 40rem;
-    top:40.9rem;
+    height: 38.8rem;
+    top:38.8rem;
     
   }
 
@@ -20,7 +20,7 @@
     }
 
     .warna{
-        height:40.9rem;
+        height:38.8rem;
     }
    
 
@@ -41,21 +41,28 @@
         font-size: 25px;
         
     }
+
+    #cv .fa-chevron-up{
+        margin-left: 7rem;
+        font-size: 25px;
+        margin-top:-20px;
+        position: absolute;
+    }
 }
 
 @media (max-width: 1920px){
 
     #shape-1 {
         width:30%;
-        height: 40rem;
-        top:0.8rem;
+        height: 38.8rem;
+        top:0;
         
    }
   
    #shape-2 {
     width:30%;
-    height: 40rem;
-    top:40.9rem;
+    height: 38.8rem;
+    top:38.8rem;
     
   }
 
@@ -65,7 +72,7 @@
     }
 
     .warna{
-        height:40.9rem;
+        height:38.8rem;
     }
    
 
@@ -127,6 +134,13 @@
         text-align: left;
         color: #000000;
       }
+
+      #cv .fa-chevron-up{
+        margin-left: 4rem;
+        font-size: 27px;
+        margin-top:-20px;
+        position: absolute;
+    }
 }
 
 @media (max-width: 1440px){
@@ -134,13 +148,13 @@
 
     #shape-1 {
         width:50%;
-        top:1rem;
+        top:0;
         
    }
   
    #shape-2 {
     width:50%;
-    top:41rem;
+    top:40rem;
     
   }
 
@@ -151,7 +165,7 @@
     }
 
     .warna{
-        height:41rem;
+        height:40rem;
     }
 
     #i-kontak, #i-envelop {
@@ -209,6 +223,12 @@
         color: #000000;
       }
 
+      #cv .fa-chevron-up{
+        margin-left: 2rem;
+        font-size: 27px;
+        margin-top:-20px;
+        position: absolute;
+      }
    
 }
 
@@ -218,7 +238,7 @@
         float: left;
         width: 40%;
         height: 30rem;
-        top:11rem;
+        top:10rem;
         border-top-right-radius: 100%;
         background:#5D2B30;
         position: absolute;
@@ -228,7 +248,7 @@
     right:0;
     width: 40%;
     height: 30rem;
-    top:41rem;
+    top:40rem;
     border-bottom-left-radius: 100%;
     background:#ffcc94;
     /*background:#ffd3a3;*/
@@ -237,7 +257,7 @@
   }
 
     .warna{
-        height:41rem;
+        height:40rem;
     }
 
     .nav-center img{
@@ -310,13 +330,13 @@
 
     #shape-1 {
         width:50%;
-        top:6rem;
+        top:5rem;
         
    }
   
    #shape-2 {
     width:50%;
-    top:36.2rem;
+    top:35rem;
     
   }
 
@@ -342,7 +362,7 @@
        
     }
     .warna{
-        height:36rem;
+        height:35rem;
     }
 
     #content .product-price {
@@ -404,7 +424,7 @@
         float: left;
         width: 40%;
         height: 18rem;
-        top:12.8rem;
+        top:11.4rem;
         border-top-right-radius: 100%;
         /*background:#fff;*/
         background:#5D2B30;
@@ -415,7 +435,7 @@
     right:0;
     width: 40%;
     height: 18rem;
-    top:31rem;
+    top:29.4rem;
     border-bottom-left-radius: 100%;
     background:#ffcc94;
     /*background:#5D2B30;*/
@@ -430,7 +450,7 @@
     }
 
     .warna{
-        height:31rem;
+        height:29.4rem;
     }
     
     #sidebar ul.components {
@@ -824,7 +844,7 @@
         float: left;
         width: 100%;
         height: 19rem;
-        top:16.8rem;
+        top:15.1rem;
         border-top-right-radius: 100%;
         /*background:#fff;*/
         background:#5D2B30;
@@ -835,7 +855,7 @@
     right:0;
     width: 100%;
     height: 19rem;
-    top:36rem;
+    top:34.3rem;
     border-bottom-left-radius: 100%;
     background:#ffcc94;
     /*background:#5D2B30;*/
@@ -849,7 +869,7 @@
     }
 
     .warna{
-        height:36rem;
+        height:34.3rem;
     }
     
     #sidebar ul.components {
@@ -1242,7 +1262,7 @@
         float: left;
         width: 100%;
         height: 19rem;
-        top:16.8rem;
+        top:15rem;
         border-top-right-radius: 100%;
         /*background:#fff;*/
         background:#5D2B30;
@@ -1253,7 +1273,7 @@
     right:0;
     width: 100%;
     height: 19rem;
-    top:36rem;
+    top:34.2rem;
     border-bottom-left-radius: 100%;
     background:#ffcc94;
     /*background:#5D2B30;*/
@@ -1267,7 +1287,7 @@
     }
 
     .warna{
-        height:36rem;
+        height:34.2rem;
     }
     
     #sidebar ul.components {
@@ -1658,7 +1678,7 @@
         float: left;
         width: 100%;
         height: 19rem;
-        top:12.5rem;
+        top:12.1rem;
         border-top-right-radius: 100%;
         /*background:#fff;*/
         background:#5D2B30;
@@ -1669,7 +1689,7 @@
     right:0;
     width: 100%;
     height: 19rem;
-    top:31.7rem;
+    top:31.3rem;
     border-bottom-left-radius: 100%;
     background:#ffcc94;
     /*background:#5D2B30;*/
@@ -1771,7 +1791,7 @@
     }
 
     .warna{
-        height:32rem;
+        height:31.3rem;
     }
 
     #content .cr_bl{
@@ -2944,7 +2964,7 @@
         float: left;
         width: 100%;
         height: 17rem;
-        top:10rem;
+        top:9.8rem;
         border-top-right-radius: 100%;
         /*background:#fff;*/
         background:#5D2B30;
@@ -2955,7 +2975,7 @@
     right:0;
     width: 100%;
     height: 17rem;
-    top:27rem;
+    top:26.8rem;
     border-bottom-left-radius: 100%;
     background:#ffcc94;
     /*background:#5D2B30;*/
@@ -3058,7 +3078,7 @@
     }
 
     .warna{
-        height:27rem;
+        height:26.8rem;
     }
   
     #content .cr_bl{
@@ -3375,7 +3395,7 @@
         float: left;
         width: 100%;
         height: 17rem;
-        top:9.5rem;
+        top:9.3rem;
         border-top-right-radius: 100%;
         /*background:#fff;*/
         background:#5D2B30;
@@ -3386,7 +3406,7 @@
     right:0;
     width: 100%;
     height: 18rem;
-    top:26.5rem;
+    top:26.3rem;
     border-bottom-left-radius: 100%;
     background:#ffcc94;
     /*background:#5D2B30;*/
@@ -3488,7 +3508,7 @@
     }
 
     .warna{
-        height:27rem;
+        height:26.3rem;
     }
   
     #content .cr_bl{
@@ -3804,7 +3824,7 @@
         float: left;
         width: 100%;
         height: 17rem;
-        top:9.5rem;
+        top:9.1rem;
         border-top-right-radius: 100%;
         /*background:#fff;*/
         background:#5D2B30;
@@ -3815,7 +3835,7 @@
     right:0;
     width: 100%;
     height: 17rem;
-    top:26.5rem;
+    top:26.1rem;
     border-bottom-left-radius: 100%;
     background:#ffcc94;
     /*background:#fff;*/
@@ -3917,7 +3937,7 @@
     }
 
     .warna{
-        height:27rem;
+        height:26.1rem;
     }
   
     #content .cr_bl{
@@ -4233,7 +4253,7 @@
         float: left;
         width: 100%;
         height: 15rem;
-        top:11rem;
+        top:10.3rem;
         border-top-right-radius: 100%;
         /*background:#fff;*/
         background:#5D2B30;
@@ -4244,7 +4264,7 @@
     right:0;
     width: 100%;
     height: 15rem;
-    top:26.1rem;
+    top:25.3rem;
     border-bottom-left-radius: 100%;
     background:#ffcc94;
     /*background:#fff;*/
@@ -4350,7 +4370,7 @@
     }
 
     .warna{
-        height:26rem;
+        height:25.3rem;
     }
 
     #content .cr_bl{

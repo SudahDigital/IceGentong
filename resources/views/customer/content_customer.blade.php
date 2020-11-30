@@ -19,9 +19,9 @@
         <div id="shape-2">
     @endif           
         </div>
-            <div class="container" style="margin-top:30px;">
-                <div class="row align-middle" style="margin-bottom: 20px">
-                    <div class="col-sm-12">
+            <div class="container" style="">
+                <div class="row align-middle mt-3" style="">  
+                    <div class="col-sm-12 mt-3">
                         @if($cat_count > 5)
                         <div class="col-md-12 mx-auto">
                             <table width="100%" style="margin-bottom: 20px;" >
@@ -65,26 +65,25 @@
                         </div>
                         <div id="demo" class="collapse" style="">
                             <div class="col-md-12" style="margin-bottom: 20px;">
-                            <a href="{{url('/home_customer')}}" type="button" class="btn button_add_to_cart button-collapse">Semua Produk</a>
+                            <a href="{{url('/home_customer')}}" type="button" class="btn button_add_to_cart button-collapse mb=3">Semua Produk</a>
                             @foreach($categories as $key => $value)
-                                <a href="{{route('category.index', ['id'=>$value->id] )}}" type="button" class="btn button_add_to_cart button-collapse">{{$value->name}}</a>
+                                <a href="{{route('category.index', ['id'=>$value->id] )}}" type="button" class="btn button_add_to_cart button-collapse mb-3">{{$value->name}}</a>
                             @endforeach
                             </div>
                         </div>
                         @else
-                        <div class="col-md-12" style="margin-bottom: 20px;">
-                            <a href="{{url('/home_customer')}}" type="button" class="btn button_add_to_cart button-collapse">Semua Produk</a>
+                        <div class="col-md-12 mb-2" style="">
+                            <a href="{{url('/home_customer')}}" type="button" class="btn button_add_to_cart button-collapse mb-3">Semua Produk</a>
                             @foreach($categories as $key => $value)
-                                <a href="{{route('category.index', ['id'=>$value->id] )}}" type="button" class="btn button_add_to_cart button-collapse">{{$value->name}}</a>
+                                <a href="{{route('category.index', ['id'=>$value->id] )}}" type="button" class="btn button_add_to_cart button-collapse mb-3">{{$value->name}}</a>
                             @endforeach
                         </div>
                         @endif
                     </div>
-                    <br>
-                    <div class="col-md-12">
+                    <div class="col-md-12 mt-2">
                         <div class="row section_content">
                         @foreach($product as $key => $value)
-                        <div class="col-6 col-md-4 d-flex">
+                        <div id="product_list"  class="col-6 col-md-4 d-flex">
                             <div class="card mx-auto d-flex item_product">
                                 <a href="{{URL::route('product_detail', ['id'=>$value->id])}}">
                                     <img style="" src="{{ asset('storage/'.(($value->image!='') ? $value->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-150 w-100 img-responsive" alt="...">
@@ -97,7 +96,7 @@
                                 <div class="float-left px-1 py-2" style="">
                                     <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value->id}}" style="">Rp {{ number_format($value->price, 0, ',', '.') }}</p>
                                 </div>
-                                <table width="100%" class="hdr_tbl_cart" style="bottom: 0">
+                                <table width="100%" class="hdr_tbl_cart mt-auto" style="bottom: 0">
                                     <tbody>
                                         <tr>
                                             <td width="10%" align="right" valign="middle">
@@ -259,14 +258,17 @@
                                 @endforeach
                                 <tr>
                                     <td align="right" colspan="3">
-                                        @if($total_item > 0)
-                                            <a type="button" class="btn button_add_to_cart" data-toggle="modal" data-target="#my_modal_content">Beli Sekarang</a>
-                                        @endif
+                                        
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
+                </div>
+                <div class="fixed-bottom p-3">
+                    @if($total_item > 0)
+                        <a type="button" class="btn button_add_to_cart btn-block" data-toggle="modal" data-target="#my_modal_content">Beli Sekarang</a>
+                     @endif
                 </div>
             </div>
         </div>
