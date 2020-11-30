@@ -185,7 +185,7 @@
                 </div>
                 <div class="fixed-bottom p-3">
                     @if($total_item > 0)
-                        <a type="button" class="btn btn-block button_add_to_cart" data-toggle="modal" data-target="#my_modal_content">Beli Sekarang</a>
+                        <a type="button" class="btn btn-block button_add_to_pesan" data-toggle="modal" data-target="#my_modal_content">Beli Sekarang</a>
                     @endif
                 </div>
             </div>
