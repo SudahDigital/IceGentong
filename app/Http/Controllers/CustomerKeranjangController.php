@@ -16,6 +16,8 @@ class CustomerKeranjangController extends Controller
     public function index(Request $request)
     {   
         $session_id = $request->header('User-Agent');
+        $banner_active = \App\Banner::orderBy('id', 'ASC')->first();
+        $banner = \App\Banner::orderBy('id', 'ASC')->get();
         $categories = \App\Category::all();//paginate(10);
         $cat_count = $categories->count();
         $product = product::with('categories')->get();//->paginate(6);
@@ -43,7 +45,16 @@ class CustomerKeranjangController extends Controller
                     ->where('session_id','=',"$session_id")
                     ->whereNull('orders.username')
                     ->count();
-        $data=['total_item'=> $total_item, 'keranjang'=>$keranjang, 'product'=>$product,'item'=>$item,'item_name'=>$item_name,'count_data'=>$count_data,'categories'=>$categories,'cat_count'=>$cat_count];
+        $data=['total_item'=> $total_item, 
+                'keranjang'=>$keranjang, 
+                'product'=>$product,
+                'item'=>$item,
+                'item_name'=>$item_name,
+                'count_data'=>$count_data,
+                'categories'=>$categories,
+                'cat_count'=>$cat_count,
+                'banner'=>$banner,
+                'banner_active'=>$banner_active];
        
         return view('customer.content_customer',$data);
     }
@@ -227,7 +238,11 @@ class CustomerKeranjangController extends Controller
         $orders->address = $address;
         $orders->phone = $phone;
         $orders->save();
+        $total_pesanan = $request->get('total_pesanan');
+        $total_ongkir  = 15000;
+        $total_bayar  = $total_pesanan + $total_ongkir;
         $href='Hello..,  %0ANama %3A '.$username.'%0AEmail %3A '.$email.'%0ANo. Hp %3A' .$phone.'%0AAlamat %3A' .$address.',%0AIngin membeli %3A%0A';
+        $info_harga = 'Total Pesanan %3A Rp.'.number_format(($total_pesanan), 0, ',', '.').'%0AOngkos Kirim %3A Rp.'.number_format(($total_ongkir), 0, ',', '.').'%0ATotal Pembayaran %3A Rp.'.number_format(($total_bayar), 0, ',', '.').'%0A';
         if($orders->save()){
             $pesan = DB::table('order_product')
                     ->join('orders','order_product.order_id','=','orders.id')
@@ -237,7 +252,8 @@ class CustomerKeranjangController extends Controller
             foreach($pesan as $key=>$wa){
                 $href.='*'.$wa->description.'%20(Qty %3A%20'.$wa->quantity.' Pcs)%0A';
             }
-            $url = "https://wa.me/6282311988000‬?text=$href";
+            $text_wa=$href.'%0A'.$info_harga;
+            $url = "https://wa.me/6282311988000‬?text=$text_wa";
             return Redirect::to($url);
             
         }
@@ -439,7 +455,7 @@ class CustomerKeranjangController extends Controller
                                         <div class="card-body">
                                             <div class="form-group">
                                                 <input type="text" value="';if($item_name !== null){echo $item_name->username;}else{echo '';} echo'" name="username" class="form-control contact_input" placeholder="Name" id="name" required autocomplete="off" autofocus>
-                                                
+                                                <input type="hidden" name="total_pesanan" id="total_pesan_val" value="'.$item_price.'">
                                             </div>
                                             <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
                                             <div class="form-group">

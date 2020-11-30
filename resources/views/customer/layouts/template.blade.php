@@ -50,23 +50,24 @@
 
         #fvpp-blackout {
             display: none;
-            z-index: 499;
+            z-index: 9997;
             position: fixed;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
             background: #000;
-            opacity: 0.5;
+            opacity: 0.8;
         }
 
         #my-welcome-message {
             display: none;
-            z-index: 500;
+            z-index: 9998;
             position: fixed;
-            width: 70%;
-            left: 15%;
-            top: 20%;
+            border-radius: 10px;
+            width: 42%;
+            left: 29%;
+            top: 5%;
             padding: 0;
             background: #FDD8AF;
             box-shadow: 5px 10px 18px #0000;
@@ -74,20 +75,16 @@
 
         .button_welcome {
             font-family: Open Sans;
-            text-decoration: none;
-            display: inline-block;
-            transition: .2s all;
-            position: relative;
-            z-index: 0;
-            border: none;
-            border-radius: 5px;
-            padding:2px 15px;
-            background-color: #5D2B30 !important;
+            background: linear-gradient(to bottom, #BB141D, #f70411); 
+            color:white; 
+            padding: 5px 15px; 
+            border:none; 
+            box-shadow: 2px 2px 2px grey; 
+            border-radius: 14px;
             font-size: 15px;
             font-weight: 800; 
-            padding:2 15;
             position: absolute;
-            bottom: 10px;
+            top: 70px;
             right: 20px;
         }
 
@@ -99,20 +96,205 @@
             box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.3); 
         }
 
-        @media (max-width: 425px){
+        @media (max-width: 2560px){
             .button_welcome {
-                padding:2px 5px;
-                font-size: 10px;
-                padding:2 5;
-                bottom: 5px;
-                right: 10px;
-                font-weight: 300;
+                font-size: 34px;
+                padding: 10px 26px;
+                top: 37rem;
+                right: 62%;
+                font-weight: 600;
+                border-radius: 20px;
+            }
+
+            #my-welcome-message {
+                width: 42%;
+                left: 29%;
+                top: 5%;
+            }
+        }
+
+        @media (max-width: 1920px){
+            .button_welcome {
+                font-size: 25px;
+                padding: 5px 25px;
+                top: 28rem;
+                right: 61%;
+                font-weight: 600;
+                border-radius: 17px;
+            }
+
+            #my-welcome-message {
+                width: 42%;
+                left: 29%;
+                top: 5%;
+            }
+        }
+
+        @media (max-width: 1440px){
+            .button_welcome {
+                font-size: 21px;
+                padding: 5px 17px;
+                top: 21rem;
+                right: 59.5%;
+                font-weight: 600;
+                border-radius: 15px;
+            }
+
+            #my-welcome-message {
+                width: 42%;
+                left: 29%;
+                top: 5%;
+            }
+        }
+
+        @media (max-width: 1366px){
+            .button_welcome {
+                font-size: 19px;
+                padding: 5px 17px;
+                top: 20rem;
+                right: 60%;
+                font-weight: 600;
+            }
+
+            #my-welcome-message {
+                width: 42%;
+                left: 29%;
+                top: 5%;
+            }
+        }
+
+        @media (max-width: 1024px){
+            .button_welcome {
+                font-size: 15px;
+                padding: 5px 17px;
+                top: 15rem;
+                right: 57%;
+                font-weight: 600;
+            }
+
+            #my-welcome-message {
+                width: 42%;
+                left: 29%;
+                top: 10%;
+            }
+        }
+
+        @media (max-width: 768px){
+            .button_welcome {
+                font-size: 15px;
+                padding: 5px 17px;
+                top: 16rem;
+                right: 59%;
+                font-weight: 600;
+                border-radius: 14px;
+            }
+
+            #my-welcome-message {
+                width: 60%;
+                left: 20%;
+                top: 20%;
+            }
+        }
+
+        @media (max-width: 600px){
+            .button_welcome {
+                font-size: 26px;
+                padding: 7px 25px;
+                top: 27rem;
+                right: 43%;
+                font-weight: 600;
             }
 
             #my-welcome-message {
                 width: 90%;
                 left: 5%;
-                top: 25%;
+                top: 5%;
+            }
+        }
+
+        @media (max-width: 480px){
+            .button_welcome {
+                font-size: 20px;
+                padding: 5px 20px;
+                top: 22rem;
+                right: 45%;
+                font-weight: 600;
+            }
+
+            #my-welcome-message {
+                top: 2%;
+            }
+        }
+
+        @media (max-width: 425px){
+            .button_welcome {
+                font-size: 17.5px;
+                padding: 5px 20px;
+                top: 19rem;
+                right: 43%;
+                font-weight: 600;
+            }
+
+            #my-welcome-message {
+                width: 90%;
+                left: 5%;
+                top: 5%;
+            }
+        }
+
+        @media (max-width: 411px){
+            .button_welcome {
+                font-size: 17.5px;
+                padding: 5px 20px;
+                top: 18rem;
+                right: 42%;
+                font-weight: 600;
+            }
+        }
+
+        @media (max-width: 384px){
+            .button_welcome {
+                font-size: 17px;
+                padding: 5px 18px;
+                top: 17.5rem;
+                right: 42%;
+                font-weight: 600;
+            }
+        }
+
+        @media (max-width: 375px){
+            .button_welcome {
+                font-size: 16px;
+                padding: 5px 18px;
+                top: 17rem;
+                right: 43%;
+            }
+        }
+
+        @media (max-width: 364px){
+            .button_welcome {
+                font-size: 16px;
+                padding: 5px 18px;
+                top: 16rem;
+                right: 42%;
+            }
+        }
+
+        @media (max-width: 338px){
+            .button_welcome {
+                font-size: 15px;
+                padding: 5px 18px;
+                top: 15.5rem;
+                right: 40%;
+            }
+        }
+
+        @media (max-width: 320px){
+            .button_welcome {
+                font-size: 14px;
+                padding: 5px 18px;
+                top: 14.5rem;
+                right: 39%;
             }
         }
     </style>
@@ -130,8 +312,9 @@
         </div>
     </div>
 
-    <div id="my-welcome-message">
-        <img src="{{ asset('assets/image/banner-cara-belanja.jpg') }}" class="w-100 h-100" alt="banner-cara-belanja">
+    <div id="my-welcome-message" class="">
+        <img src="{{ asset('assets/image/popup-cara-belanja-lg.jpg') }}" class="d-none d-md-block d-md-none w-100" alt="popup-cara-belanja-lg" style="">
+        <img src="{{ asset('assets/image/popup-cara-belanja.jpg') }}" class="d-md-none w-100 h-100" alt="popup-cara-belanja" style="">
     </div>
 
     <div class="wrapper">
@@ -195,23 +378,17 @@
                     <a href="#searh_responsive" class="btn btn-info d-md-none" data-toggle="modal" data-target="#searchModal" style="border-radius: 50%; background:#693234;; border:none;"><i class="fa fa-search" style=""></i></a>
                 </div>
             </nav>
+            
             <!-- BANNER -->
             <div role="main" style="margin-top: 5rem;">
                 <div id="bannerSlide" class="carousel slide" data-ride="carousel"><!--data-interval="5000"-->
-                    <!-- Indicators -->
-                    <ul class="carousel-indicators">
-                        <li data-target="#bannerSlide" data-slide-to="0" class="active"></li>
-                        <li data-target="#bannerSlide" data-slide-to="1"></li>
-                    </ul>
-
                     <!-- The slideshow -->
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="{{ asset('assets/image/banner-min.png') }}" class="w-100 h-100" alt="main-banner">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{{ asset('assets/image/banner-cara-belanja.jpg') }}" class="w-100 h-100" alt="banner-cara-belanja">
-                        </div>
+                        @foreach($banner as $k => $v)
+                            <div class="carousel-item {{$v->id == $banner_active->id ? 'active' : ''}}">
+                                <img src="{{asset('storage/'.$v->image)}}" class="w-100 h-100" alt="main-banner">
+                            </div>
+                        @endforeach
                     </div>
 
                     <!-- Left and right controls -->
@@ -222,7 +399,7 @@
                         <span class="carousel-control-next-icon"></span>
                     </a>
                 </div>
-            </div>    
+            </div>  
                
             @yield('content')
 
@@ -521,6 +698,7 @@
                                 $('#quantity_delete'+id).val(jumlah);
                                 $('#total_kr_').html(tot);
                                 $('#total_kr_val').val(tot_val);
+                                $('#total_pesan_val').val(tot_val);
                             $.ajax({
                                     url : '{{URL::to('/home_cart')}}',
                                     type : 'GET',
@@ -606,6 +784,7 @@
                                 $('#quantity_delete'+id).val(jumlah);
                                 $('#total_kr_').html(tot);
                                 $('#total_kr_val').val(tot_val);
+                                $('#total_pesan_val').val(tot_val);
                                 $.ajax({
                                     url : '{{URL::to('/home_cart')}}',
                                     type : 'GET',

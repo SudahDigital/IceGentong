@@ -163,6 +163,18 @@
                         </ul>
                     </li>
 
+                    <li class="{{request()->routeIs('banner.index') ? 'active' : '' }}">
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">insert_photo</i>
+                            <span>Manage Banner</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li class="{{request()->routeIs('banner.index') ? 'active' : '' }}">
+                                <a href="{{route('banner.index')}}">List Slide Banner</a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="{{request()->routeIs('categories.index') ? 'active' : ''}}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">label</i>

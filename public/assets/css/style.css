@@ -917,12 +917,11 @@ height: 150px;
     z-index: 0;
     border: none;
     border-radius: 10px;
-    padding:15px;
     color: #ffffff;
     background-color: #5D2B30 !important;
     font-size: 16px;
     font-weight: 800; 
-    padding:2 15;
+    padding:15px;
 }
 
 #content .button_add_to_cart:hover {
@@ -931,6 +930,30 @@ height: 150px;
     -webkit-transform: translateY(-3px);
     transform: translateY(-3px);
     box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.3); 
+}
+
+#accordion .button_add_to_pesan {
+  font-family: Open Sans;
+  text-decoration: none;
+  display: inline-block;
+  transition: .2s all;
+  position: relative;
+  z-index: 0;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  background-color: #5D2B30 !important;
+  font-size: 20px;
+  font-weight: 600; 
+  padding:10px;
+}
+
+#accordion .button_add_to_pesan:hover {
+  outline:0px !important;
+  -webkit-appearance:none;
+  -webkit-transform: translateY(-3px);
+  transform: translateY(-3px);
+  box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.3); 
 }
 
 #content .button_add_to_cart:focus {
@@ -1666,6 +1689,7 @@ footer.footer .cart .count-cart-three {
   transform: translateY(-3px);
   box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.3); 
 }
+
 
 
 

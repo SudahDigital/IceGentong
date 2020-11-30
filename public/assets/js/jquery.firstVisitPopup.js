@@ -45,7 +45,7 @@
 		}
 
 		$body.append('<div id="fvpp-blackout"></div>');
-		$dialog.append('<a class="btn button_welcome pull-right" id="fvpp-close" style="color:#fff;">Lanjut Belanja</a>');
+		$dialog.append('<a class="btn button_welcome pull-right" id="fvpp-close" style="color:#fff;">Beli Sekarang</a>');
 		$blackout = $('#fvpp-blackout');
 
 		if (getCookie('fvpp' + settings.cookieName)) {
@@ -55,7 +55,7 @@
 		}
 
 		$(settings.showAgainSelector).on('click', showMessage);
-		$body.on('click', '#fvpp-blackout, #fvpp-close', hideMessage);
+		$body.on('click', '#fvpp-close', hideMessage);
 
 	};
 

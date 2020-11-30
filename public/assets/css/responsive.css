@@ -406,6 +406,9 @@
         
     }
 
+    #content .button_add_to_cart::after {
+        padding:13px;
+    }
     #content .item_product img{
         border-radius:15px;
         height: auto;
@@ -612,7 +615,10 @@
         
         font-size: 11px;
         font-weight: 600; 
-        padding:2 15;
+    }
+
+    #content .button_add_to_cart::after {
+        padding:10px;
     }
 
     .button-collapse{
@@ -1024,12 +1030,15 @@
     #content .button_add_to_cart {
         
         border-radius: 5px;
-        padding:8px;
+        padding:8px 15px;
         color: #ffffff;
-        
+        margin-right: 2px;
         font-size: 16px;
         font-weight: 600; 
-        padding:2 15;
+    }
+
+    #content .button_add_to_cart::after {
+        padding:8px;
     }
 
     .button-collapse{
@@ -1440,14 +1449,16 @@
   }
 
     #content .button_add_to_cart {
-        
+        margin-right:0;
         border-radius: 5px;
-        padding:8px;
+        padding:8px 10px;
         color: #ffffff;
-        
-        font-size: 15px;
+        font-size: 14px;
         font-weight: 600; 
-        padding:2 15;
+    }
+
+    #content .button_add_to_cart::after {
+        padding:8px;
     }
 
     .button-collapse{
@@ -1702,8 +1713,6 @@
         left: -70%;
     }
 
-    
-    
     #sidebar ul.components {
     padding: 20px 0;
     }
@@ -1723,7 +1732,6 @@
     
     }
 
-   
     .nav-center img{
         left:-5rem;
         position:absolute;
@@ -1863,12 +1871,18 @@
     #content .button_add_to_cart {
         
         border-radius: 5px;
-        padding:8px;
+        padding:8px 10px;
         color: #ffffff;
-        
         font-size: 12px;
         font-weight: 600; 
-        padding:2 15;
+    }
+
+    #content .button_add_to_cart::after {
+        padding:8px;
+    }
+
+    #accordion .button_add_to_pesan {
+        font-size: 17px;
     }
 
     .button-collapse{
@@ -2288,17 +2302,23 @@
     
     }
     
-
     #content .button_add_to_cart {
-        
         border-radius: 5px;
-        padding:8px;
+        padding:8px 10px;
         color: #ffffff;
-        
         font-size: 12px;
         font-weight: 600; 
-        padding:2 15;
     }
+
+    #content .button_add_to_cart::after {
+        padding:10px;
+    }
+
+    #accordion .button_add_to_pesan {
+        
+        font-size: 21px;
+        
+      }
 
     .button-collapse{
         margin-left: 3px;
@@ -2649,85 +2669,90 @@
 
     #content .cr_bl{
     
-        margin-left: 1rem;
-        }
+    margin-left: 1rem;
+    }
 
-        #cara-belanja .card-body{
-            padding:0;
-        }
-    
-        #content .cara_belanja img{
-            width:90px;
-            height:auto;
-            margin-left:-15px;
-        }
-    
-        #content .cara_belanja h5{
-            font-weight: 900;
-            font-size: 17px;
-            margin-left:-2.5rem;
-            margin-right:-2.5rem;
-            
-        }
-    
-        #content .cara_belanja p{
-            margin-left:-2.5rem;
-            margin-right:-10px;
-            font-size: 12px;
-            
-        }
-    
-        #content .kontak{
+    #cara-belanja .card-body{
+        padding:0;
+    }
+
+    #content .cara_belanja img{
+        width:90px;
+        height:auto;
+        margin-left:-15px;
+    }
+
+    #content .cara_belanja h5{
+        font-weight: 900;
+        font-size: 17px;
+        margin-left:-2.5rem;
+        margin-right:-2.5rem;
         
-            margin-left: 0.5rem;
-            margin-bottom : -2rem;
-    
-        }
-    
-        #i-kontak, #i-envelop {
-            font-size: 3.9em;
-            margin-top:1.3rem;
-        }
-    
-        #content .contact_kami h5.no_telp{
-            margin-left:-5rem;
-            font-size: 29px;
-           
-        }
-    
-        #content .contact_kami p.telp{
-            margin-left:-5rem;
-            margin-top: 1rem;
-            font-size: 20px;
-           
-       }
-    
-       #content .contact_kami p{
+    }
+
+    #content .cara_belanja p{
+        margin-left:-2.5rem;
+        margin-right:-10px;
+        font-size: 12px;
         
-        margin-left:6rem;
-        margin-top: -4rem;
+    }
+
+    #content .kontak{
+    
+        margin-left: 0.5rem;
+        margin-bottom : -2rem;
+
+    }
+
+    #i-kontak, #i-envelop {
+        font-size: 3.9em;
+        margin-top:1.3rem;
+    }
+
+    #content .contact_kami h5.no_telp{
+        margin-left:-5rem;
+        font-size: 29px;
+        
+    }
+
+    #content .contact_kami p.telp{
+        margin-left:-5rem;
+        margin-top: 1rem;
         font-size: 20px;
-        font-weight: 600;
         
-       }
-    
-      #content .contact_kami h5{
-        margin-left:6rem;
-        font-family: Open Sans;
-        font-size: 16px;
-        
-      }
-      
+    }
 
+    #content .contact_kami p{
+    
+    margin-left:6rem;
+    margin-top: -4rem;
+    font-size: 20px;
+    font-weight: 600;
+    
+    }
+
+    #content .contact_kami h5{
+    margin-left:6rem;
+    font-family: Open Sans;
+    font-size: 16px;
+    
+    }
+      
     #content .button_add_to_cart {
-        
         border-radius: 5px;
-        padding:8px;
+        padding:8px 8px;
         color: #ffffff;
-        
         font-size: 12px;
         font-weight: 600; 
-        padding:2 15;
+    }
+
+    #content .button_add_to_cart::after {
+        padding:8px;
+    }
+
+    #accordion .button_add_to_pesan {
+        font-size: 17px;
+        border-radius: 6px;
     }
 
     .button-collapse{
@@ -3157,11 +3182,14 @@
     #content .button_add_to_cart {
         
         border-radius: 5px;
-        padding:8px;
+        padding:8px 10px;
         color: #ffffff;
         font-size: 11px;
         font-weight: 600; 
-        padding:2 15;
+    }
+
+    #content .button_add_to_cart::after {
+        padding:10px;
     }
 
     .button-collapse{
@@ -3589,9 +3617,12 @@
         border-radius: 5px;
         padding:8px;
         color: #ffffff;
-        font-size: 11px;
+        font-size: 10px;
         font-weight: 600; 
-        padding:2 15;
+    }
+
+    #content .button_add_to_cart::after {
+        padding:8px;
     }
 
     .button-collapse{
@@ -4013,13 +4044,15 @@
     }
   
     #content .button_add_to_cart {
-        
         border-radius: 5px;
         padding:8px;
         color: #ffffff;
         font-size: 10px;
         font-weight: 600; 
-        padding:2 15;
+    }
+
+    #content .button_add_to_cart::after {
+        padding:8px;
     }
 
     .button-collapse{
@@ -4442,11 +4475,14 @@
     #content .button_add_to_cart {
         
     border-radius: 5px;
-    padding:9px;
+    padding:8px;
     color: #ffffff;
-    font-size: 8px;
+    font-size: 9px;
     font-weight: 600; 
-    padding:4 10;
+    }
+
+    #content .button_add_to_cart::after {
+        padding:8px;
     }
 
     .button-collapse{
@@ -4877,12 +4913,14 @@
     #content .button_add_to_cart {
         
     border-radius: 5px;
-    padding:10px;
+    padding:8px;
     color: #ffffff;
-    
     font-size: 7px;
     font-weight: 600; 
-    padding:2 8;
+    }
+
+    #content .button_add_to_cart::after {
+        padding:8px;
     }
 
     .button-collapse{

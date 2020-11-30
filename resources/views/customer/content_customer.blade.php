@@ -1,16 +1,6 @@
 @extends('customer.layouts.template')
 @section('content')
 
-    @if(session()->has('status'))
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="alert alert-success" role="alert" style="position:fixed;top:20%; width:80%; z-index:9999; margin: 0 auto; background:#FDD8AF; border:none; color:#6a3137; font-weight:bold;">
-                <button type="button" class="close" data-dismiss="alert">×</button> 
-                {{session()->get('status')}}
-            </div>
-        </div>
-    </div>
-    @endif
     @if($count_data <= 3)
         <div class="">
     @else
@@ -263,11 +253,12 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <br>
                     </div>
                 </div>
                 <div class="fixed-bottom p-3">
                     @if($total_item > 0)
-                        <a type="button" class="btn button_add_to_cart btn-block" data-toggle="modal" data-target="#my_modal_content">Beli Sekarang</a>
+                        <a type="button" class="btn button_add_to_pesan btn-block" data-toggle="modal" data-target="#my_modal_content">Beli Sekarang</a>
                      @endif
                 </div>
             </div>
@@ -290,6 +281,12 @@
                                 <div class="card contact_card" style="border-radius:15px;">
                                     <div class="card-body">
                                         <div class="form-group">
+                                            @if($item!==null)
+                                            <input type="hidden" name="total_pesanan" id="total_pesan_val" value="{{$item->total_price}}">
+                                                @else
+                                            <input type="hidden" name="total_pesanan" id="total_pesan_val" value="0">
+                                             @endif
+                                            
                                         <input type="text" value="{{$item_name !== null ? $item_name->username : ''}}" name="username" class="form-control contact_input @error('name') is-invalid @enderror" placeholder="Name" id="name" required autocomplete="off" autofocus value="{{ old('name') }}">
                                             @error('name')
                                                 <span class="invalid-feedback" role="alert">

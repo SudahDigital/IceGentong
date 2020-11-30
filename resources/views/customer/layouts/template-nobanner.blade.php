@@ -461,6 +461,7 @@
                                 $('#quantity_delete'+id).val(jumlah);
                                 $('#total_kr_').html(tot);
                                 $('#total_kr_val').val(tot_val);
+                                $('#total_pesan_val').val(tot_val);
                             $.ajax({
                                     url : '{{URL::to('/home_cart')}}',
                                     type : 'GET',
@@ -546,6 +547,7 @@
                                 $('#quantity_delete'+id).val(jumlah);
                                 $('#total_kr_').html(tot);
                                 $('#total_kr_val').val(tot_val);
+                                $('#total_pesan_val').val(tot_val);
                                 $.ajax({
                                     url : '{{URL::to('/home_cart')}}',
                                     type : 'GET',

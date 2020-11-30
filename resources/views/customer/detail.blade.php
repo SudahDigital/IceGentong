@@ -1,19 +1,6 @@
 @extends('customer.layouts.template-nobanner')
 @section('content')
 
-    @if(session()->has('status'))
-    <div class="container">
-        <div class="row justify-content-center">
-            
-                <div class="alert alert-success" role="alert" style="position:fixed;top:20%; width:80%; z-index:9999; margin: 0 auto; background:#6a3137; border:none; color:#FDD8AF; font-weight:bold;">
-                    <button type="button" class="close" data-dismiss="alert">×</button> 
-                    {{session()->get('status')}}
-                </div>
-            
-        </div>
-    </div>
-    @endif
-
     <div class="container" style="margin-top: 80px;">
         <div class="row align-middle">
             <div class="col-sm-12 col-md-12">
@@ -222,6 +209,11 @@
                             
                                 <div class="card mx-auto contact_card" style="border-radius:15px;">
                                     <div class="card-body">
+                                            @if($item!==null)
+                                            <input type="hidden" name="total_pesanan" id="total_pesan_val" value="{{$item->total_price}}">
+                                                @else
+                                            <input type="hidden" name="total_pesanan" id="total_pesan_val" value="0">
+                                             @endif
                                         <div class="form-group">
                                         <input type="text" value="{{$item_name !== null ? $item_name->username : ''}}" name="username" class="form-control contact_input @error('name') is-invalid @enderror" placeholder="Name" id="name" required autocomplete="off" autofocus value="{{ old('name') }}">
                                             @error('name')

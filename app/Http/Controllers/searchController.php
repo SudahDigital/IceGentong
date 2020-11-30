@@ -15,6 +15,8 @@ class searchController extends Controller
     public function index(Request $request)
     {
             $session_id = $request->header('User-Agent');
+            $banner_active = \App\Banner::orderBy('id', 'ASC')->first();
+            $banner = \App\Banner::orderBy('id', 'ASC')->get();
             $keyword = $request->get('keyword') ? $request->get('keyword') : '';
             $categories = \App\Category::get();
             $cat_count = $categories->count();
@@ -43,7 +45,16 @@ class searchController extends Controller
                         ->where('session_id','=',"$session_id")
                         ->whereNull('username')
                     ->count();
-            $data=['total_item'=> $total_item, 'keranjang'=>$keranjang, 'product'=>$product,'item'=>$item,'item_name'=>$item_name,'count_data'=>$count_data,'categories'=>$categories,'cat_count'=>$cat_count];
+            $data=['total_item'=> $total_item, 
+            'keranjang'=>$keranjang, 
+            'product'=>$product,
+            'item'=>$item,
+            'item_name'=>$item_name,
+            'count_data'=>$count_data,
+            'categories'=>$categories,
+            'cat_count'=>$cat_count,
+            'banner_active'=>$banner_active,
+            'banner'=>$banner];
        
         return view('customer.content_customer',$data);
 
