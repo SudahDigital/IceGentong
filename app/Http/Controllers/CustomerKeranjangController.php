@@ -427,7 +427,7 @@ class CustomerKeranjangController extends Controller
                             </table>
                         </div>
                     </div>
-                    <div class="fixed-bottom p-4">';
+                    <div class="fixed-bottom p-3">';
                         if($total_item > 0){
                         echo '<a type="button" class="btn btn-block button_add_to_pesan" data-toggle="modal" data-target="#my_modal_ajax">Beli Sekarang</a>';
                         }
