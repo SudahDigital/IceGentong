@@ -260,14 +260,21 @@
             $('.collapse.in').toggleClass('in');
             $('a[aria-expanded=true]').attr('aria-expanded', 'false');
         });
+
+        function hanyaAngka(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
         
+            return false;
+            return true;
+        }
         function pesan_wa()
         {
             var name = document.getElementById("name").value;
             var email = document.getElementById("email").value;
             var address = document.getElementById("address").value;
             var phone = document.getElementById("phone").value;
-            if (name != "" && email!="" && address !="" && phone !="") {
+            if (name != "" && email!="" && address !="" && phone !="" && phone.length > 9) {
             Swal.fire({
                 title: 'Memesan',
                 text: "Anda melakukan pesanan melalui whatsapp",
@@ -279,7 +286,7 @@
                     location.reload();
                 });
             }else{
-                alert('Anda harus mengisi data dengan lengkap !');
+                alert('Anda harus mengisi data dengan lengkap & benar !');
             }
         }
 
