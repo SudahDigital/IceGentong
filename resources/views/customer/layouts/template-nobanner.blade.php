@@ -48,9 +48,13 @@
             transition: all 0.5s;
         }
 
-        @media(min-width:768px){
+        @media(min-width:1366px){
             .overlay_ajax {
-            left: 39%;
+            left: 47%;
+            }
+            .preloader .loading {
+            left: 40%;
+            top: 40%;
             }  
         }
 
