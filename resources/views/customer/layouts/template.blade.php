@@ -30,6 +30,32 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-183852861-1"></script>
     <style type="text/css">
+        /*Hidden class for adding and removing*/
+        .lds-dual-ring.hidden {
+            display: none;
+        }
+
+        /*Add an overlay to the entire page blocking any further presses to buttons or other elements.*/
+        .overlay_ajax {
+            position: fixed;
+            left: 39%;
+            top: 40%;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 9999;
+            transition: all 0.5s;
+        }
+        @media(min-width:1366px){
+            .overlay_ajax {
+            left: 47%;
+            }
+            .preloader .loading {
+            left: 40%;
+            top: 40%;
+            }  
+        }
+        
         .preloader{
             position: fixed;
             top: 0;
@@ -38,11 +64,12 @@
             height: 100%;
             z-index: 9999;
             background-color: #fff;
+            opacity : 0.9;
         }
 
         .preloader .loading {
             position: absolute;
-            left: 50%;
+            left: 53%;
             top: 50%;
             transform: translate(-50%,-50%);
             font: 14px arial;
@@ -307,16 +334,18 @@
 <body>
     <div class="preloader" id="preloader">
         <div class="loading">
-          <img src="{{ asset('assets/image/preload.gif') }}" width="80">
+          <img src="{{ asset('assets/image/preload.gif') }}" width="80" alt="preload">
           <p style="font-weight:900;line-height:2;color:#6a3137;margin-left: -10%;">Harap Tunggu</p>
         </div>
     </div>
 
+    <div id="loader" class="lds-dual-ring hidden overlay_ajax"><img class="hidden" src="{{ asset('assets/image/preload.gif') }}" width="80" alt="preload"></div>
+    
     <div id="my-welcome-message" class="">
         <img src="{{ asset('assets/image/popup-cara-belanja-lg.jpg') }}" class="d-none d-md-block d-md-none w-100" alt="popup-cara-belanja-lg" style="">
         <img src="{{ asset('assets/image/popup-cara-belanja.jpg') }}" class="d-md-none w-100 h-100" alt="popup-cara-belanja" style="">
     </div>
-
+    
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
@@ -538,6 +567,9 @@
                                 Product_id : Product_id,
                                 quantity : quantity,
                                 price : price
+                            },
+                            beforeSend: function () { // Before we send the request, remove the .hidden class from the spinner and default to inline-block.
+                                $('#loader').removeClass('hidden')
                             },              
                             success: function (data) {
                             //console.log(data);
@@ -552,6 +584,9 @@
                                     $( '#accordion' ).html(response);
                                     }
                                 });
+                            },
+                            complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                                $('#loader').addClass('hidden')
                             },
                             error: function (data) {
                             console.log('Error:', data);
@@ -605,6 +640,9 @@
                         Product_id : Product_id,
                         quantity : quantity,
                         price : price
+                    },
+                    beforeSend: function () { // Before we send the request, remove the .hidden class from the spinner and default to inline-block.
+                        $('#loader').removeClass('hidden')
                     },              
                     success: function (data){
                         //console.log(data);
@@ -620,6 +658,9 @@
                             $('#accordion' ).html(response);
                             }
                         });                                
+                    },
+                    complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                        $('#loader').addClass('hidden')
                     },
                     error: function (data) {
                     console.log('Error:', data);
@@ -693,6 +734,9 @@
                                 id_detil : id_detil,
                                 order_id : order_id,
                                 price : price
+                            },
+                            beforeSend: function () { // Before we send the request, remove the .hidden class from the spinner and default to inline-block.
+                                $('#loader').removeClass('hidden')
                             },              
                             success: function (data) {
                                 $('#quantity_delete'+id).val(jumlah);
@@ -708,6 +752,9 @@
                                     //$('#collapse-4').addClass('show');
                                     }
                                 });
+                            },
+                            complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                                $('#loader').addClass('hidden')
                             },
                             error: function (data) {
                             console.log('Error:', data);
@@ -779,6 +826,9 @@
                                 id_detil : id_detil,
                                 order_id : order_id,
                                 price : price
+                            },
+                            beforeSend: function () { // Before we send the request, remove the .hidden class from the spinner and default to inline-block.
+                                $('#loader').removeClass('hidden')
                             },              
                             success: function (data) {
                                 $('#quantity_delete'+id).val(jumlah);
@@ -794,6 +844,9 @@
                                     //$('#collapse-4').addClass('show');
                                     }
                                 });
+                            },
+                            complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                                $('#loader').addClass('hidden')
                             },
                             error: function (data) {
                             console.log('Error:', data);
@@ -827,6 +880,9 @@
                         order_id : order_id_delete,
                         quantity : quantity_delete,
                         price : price_delete
+                    },
+                    beforeSend: function () { // Before we send the request, remove the .hidden class from the spinner and default to inline-block.
+                        $('#loader').removeClass('hidden')
                     },              
                     success: function (data) {
                     //console.log(data);
@@ -843,6 +899,9 @@
                             $('#collapse-4').addClass('show');
                             }
                         });
+                    },
+                    complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                        $('#loader').addClass('hidden')
                     },
                     error: function (data) {
                     console.log('Error:', data);

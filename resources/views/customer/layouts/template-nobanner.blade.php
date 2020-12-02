@@ -31,6 +31,29 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-183852861-1"></script>
     <style type="text/css">
+        /*Hidden class for adding and removing*/
+        .lds-dual-ring.hidden {
+            display: none;
+        }
+
+        /*Add an overlay to the entire page blocking any further presses to buttons or other elements.*/
+        .overlay_ajax {
+            position: fixed;
+            left: 39%;
+            top: 40%;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 9999;
+            transition: all 0.5s;
+        }
+
+        @media(min-width:768px){
+            .overlay_ajax {
+            left: 39%;
+            }  
+        }
+
         .preloader{
             position: fixed;
             top: 0;
@@ -62,6 +85,9 @@
           <p style="font-weight:900;line-height:2;color:#6a3137;margin-left: -10%;">Harap Tunggu</p>
         </div>
     </div>
+
+    <div id="loader" class="lds-dual-ring hidden overlay_ajax"><img class="hidden" src="{{ asset('assets/image/preload.gif') }}" width="80" alt="preload"></div>
+    
     @if ($message = Session::get('success'))
       <div class="alert alert-success alert-block">
         <button type="button" class="close" data-dismiss="alert">×</button> 
@@ -298,6 +324,9 @@
                                 Product_id : Product_id,
                                 quantity : quantity,
                                 price : price
+                            },
+                            beforeSend: function () { // Before we send the request, remove the .hidden class from the spinner and default to inline-block.
+                                $('#loader').removeClass('hidden')
                             },              
                             success: function (data) {
                             //console.log(data);
@@ -312,6 +341,9 @@
                                     $( '#accordion' ).html(response);
                                     }
                                 });
+                            },
+                            complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                                $('#loader').addClass('hidden')
                             },
                             error: function (data) {
                             console.log('Error:', data);
@@ -366,6 +398,9 @@
                                 Product_id : Product_id,
                                 quantity : quantity,
                                 price : price
+                            },
+                            beforeSend: function () { // Before we send the request, remove the .hidden class from the spinner and default to inline-block.
+                                $('#loader').removeClass('hidden')
                             },              
                             success: function (data) {
                             //console.log(data);
@@ -381,6 +416,9 @@
                                     
                                     }
                                 });
+                            },
+                            complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                                $('#loader').addClass('hidden')
                             },
                             error: function (data) {
                             console.log('Error:', data);
@@ -456,6 +494,9 @@
                                 id_detil : id_detil,
                                 order_id : order_id,
                                 price : price
+                            },
+                            beforeSend: function () { // Before we send the request, remove the .hidden class from the spinner and default to inline-block.
+                                $('#loader').removeClass('hidden')
                             },              
                             success: function (data) {
                                 $('#quantity_delete'+id).val(jumlah);
@@ -471,6 +512,9 @@
                                     //$('#collapse-4').addClass('show');
                                     }
                                 });
+                            },
+                            complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                                $('#loader').addClass('hidden')
                             },
                             error: function (data) {
                             console.log('Error:', data);
@@ -542,6 +586,9 @@
                                 id_detil : id_detil,
                                 order_id : order_id,
                                 price : price
+                            },
+                            beforeSend: function () { // Before we send the request, remove the .hidden class from the spinner and default to inline-block.
+                                $('#loader').removeClass('hidden')
                             },              
                             success: function (data) {
                                 $('#quantity_delete'+id).val(jumlah);
@@ -557,6 +604,9 @@
                                     //$('#collapse-4').addClass('show');
                                     }
                                 });
+                            },
+                            complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                                $('#loader').addClass('hidden')
                             },
                             error: function (data) {
                             console.log('Error:', data);
@@ -590,6 +640,9 @@
                         order_id : order_id_delete,
                         quantity : quantity_delete,
                         price : price_delete
+                    },
+                    beforeSend: function () { // Before we send the request, remove the .hidden class from the spinner and default to inline-block.
+                        $('#loader').removeClass('hidden')
                     },              
                     success: function (data) {
                     //console.log(data);
@@ -606,6 +659,9 @@
                             $('#collapse-4').addClass('show');
                             }
                         });
+                    },
+                    complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                        $('#loader').addClass('hidden')
                     },
                     error: function (data) {
                     console.log('Error:', data);
