@@ -409,7 +409,7 @@
             </nav>
             
             <!-- BANNER -->
-            <div role="main" style="margin-top: 5rem;">
+            <div role="main" style="margin-top: 5.5rem;">
                 <div id="bannerSlide" class="carousel slide" data-ride="carousel"><!--data-interval="5000"-->
                     <!-- The slideshow -->
                     <div class="carousel-inner">
