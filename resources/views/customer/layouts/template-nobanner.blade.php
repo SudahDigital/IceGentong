@@ -81,12 +81,12 @@
 <body>
     <div class="preloader" id="preloader">
         <div class="loading">
-          <img src="{{ asset('assets/image/preload.gif') }}" width="80">
+          <img src="{{ asset('assets/image/preloader.gif') }}" width="80" alt="preloader">
           <p style="font-weight:900;line-height:2;color:#6a3137;margin-left: -10%;">Harap Tunggu</p>
         </div>
     </div>
 
-    <div id="loader" class="lds-dual-ring hidden overlay_ajax"><img class="hidden" src="{{ asset('assets/image/preload.gif') }}" width="80" alt="preload"></div>
+    <div id="loader" class="lds-dual-ring hidden overlay_ajax"><img class="hidden" src="{{ asset('assets/image/preloader.gif') }}" width="80" alt="preloader"></div>
     
     @if ($message = Session::get('success'))
       <div class="alert alert-success alert-block">
@@ -339,11 +339,11 @@
                                     success: function (response) {
                                     // We get the element having id of display_info and put the response inside it
                                     $( '#accordion' ).html(response);
+                                    },
+                                    complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                                        $('#loader').addClass('hidden')
                                     }
                                 });
-                            },
-                            complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
-                                $('#loader').addClass('hidden')
                             },
                             error: function (data) {
                             console.log('Error:', data);
@@ -414,11 +414,11 @@
                                     // We get the element having id of display_info and put the response inside it
                                     $('#accordion' ).html(response);
                                     
+                                    },
+                                    complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                                        $('#loader').addClass('hidden')
                                     }
                                 });
-                            },
-                            complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
-                                $('#loader').addClass('hidden')
                             },
                             error: function (data) {
                             console.log('Error:', data);
@@ -510,11 +510,11 @@
                                     // We get the element having id of display_info and put the response inside it
                                     //$( '#accordion' ).html(response);
                                     //$('#collapse-4').addClass('show');
+                                    },
+                                    complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                                        $('#loader').addClass('hidden')
                                     }
                                 });
-                            },
-                            complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
-                                $('#loader').addClass('hidden')
                             },
                             error: function (data) {
                             console.log('Error:', data);
@@ -602,11 +602,11 @@
                                     // We get the element having id of display_info and put the response inside it
                                     //$( '#accordion').html(response);
                                     //$('#collapse-4').addClass('show');
+                                    },
+                                    complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                                        $('#loader').addClass('hidden')
                                     }
                                 });
-                            },
-                            complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
-                                $('#loader').addClass('hidden')
                             },
                             error: function (data) {
                             console.log('Error:', data);
@@ -657,11 +657,11 @@
                             // We get the element having id of display_info and put the response inside it
                             $( '#accordion' ).html(response);
                             $('#collapse-4').addClass('show');
+                            },
+                            complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                                $('#loader').addClass('hidden')
                             }
                         });
-                    },
-                    complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
-                        $('#loader').addClass('hidden')
                     },
                     error: function (data) {
                     console.log('Error:', data);
