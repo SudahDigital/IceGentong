@@ -253,7 +253,7 @@ class CustomerKeranjangController extends Controller
                 $href.='*'.$wa->description.'%20(Qty %3A%20'.$wa->quantity.' Pcs)%0A';
             }
             $text_wa=$href.'%0A'.$info_harga;
-            $url = "https://wa.me/6282311988000‬?text=$text_wa";
+            $url = "https://wa.me/6282311988000?text=$text_wa";
             return Redirect::to($url);
             
         }
