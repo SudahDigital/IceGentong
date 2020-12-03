@@ -144,7 +144,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-7">
-                   <img src="{{ asset('assets/image/ecim-gentong.png') }}" class="img-thumbnail" style="background-color:transparent; border:none;"> 
+                   <img src="{{ asset('assets/image/logo-gentong.png') }}" class="img-thumbnail" style="background-color:transparent; border:none;" alt="logo-gentong"> 
                 </div>
             </div>
             <br><br>
