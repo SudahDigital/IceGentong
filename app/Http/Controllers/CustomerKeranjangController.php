@@ -16,8 +16,8 @@ class CustomerKeranjangController extends Controller
     public function index(Request $request)
     {   
         $session_id = $request->header('User-Agent');
-        $banner_active = \App\Banner::orderBy('id', 'ASC')->first();
-        $banner = \App\Banner::orderBy('id', 'ASC')->get();
+        $banner_active = \App\Banner::orderBy('id', 'DESC')->first();
+        $banner = \App\Banner::orderBy('id', 'DESC')->get();
         $categories = \App\Category::all();//paginate(10);
         $cat_count = $categories->count();
         $product = product::with('categories')->get();//->paginate(6);

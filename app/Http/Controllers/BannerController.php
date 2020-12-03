@@ -22,7 +22,7 @@ class BannerController extends Controller
      */
     public function index(Request $request)
     {
-        $banner = \App\Banner::get();//paginate(10);
+        $banner = \App\Banner::orderBy('id', 'DESC')->get();//paginate(10);\App\Banner::orderBy('id', 'DESC')->first();
         $keyword = $request->get('name');
         if($keyword){
             $banner = \App\Banner::where('name','LIKE',"%$keyword%")->get();//paginate(10);

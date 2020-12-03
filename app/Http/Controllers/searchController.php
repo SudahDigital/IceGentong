@@ -15,8 +15,8 @@ class searchController extends Controller
     public function index(Request $request)
     {
             $session_id = $request->header('User-Agent');
-            $banner_active = \App\Banner::orderBy('id', 'ASC')->first();
-            $banner = \App\Banner::orderBy('id', 'ASC')->get();
+            $banner_active = \App\Banner::orderBy('id', 'DESC')->first();
+            $banner = \App\Banner::orderBy('id', 'DESC')->get();
             $keyword = $request->get('keyword') ? $request->get('keyword') : '';
             $categories = \App\Category::get();
             $cat_count = $categories->count();
