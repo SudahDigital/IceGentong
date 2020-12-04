@@ -92,6 +92,12 @@
 						@else
 					<span class="badge bg-green">{{$p->status}}</span>
 					@endif
+
+					@if($p->top_product==1)
+					<span class="badge bg-purple text-white">Top Product</span>
+					@else
+					
+					@endif
 				</td>
 				<td>
 					<a class="btn btn-info btn-xs" href="{{route('products.edit',[$p->id])}}"><i class="material-icons">edit</i></a>&nbsp;

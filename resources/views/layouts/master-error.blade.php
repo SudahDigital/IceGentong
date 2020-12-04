@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>Ice-Gentong @yield('title')</title>
     <!-- Favicon-->
-    <link rel="icon" href="{{ asset('assets/image/logo-nav.png')}}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('assets/image/logo-gentong-nav.png')}}" type="image/x-icon">
 
     <!-- Google Fonts -->
     <link href="{{asset('bsb/googleapis.css?family=Roboto:400,700&subset=latin,cyrillic-ext')}}" rel="stylesheet" type="text/css">

@@ -67,13 +67,13 @@
 				<td>{{$no}}</td>
 				<td>
 					@if($order->status == "SUBMIT")
-					<span class="badge bg-warning text-light">{{$order->status}}</span>
+					<span class="badge bg-deep-orange text-light">{{$order->status}}</span>
 					@elseif($order->status == "PROCESS")
-					<span class="badge bg-info text-light">{{$order->status}}</span>
+					<span class="badge bg-blue text-light">{{$order->status}}</span>
 					@elseif($order->status == "FINISH")
-					<span class="badge bg-success text-light">{{$order->status}}</span>
+					<span class="badge bg-green text-light">{{$order->status}}</span>
 					@elseif($order->status == "CANCEL")
-					<span class="badge bg-dark text-light">{{$order->status}}</span>
+					<span class="badge bg-black text-light">{{$order->status}}</span>
 					@endif
 				</td>
 				<td><small><b>Name :</b> {{$order->username}}</small><br>

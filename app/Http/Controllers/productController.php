@@ -62,13 +62,17 @@ class productController extends Controller
             "image" => "required",
             "price" => "required|digits_between:0,10",
             "stock" => "required|digits_between:0,10"
-        ])->validate(); 
-
+        ])->validate();
         $new_product = new \App\product;
         $new_product->Product_name = $request->get('Product_name');
         $new_product->description = $request->get('description');
         $new_product->price = $request->get('price');
         $new_product->stock = $request->get('stock');
+        if($request->has('top_product')){
+            $new_product->top_product=$request->get('top_product');
+        }else{
+            $new_product->top_product = 0;
+        }
         $new_product->status = $request->get('save_action');
         $new_product->slug = \Str::slug($request->get('Product_name'));
         $new_product->created_by = \Auth::user()->id;
@@ -132,6 +136,11 @@ class productController extends Controller
         $product->description = $request->get('description');
         $product->price = $request->get('price');
         $product->stock = $request->get('stock');
+        if($request->has('top_product')){
+            $product->top_product=$request->get('top_product');
+        }else{
+            $product->top_product = 0;
+        }
         $product->slug = $request->get('slug');
         $new_image = $request->file('image');
         if($new_image){

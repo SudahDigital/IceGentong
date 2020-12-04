@@ -20,7 +20,7 @@ class CustomerKeranjangController extends Controller
         $banner = \App\Banner::orderBy('id', 'DESC')->get();
         $categories = \App\Category::all();//paginate(10);
         $cat_count = $categories->count();
-        $product = product::with('categories')->get();//->paginate(6);
+        $product = product::with('categories')->orderBy('top_product','DESC')->get();//->paginate(6);
         $count_data = $product->count();
         $keranjang = DB::select("SELECT orders.session_id, orders.status, orders.username, 
                     products.description, products.image, products.price, order_product.id,

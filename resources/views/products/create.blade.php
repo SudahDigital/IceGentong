@@ -46,6 +46,12 @@
                 <label class="form-label">Product Stock</label>
             </div>
         </div>
+
+        <h2 class="card-inside-title">Make Top Product</h2>
+        <div class="form-group">
+            <input type="checkbox" name="top_product" id="top_product" value="1">
+			<label for="top_product">Top Product</label>
+		</div>
         
         <button class="btn btn-primary waves-effect" name="save_action" value="PUBLISH" type="submit">PUBLISH</button>
         <button class="btn btn-secondary waves-effect" name="save_action" value="DRAFT" type="submit">SAVE AS DRAfT</button>
