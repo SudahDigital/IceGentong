@@ -19,31 +19,36 @@ class OrdersExportMapping implements FromCollection, WithMapping, WithHeadings
     }
 
     public function map($order) : array {
-        return [
-            $order->status,
-            $order->username,
-            $order->email,
-            $order->address,
-            $order->phone,
-            $order->products->get(0)->description,
-            $order->products->first()->pivot->quantity,
-            $order->totalQuantity,
-            Carbon::parse($order->created_at)->toFormattedDateString(),
-            $order->total_price 
-        ];
+        $rows = [];
+        foreach ($order->products as $p) {
+            array_push($rows,[
+                $order->status,
+                $order->username,
+                $order->email,
+                $order->address,
+                $order->phone,
+                $p->description,
+                $p->pivot->quantity,
+                $p->price,
+                $p->price * $p->pivot->quantity,
+                Carbon::parse($order->created_at)->toFormattedDateString()
+            ]);
+        }
+        return $rows;
     }
 
     public function headings() : array {
         return [
            'Status',
            'Buyer Name',
-           'email',
+           'Email',
            'Address',
            'Phone',
            'Product',
-           'Total Quantity',
-           'Order Date',
-           'Total Price'
+           'Quantity',
+           'Price',
+           'Total Price',
+           'Order Date'
         ] ;
     }
 }
