@@ -10,7 +10,10 @@ use App\Order;
 class ProductDetailController extends Controller
 {
     public function detail(Request $request){
-        $session_id = $request->header('User-Agent');
+        $ses_id = $request->header('User-Agent');
+        $clientIP = \Request::getClientIp(true);
+        $session_id = $ses_id.$clientIP;
+        //$session_id = $request->header('User-Agent');
         $categories = \App\Category::get();//paginate(10);
         $product = product::with('categories')->where('id','=',$request->id)->first();
         $count_data = $product->count();

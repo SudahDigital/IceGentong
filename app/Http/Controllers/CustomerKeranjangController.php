@@ -15,7 +15,9 @@ class CustomerKeranjangController extends Controller
     
     public function index(Request $request)
     {   
-        $session_id = $request->header('User-Agent');
+        $ses_id = $request->header('User-Agent');
+        $clientIP = \Request::getClientIp(true);
+        $session_id = $ses_id.$clientIP;
         $banner_active = \App\Banner::orderBy('id', 'DESC')->first();
         $banner = \App\Banner::orderBy('id', 'DESC')->get();
         $categories = \App\Category::all();//paginate(10);
@@ -59,8 +61,11 @@ class CustomerKeranjangController extends Controller
         return view('customer.content_customer',$data);
     }
     
-    public function simpan(Request $request){  
-        $id = $request->header('User-Agent'); 
+    public function simpan(Request $request){ 
+        $ses_id = $request->header('User-Agent');
+        $clientIP = \Request::getClientIp(true);
+        $id = $ses_id.$clientIP; 
+        //$id = $request->header('User-Agent'); 
         $id_product = $request->get('Product_id');
         $quantity=$request->get('quantity');
         $price=$request->get('price');
@@ -108,8 +113,11 @@ class CustomerKeranjangController extends Controller
         return redirect()->back()->with('status','Product berhasil dimasukan kekeranjang');
     }
 
-    public function min_order(Request $request){  
-        $id = $request->header('User-Agent'); 
+    public function min_order(Request $request){ 
+        $ses_id = $request->header('User-Agent');
+        $clientIP = \Request::getClientIp(true);
+        $id = $ses_id.$clientIP; 
+        //$id = $request->header('User-Agent'); 
         $id_product = $request->get('Product_id');
         $quantity=$request->get('quantity');
         $price=$request->get('price');
@@ -145,7 +153,7 @@ class CustomerKeranjangController extends Controller
     }
 
     public function tambah(Request $request){
-            
+           
         $id = $request->get('id_detil');
         $order_id = $request->get('order_id');
         $order_product = order_product::findOrFail($id);
@@ -164,7 +172,6 @@ class CustomerKeranjangController extends Controller
     }
 
     public function kurang(Request $request){
-            
         $id = $request->get('id_detil');
         $order_id = $request->get('order_id');
         $order_product = order_product::findOrFail($id);
@@ -201,7 +208,7 @@ class CustomerKeranjangController extends Controller
     }
 
     public function delete(Request $request){
-
+        
         $id = $request->get('id');
         $product_id = $request->get('product_id');
         $order_id = $request->get('order_id');
@@ -253,7 +260,7 @@ class CustomerKeranjangController extends Controller
                 $href.='*'.$wa->description.'%20(Qty %3A%20'.$wa->quantity.' Pcs)%0A';
             }
             $text_wa=$href.'%0A'.$info_harga;
-            $url = "https://wa.me/6282311988000?text=$text_wa";
+            $url = "https://api.whatsapp.com/send?phone=6282311988000&text=$text_wa";
             return Redirect::to($url);
             
         }
@@ -262,7 +269,9 @@ class CustomerKeranjangController extends Controller
 
     public function ajax_cart(Request $request)
     {   
-        $session_id = $request->header('User-Agent');
+        $ses_id = $request->header('User-Agent');
+        $clientIP = \Request::getClientIp(true);
+        $session_id = $ses_id.$clientIP;
         $total_item = DB::table('orders')
                     ->join('order_product','order_product.order_id','=','orders.id')
                     ->where('session_id','=',"$session_id")
@@ -316,7 +325,7 @@ class CustomerKeranjangController extends Controller
         }
         else
         {
-        $session_id = $request->header('User-Agent');
+        //$session_id = $request->header('User-Agent');
         $keranjang = \App\Order::with('products')
                     ->where('status','=','SUBMIT')
                     ->where('session_id','=',"$session_id")

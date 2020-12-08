@@ -14,7 +14,10 @@ class searchController extends Controller
      */
     public function index(Request $request)
     {
-            $session_id = $request->header('User-Agent');
+            $ses_id = $request->header('User-Agent');
+            $clientIP = \Request::getClientIp(true);
+            $session_id = $ses_id.$clientIP;
+            //$session_id = $request->header('User-Agent');
             $banner_active = \App\Banner::orderBy('id', 'DESC')->first();
             $banner = \App\Banner::orderBy('id', 'DESC')->get();
             $keyword = $request->get('keyword') ? $request->get('keyword') : '';

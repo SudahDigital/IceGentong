@@ -96,8 +96,11 @@
                                                     <button class="btn button_minus" onclick="button_minus('{{$value->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
                                             </td>
                                             <td width="10%" align="center" valign="middle">
-                                                <?php 
-                                                $user = \Request::header('User-Agent'); 
+                                                <?php
+                                                $ses_id = \Request::header('User-Agent');
+                                                $clientIP = \Request::getClientIp(true);
+                                                $user = $ses_id.$clientIP; 
+                                                //$user = \Request::header('User-Agent'); 
                                                 $view_pesan = \DB::select("SELECT orders.session_id, orders.status, orders.username, 
                                                             products.description, products.image, products.price, order_product.id,
                                                             order_product.order_id,order_product.product_id,order_product.quantity
