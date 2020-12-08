@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Gate;
-
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\OrdersExportMapping;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -20,10 +21,18 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $status = $request->get('status');
+        if($status){
         $orders = \App\Order::with('products')->whereNotNull('username')
+        ->where('status',strtoupper($status))
         ->orderBy('id', 'DESC')->get();//paginate(10);
+        }
+        else{
+            $orders = \App\Order::with('products')->whereNotNull('username')
+            ->orderBy('id', 'DESC')->get();
+        }
         return view('orders.index', ['orders' => $orders]);
     }
 
@@ -103,5 +112,9 @@ class OrderController extends Controller
     {
         $order = \App\Order::findOrFail($id);
         return view('orders.detail', ['order' => $order]);
+    }
+
+    public function export_mapping() {
+        return Excel::download( new OrdersExportMapping(), 'Orders.xlsx') ;
     }
 }

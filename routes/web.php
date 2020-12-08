@@ -62,6 +62,7 @@ Route::get('/products/trash', 'productController@trash')->name('products.trash')
 Route::get('/products/{id}/restore', 'productController@restore')->name('products.restore');
 Route::delete('/products/{products}/delete-permanent','productController@deletePermanent')->name('products.delete-permanent');
 Route::resource('products', 'productController');
+Route::get('orders/export_mapping', 'OrderController@export_mapping')->name('orders.export_mapping') ;
 Route::get('/orders/{id}/edit_order', 'OrderEditController@edit')->name('order_edit');
 Route::post('/orders/edit_order_update', 'OrderEditController@update')->name('order_edit_update');
 Route::get('/orders/{id}/detail', 'OrderController@detail')->name('orders.detail');

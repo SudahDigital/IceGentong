@@ -9,42 +9,31 @@
 
 <form action="{{route('products.index')}}">
 	<div class="row">
-		<!--
-		<div class="col-md-3">
-			<div class="input-group input-group-sm">
-        		<div class="form-line">
-	            	<input type="text" class="form-control" name="keyword" value="{{Request::get('keyword')}}" placeholder="Filter by product name" autocomplete="off" />
-	    		</div>
-	        </div>
-		</div>
-		<div class="col-md-2">
-			<input type="submit" class="btn bg-blue pull-left" value="Filter">
-		</div>
-		
-		<div class="col-md-4">
+		<div class="col-md-6">
 			<ul class="nav nav-tabs tab-col-pink pull-left" >
-				<li role="presentation" class="{{Request::get('status') == NULL && Request::path() == 'products' ? 'active' : ''}}">
-					<a href="{{route('products.index')}}" aria-expanded="true" >All</a>
+				<li role="presentation" class="{{Request::get('status') == NULL && Request::path() == 'orders' ? 'active' : ''}}">
+					<a href="{{route('orders.index')}}" aria-expanded="true" >All</a>
 				</li>
-				<li role="presentation" class="{{Request::get('status') == 'publish' ?'active' : '' }}">
-					<a href="{{route('products.index', ['status' =>'publish'])}}" >PUBLISH</a>
+				<li role="presentation" class="{{Request::get('status') == 'submit' ?'active' : '' }}">
+					<a href="{{route('orders.index', ['status' =>'submit'])}}" >SUBMIT</a>
 				</li>
-				<li role="presentation" class="{{Request::get('status') == 'draft' ?'active' : '' }}">
-					<a href="{{route('products.index', ['status' =>'draft'])}}">DRAFT</a>
+				<li role="presentation" class="{{Request::get('status') == 'process' ?'active' : '' }}">
+					<a href="{{route('orders.index', ['status' =>'process'])}}">PROCESS</a>
 				</li>
-				<li role="presentation" class="">
-					<a href="{{route('products.trash')}}" >TRUSH</a>
+				<li role="presentation" class="{{Request::get('status') == 'finish' ?'active' : '' }}">
+					<a href="{{route('orders.index', ['status' =>'finish'])}}">FINISH</a>
+				</li>
+				<li role="presentation" class="{{Request::get('status') == 'cancel' ?'active' : '' }}">
+					<a href="{{route('orders.index', ['status' =>'cancel'])}}">CANCEL</a>
 				</li>
 			</ul>
 		</div>
-		
-		<div class="col-md-12">
-			<a href="{{route('products.create')}}" class="btn btn-success pull-right">Create Product</a>
+		<div class="col-md-6">
+			<a href="{{route('orders.export_mapping')}}" target="_blank" class="btn btn-success pull-right">Export Excel</a>
 		</div>
-		-->
 	</div>
 </form>	
-
+<hr>
 <div class="table-responsive">
 	<table class="table table-bordered table-striped table-hover dataTable js-basic-example">
 		<thead>
