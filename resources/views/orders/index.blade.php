@@ -29,7 +29,7 @@
 			</ul>
 		</div>
 		<div class="col-md-6">
-			<a href="{{route('orders.export_mapping')}}" target="_blank" class="btn btn-success pull-right">Export Excel</a>
+			<a href="{{route('orders.export_mapping')}}" class="btn btn-success pull-right">Export Excel</a>
 		</div>
 	</div>
 </form>	
