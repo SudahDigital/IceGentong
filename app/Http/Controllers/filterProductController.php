@@ -29,13 +29,14 @@ class filterProductController extends Controller
                     return $q->where('category_id','=',$category_id);
                     })->get();//->paginate(6);
         $count_data = $product->count();
-        $keranjang = DB::select("SELECT orders.session_id, orders.status, 
-                    products.description, products.image, products.price, order_product.id,
-                    order_product.order_id,order_product.product_id,order_product.quantity
+        $keranjang = DB::select("SELECT orders.session_id, orders.status, orders.username, 
+                    products.description, products.image, products.price, products.discount,
+                    products.price_promo, order_product.id, order_product.order_id,
+                    order_product.product_id,order_product.quantity
                     FROM order_product, products, orders WHERE 
                     orders.id = order_product.order_id AND 
                     order_product.product_id = products.id AND orders.status = 'SUBMIT' 
-                    AND orders.session_id = '$session_id' AND orders.username IS NULL");
+                    AND orders.session_id = '$session_id' AND orders.username IS NULL ");
         $item = DB::table('orders')
                 ->where('session_id','=',"$session_id")
                 ->where('orders.status','=','SUBMIT')
