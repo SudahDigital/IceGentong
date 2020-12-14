@@ -84,7 +84,12 @@
 					{{$p->stock}}
 				</td>
 				<td>
+					@if($p->discount > 0)
+					<del>{{number_format($p->price)}}</del><br>
+					{{number_format($p->price_promo)}}
+					@else
 					{{number_format($p->price)}}
+					@endif
 				</td>
 				<td>
 					@if($p->status=="DRAFT")
@@ -96,7 +101,11 @@
 					@if($p->top_product==1)
 					<span class="badge bg-purple text-white">Top Product</span>
 					@else
-					
+					@endif
+
+					@if($p->discount > 0)
+					<span class="badge bg-orange text-white">{{$p->discount}}% OFF</span>
+					@else
 					@endif
 				</td>
 				<td>

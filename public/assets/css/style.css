@@ -894,14 +894,14 @@ height: 150px;
     color: #28a745 !important;*/
 }
 
-#content .button_plus:focus{
+#content .button_plus:focus, #content .button_minus:focus{
     outline:none;
     border:none;
     -webkit-appearance:none;
     box-shadow: none !important;
 }
 
-#content .button_plus:active{
+#content .button_plus:active, #content .button_minus:active{
   outline:none;
   border:none;
   -webkit-appearance:none;

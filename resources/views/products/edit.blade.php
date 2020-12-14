@@ -45,21 +45,36 @@
              <input type="file" name="image" class="form-control" id="image" autocomplete="off">
             </div>
         </div>
+
         
         <div class="form-group form-float">
             <div class="form-line">
-            <input type="number" class="form-control" name="price" autocomplete="off" value="{{$product->price}}" required>
-                <label class="form-label">Product Price</label>
+                <input type="number" class="form-control" name="price" autocomplete="off" value="{{$product->price}}" required/>
+                <label class="form-label">Product Price (IDR)</label>
             </div>
         </div>
-
+        @if($product->discount > 0)
+        <div class="form-group form-float">
+            <div class="form-line">
+                <input type="number" class="form-control" name="price_promo" autocomplete="off" value="{{$product->price_promo}}" readonly required/>
+                <label class="form-label">Product Price Promo (IDR)</label>
+            </div>
+        </div>
+        @endif
+        <div class="form-group form-float">
+            <div class="form-line">
+                <input type="number" class="form-control" name="discount" autocomplete="off" value="{{$product->discount}}" required/>
+                <label class="form-label">Discount ( % )</label>
+            </div>
+        </div>
+            
         <div class="form-group form-float">
             <div class="form-line">
                 <input type="number" class="form-control" name="stock" min="0" autocomplete="off" value="{{$product->stock}}" required>
                 <label class="form-label">Product Stock</label>
             </div>
         </div>
-
+        
         <h2 class="card-inside-title">Make Top Product</h2>
         <div class="form-group">
             <input type="checkbox" name="top_product" id="top_product" value="1"  {{$product->top_product == '1' ? 'checked' : ''}}>

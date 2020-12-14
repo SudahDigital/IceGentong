@@ -66,7 +66,19 @@ class productController extends Controller
         $new_product = new \App\product;
         $new_product->Product_name = $request->get('Product_name');
         $new_product->description = $request->get('description');
-        $new_product->price = $request->get('price');
+        if($request->has('discount') && ($request->get('discount') > 0)){
+            $new_product->discount = $request->get('discount');
+            $percent = $request->get('discount');
+            $harga = $request->get('price');
+            $discount = ($harga * $percent)/100;
+            $harga_discount = $harga - $discount;
+            $new_product->price = $harga;
+            $new_product->price_promo =  $harga_discount;
+        }else{
+            $new_product->discount = 0.00;
+            $new_product->price = $request->get('price');
+            $new_product->price_promo = $request->get('price');
+        }
         $new_product->stock = $request->get('stock');
         if($request->has('top_product')){
             $new_product->top_product=$request->get('top_product');
@@ -134,7 +146,19 @@ class productController extends Controller
         $product = \App\product::findOrFail($id);
         $product->Product_name = $request->get('Product_name');
         $product->description = $request->get('description');
-        $product->price = $request->get('price');
+        if($request->has('discount') && ($request->get('discount') > 0)){
+            $product->discount = $request->get('discount');
+            $percent = $request->get('discount');
+            $harga = $request->get('price');
+            $discount = ($harga * $percent)/100;
+            $harga_discount = $harga - $discount;
+            $product->price = $harga;
+            $product->price_promo = $harga_discount;
+        }else{
+            $product->price = $request->get('price');
+            $product->discount = 0.00;
+            $product->price_promo = $request->get('price');
+        }
         $product->stock = $request->get('stock');
         if($request->has('top_product')){
             $product->top_product=$request->get('top_product');

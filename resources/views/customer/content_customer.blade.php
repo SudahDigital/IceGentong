@@ -75,6 +75,9 @@
                         @foreach($product as $key => $value)
                         <div id="product_list"  class="col-6 col-md-4 d-flex">
                             <div class="card mx-auto d-flex item_product">
+                                @if($value->discount > 0)
+                                <div class="ribbon"><span class="span-ribbon">{{$value->discount}}% OFF</span></div>
+                                @endif
                                 <a href="{{URL::route('product_detail', ['id'=>$value->id])}}">
                                     <img style="" src="{{ asset('storage/'.(($value->image!='') ? $value->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-150 w-100 img-responsive" alt="...">
                                 </a>
@@ -83,16 +86,31 @@
                                         {{$value->description}}
                                     </p>
                                 </div>
-                                <div class="float-left px-1 py-2" style="">
-                                    <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value->id}}" style="">Rp {{ number_format($value->price, 0, ',', '.') }}</p>
+                                @if($value->discount > 0)
+                                <div class="d-inline-block">
+                                    <div class="text-left">
+                                        <p class="product-price-header mt-0 mb-0 ml-1" style="color:#6a3137;"><del><b><i>Rp. {{ number_format($value->price, 0, ',', '.') }}</i></b> </del></p>
+                                    </div>
                                 </div>
+                                <div class="float-left px-1 py-2" style="">
+                                    <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value->id}}" style="">Rp. {{ number_format($value->price_promo, 0, ',', '.') }}</p>
+                                </div>
+                                @else
+                                <div class="float-left px-1 py-2" style="">
+                                    <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value->id}}" style="">Rp. {{ number_format($value->price, 0, ',', '.') }}</p>
+                                </div>
+                                @endif
                                 <table width="100%" class="hdr_tbl_cart mt-auto" style="bottom: 0">
                                     <tbody>
                                         <tr>
                                             <td width="10%" align="right" valign="middle">
                                                     <input type="hidden" id="Product_id{{$value->id}}" name="Product_id" value="{{$value->id}}">
                                                     <input type="hidden" id="quantity_add{{$value->id}}" name="quantity" value="1">
+                                                    @if($value->discount > 0)
+                                                    <input type="hidden" id="harga{{$value->id}}" name="price" value="{{$value->price_promo}}">
+                                                    @else
                                                     <input type="hidden" id="harga{{$value->id}}" name="price" value="{{$value->price}}">
+                                                    @endif
                                                     <button class="btn button_minus" onclick="button_minus('{{$value->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
                                             </td>
                                             <td width="10%" align="center" valign="middle">
@@ -217,14 +235,24 @@
                                     </td>
                                     <td width="60%" align="left" valign="top">
                                         <p class="name-detail">{{ $detil->description}}</p>
-                                        <?php $total=$detil->price * $detil->quantity;?>
+                                        <?php 
+                                        if($detil->discount > 0){
+                                            $total = $detil->price_promo * $detil->quantity;
+                                        }else{
+                                            $total=$detil->price * $detil->quantity;
+                                        }
+                                        ?>
                                         <h1 id="productPrice_kr{{$detil->product_id}}" style="color:#6a3137; !important; font-family: Open Sans;">Rp. {{ number_format($total, 0, ',', '.') }}</h1>
                                         <table width="10%">
                                             <tbody>
                                                 <tr>
                                                     <td width="10px" align="left" valign="middle">
                                                         <input type="hidden" id="order_id{{$detil->product_id}}" name="order_id" value="{{$detil->order_id}}">
+                                                        @if($detil->discount > 0)
+                                                        <input type="hidden" id="harga_kr{{$detil->product_id}}" name="price" value="{{$detil->price_promo}}">
+                                                        @else
                                                         <input type="hidden" id="harga_kr{{$detil->product_id}}" name="price" value="{{$detil->price}}">
+                                                        @endif
                                                         <input type="hidden" id="id_detil{{$detil->product_id}}" value="{{$detil->id}}">
                                                         <input type="hidden" id="jmlkr_{{$detil->product_id}}" name="quantity" value="{{$detil->quantity}}">    
                                                         <button class="button_minus" onclick="button_minus_kr('{{$detil->product_id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
@@ -243,7 +271,11 @@
                                         <button class="btn btn-default" onclick="delete_kr('{{$detil->product_id}}')" style="">X</button>
                                         <input type="hidden"  id="order_id_delete{{$detil->product_id}}" name="order_id" value="{{$detil->order_id}}">
                                         <input type="hidden"  id="quantity_delete{{$detil->product_id}}" name="quantity" value="{{$detil->quantity}}">
+                                        @if($detil->discount > 0)
+                                        <input type="hidden"  id="price_delete{{$detil->product_id}}" name="price" value="{{$detil->price_promo}}">
+                                        @else
                                         <input type="hidden"  id="price_delete{{$detil->product_id}}" name="price" value="{{$detil->price}}">
+                                        @endif
                                         <input type="hidden"  id="product_id_delete{{$detil->product_id}}"name="product_id" value="{{$detil->product_id}}">
                                         <input type="hidden" id="id_delete{{$detil->product_id}}" name="id" value="{{$detil->id}}">
                                     </td>

@@ -14,28 +14,40 @@
         </div>
     
         <div class="row section_content">
-            <div class="col-sm-12 col-md-6 mb-3">
-                <div class="card mx-auto item_product" style="padding-bottom: 0;">
-                    <img style="width:100%; height:auto;" src="{{ asset('storage/'.(($product->image!='') ? $product->image : '20200621_184223_0016.jpg').'') }}" class="card-img-top img-fluid" alt="...">
+            <div class="col-sm-12 col-md-6 mb-0" >
+                <div class="card mx-auto item_product mb-3">
+                    @if($product->discount > 0)
+                        <div class="ribbon"><span class="span-ribbon">{{$product->discount}}% OFF</span></div>
+                    @endif
+                    <img style="width:100%; height:auto;" src="{{ asset('storage/'.(($product->image!='') ? $product->image : '20200621_184223_0016.jpg').'') }}" class="card-img-top img-fluid mb-0" alt="...">
                 </div>
             </div>
-            <div class="col-sm-12 col-md-6 mb-3">
+            <div class="col-sm-12 col-md-6 mt-0">
                 <div class="card mx-auto item_product">
-                    <div class="card-body m-0 p-0">
-                        <div class="float-left px-1 py-2" style="width: 100%;">
-                            <h4 class="roduct-price-header mb-0" style="color:#6a3137 !important; font-weight:900;">{{$product->Product_name}}</h4>
+                    <div class="card-body m-0 p-4">
+                        <div class="float-left py-2" style="width: 100%;">
+                            <h4 class="" style="color:#6a3137 !important; font-weight:900;">{{$product->Product_name}}</h4>
                             <hr style="border-top:1px solid #6a3137;">
                             <p class="product-price-header mb-0" style="">
                                 {{$product->description}}
                             </p>
                         </div>
-                        
                         <div>
-                            <div class="float-left p-2" >
-                                <p style="line-height: 1;" class="product-price mb-0 " id="productPrice{{$product->id}}" >Rp {{ number_format($product->price, 0, ',', '.') }}</p>
+                            @if($product->discount > 0)
+                            <div class="float-left py-2" style="width: 100%;">
+                            <p class="product-price-header mb-0" style="">
+                                <del><b><i>Rp. {{ number_format($product->price, 0, ',', '.') }}</i></b> </del>
+                            </p>
                             </div>
-                            
-                            <table width="100%" class="hdr_tbl_cart">
+                            <div class="float-left  mb-3" style="">
+                                <p style="line-height: 1;" class="product-price mb-0 " id="productPrice{{$product->id}}" >Rp. {{ number_format($product->price_promo, 0, ',', '.') }}</p>
+                            </div>
+                            @else
+                            <div class="float-left mb-3">
+                                <p style="line-height: 1;" class="product-price mb-0 " id="productPrice{{$product->id}}" >Rp. {{ number_format($product->price, 0, ',', '.') }}</p>
+                            </div>
+                            @endif
+                            <table width="100%" class="hdr_tbl_cart" >
                                 <tbody>
                                 <tr><!--
                                     <td class="tbl_cart" valign="middle" style="">
@@ -44,10 +56,14 @@
                                     <td width="10%" align="right" valign="middle">
                                         <input type="hidden" id="Product_id{{$product->id}}" name="Product_id" value="{{$product->id}}">
                                         <input type="hidden" id="quantity_add{{$product->id}}" name="quantity" value="1">
+                                        @if($product->discount > 0)
+                                        <input type="hidden" id="harga{{$product->id}}" name="price" value="{{$product->price_promo}}">
+                                        @else
                                         <input type="hidden" id="harga{{$product->id}}" name="price" value="{{$product->price}}">
+                                        @endif
                                         <button class="btn button_minus" onclick="button_minus('{{$product->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
                                     </td>
-                                    <td width="10%" align="center" valign="middle">
+                                    <td width="1%" align="center" valign="middle">
                                         <?php
                                         $ses_id = \Request::header('User-Agent');
                                         $clientIP = \Request::getClientIp(true);
@@ -108,10 +124,10 @@
                             </td>
                             <td width="25%" align="left" valign="middle">
                                 @if($item!==null)
-                            <h5 id="total_kr_">Rp. {{number_format($item->total_price , 0, ',', '.')}}</h5>
+                            <h5 id="total_kr_"> Rp. {{number_format($item->total_price , 0, ',', '.')}}</h5>
                             <input type="hidden" id="total_kr_val" value="{{$item->total_price}}">
                                 @else
-                            <h5 id="total_kr_">Rp. 0</h5>
+                            <h5 id="total_kr_"> Rp. 0</h5>
                             <input type="hidden" id="total_kr_val" value="0">
                                 @endif
                             </td>
@@ -142,7 +158,13 @@
                                     </td>
                                     <td width="60%" align="left" valign="top">
                                         <p class="name-detail">{{ $detil->description}}</p>
-                                        <?php $total=$detil->price * $detil->quantity;?>
+                                        <?php
+                                        if($detil->discount > 0){
+                                            $total = $detil->price_promo * $detil->quantity;
+                                        }else{
+                                            $total=$detil->price * $detil->quantity;
+                                        } 
+                                        ?>
                                         <h1 id="productPrice_kr{{$detil->product_id}}" style="color:#6a3137; !important; font-family: Open Sans;">Rp {{ number_format($total, 0, ',', '.') }}</h1>
                                         <table width="10%">
                                             <tbody>
@@ -150,7 +172,11 @@
                                                     
                                                     <td width="10px" align="left" valign="middle">
                                                             <input type="hidden" id="order_id{{$detil->product_id}}" name="order_id" value="{{$detil->order_id}}">
+                                                            @if($detil->discount > 0)
+                                                            <input type="hidden" id="harga_kr{{$detil->product_id}}" name="price" value="{{$detil->price_promo}}">
+                                                            @else
                                                             <input type="hidden" id="harga_kr{{$detil->product_id}}" name="price" value="{{$detil->price}}">
+                                                            @endif
                                                             <input type="hidden" id="id_detil{{$detil->product_id}}" value="{{$detil->id}}">
                                                             <input type="hidden" id="jmlkr_{{$detil->product_id}}" name="quantity" value="{{$detil->quantity}}">    
                                                             <button class="button_minus" onclick="button_minus_kr('{{$detil->product_id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
@@ -171,7 +197,11 @@
                                         <button class="btn btn-default" onclick="delete_kr('{{$detil->product_id}}')" style="">X</button>
                                         <input type="hidden"  id="order_id_delete{{$detil->product_id}}" name="order_id" value="{{$detil->order_id}}">
                                         <input type="hidden"  id="quantity_delete{{$detil->product_id}}" name="quantity" value="{{$detil->quantity}}">
+                                        @if($detil->discount > 0)
+                                        <input type="hidden"  id="price_delete{{$detil->product_id}}" name="price" value="{{$detil->price_promo}}">
+                                        @else
                                         <input type="hidden"  id="price_delete{{$detil->product_id}}" name="price" value="{{$detil->price}}">
+                                        @endif
                                         <input type="hidden"  id="product_id_delete{{$detil->product_id}}"name="product_id" value="{{$detil->product_id}}">
                                         <input type="hidden" id="id_delete{{$detil->product_id}}" name="id" value="{{$detil->id}}">
                                     </td>

@@ -36,7 +36,14 @@
         <div class="form-group form-float">
             <div class="form-line">
                 <input type="number" class="form-control" name="price" autocomplete="off" required>
-                <label class="form-label">Product Price</label>
+                <label class="form-label">Product Price (IDR)</label>
+            </div>
+        </div>
+
+        <div class="form-group form-float">
+            <div class="form-line">
+                <input type="number" class="form-control" name="discount" autocomplete="off" min="0" value="0.00" required/>
+                <label class="form-label">Discount ( % )</label>
             </div>
         </div>
 

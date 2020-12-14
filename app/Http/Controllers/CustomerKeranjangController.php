@@ -25,8 +25,9 @@ class CustomerKeranjangController extends Controller
         $product = product::with('categories')->orderBy('top_product','DESC')->get();//->paginate(6);
         $count_data = $product->count();
         $keranjang = DB::select("SELECT orders.session_id, orders.status, orders.username, 
-                    products.description, products.image, products.price, order_product.id,
-                    order_product.order_id,order_product.product_id,order_product.quantity
+                    products.description, products.image, products.price, products.discount,
+                    products.price_promo, order_product.id, order_product.order_id,
+                    order_product.product_id,order_product.quantity
                     FROM order_product, products, orders WHERE 
                     orders.id = order_product.order_id AND 
                     order_product.product_id = products.id AND orders.status = 'SUBMIT' 
@@ -390,16 +391,27 @@ class CustomerKeranjangController extends Controller
                                             </td>
                                             <td width="60%" align="left" valign="top">
                                                 <p class="name-detail">'.$detil->description.'</p>';
-                                                $total=$detil->price * $detil->pivot->quantity;
+                                                if($detil->discount > 0){
+                                                    $total=$detil->price_promo * $detil->pivot->quantity;
+                                                }
+                                                else{
+                                                    $total=$detil->price * $detil->pivot->quantity;
+                                                }
                                                 echo'<h1 id="productPrice_kr'.$detil->id.'" style="color:#6a3137; !important; font-family: Open Sans;">Rp.&nbsp;'.number_format($total, 0, ',', '.').'</h1>
                                                 <table width="10%">
                                                     <tbody>
                                                         <tr id="response-id'.$detil->id.'">
                                                             
                                                             <td width="10px" align="left" valign="middle">
-                                                            <input type="hidden" id="order_id'.$detil->id.'" name="order_id" value="'.$order->id.'">
-                                                            <input type="hidden" id="harga_kr'.$detil->id.'" name="price" value="'.$detil->price.'">
-                                                            <input type="hidden" id="id_detil'.$detil->id.'" value="'.$detil->pivot->id.'">
+                                                            <input type="hidden" id="order_id'.$detil->id.'" name="order_id" value="'.$order->id.'">';
+                                                            if($detil->discount > 0)
+                                                            {
+                                                                echo'<input type="hidden" id="harga_kr'.$detil->id.'" name="price" value="'.$detil->price_promo.'">';
+                                                            }
+                                                            else{
+                                                                echo'<input type="hidden" id="harga_kr'.$detil->id.'" name="price" value="'.$detil->price.'">';
+                                                            }
+                                                            echo'<input type="hidden" id="id_detil'.$detil->id.'" value="'.$detil->pivot->id.'">
                                                             <input type="hidden" id="jmlkr_'.$detil->id.'" name="quantity" value="'.$detil->pivot->quantity.'">    
                                                             <button class="button_minus" onclick="button_minus_kr('.$detil->id.')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
                                                                 
@@ -418,9 +430,15 @@ class CustomerKeranjangController extends Controller
                                             <td width="15%" align="right" valign="top" style="padding-top: 5%;">
                                                 <button class="btn btn-default" onclick="delete_kr('.$detil->id.')" style="">X</button>
                                                 <input type="hidden"  id="order_id_delete'.$detil->id.'" name="order_id" value="'.$order->id.'">
-                                                <input type="hidden"  id="quantity_delete'.$detil->id.'" name="quantity" value="'.$detil->pivot->quantity.'">
-                                                <input type="hidden"  id="price_delete'.$detil->id.'" name="price" value="'.$detil->price.'">
-                                                <input type="hidden"  id="product_id_delete'.$detil->id.'"name="product_id" value="'.$detil->id.'">
+                                                <input type="hidden"  id="quantity_delete'.$detil->id.'" name="quantity" value="'.$detil->pivot->quantity.'">';
+                                                if($detil->discount > 0)
+                                                    {
+                                                    echo '<input type="hidden"  id="price_delete'.$detil->id.'" name="price" value="'.$detil->price_promo.'">';
+                                                    }
+                                                    else{
+                                                        echo '<input type="hidden"  id="price_delete'.$detil->id.'" name="price" value="'.$detil->price.'">';
+                                                    }
+                                                echo'<input type="hidden"  id="product_id_delete'.$detil->id.'"name="product_id" value="'.$detil->id.'">
                                                 <input type="hidden" id="id_delete'.$detil->id.'" name="id" value="'.$detil->pivot->id.'">
                                             </td>
                                         </tr>';
