@@ -21,6 +21,12 @@
     <!-- Dropzone Css -->
     <link href="{{asset('bsb/plugins/dropzone/dropzone.css')}}" rel="stylesheet">
 
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="{{asset('bsb/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')}}" rel="stylesheet" />
+
+    <!-- Bootstrap DatePicker Css -->
+    <link href="{{asset('bsb/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css')}}" rel="stylesheet" />
+
     <!-- Animation Css -->
     <link href="{{asset('bsb/plugins/animate-css/animate.css')}}" rel="stylesheet" />
 
@@ -198,6 +204,18 @@
                             </li>
                         </ul>
                         
+                    </li>
+
+                    <li class="{{request()->routeIs('vouchers.index') ? 'active' : ''}}">
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">chrome_reader_mode</i>
+                            <span>Manage Vouchers</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li class="{{request()->routeIs('vouchers.index') ? 'active' : '' }}">
+                                <a href="{{route('vouchers.index')}}">Vouchers</a>
+                            </li>
+                        </ul>
                     </li>
 
                     <li class="{{request()->routeIs('orders.index') ? 'active' : ''}}">
@@ -416,6 +434,18 @@
     <!-- Waves Effect Plugin Js -->
     <script src="{{asset('bsb/plugins/node-waves/waves.js')}}"></script>
 
+    <!-- Autosize Plugin Js -->
+    <script src="{{asset('bsb/plugins/autosize/autosize.js')}}"></script>
+
+    <!-- Moment Plugin Js -->
+    <script src="{{asset('bsb/plugins/momentjs/moment.js')}}"></script>
+
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="{{asset('bsb/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js')}}"></script>
+
+    <!-- Bootstrap Datepicker Plugin Js -->
+    <script src="{{asset('bsb/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script>
+
     <!-- Jquery DataTable Plugin Js -->
     <script src="{{asset('bsb/plugins/jquery-datatable/jquery.dataTables.js')}}"></script>
     <script src="{{asset('bsb/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js')}}"></script>
@@ -429,6 +459,7 @@
 
     <!-- Custom Js -->
     <script src="{{asset('bsb/js/admin.js')}}"></script>
+    <script src="{{asset('bsb/js/pages/forms/basic-form-elements.js')}}"></script>
     <script src="{{asset('bsb/js/pages/forms/form-validation.js')}}"></script>
     <script src="{{asset('bsb/js/pages/tables/jquery-datatable.js')}}"></script>
 

@@ -67,6 +67,11 @@ Route::get('/orders/{id}/edit_order', 'OrderEditController@edit')->name('order_e
 Route::post('/orders/edit_order_update', 'OrderEditController@update')->name('order_edit_update');
 Route::get('/orders/{id}/detail', 'OrderController@detail')->name('orders.detail');
 Route::resource('orders', 'OrderController');
+Route::get('/ajax/vouchers/search', 'VoucherController@ajaxSearch');
+Route::get('/vouchers/trash', 'VoucherController@trash')->name('vouchers.trash');
+Route::get('/vouchers/{id}/restore', 'voucherController@restore')->name('vouchers.restore');
+Route::delete('/vouchers/{vouchers}/delete-permanent','voucherController@deletePermanent')->name('vouchers.delete-permanent');
+Route::resource('vouchers','VoucherController');
 
 
 

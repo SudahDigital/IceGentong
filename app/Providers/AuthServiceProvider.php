@@ -37,6 +37,10 @@ class AuthServiceProvider extends ServiceProvider
             return count(array_intersect(["SUPERADMIN", "ADMIN"], json_decode($user->roles)));
         });
 
+        Gate::define('manage-vouchers', function($user){
+            return count(array_intersect(["SUPERADMIN", "ADMIN"], json_decode($user->roles)));
+        });
+
         Gate::define('manage-orders', function($user){
             return count(array_intersect(["SUPERADMIN", "ADMIN"], json_decode($user->roles)));
         });
