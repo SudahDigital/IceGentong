@@ -268,8 +268,25 @@ class CustomerKeranjangController extends Controller
         
     }
 
-    public function ajax_cart(Request $request)
-    {   
+    public function voucher_code(Request $request){
+        $keyword = $request->get('code');
+        $vouchers = \App\Voucher::where('code','=',"$keyword")->count();
+        if($vouchers > 0 ){
+            $vouchers_cek = \App\Voucher::where('code','=',"$keyword")->first();
+            if($vouchers_cek->uses < $vouchers_cek->max_uses){
+                echo "taken";
+            }else{
+                echo "full_uses";
+            }
+            
+          }else{
+            echo "not_taken";
+          }
+    }
+
+    public function apply_code(Request $request){
+        $keyword = $request->get('code');
+        $vouchers = \App\Voucher::where('code','=',"$keyword")->first();
         $ses_id = $request->header('User-Agent');
         $clientIP = \Request::getClientIp(true);
         $session_id = $ses_id.$clientIP;
@@ -278,54 +295,6 @@ class CustomerKeranjangController extends Controller
                     ->where('session_id','=',"$session_id")
                     ->whereNull('orders.username')
                     ->count();
-        if ($total_item < 1){
-            echo '<div id="accordion">
-                    <div class="card fixed-bottom" style="">
-                        <div id="card-cart" class="card-header" >
-                            <table width="100%" style="margin-bottom: 40px;">
-                                <tbody>
-                                    <tr>
-                                        <td width="5%" valign="middle">
-                                            <div id="ex4">
-                                        
-                                                <span class="p1 fa-stack fa-2x has-badge" data-count="0">
-                                            
-                                                    <!--<i class="p2 fa fa-circle fa-stack-2x"></i>-->
-                                                    <i class="p3 fa fa-shopping-cart " data-count="4b" style=""></i>
-                                                </span>
-                                            </div> 
-                                        </td>
-                                        <td width="25%" align="left" valign="middle">
-                                            <h5 id="total_kr_">Rp.0</h5>
-                                        </td>
-                                        <td width="5%" valign="middle" >
-                                        <a id="cv" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" class="collapsed">
-                                                <i class="fas fa-chevron-up" style=""></i>
-                                            </a>
-                                        </td>
-                                        <td width="33%" align="right" valign="middle">
-                                        
-                                        <h5>(0 Item)</h5>
-                                        
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div  class="collapse" data-parent="#accordion" style="" >
-                            <div class="card-body" id="card-detail">
-                                <div class="col-md-12">
-                                
-                                    
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>';
-        }
-        else
-        {
         //$session_id = $request->header('User-Agent');
         $keranjang = \App\Order::with('products')
                     ->where('status','=','SUBMIT')
@@ -341,7 +310,18 @@ class CustomerKeranjangController extends Controller
                     ->where('session_id','=',"$session_id")
                     ->whereNotNull('orders.username')
                     ->first();
-        $item_price = $item->total_price;
+        if( $vouchers->type == 1){
+            $potongan = ($item->total_price * $vouchers->discount_amount) / 100;
+            $item_price = $item->total_price - $potongan;
+        }
+        else if ($vouchers->type == 2)
+        {
+            $item_price = $item->total_price - $vouchers->discount_amount;
+        }
+        else
+        {
+            $item_price = $item->total_price;
+        }
         echo 
         '<div id="accordion">
             <div class="card fixed-bottom" style="">
@@ -359,9 +339,10 @@ class CustomerKeranjangController extends Controller
                                         </span>
                                     </div> 
                                 </td>
-                                <td width="25%" align="left" valign="middle">
-                                    <h5 id="total_kr_">Rp.&nbsp;'.number_format(($item_price) , 0, ',', '.').'</h5>
-                                    <input type="hidden" id="total_kr_val" value="'.$item_price.'">
+                                <td width="25%" align="left" valign="middle">';
+                                echo'<h5 id="total_kr_">Rp.&nbsp;'.number_format(($item_price) , 0, ',', '.').'</h5>
+                                <input type="hidden" id="total_kr_val" value="'.$item_price.'">';
+                                echo'    
                                 </td>
                                 <td width="5%" valign="middle" >
                                 <a id="cv" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" class="collapsed">
@@ -379,8 +360,8 @@ class CustomerKeranjangController extends Controller
                 </div>
                 <div id="collapse-4" class="collapse" data-parent="#accordion" style="" >
                     <div class="card-body" id="card-detail">
-                        <div class="col-md-12">
-                            <table width="100%" style="margin-bottom: 40px;">
+                        <div class="col-md-12" style="padding-bottom:6rem;">
+                            <table width="100%">
                                 <tbody>';
                                     foreach($keranjang as $order){
                                         foreach($order->products as $detil){
@@ -452,10 +433,298 @@ class CustomerKeranjangController extends Controller
                                     </tr>
                                 </tbody>
                             </table>
+                            <hr>
+                            <div id="desc_code" style="display:block;">
+                                <div class="jumbotron jumbotron-fluid ml-2 py-4 mb-0 px-3">
+                                    <p class="lead">Anda Menadapatkan potongan harga &nbsp;';
+                                    if($vouchers->type==1){
+                                        echo $vouchers->discount_amount; 
+                                        echo '&nbsp; %,';
+                                    } 
+                                    else{
+                                        echo 'Rp.'.$vouchers->discount_amount.',';
+                                    }
+                                    echo'<br>'.$vouchers->description.'</p>
+                                </div>
+                                <div class="mb-3 mt-1 ml-2">
+                                    <a class="btn btn-default" onclick="reset_promo()">Reset Kode Promo</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="fixed-bottom p-3">';
                         if($total_item > 0){
+                        echo'<div class="input-group mb-2 mt-5">
+                                <input type="text" class="form-control" id="voucher_code" 
+                                placeholder="Gunakan Kode Diskon" aria-describedby="basic-addon2" required style="background:#ffcc94;outline:none;">
+                                <div class="input-group-append" required>
+                                    <button class="btn " type="submit" onclick="btn_code()" style="background:#6a3137;outline:none;color:white;">Terapkan</button>
+                                </div>
+                            </div>';    
+                        echo '<a type="button" class="btn btn-block button_add_to_pesan" data-toggle="modal" data-target="#my_modal_ajax">Beli Sekarang</a>';
+                        }
+                    echo'</div>
+                </div>
+            </div>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="my_modal_ajax" role="dialog">
+                <div class="modal-dialog">
+                
+                <!-- Modal content-->
+                <div class="modal-content" style="background: #FDD8AF">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    
+                    </div>
+                    <form method="POST" target="_BLANK" action="'.route('customer.keranjang.pesan').'">
+                    <input type="hidden" name="_token" value="'.csrf_token();echo'">
+                    <div class="modal-body">
+                        <div class="row justify-content-center">
+                            <div class="col-sm-12">
+                                
+                                    <div class="card mx-auto contact_card" style="border-radius:15px;">
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <input type="text" value="';if($item_name !== null){echo $item_name->username;}else{echo '';} echo'" name="username" class="form-control contact_input" placeholder="Name" id="name" required autocomplete="off" autofocus>
+                                                <input type="hidden" name="total_pesanan" id="total_pesan_val" value="'.$item_price.'">
+                                            </div>
+                                            <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
+                                            <div class="form-group">
+                                                <input type="email" value="';if($item_name !== null){echo $item_name->email;}else{echo '';} echo'" name="email" class="form-control contact_input" placeholder="Email" id="email" required autocomplete="off" >
+                                            </div>
+                                            <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
+                                            <div class="form-group">
+                                                <textarea type="text"  name="address" class="form-control contact_input" placeholder="Address" id="address" required autocomplete="off" ">';if($item_name !== null){echo $item_name->address;}else{echo '';} echo'</textarea>
+                                            </div>
+                                            <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
+                                            <div class="form-group">
+                                                <input type="text" minlength="10" maxlength="13" value="';if($item_name !== null){echo $item_name->phone;}else{echo '';} echo'" name="phone" class="form-control contact_input" placeholder="Phone" id="phone" required autocomplete="off" onkeypress="return hanyaAngka(event)">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mx-auto text-center">
+                                        
+                                    </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    <input type="hidden" id="order_id_pesan" name="id" value="';if($item !== null){echo $item->id;}else{echo '';} echo'"/>
+                        <button type="submit" class="btn btn-block bt-wa" onclick="pesan_wa()"  style="color:#fff;background-color: #6a3137;"><i class="fab fa-whatsapp" style="font-weight: bold;"></i>&nbsp;Pesan</button>
+                    </div>
+                    </form>
+                </div>
+                
+                </div>
+            </div>
+        </div>';
+    }
+
+    public function ajax_cart(Request $request)
+    {   
+        $ses_id = $request->header('User-Agent');
+        $clientIP = \Request::getClientIp(true);
+        $session_id = $ses_id.$clientIP;
+        $total_item = DB::table('orders')
+                    ->join('order_product','order_product.order_id','=','orders.id')
+                    ->where('session_id','=',"$session_id")
+                    ->whereNull('orders.username')
+                    ->count();
+        if ($total_item < 1){
+            echo '<div id="accordion">
+                    <div class="card fixed-bottom" style="">
+                        <div id="card-cart" class="card-header" >
+                            <table width="100%" style="margin-bottom: 40px;">
+                                <tbody>
+                                    <tr>
+                                        <td width="5%" valign="middle">
+                                            <div id="ex4">
+                                        
+                                                <span class="p1 fa-stack fa-2x has-badge" data-count="0">
+                                            
+                                                    <!--<i class="p2 fa fa-circle fa-stack-2x"></i>-->
+                                                    <i class="p3 fa fa-shopping-cart " data-count="4b" style=""></i>
+                                                </span>
+                                            </div> 
+                                        </td>
+                                        <td width="25%" align="left" valign="middle">
+                                            <h5 id="total_kr_">Rp.0</h5>
+                                        </td>
+                                        <td width="5%" valign="middle" >
+                                        <a id="cv" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" class="collapsed">
+                                                <i class="fas fa-chevron-up" style=""></i>
+                                            </a>
+                                        </td>
+                                        <td width="33%" align="right" valign="middle">
+                                        
+                                        <h5>(0 Item)</h5>
+                                        
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div  class="collapse" data-parent="#accordion" style="" >
+                            <div class="card-body" id="card-detail">
+                                <div class="col-md-12">
+                                
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>';
+        }
+        else
+        {
+            //$session_id = $request->header('User-Agent');
+            $keranjang = \App\Order::with('products')
+                        ->where('status','=','SUBMIT')
+                        ->where('session_id','=',"$session_id")
+                        ->whereNull('username')->get();
+            $item = DB::table('orders')
+                        ->where('session_id','=',"$session_id")
+                        ->where('orders.status','=','SUBMIT')
+                        ->whereNull('orders.username')
+                        ->first();
+            $item_name = DB::table('orders')
+                        ->join('order_product','order_product.order_id','=','orders.id')
+                        ->where('session_id','=',"$session_id")
+                        ->whereNotNull('orders.username')
+                        ->first();
+            $item_price = $item->total_price;
+        echo 
+        '<div id="accordion">
+            <div class="card fixed-bottom" style="">
+                <div id="card-cart" class="card-header" >
+                    <table width="100%" style="margin-bottom: 40px;">
+                        <tbody>
+                            <tr>
+                                <td width="5%" valign="middle">
+                                    <div id="ex4">
+                                
+                                        <span id="" class="p1 fa-stack fa-2x has-badge" data-count="'.$total_item.'">
+                                    
+                                            <!--<i class="p2 fa fa-circle fa-stack-2x"></i>-->
+                                            <i class="p3 fa fa-shopping-cart " data-count="4b" style=""></i>
+                                        </span>
+                                    </div> 
+                                </td>
+                                <td width="25%" align="left" valign="middle">';
+                                    
+                                        echo'<h5 id="total_kr_">Rp.&nbsp;'.number_format(($item_price) , 0, ',', '.').'</h5>
+                                        <input type="hidden" id="total_kr_val" value="'.$item_price.'">';
+                                echo'    
+                                </td>
+                                <td width="5%" valign="middle" >
+                                <a id="cv" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" class="collapsed">
+                                        <i class="fas fa-chevron-up" style=""></i>
+                                    </a>
+                                </td>
+                                <td width="33%" align="right" valign="middle">
+                                
+                                <h5>('.$total_item.'&nbsp;Item)</h5>
+                                
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="collapse-4" class="collapse" data-parent="#accordion" style="" >
+                    <div class="card-body" id="card-detail">
+                        <div class="col-md-12" style="padding-bottom:6rem;">
+                            <table width="100%">
+                                <tbody>';
+                                    foreach($keranjang as $order){
+                                        foreach($order->products as $detil){
+                                        echo'<tr>
+                                            <td width="25%" valign="middle">
+                                                <img src="'.asset('storage/'.$detil->image).'" 
+                                                class="image-detail"  alt="...">   
+                                            </td>
+                                            <td width="60%" align="left" valign="top">
+                                                <p class="name-detail">'.$detil->description.'</p>';
+                                                if($detil->discount > 0){
+                                                    $total=$detil->price_promo * $detil->pivot->quantity;
+                                                }
+                                                else{
+                                                    $total=$detil->price * $detil->pivot->quantity;
+                                                }
+                                                echo'<h1 id="productPrice_kr'.$detil->id.'" style="color:#6a3137; !important; font-family: Open Sans;">Rp.&nbsp;'.number_format($total, 0, ',', '.').'</h1>
+                                                <table width="10%">
+                                                    <tbody>
+                                                        <tr id="response-id'.$detil->id.'">
+                                                            
+                                                            <td width="10px" align="left" valign="middle">
+                                                            <input type="hidden" id="order_id'.$detil->id.'" name="order_id" value="'.$order->id.'">';
+                                                            if($detil->discount > 0)
+                                                            {
+                                                                echo'<input type="hidden" id="harga_kr'.$detil->id.'" name="price" value="'.$detil->price_promo.'">';
+                                                            }
+                                                            else{
+                                                                echo'<input type="hidden" id="harga_kr'.$detil->id.'" name="price" value="'.$detil->price.'">';
+                                                            }
+                                                            echo'<input type="hidden" id="id_detil'.$detil->id.'" value="'.$detil->pivot->id.'">
+                                                            <input type="hidden" id="jmlkr_'.$detil->id.'" name="quantity" value="'.$detil->pivot->quantity.'">    
+                                                            <button class="button_minus" onclick="button_minus_kr('.$detil->id.')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                                                
+                                                            </td>
+                                                            <td width="10px" align="middle" valign="middle">
+                                                                <p id="show_kr_'.$detil->id.'" class="d-inline" style="">'.$detil->pivot->quantity.'</p>
+                                                            </td>
+                                                            <td width="10px" align="right" valign="middle">
+                                                                <button class="button_plus" onclick="button_plus_kr('.$detil->id.')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                            </td>
+                                                        
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td width="15%" align="right" valign="top" style="padding-top: 5%;">
+                                                <button class="btn btn-default" onclick="delete_kr('.$detil->id.')" style="">X</button>
+                                                <input type="hidden"  id="order_id_delete'.$detil->id.'" name="order_id" value="'.$order->id.'">
+                                                <input type="hidden"  id="quantity_delete'.$detil->id.'" name="quantity" value="'.$detil->pivot->quantity.'">';
+                                                if($detil->discount > 0)
+                                                    {
+                                                    echo '<input type="hidden"  id="price_delete'.$detil->id.'" name="price" value="'.$detil->price_promo.'">';
+                                                    }
+                                                    else{
+                                                        echo '<input type="hidden"  id="price_delete'.$detil->id.'" name="price" value="'.$detil->price.'">';
+                                                    }
+                                                echo'<input type="hidden"  id="product_id_delete'.$detil->id.'"name="product_id" value="'.$detil->id.'">
+                                                <input type="hidden" id="id_delete'.$detil->id.'" name="id" value="'.$detil->pivot->id.'">
+                                            </td>
+                                        </tr>';
+                                        
+                                        }
+                                    }
+                                    echo '<tr>
+                                        <td align="right" colspan="3">';
+                                                
+                                        echo'</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <hr>
+                            <div id="desc_code" style="display: none;">
+                                <div class="jumbotron jumbotron-fluid ml-2 py-4 mb-3">
+                                    <p class="lead"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fixed-bottom p-3">';
+                        if($total_item > 0){
+                        echo'<div class="input-group mb-2 mt-5">
+                                <input type="text" class="form-control" id="voucher_code" 
+                                placeholder="Gunakan Kode Diskon" aria-describedby="basic-addon2" required style="background:#ffcc94;outline:none;">
+                                <div class="input-group-append" required>
+                                    <button class="btn " type="submit" onclick="btn_code()" style="background:#6a3137;outline:none;color:white;">Terapkan</button>
+                                </div>
+                            </div>';    
                         echo '<a type="button" class="btn btn-block button_add_to_pesan" data-toggle="modal" data-target="#my_modal_ajax">Beli Sekarang</a>';
                         }
                     echo'</div>

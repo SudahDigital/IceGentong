@@ -596,6 +596,88 @@
             $('a[aria-expanded=true]').attr('aria-expanded', 'false');
         });
 
+        function btn_code(){
+            var voucher_code = document.getElementById("voucher_code").value;
+            var x = document.getElementById("desc_code");
+            if(voucher_code ==""){
+                $("#voucher_code").focus(),
+                Swal.fire({
+                text: "Harap Masukkan Kode",
+                icon: 'error',
+                showCancelButton: false,
+                confirmButtonText: "Tutup",
+                confirmButtonColor: '#6a3137'
+                });
+                $(".swal2-modal").css('background-color', ' #FDD8AF')
+            }
+            else
+            {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url : '{{URL::to('/keranjang/search_vcode')}}',
+                    type:'POST',
+                    data:{
+                        code : voucher_code
+                    },
+                    beforeSend: function () { // Before we send the request, remove the .hidden class from the spinner and default to inline-block.
+                        $('#loader').removeClass('hidden')
+                    },              
+                    success: function (response){
+                        if (response == 'taken'){
+                            $.ajax({
+                                url : '{{URL::to('/keranjang/apply_code')}}',
+                                type: 'POST',
+                                data:{
+                                    code : voucher_code
+                                },
+                                success: function (response){
+                                $( '#accordion' ).html(response);
+                                $('#collapse-4').addClass('show');
+                                //x.style.display = "block";
+                                var objDiv = document.getElementById("collapse-4");
+                                objDiv.scrollTop = objDiv.scrollHeight;
+                                },
+                                complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                                $('#loader').addClass('hidden')
+                                }
+                            });
+                        }
+                        else if (response == 'full_uses'){
+                            $('#loader').addClass('hidden'),
+                            $("#voucher_code").focus(),
+                                Swal.fire({
+                                text: "Maaf, kode tidak dapat gunakan,karena sudah mencapai batas maximum penggunaan",
+                                icon: 'error',
+                                showCancelButton: false,
+                                confirmButtonText: "Tutup",
+                                confirmButtonColor: '#6a3137'
+                                });
+                            $(".swal2-modal").css('background-color', ' #FDD8AF')
+                        }
+                        else if(response == 'not_taken'){
+                            $('#loader').addClass('hidden'),
+                            $("#voucher_code").focus(),
+                                Swal.fire({
+                                text: "Kode Tidak Cocok",
+                                icon: 'error',
+                                showCancelButton: false,
+                                confirmButtonText: "Tutup",
+                                confirmButtonColor: '#6a3137'
+                                });
+                            $(".swal2-modal").css('background-color', ' #FDD8AF')
+                        }
+                    },
+                    error: function (response) {
+                    console.log('Error:', response);
+                    }
+                });
+            }
+        }
+
         function hanyaAngka(evt) {
             var charCode = (evt.which) ? evt.which : event.keyCode
             if (charCode > 31 && (charCode < 48 || charCode > 57))
@@ -603,6 +685,7 @@
             return false;
             return true;
         }
+        
         function pesan_wa()
         {
             var name = document.getElementById("name").value;
@@ -659,10 +742,10 @@
                     var price = $('#harga'+id).val();
                     
                     $.ajaxSetup({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            }
-                        });
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
                         $.ajax({
                             url : '{{URL::to('/keranjang/min_order')}}',
                             type:'POST',
@@ -775,7 +858,7 @@
         }
 
         function button_minus_kr(id)
-        {
+        {   
             var jumlah = $('#jmlkr_'+id).val();
             var jumlah = parseInt(jumlah) - 1;
 
@@ -944,6 +1027,7 @@
                                 $.ajax({
                                     url : '{{URL::to('/home_cart')}}',
                                     type : 'GET',
+                                    
                                     success: function (response) {
                                     // We get the element having id of display_info and put the response inside it
                                     //$( '#accordion').html(response);

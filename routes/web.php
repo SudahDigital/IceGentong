@@ -25,11 +25,13 @@ Route::get('/contact', function(){
         })->name('contact');
 Route::get('/home_customer', 'CustomerKeranjangController@index');
 Route::get('/home_cart', 'CustomerKeranjangController@ajax_cart');
+Route::post('/keranjang/apply_code', 'CustomerKeranjangController@apply_code');
 Route::post('/keranjang/simpan','CustomerKeranjangController@simpan')->name('customer.keranjang.simpan');
 Route::post('/keranjang/min_order','CustomerKeranjangController@min_order')->name('customer.keranjang.min_order');
 Route::post('/keranjang/tambah','CustomerKeranjangController@tambah')->name('customer.keranjang.tambah');
 Route::post('/keranjang/kurang','CustomerKeranjangController@kurang')->name('customer.keranjang.kurang');
 Route::post('/keranjang/delete','CustomerKeranjangController@delete')->name('customer.keranjang.delete');
+Route::post('/keranjang/search_vcode','CustomerKeranjangController@voucher_code')->name('customer.keranjang.vcode');
 Route::post('/keranjang/pesan','CustomerKeranjangController@pesan')->name('customer.keranjang.pesan');
 Route::get('/histori','historiController@index')->name('riwayat_pemesanan');
 Route::resource('category','filterProductController');
