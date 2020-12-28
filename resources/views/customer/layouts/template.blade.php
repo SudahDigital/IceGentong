@@ -637,6 +637,7 @@
                                 success: function (response){
                                 $( '#accordion' ).html(response);
                                 $('#collapse-4').addClass('show');
+                                $( '#voucher_code_hide' ).val(voucher_code);
                                 //x.style.display = "block";
                                 var objDiv = document.getElementById("collapse-4");
                                 objDiv.scrollTop = objDiv.scrollHeight;
@@ -676,6 +677,26 @@
                     }
                 });
             }
+        }
+
+        function reset_promo(){
+            var x = document.getElementById("desc_code");
+            $('#loader').removeClass('hidden');
+            $.ajax({
+                url : '{{URL::to('/home_cart')}}',
+                type : 'GET',
+                success: function (response) {
+                // We get the element having id of display_info and put the response inside it
+                $( '#accordion' ).html(response);
+                $('#collapse-4').addClass('show');
+                x.style.display = "none";
+                var objDiv = document.getElementById("collapse-4");
+                objDiv.scrollTop = objDiv.scrollHeight;
+                },
+                complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                    $('#loader').addClass('hidden')
+                }
+            });
         }
 
         function hanyaAngka(evt) {
@@ -996,7 +1017,7 @@
                 var sisa 	= number_string.length % 3;
                 var rupiah 	= number_string.substr(0, sisa);
                 var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
-
+                var voucher_code_hide = document.getElementById("voucher_code_hide").value;
                 if (ribuan) {
                 separator = sisa ? '.' : '';
                 rupiah += separator + ribuan.join('.');
@@ -1024,19 +1045,39 @@
                                 $('#total_kr_').html(tot);
                                 $('#total_kr_val').val(tot_val);
                                 $('#total_pesan_val').val(tot_val);
-                                $.ajax({
-                                    url : '{{URL::to('/home_cart')}}',
-                                    type : 'GET',
-                                    
-                                    success: function (response) {
-                                    // We get the element having id of display_info and put the response inside it
-                                    //$( '#accordion').html(response);
-                                    //$('#collapse-4').addClass('show');
-                                    },
-                                    complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                                if(voucher_code_hide !=""){
+                                    $.ajax({
+                                        url : '{{URL::to('/keranjang/apply_code')}}',
+                                        type: 'POST',
+                                        data:{
+                                            code : voucher_code_hide
+                                        },
+                                        success: function (response){
+                                        $( '#accordion' ).html(response);
+                                        $('#collapse-4').addClass('show');
+                                        
+                                        },
+                                        complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
                                         $('#loader').addClass('hidden')
-                                    }
-                                });
+                                        }
+                                    });
+                                }
+                                else{
+                                    $.ajax({
+                                        url : '{{URL::to('/home_cart')}}',
+                                        type : 'GET',
+                                        
+                                        success: function (response) {
+                                        // We get the element having id of display_info and put the response inside it
+                                        //$( '#accordion').html(response);
+                                        //$('#collapse-4').addClass('show');
+                                        },
+                                        complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                                            $('#loader').addClass('hidden')
+                                        }
+                                    });
+                                }
+                                
                             },
                             error: function (data) {
                             console.log('Error:', data);

@@ -147,8 +147,8 @@
             </div>
             <div id="{{$total_item > 0 ? 'collapse-4' : '' }}" class="collapse" data-parent="#accordion" style="" >
                 <div class="card-body" id="card-detail">
-                    <div class="col-md-12">
-                        <table width="100%" style="margin-bottom: 40px;">
+                    <div class="col-md-12" style="padding-bottom:6rem;">
+                        <table width="100%">
                             <tbody>
                                 @foreach($keranjang as $detil)
                                 <tr>
@@ -214,11 +214,24 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <hr>
+                        <div id="desc_code" style="display: none;">
+                            <div class="jumbotron jumbotron-fluid ml-2 py-4 mb-3">
+                                <p class="lead"></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="fixed-bottom p-3">
+                <div class="card-footer fixed-bottom p-3" style="background-color:#e9eff5;border-bottom-right-radius:18px;border-bottom-left-radius:18px;">
                     @if($total_item > 0)
-                        <a type="button" class="btn btn-block button_add_to_pesan" data-toggle="modal" data-target="#my_modal_content">Beli Sekarang</a>
+                    <div class="input-group mb-2 mt-2">
+                        <input type="text" class="form-control" id="voucher_code" 
+                        placeholder="Gunakan Kode Diskon" aria-describedby="basic-addon2" required style="background:#ffcc94;outline:none;">
+                        <div class="input-group-append" required>
+                            <button class="btn " type="submit" onclick="btn_code('')" style="background:#6a3137;outline:none;color:white;">Terapkan</button>
+                        </div>
+                    </div>
+                    <a type="button" class="btn button_add_to_pesan btn-block" data-toggle="modal" data-target="#my_modal_content" style="padding: 10px 40px; ">Beli Sekarang</a>
                     @endif
                 </div>
             </div>

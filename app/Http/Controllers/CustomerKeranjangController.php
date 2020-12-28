@@ -310,8 +310,17 @@ class CustomerKeranjangController extends Controller
                     ->where('session_id','=',"$session_id")
                     ->whereNotNull('orders.username')
                     ->first();
+        $no_disc = DB::table('products')
+                    ->join('order_product','products.id','=','order_product.product_id')
+                    ->where('order_product.order_id','=',"$item->id")
+                    ->where('products.discount','=','0')//->get();
+                    ->sum(DB::raw('products.price * order_product.quantity'));
+                    //->sum('products.price');
+                    //->first();
+        
+        //$sum_nodisc = $no_disc->sum('products.price');
         if( $vouchers->type == 1){
-            $potongan = ($item->total_price * $vouchers->discount_amount) / 100;
+           $potongan = ($no_disc * $vouchers->discount_amount) / 100;
             $item_price = $item->total_price - $potongan;
         }
         else if ($vouchers->type == 2)
@@ -452,16 +461,10 @@ class CustomerKeranjangController extends Controller
                             </div>
                         </div>
                     </div>
-                    <div class="fixed-bottom p-3">';
+                    <div class="card-footer fixed-bottom p-3" style="background-color:#e9eff5;border-bottom-right-radius:18px;border-bottom-left-radius:18px;">';
                         if($total_item > 0){
-                        echo'<div class="input-group mb-2 mt-5">
-                                <input type="text" class="form-control" id="voucher_code" 
-                                placeholder="Gunakan Kode Diskon" aria-describedby="basic-addon2" required style="background:#ffcc94;outline:none;">
-                                <div class="input-group-append" required>
-                                    <button class="btn " type="submit" onclick="btn_code()" style="background:#6a3137;outline:none;color:white;">Terapkan</button>
-                                </div>
-                            </div>';    
-                        echo '<a type="button" class="btn btn-block button_add_to_pesan" data-toggle="modal" data-target="#my_modal_ajax">Beli Sekarang</a>';
+                            echo '<input type="text" class="form-control" id="voucher_code_hide">';
+                            echo '<a type="button" class="btn btn-block button_add_to_pesan" data-toggle="modal" data-target="#my_modal_ajax">Beli Sekarang</a>';
                         }
                     echo'</div>
                 </div>
@@ -716,9 +719,9 @@ class CustomerKeranjangController extends Controller
                             </div>
                         </div>
                     </div>
-                    <div class="fixed-bottom p-3">';
+                    <div class="card-footer fixed-bottom p-3" style="background-color:#e9eff5;border-bottom-right-radius:18px;border-bottom-left-radius:18px;">';
                         if($total_item > 0){
-                        echo'<div class="input-group mb-2 mt-5">
+                        echo'<div class="input-group mb-2 mt-2">
                                 <input type="text" class="form-control" id="voucher_code" 
                                 placeholder="Gunakan Kode Diskon" aria-describedby="basic-addon2" required style="background:#ffcc94;outline:none;">
                                 <div class="input-group-append" required>
