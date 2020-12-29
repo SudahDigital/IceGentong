@@ -14,7 +14,7 @@ class AddIdVoucherOnOrdersTable extends Migration
     public function up()
     {
         Schema::table('orders', function($table) {
-            $table->unsignedbigInteger('id_voucher')->nullable()->after('phone');
+            $table->unsignedInteger('id_voucher')->nullable()->after('phone');
             $table->foreign('id_voucher')->references('id')->on('vouchers');
         });
     }
