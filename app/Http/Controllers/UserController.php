@@ -60,16 +60,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $validation = \Validator::make($request->all(),[
-            "name" => "required|min:5|max:100",
-            //"username" => "required|min:5|max:20|unique:users",
-            "roles" => "required",
-            //"address" => "required|min:20|max:200",
-            //"avatar" => "required",
-            "email" => "required|email|unique:users",
-            "password" => "required",
-            "password_confirmation" => "required|same:password"
-        ])->validate();
         $new_user = new \App\User;
         $new_user->name = $request->get('name');
         $new_user->email = $request->get('email');

@@ -15,7 +15,6 @@
     <!-- Form Create -->
     <form id="form_validation" method="POST" enctype="multipart/form-data" action="{{route('post.changepass')}}">
         @csrf
-        
         <div class="form-group form-float">
             <div class="form-line">
                 <input type="password" class="form-control {{$errors->first('password') ? "is-invalid" : ""}}" name="current-password" id="current-password" required>
