@@ -223,6 +223,7 @@
                     </div>
                 </div>
                 <div class="card-footer fixed-bottom p-3" style="background-color:#e9eff5;border-bottom-right-radius:18px;border-bottom-left-radius:18px;">
+                    <input type="hidden" class="form-control" id="voucher_code_hide">
                     @if($total_item > 0)
                     <div class="input-group mb-2 mt-2">
                         <input type="text" class="form-control" id="voucher_code" 
@@ -238,7 +239,7 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="my_modal_content" role="dialog">
+        <div class="modal fade ml-1" id="my_modal_content" role="dialog">
             <div class="modal-dialog">
             
             <!-- Modal content-->

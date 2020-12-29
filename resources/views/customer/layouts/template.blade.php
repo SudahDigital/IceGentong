@@ -361,7 +361,7 @@
         border-right: 7px solid transparent;
         border-bottom: 7px solid transparent;
         border-top: 7px solid #8F5408;
-        border-radius: 5px;
+        
         }
         
         #product_list .span-ribbon::after {
@@ -372,7 +372,7 @@
         border-right: 7px solid #8F5408;
         border-bottom: 7px solid transparent;
         border-top: 7px solid #8F5408;
-        border-radius: 5px;
+        
         }
 
         @media(max-width: 768px){
@@ -638,6 +638,7 @@
                                 $( '#accordion' ).html(response);
                                 $('#collapse-4').addClass('show');
                                 $( '#voucher_code_hide' ).val(voucher_code);
+                                $( '#voucher_code_hide_modal' ).val(voucher_code);
                                 //x.style.display = "block";
                                 var objDiv = document.getElementById("collapse-4");
                                 objDiv.scrollTop = objDiv.scrollHeight;
@@ -761,7 +762,7 @@
                     var Product_id = $('#Product_id'+id).val();
                     var quantity = $('#quantity_add'+id).val();
                     var price = $('#harga'+id).val();
-                    
+                    var voucher_code_hide = document.getElementById("voucher_code_hide").value;
                     $.ajaxSetup({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -783,17 +784,38 @@
                             //$('#'+id).val(jumlah);
                             //$('#show_'+id).html(jumlah);
                             //$('#productPrice'+id).text(harga);
-                                $.ajax({
-                                    url : '{{URL::to('/home_cart')}}',
-                                    type : 'GET',
-                                    success: function (response) {
-                                    // We get the element having id of display_info and put the response inside it
-                                    $( '#accordion' ).html(response);
-                                    },
-                                    complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                                if(voucher_code_hide !=""){
+                                    $.ajax({
+                                        url : '{{URL::to('/keranjang/apply_code')}}',
+                                        type: 'POST',
+                                        data:{
+                                            code : voucher_code_hide
+                                        },
+                                        success: function (response){
+                                        $( '#accordion' ).html(response);
+                                        //$('#collapse-4').addClass('show');
+                                        //$( '#total_kr_' ).html(response);
+                                        $('#voucher_code_hide').val(voucher_code_hide);
+                                        $('#voucher_code_hide_modal').val(voucher_code_hide);
+                                        },
+                                        complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
                                         $('#loader').addClass('hidden')
-                                    }
-                                });
+                                        }
+                                    });
+                                }
+                                else{
+                                    $.ajax({
+                                        url : '{{URL::to('/home_cart')}}',
+                                        type : 'GET',
+                                        success: function (response) {
+                                        // We get the element having id of display_info and put the response inside it
+                                        $( '#accordion' ).html(response);
+                                        },
+                                        complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                                            $('#loader').addClass('hidden')
+                                        }
+                                    });
+                                }
                             },
                             
                             error: function (data) {
@@ -835,7 +857,7 @@
                 var Product_id = $('#Product_id'+id).val();
                 var quantity = $('#quantity_add'+id).val();
                 var price = $('#harga'+id).val();
-                
+                var voucher_code_hide = document.getElementById("voucher_code_hide").value;
                 $.ajaxSetup({
                             headers: {
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -857,18 +879,38 @@
                         //$('#'+id).val(jumlah);
                         //$('#show_'+id).html(jumlah);
                         //$('#productPrice'+id).text(harga);
-
-                        $.ajax({
-                            url : '{{URL::to('/home_cart')}}',
-                            type : 'GET',
-                            success: function (response) {
-                            // We get the element having id of display_info and put the response inside it
-                            $('#accordion' ).html(response);
-                            },
-                            complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                        if(voucher_code_hide !=""){
+                            $.ajax({
+                                url : '{{URL::to('/keranjang/apply_code')}}',
+                                type: 'POST',
+                                data:{
+                                    code : voucher_code_hide
+                                },
+                                success: function (response){
+                                $( '#accordion' ).html(response);
+                                //$('#collapse-4').addClass('show');
+                                //$( '#total_kr_' ).html(response);
+                                $('#voucher_code_hide').val(voucher_code_hide);
+                                $('#voucher_code_hide_modal').val(voucher_code_hide);
+                                },
+                                complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
                                 $('#loader').addClass('hidden')
-                            }
-                        });                                
+                                }
+                            });
+                        }
+                        else{
+                            $.ajax({
+                                url : '{{URL::to('/home_cart')}}',
+                                type : 'GET',
+                                success: function (response) {
+                                // We get the element having id of display_info and put the response inside it
+                                $('#accordion' ).html(response);
+                                },
+                                complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                                    $('#loader').addClass('hidden')
+                                }
+                            });
+                        }                                
                     },
                     
                     error: function (data) {
@@ -924,7 +966,7 @@
                 var sisa 	= number_string.length % 3;
                 var rupiah 	= number_string.substr(0, sisa);
                 var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
-
+                var voucher_code_hide = document.getElementById("voucher_code_hide").value;
                 if (ribuan) {
                 separator = sisa ? '.' : '';
                 rupiah += separator + ribuan.join('.');
@@ -952,18 +994,39 @@
                                 $('#total_kr_').html(tot);
                                 $('#total_kr_val').val(tot_val);
                                 $('#total_pesan_val').val(tot_val);
-                            $.ajax({
-                                    url : '{{URL::to('/home_cart')}}',
-                                    type : 'GET',
-                                    success: function (response) {
-                                    // We get the element having id of display_info and put the response inside it
-                                    //$( '#accordion' ).html(response);
-                                    //$('#collapse-4').addClass('show');
-                                    },
-                                    complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                                if(voucher_code_hide !=""){
+                                    $.ajax({
+                                        url : '{{URL::to('/keranjang/apply_code')}}',
+                                        type: 'POST',
+                                        data:{
+                                            code : voucher_code_hide
+                                        },
+                                        success: function (response){
+                                        $( '#accordion' ).html(response);
+                                        $('#collapse-4').addClass('show');
+                                        //$( '#total_kr_' ).html(response);
+                                        $('#voucher_code_hide').val(voucher_code_hide);
+                                        $('#voucher_code_hide_modal').val(voucher_code_hide);
+                                        },
+                                        complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
                                         $('#loader').addClass('hidden')
-                                    }
-                                });
+                                        }
+                                    });
+                                }
+                                else{
+                                    $.ajax({
+                                        url : '{{URL::to('/home_cart')}}',
+                                        type : 'GET',
+                                        success: function (response) {
+                                        // We get the element having id of display_info and put the response inside it
+                                        //$( '#accordion' ).html(response);
+                                        //$('#collapse-4').addClass('show');
+                                        },
+                                        complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                                            $('#loader').addClass('hidden')
+                                        }
+                                    });
+                                }
                             },
                             
                             error: function (data) {
@@ -1055,7 +1118,9 @@
                                         success: function (response){
                                         $( '#accordion' ).html(response);
                                         $('#collapse-4').addClass('show');
-                                        
+                                        //$( '#total_kr_' ).html(response);
+                                        $('#voucher_code_hide').val(voucher_code_hide);
+                                        $('#voucher_code_hide_modal').val(voucher_code_hide);
                                         },
                                         complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
                                         $('#loader').addClass('hidden')
@@ -1102,6 +1167,7 @@
                 var product_id_delete = $('#product_id_delete'+id).val();
                 var id_delete = $('#id_delete'+id).val();
                 var price = $('#harga'+id).val();
+                var voucher_code_hide = document.getElementById("voucher_code_hide").value;
                 $.ajax({
                     url : '{{URL::to('/keranjang/delete')}}',
                     type:'POST',
@@ -1121,18 +1187,38 @@
                     $('#jmlbrg_'+id).val(jumlah);
                     $('#show_'+id).html(jumlah);
                     //$('#productPrice'+id).text(harga);
+                    if(voucher_code_hide !=""){
                         $.ajax({
-                            url : '{{URL::to('/home_cart')}}',
-                            type : 'GET',
-                            success: function (response) {
-                            // We get the element having id of display_info and put the response inside it
+                            url : '{{URL::to('/keranjang/apply_code')}}',
+                            type: 'POST',
+                            data:{
+                                code : voucher_code_hide
+                            },
+                            success: function (response){
                             $( '#accordion' ).html(response);
                             $('#collapse-4').addClass('show');
+                            //$( '#total_kr_' ).html(response);
+                            $('#voucher_code_hide').val(voucher_code_hide);
+                            $('#voucher_code_hide_modal').val(voucher_code_hide);
                             },
                             complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
-                                $('#loader').addClass('hidden')
+                            $('#loader').addClass('hidden')
                             }
                         });
+                    }else{
+                            $.ajax({
+                                url : '{{URL::to('/home_cart')}}',
+                                type : 'GET',
+                                success: function (response) {
+                                // We get the element having id of display_info and put the response inside it
+                                $( '#accordion' ).html(response);
+                                $('#collapse-4').addClass('show');
+                                },
+                                complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                                    $('#loader').addClass('hidden')
+                                }
+                            });
+                        }
                     },
                     
                     error: function (data) {

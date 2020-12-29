@@ -247,10 +247,28 @@ class CustomerKeranjangController extends Controller
         $orders->phone = $phone;
         $orders->save();
         $total_pesanan = $request->get('total_pesanan');
+        if($request->has('voucher_code_hide_modal')){
+            $sum_novoucher = $request->get('total_novoucher');
+            $keyword = $request->get('voucher_code_hide_modal');
+            $vouchers_cek = \App\Voucher::where('code','=',"$keyword")->first();
+            $code_name = $vouchers_cek->name;
+            $type = $vouchers_cek->type;
+            $disc_amount = $vouchers_cek->discount_amount;
+            
+        }
         $total_ongkir  = 15000;
         $total_bayar  = $total_pesanan + $total_ongkir;
         $href='Hello..,  %0ANama %3A '.$username.'%0AEmail %3A '.$email.'%0ANo. Hp %3A' .$phone.'%0AAlamat %3A' .$address.',%0AIngin membeli %3A%0A';
-        $info_harga = 'Total Pesanan %3A Rp.'.number_format(($total_pesanan), 0, ',', '.').'%0AOngkos Kirim %3A Rp.'.number_format(($total_ongkir), 0, ',', '.').'%0ATotal Pembayaran %3A Rp.'.number_format(($total_bayar), 0, ',', '.').'%0A';
+        if($request->has('voucher_code_hide_modal')){
+            if ($type == 1){
+                $info_harga = 'Total Pesanan %3A Rp.'.number_format(($sum_novoucher), 0, ',', '.').'%0AOngkos Kirim %3A Rp.'.number_format(($total_ongkir), 0, ',', '.').'%0ADiskon %3A '.number_format(($disc_amount), 0, ',', '.').'% %0AJenis Diskon %3A '.$code_name.' %0ATotal Pembayaran %3A Rp.'.number_format(($total_bayar), 0, ',', '.').'%0A';
+            }else{
+                $info_harga = 'Total Pesanan %3A Rp.'.number_format(($sum_novoucher), 0, ',', '.').'%0AOngkos Kirim %3A Rp.'.number_format(($total_ongkir), 0, ',', '.').'%0ADiskon %3A Rp.'.number_format(($disc_amount), 0, ',', '.') .'%0AJenis Diskon %3A '.$code_name.' %0ATotal Pembayaran %3A Rp.'.number_format(($total_bayar), 0, ',', '.').'%0A';
+            }
+        }
+        else{
+            $info_harga = 'Total Pesanan %3A Rp.'.number_format(($total_pesanan), 0, ',', '.').'%0AOngkos Kirim %3A Rp.'.number_format(($total_ongkir), 0, ',', '.').'%0ATotal Pembayaran %3A Rp.'.number_format(($total_bayar), 0, ',', '.').'%0A';
+        }
         if($orders->save()){
             $pesan = DB::table('order_product')
                     ->join('orders','order_product.order_id','=','orders.id')
@@ -295,7 +313,53 @@ class CustomerKeranjangController extends Controller
                     ->where('session_id','=',"$session_id")
                     ->whereNull('orders.username')
                     ->count();
-        //$session_id = $request->header('User-Agent');
+        if ($total_item < 1){
+            echo '<div id="accordion">
+                    <div class="card fixed-bottom" style="">
+                        <div id="card-cart" class="card-header" >
+                            <table width="100%" style="margin-bottom: 40px;">
+                                <tbody>
+                                    <tr>
+                                        <td width="5%" valign="middle">
+                                            <div id="ex4">
+                                        
+                                                <span class="p1 fa-stack fa-2x has-badge" data-count="0">
+                                            
+                                                    <!--<i class="p2 fa fa-circle fa-stack-2x"></i>-->
+                                                    <i class="p3 fa fa-shopping-cart " data-count="4b" style=""></i>
+                                                </span>
+                                            </div> 
+                                        </td>
+                                        <td width="25%" align="left" valign="middle">
+                                            <h5 id="total_kr_">Rp.0</h5>
+                                        </td>
+                                        <td width="5%" valign="middle" >
+                                        <a id="cv" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" class="collapsed">
+                                                <i class="fas fa-chevron-up" style=""></i>
+                                            </a>
+                                        </td>
+                                        <td width="33%" align="right" valign="middle">
+                                        
+                                        <h5>(0 Item)</h5>
+                                        
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div  class="collapse" data-parent="#accordion" style="" >
+                            <div class="card-body" id="card-detail">
+                                <div class="col-md-12">
+                                <input type="hidden" class="form-control" id="voucher_code_hide" value="">
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>';
+        }
+        else{
         $keranjang = \App\Order::with('products')
                     ->where('status','=','SUBMIT')
                     ->where('session_id','=',"$session_id")
@@ -317,7 +381,7 @@ class CustomerKeranjangController extends Controller
                     ->sum(DB::raw('products.price * order_product.quantity'));
                     //->sum('products.price');
                     //->first();
-        
+        $sum_novoucher = $item->total_price;
         //$sum_nodisc = $no_disc->sum('products.price');
         if( $vouchers->type == 1){
            $potongan = ($no_disc * $vouchers->discount_amount) / 100;
@@ -463,7 +527,7 @@ class CustomerKeranjangController extends Controller
                     </div>
                     <div class="card-footer fixed-bottom p-3" style="background-color:#e9eff5;border-bottom-right-radius:18px;border-bottom-left-radius:18px;">';
                         if($total_item > 0){
-                            echo '<input type="text" class="form-control" id="voucher_code_hide">';
+                            echo '<input type="hidden" class="form-control" id="voucher_code_hide">';
                             echo '<a type="button" class="btn btn-block button_add_to_pesan" data-toggle="modal" data-target="#my_modal_ajax">Beli Sekarang</a>';
                         }
                     echo'</div>
@@ -471,7 +535,7 @@ class CustomerKeranjangController extends Controller
             </div>
             
             <!-- Modal -->
-            <div class="modal fade" id="my_modal_ajax" role="dialog">
+            <div class="modal fade ml-1" id="my_modal_ajax" role="dialog">
                 <div class="modal-dialog">
                 
                 <!-- Modal content-->
@@ -491,6 +555,8 @@ class CustomerKeranjangController extends Controller
                                             <div class="form-group">
                                                 <input type="text" value="';if($item_name !== null){echo $item_name->username;}else{echo '';} echo'" name="username" class="form-control contact_input" placeholder="Name" id="name" required autocomplete="off" autofocus>
                                                 <input type="hidden" name="total_pesanan" id="total_pesan_val" value="'.$item_price.'">
+                                                <input type="hidden" name ="voucher_code_hide_modal" class="form-control" id="voucher_code_hide_modal">
+                                                <input type="hidden" name="total_novoucher" id="total_novoucher_val" value="'.$sum_novoucher.'">
                                             </div>
                                             <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
                                             <div class="form-group">
@@ -523,6 +589,7 @@ class CustomerKeranjangController extends Controller
                 </div>
             </div>
         </div>';
+        }
     }
 
     public function ajax_cart(Request $request)
@@ -572,7 +639,7 @@ class CustomerKeranjangController extends Controller
                         <div  class="collapse" data-parent="#accordion" style="" >
                             <div class="card-body" id="card-detail">
                                 <div class="col-md-12">
-                                
+                                <input type="hidden" class="form-control" id="voucher_code_hide">
                                     
                                     
                                 </div>
@@ -727,7 +794,8 @@ class CustomerKeranjangController extends Controller
                                 <div class="input-group-append" required>
                                     <button class="btn " type="submit" onclick="btn_code()" style="background:#6a3137;outline:none;color:white;">Terapkan</button>
                                 </div>
-                            </div>';    
+                            </div>';
+                        echo '<input type="hidden" class="form-control" id="voucher_code_hide">';    
                         echo '<a type="button" class="btn btn-block button_add_to_pesan" data-toggle="modal" data-target="#my_modal_ajax">Beli Sekarang</a>';
                         }
                     echo'</div>
@@ -735,7 +803,7 @@ class CustomerKeranjangController extends Controller
             </div>
             
             <!-- Modal -->
-            <div class="modal fade" id="my_modal_ajax" role="dialog">
+            <div class="modal fade ml-1" id="my_modal_ajax" role="dialog">
                 <div class="modal-dialog">
                 
                 <!-- Modal content-->
