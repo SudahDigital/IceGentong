@@ -254,7 +254,9 @@ class CustomerKeranjangController extends Controller
             $code_name = $vouchers_cek->name;
             $type = $vouchers_cek->type;
             $disc_amount = $vouchers_cek->discount_amount;
-            
+            $vouchers = \App\Voucher::findOrFail($vouchers_cek->id);
+            $vouchers->uses +=1;
+            $vouchers->save();
         }
         $total_ongkir  = 15000;
         $total_bayar  = $total_pesanan + $total_ongkir;
