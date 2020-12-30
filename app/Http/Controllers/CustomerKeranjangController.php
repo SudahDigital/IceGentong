@@ -511,7 +511,7 @@ class CustomerKeranjangController extends Controller
                             <hr>
                             <div id="desc_code" style="display:block;">
                                 <div class="jumbotron jumbotron-fluid ml-2 py-4 mb-0 px-3">
-                                    <p class="lead">Anda menadapatkan potongan harga ';
+                                    <p class="lead">Anda mendapatkan potongan harga ';
                                     if($vouchers->type==1){
                                         echo $vouchers->discount_amount; 
                                         echo '%,';
