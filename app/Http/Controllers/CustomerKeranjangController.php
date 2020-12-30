@@ -260,7 +260,7 @@ class CustomerKeranjangController extends Controller
         }
         $total_ongkir  = 15000;
         $total_bayar  = $total_pesanan + $total_ongkir;
-        $href='Hello..,  %0ANama %3A '.$username.'%0AEmail %3A '.$email.'%0ANo. Hp %3A' .$phone.'%0AAlamat %3A' .$address.',%0AIngin membeli %3A%0A';
+        $href='Hello Admin Gentong,  %0ANama %3A '.$username.', %0AEmail %3A '.$email.', %0ANo. Hp %3A' .$phone.', %0AAlamat %3A' .$address.',%0AIngin membeli %3A%0A';
         if($request->has('voucher_code_hide_modal')){
             if ($type == 1){
                 $info_harga = 'Total Pesanan %3A Rp.'.number_format(($sum_novoucher), 0, ',', '.').'%0AOngkos Kirim %3A Rp.'.number_format(($total_ongkir), 0, ',', '.').'%0ADiskon %3A '.number_format(($disc_amount), 0, ',', '.').'% %0AJenis Diskon %3A '.$code_name.' %0ATotal Pembayaran %3A Rp.'.number_format(($total_bayar), 0, ',', '.').'%0A';
@@ -290,9 +290,9 @@ class CustomerKeranjangController extends Controller
 
     public function voucher_code(Request $request){
         $keyword = $request->get('code');
-        $vouchers = \App\Voucher::where('code','=',"$keyword")->count();
+        $vouchers = \App\Voucher::where('code','LIKE BINARY',"%$keyword%")->count();
         if($vouchers > 0 ){
-            $vouchers_cek = \App\Voucher::where('code','=',"$keyword")->first();
+            $vouchers_cek = \App\Voucher::where('code','LIKE BINARY',"%$keyword%")->first();
             if($vouchers_cek->uses < $vouchers_cek->max_uses){
                 echo "taken";
             }else{
@@ -514,10 +514,10 @@ class CustomerKeranjangController extends Controller
                                     <p class="lead">Anda Menadapatkan potongan harga &nbsp;';
                                     if($vouchers->type==1){
                                         echo $vouchers->discount_amount; 
-                                        echo '&nbsp; %,';
+                                        echo '%,';
                                     } 
                                     else{
-                                        echo 'Rp.'.$vouchers->discount_amount.',';
+                                        echo 'Rp.'.number_format(($vouchers->discount_amount) , 0, ',', '.').',';
                                     }
                                     echo'<br>'.$vouchers->description.'</p>
                                 </div>
