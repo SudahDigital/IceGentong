@@ -511,7 +511,7 @@ class CustomerKeranjangController extends Controller
                             <hr>
                             <div id="desc_code" style="display:block;">
                                 <div class="jumbotron jumbotron-fluid ml-2 py-4 mb-0 px-3">
-                                    <p class="lead">Anda Menadapatkan potongan harga &nbsp;';
+                                    <p class="lead">Anda menadapatkan potongan harga ';
                                     if($vouchers->type==1){
                                         echo $vouchers->discount_amount; 
                                         echo '%,';
@@ -519,7 +519,7 @@ class CustomerKeranjangController extends Controller
                                     else{
                                         echo 'Rp.'.number_format(($vouchers->discount_amount) , 0, ',', '.').',';
                                     }
-                                    echo'<br>'.$vouchers->description.'</p>
+                                    echo'<br>'.$vouchers->description.'.</p>
                                 </div>
                                 <div class="mb-3 mt-1 ml-2">
                                     <a class="btn btn-default" onclick="reset_promo()">Reset Kode Promo</a>
