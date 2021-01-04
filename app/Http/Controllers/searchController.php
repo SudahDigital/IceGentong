@@ -23,15 +23,18 @@ class searchController extends Controller
             $keyword = $request->get('keyword') ? $request->get('keyword') : '';
             $categories = \App\Category::get();
             $cat_count = $categories->count();
+            $top_product = \App\product::with('categories')->where('top_product','=','1')->orderBy('top_product','DESC')->get();
             $product = \App\product::with('categories')->where("description", "LIKE", "%$keyword%")->paginate(6);
             $count_data = $product->count();
+            $top_count = $top_product->count();
             $keranjang = DB::select("SELECT orders.session_id, orders.status, orders.username, 
-                    products.description, products.image, products.price, order_product.id,
-                    order_product.order_id,order_product.product_id,order_product.quantity
-                    FROM order_product, products, orders WHERE 
-                    orders.id = order_product.order_id AND 
-                    order_product.product_id = products.id AND orders.status = 'SUBMIT' 
-                    AND orders.session_id = '$session_id' AND orders.username IS NULL ");
+                        products.description, products.image, products.price, products.discount,
+                        products.price_promo, order_product.id, order_product.order_id,
+                        order_product.product_id,order_product.quantity
+                        FROM order_product, products, orders WHERE 
+                        orders.id = order_product.order_id AND 
+                        order_product.product_id = products.id AND orders.status = 'SUBMIT' 
+                        AND orders.session_id = '$session_id' AND orders.username IS NULL");
             $item = DB::table('orders')
                         ->where('session_id','=',"$session_id")
                         ->where('orders.status','=','SUBMIT')
@@ -51,6 +54,8 @@ class searchController extends Controller
             $data=['total_item'=> $total_item, 
             'keranjang'=>$keranjang, 
             'product'=>$product,
+            'top_product'=>$top_product,
+            'top_count'=>$top_count,
             'item'=>$item,
             'item_name'=>$item_name,
             'count_data'=>$count_data,
