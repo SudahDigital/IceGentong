@@ -527,8 +527,28 @@
             </div>  
                
             @yield('content')
-
         </div>
+
+        <!-- Footer section -->
+        <footer id="footer">
+            <div class="d-flex justify-content-center">
+                <div class="col-md-6">
+                    <img src="{{ asset('assets/image/logo-gentong.png') }}" class="img-thumbnail" style="background-color:transparent; border:none;" alt="logo-gentong"> 
+                </div>
+            </div>
+            <br><br>
+            <div class="row justify-content-center mx-auto" >    
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/Gentongicecream/"  target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://instagram.com/gentongicecream?igshid=10b120fidnx58"  target="_blank"><i class="fab fa-instagram "></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="https://twitter.com/kedaigentong?s=08" target="_blank"><i class="fab fa-twitter "></i></a>
+                </div>
+            </div>
+            <div class="copyright text-center">
+                <p>@Copyright 2020</p>
+            </div>
+        </footer>
     </div>
     
     <div class="overlay"></div>
@@ -570,6 +590,76 @@
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>-->
     <script type="text/javascript">
         //$('#accordion').collapse('show').height('auto');
+
+        // duration of scroll animation
+        var scrollDuration = 300;
+        // paddles
+        var leftPaddle = document.getElementsByClassName("left-paddle");
+        var rightPaddle = document.getElementsByClassName("right-paddle");
+        // get items dimensions
+        var itemsLength = $(".item").length;
+        var itemSize = $(".item").outerWidth(true);
+        // get some relevant size for the paddle triggering point
+        var paddleMargin = 10;
+
+        // get wrapper width
+        var getMenuWrapperSize = function () {
+            return $(".menu-wrapper").outerWidth();
+        };
+        var menuWrapperSize = getMenuWrapperSize();
+        // the wrapper is responsive
+        $(window).on("resize", function () {
+            menuWrapperSize = getMenuWrapperSize();
+        });
+        // size of the visible part of the menu is equal as the wrapper size
+        var menuVisibleSize = menuWrapperSize;
+
+        // get total width of all menu items
+        var getMenuSize = function () {
+            return itemsLength * itemSize;
+        };
+        var menuSize = getMenuSize();
+        // get how much of menu is invisible
+        var menuInvisibleSize = menuSize - menuWrapperSize;
+
+        // get how much have we scrolled to the left
+        var getMenuPosition = function () {
+            return $(".menu").scrollLeft();
+        };
+
+        // finally, what happens when we are actually scrolling the menu
+        $(".menu").on("scroll", function () {
+            // get how much of menu is invisible
+            menuInvisibleSize = menuSize - menuWrapperSize;
+            // get how much have we scrolled so far
+            var menuPosition = getMenuPosition();
+
+            var menuEndOffset = menuInvisibleSize - paddleMargin;
+
+            // show & hide the paddles
+            // depending on scroll position
+            if (menuPosition <= paddleMargin) {
+                $(leftPaddle).addClass("paddles_hide");
+                $(rightPaddle).removeClass("paddles_hide");
+            } else if (menuPosition < menuEndOffset) {
+                // show both paddles in the middle
+                $(leftPaddle).removeClass("paddles_hide");
+                $(rightPaddle).removeClass("paddles_hide");
+            } else if (menuPosition >= menuEndOffset) {
+                $(leftPaddle).removeClass("paddles_hide");
+                $(rightPaddle).addClass("paddles_hide");
+            }
+        });
+
+        // scroll to left
+        $(rightPaddle).on("click", function () {
+            $(".menu").animate({ scrollLeft: menuInvisibleSize }, scrollDuration);
+        });
+
+        // scroll to right
+        $(leftPaddle).on("click", function () {
+            $(".menu").animate({ scrollLeft: "0" }, scrollDuration);
+        });
 
         //popup first page
         $(function () {

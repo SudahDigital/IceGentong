@@ -235,13 +235,14 @@
 @media (max-width: 1366px){
 
     #shape-1 {
-        float: left;
-        width: 40%;
+        position: absolute;
+        bottom:0;
+        right: 0;
+        width: 50%;
         height: 30rem;
-        top:10rem;
         border-top-right-radius: 100%;
         background:#5D2B30;
-        position: absolute;
+        
    }
   
    #shape-2 {

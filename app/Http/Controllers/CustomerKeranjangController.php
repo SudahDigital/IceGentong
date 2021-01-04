@@ -22,7 +22,9 @@ class CustomerKeranjangController extends Controller
         $banner = \App\Banner::orderBy('id', 'DESC')->get();
         $categories = \App\Category::all();//paginate(10);
         $cat_count = $categories->count();
-        $product = product::with('categories')->orderBy('top_product','DESC')->get();//->paginate(6);
+        $top_product = product::with('categories')->where('top_product','=','1')->orderBy('top_product','DESC')->get();
+        $product = product::with('categories')->where('top_product','=','0')->get();//->paginate(6);
+        $top_count = $top_product->count();
         $count_data = $product->count();
         $keranjang = DB::select("SELECT orders.session_id, orders.status, orders.username, 
                     products.description, products.image, products.price, products.discount,
@@ -49,7 +51,9 @@ class CustomerKeranjangController extends Controller
                     ->whereNull('orders.username')
                     ->count();
         $data=['total_item'=> $total_item, 
-                'keranjang'=>$keranjang, 
+                'keranjang'=>$keranjang,
+                'top_product'=>$top_product,
+                'top_count'=>$top_count, 
                 'product'=>$product,
                 'item'=>$item,
                 'item_name'=>$item_name,
@@ -58,8 +62,7 @@ class CustomerKeranjangController extends Controller
                 'cat_count'=>$cat_count,
                 'banner'=>$banner,
                 'banner_active'=>$banner_active];
-       
-        return view('customer.content_customer',$data);
+       return view('customer.content_customer',$data);
     }
     
     public function simpan(Request $request){ 

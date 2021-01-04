@@ -25,10 +25,12 @@ class filterProductController extends Controller
         $category_id = $request->get('id');
         $categories = \App\Category::get();
         $cat_count = $categories->count();
+        $top_product = \App\product::with('categories')->where('top_product','=','1')->orderBy('top_product','DESC')->get();
         $product = \App\product::whereHas('categories',function($q) use ($category_id){
                     return $q->where('category_id','=',$category_id);
                     })->get();//->paginate(6);
         $count_data = $product->count();
+        $top_count = $top_product->count();
         $keranjang = DB::select("SELECT orders.session_id, orders.status, orders.username, 
                     products.description, products.image, products.price, products.discount,
                     products.price_promo, order_product.id, order_product.order_id,
@@ -56,6 +58,8 @@ class filterProductController extends Controller
         $data=['total_item'=> $total_item, 
         'keranjang'=>$keranjang, 
         'product'=>$product,
+        'top_product'=>$top_product,
+        'top_count'=>$top_count,
         'item'=>$item,
         'item_name'=>$item_name,
         'count_data'=>$count_data,

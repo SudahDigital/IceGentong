@@ -1,117 +1,120 @@
 @extends('customer.layouts.template')
 @section('content')
 
-    @if($count_data <= 3)
-        <div class="">
-    @else
-        <div class="warna">
-        <div id="shape-1"></div>
-        <div id="shape-2">
-    @endif           
-        </div>
-            <div class="container" style="">
-                <div class="row align-middle mt-3" style="">  
-                    <div class="col-sm-12 mt-3">
-                        @if($cat_count > 5)
-                        <div class="col-md-12 mx-auto">
-                            <table width="100%" style="margin-bottom: 20px;" >
-                            <tbody>
-                                <tr>
-                                    <td class="menu-filter" valign="middle">
-                                        @if($count_data <= 3)
-                                        <h3 class="cat_fil" id="cat_fil" style="color: #693234;">
-                                            Filter Category 
-                                        </h3>
-                                        @else
-                                        <h3 class="cat_fil" id="cat_fil" style="color: #ffffff; ">
-                                            Filter Category 
-                                        </h3>
-                                        @endif
-                                    </td>
-                                    <td width="60%" align="left" valign="middle" class="menu-logo-filter">
-                                        @if($count_data <=3)
-                                            <button type="button" class="btn" data-toggle="collapse" data-target="#demo" style="background-color:#FDD8AF; border:none;">
-                                                <i class="fas fa-sliders-h tombol" style="color:#693234"></i>
-                                            </button>
-                                        @else
-                                        <button type="button" class="btn" data-toggle="collapse" data-target="#demo" style="background-color:#693234; border:none;">
-                                            <i class="fas fa-sliders-h tombol" style="color:#fff;"></i>
+    <!--menu categories-->
+    <div style="{{$top_count > 0 ? 'background:#693234;' : 'background:#FDD8AF'}}">
+        <div class="container">
+            <div class="row align-middle mt-0" style="">  
+                <div class="col-sm-12 mt-4" style="">
+                    @if($cat_count > 5)
+                    <div class="col-md-12 mx-auto">
+                        <table width="100%" style="margin-bottom: 20px;" >
+                        <tbody>
+                            <tr>
+                                <td class="menu-filter" valign="middle">
+                                    @if($count_data <= 3)
+                                    <h3 class="cat_fil" id="cat_fil" style="color: #693234;">
+                                        Filter Category 
+                                    </h3>
+                                    @else
+                                    <h3 class="cat_fil" id="cat_fil" style="color: #ffffff; ">
+                                        Filter Category 
+                                    </h3>
+                                    @endif
+                                </td>
+                                <td width="60%" align="left" valign="middle" class="menu-logo-filter">
+                                    @if($count_data <=3)
+                                        <button type="button" class="btn" data-toggle="collapse" data-target="#demo" style="background-color:#FDD8AF; border:none;">
+                                            <i class="fas fa-sliders-h tombol" style="color:#693234"></i>
                                         </button>
-                                        @endif
-                                    </td>
-                                    <!--
-                                    <td width="25%" align="right">
-                                        
-                                            <nav aria-label="breadcrumb">
-                                                <ol class="breadcrumb px-0 button_breadcrumb">
-                                                    <li class="breadcrumb-item active" aria-current="page" @if($count_data <= 3) style="color: #6a3137;margin-top:30px;" @else style="color: #fff;margin-top:30px;"@endif>Category Family Pack</li>
-                                                </ol>
-                                            </nav>
-                                    </td>
-                                -->
-                                </tr>
-                            </tbody>
-                            </table>
-                        </div>
-                        <div id="demo" class="collapse" style="">
-                            <div class="col-md-12" style="margin-bottom: 20px;">
-                            <a href="{{url('/home_customer')}}" type="button" class="btn button_add_to_cart button-collapse mb=3">Semua Produk</a>
-                            @foreach($categories as $key => $value)
-                                <a href="{{route('category.index', ['id'=>$value->id] )}}" type="button" class="btn button_add_to_cart button-collapse mb-3">{{$value->name}}</a>
-                            @endforeach
-                            </div>
-                        </div>
-                        @else
-                        <div class="col-md-12 mb-2" style="">
-                            <a href="{{url('/home_customer')}}" type="button" class="btn button_add_to_cart button-collapse mb-3">Semua Produk</a>
-                            @foreach($categories as $key => $value)
-                                <a href="{{route('category.index', ['id'=>$value->id] )}}" type="button" class="btn button_add_to_cart button-collapse mb-3">{{$value->name}}</a>
-                            @endforeach
-                        </div>
-                        @endif
+                                    @else
+                                    <button type="button" class="btn" data-toggle="collapse" data-target="#demo" style="background-color:#693234; border:none;">
+                                        <i class="fas fa-sliders-h tombol" style="color:#fff;"></i>
+                                    </button>
+                                    @endif
+                                </td>
+                                <!--
+                                <td width="25%" align="right">
+                                    
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb px-0 button_breadcrumb">
+                                                <li class="breadcrumb-item active" aria-current="page" @if($count_data <= 3) style="color: #6a3137;margin-top:30px;" @else style="color: #fff;margin-top:30px;"@endif>Category Family Pack</li>
+                                            </ol>
+                                        </nav>
+                                </td>
+                            -->
+                            </tr>
+                        </tbody>
+                        </table>
                     </div>
-                    <div class="col-md-12 mt-2">
-                        <div class="row section_content">
-                        @foreach($product as $key => $value)
-                        <div id="product_list"  class="col-6 col-md-4 d-flex">
+                    <div id="demo" class="collapse" style="">
+                        <div class="col-md-12" style="margin-bottom: 20px;">
+                        <a href="{{url('/home_customer')}}" type="button" class="btn button_add_to_cart button-collapse mb=3">Semua Produk</a>
+                        @foreach($categories as $key => $value)
+                            <a href="{{route('category.index', ['id'=>$value->id] )}}" type="button" class="btn button_add_to_cart button-collapse mb-3">{{$value->name}}</a>
+                        @endforeach
+                        </div>
+                    </div>
+                    @else
+                    <div class="col-md-12 mb-2" style="">
+                        <a href="{{url('/home_customer')}}" type="button" class="btn button_add_to_cart button-collapse mb-3">Semua Produk</a>
+                        @foreach($categories as $key => $value)
+                            <a href="{{route('category.index', ['id'=>$value->id] )}}" type="button" class="btn button_add_to_cart button-collapse mb-3">{{$value->name}}</a>
+                        @endforeach
+                    </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--top produk -->
+    @if($top_count > 0 )
+    <div id="top_product" style="background:#693234;margin-top:-2px;">
+        <div class="container ">
+            <div class="row">
+                <div class="col-md-12 mt-1 menu-wrapper">
+                    <div class="row section_content flex-row flex-nowrap menu" style="overflow-x:auto;overflow-y:hidden;z-index:2222; ">
+                        @foreach($top_product as $key => $value_top)
+                        <div id="product_list" class="col-6 col-md-4 d-flex item" style="z-index: 1">
                             <div class="card mx-auto d-flex item_product">
-                                @if($value->discount > 0)
-                                <div class="ribbon"><span class="span-ribbon">{{$value->discount}}% OFF</span></div>
+                                @if($value_top->discount > 0)
+                                <div class="ribbon"><span class="span-ribbon">{{$value_top->discount}}% OFF</span></div>
                                 @endif
-                                <a href="{{URL::route('product_detail', ['id'=>$value->id])}}">
-                                    <img style="" src="{{ asset('storage/'.(($value->image!='') ? $value->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-150 w-100 img-responsive" alt="...">
+                                <a href="{{URL::route('product_detail', ['id'=>$value_top->id])}}">
+                                    <img style="" src="{{ asset('storage/'.(($value_top->image!='') ? $value_top->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-150 w-100 img-responsive" alt="...">
                                 </a>
                                 <div class="float-left px-1 py-2" style="width: 100%;">
                                     <p class="product-price-header mb-0" style="">
-                                        {{$value->description}}
+                                        {{$value_top->description}}
                                     </p>
                                 </div>
-                                @if($value->discount > 0)
+                                @if($value_top->discount > 0)
                                 <div class="d-inline-block">
                                     <div class="text-left">
-                                        <p class="product-price-header mt-0 mb-0 ml-1" style="color:#6a3137;"><del><b><i>Rp. {{ number_format($value->price, 0, ',', '.') }}</i></b> </del></p>
+                                        <p class="product-price-header mt-0 mb-0 ml-1" style="color:#6a3137;"><del><b><i>Rp. {{ number_format($value_top->price, 0, ',', '.') }}</i></b> </del></p>
                                     </div>
                                 </div>
                                 <div class="float-left px-1 py-2" style="">
-                                    <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value->id}}" style="">Rp. {{ number_format($value->price_promo, 0, ',', '.') }}</p>
+                                    <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value_top->id}}" style="">Rp. {{ number_format($value_top->price_promo, 0, ',', '.') }}</p>
                                 </div>
                                 @else
                                 <div class="float-left px-1 py-2" style="">
-                                    <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value->id}}" style="">Rp. {{ number_format($value->price, 0, ',', '.') }}</p>
+                                    <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value_top->id}}" style="">Rp. {{ number_format($value_top->price, 0, ',', '.') }}</p>
                                 </div>
                                 @endif
                                 <table width="100%" class="hdr_tbl_cart mt-auto" style="bottom: 0">
                                     <tbody>
                                         <tr>
                                             <td width="10%" align="right" valign="middle">
-                                                    <input type="hidden" id="Product_id{{$value->id}}" name="Product_id" value="{{$value->id}}">
-                                                    <input type="hidden" id="quantity_add{{$value->id}}" name="quantity" value="1">
-                                                    @if($value->discount > 0)
-                                                    <input type="hidden" id="harga{{$value->id}}" name="price" value="{{$value->price_promo}}">
+                                                    <input type="hidden" id="Product_id{{$value_top->id}}" name="Product_id" value="{{$value_top->id}}">
+                                                    <input type="hidden" id="quantity_add{{$value_top->id}}" name="quantity" value="1">
+                                                    @if($value_top->discount > 0)
+                                                    <input type="hidden" id="harga{{$value_top->id}}" name="price" value="{{$value_top->price_promo}}">
                                                     @else
-                                                    <input type="hidden" id="harga{{$value->id}}" name="price" value="{{$value->price}}">
+                                                    <input type="hidden" id="harga{{$value_top->id}}" name="price" value="{{$value_top->price}}">
                                                     @endif
-                                                    <button class="btn button_minus" onclick="button_minus('{{$value->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                                    <button class="btn button_minus" onclick="button_minus('{{$value_top->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
                                             </td>
                                             <td width="10%" align="center" valign="middle">
                                                 <?php
@@ -123,24 +126,24 @@
                                                             products.description, products.image, products.price, order_product.id,
                                                             order_product.order_id,order_product.product_id,order_product.quantity
                                                             FROM order_product, products, orders WHERE 
-                                                            orders.id = order_product.order_id AND order_product.product_id = $value->id AND 
+                                                            orders.id = order_product.order_id AND order_product.product_id = $value_top->id AND 
                                                             order_product.product_id = products.id AND orders.status = 'SUBMIT' 
                                                             AND orders.session_id = '$user' AND orders.username IS NULL ");
                                                 $hitung = count($view_pesan);
                                                     if($hitung > 0){
-                                                        foreach ($view_pesan as $key => $k) {
-                                                        echo '<p id="show_'.$value->id.'" class="d-inline show" style="">'.$k->quantity.'</p>';
-                                                        echo '<input type="hidden" id="jmlbrg_'.$value->id.'" name="quantity" value="'.$k->quantity.'">';
+                                                        foreach ($view_pesan as $key => $k_top) {
+                                                        echo '<p id="show_'.$value_top->id.'" class="d-inline show" style="">'.$k_top->quantity.'</p>';
+                                                        echo '<input type="hidden" id="jmlbrg_'.$value_top->id.'" name="quantity" value="'.$k_top->quantity.'">';
                                                         }
                                                     }
                                                     else{
-                                                        echo '<input type="hidden" id="jmlbrg_'.$value->id.'" name="quantity" value="0">';
-                                                        echo '<p id="show_'.$value->id.'" class="d-inline show" style="">0</p>';
+                                                        echo '<input type="hidden" id="jmlbrg_'.$value_top->id.'" name="quantity" value="0">';
+                                                        echo '<p id="show_'.$value_top->id.'" class="d-inline show" style="">0</p>';
                                                     }
                                                 ?>
                                             </td>
                                             <td width="10%" align="left" valign="middle">
-                                                <button class="btn button_plus" onclick="button_plus('{{$value->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                <button class="btn button_plus" onclick="button_plus('{{$value_top->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -154,35 +157,130 @@
                             <div class="page paging" style="margin-top:0; margin-bottom:1rem;">/*$product->appends(Request::all())->onEachSide(5)->links('vendor.pagination.bootstrap-4') */</div>
                             </div>
                         </div>
-                        -->        
+                        --> 
                     </div>
-                </div>
-            </div>
-        </div>
-    
-    <!-- Footer section -->
-    <footer id="footer">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-7">
-                   <img src="{{ asset('assets/image/logo-gentong.png') }}" class="img-thumbnail" style="background-color:transparent; border:none;" alt="logo-gentong"> 
-                </div>
-            </div>
-            <br><br>
-            <div class="row justify-content-center mx-auto" >    
-                <div class="social-icons">
-                    <a href="https://www.facebook.com/Gentongicecream/"  target="_blank"><i class="fab fa-facebook"></i></a>
-                    <a href="https://instagram.com/gentongicecream?igshid=10b120fidnx58"  target="_blank"><i class="fab fa-instagram "></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="https://twitter.com/kedaigentong?s=08" target="_blank"><i class="fab fa-twitter "></i></a>
-                </div>
-            </div>
-            <div class="copyright text-center">
-                <p>@Copyright 2020</p>
-            </div>
-        </div>
-    </footer>
+                    <div class="paddles d-none d-md-block d-md-none">
+                        @if($top_count > 3)
+                        <button class="left-paddle paddle paddles_hide">
+                            <i class="fa fa-angle-double-left" style=""></i>
+                        </button>
+                        <button class="right-paddle paddle" style="text-decoration: none;">
+                            <i class="fa fa-angle-double-right" style=""></i>
+                        </button>
+                        @endif
+                    </div>
 
+                    <div class="paddles d-md-none">
+                        @if($top_count > 2)
+                        <button class="left-paddle paddle paddles_hide">
+                            <i class="fa fa-angle-double-left" style=""></i>
+                        </button>
+                        <button class="right-paddle paddle" style="text-decoration: none;">
+                            <i class="fa fa-angle-double-right" style=""></i>
+                        </button>
+                        @endif
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+    
+    <!--not top product-->
+    <div style="background:#FDD8AF">
+        <div class="container" style="">
+            <div class="row mt-0">
+                <div class="col-md-12 mt-4">
+                    <div class="row section_content">
+                    @foreach($product as $key => $value)
+                    <div id="product_list"  class="col-6 col-md-4 d-flex mx-0" style="z-index: 1">
+                        <div class="card mx-auto d-flex item_product">
+                            @if($value->discount > 0)
+                            <div class="ribbon"><span class="span-ribbon">{{$value->discount}}% OFF</span></div>
+                            @endif
+                            <a href="{{URL::route('product_detail', ['id'=>$value->id])}}">
+                                <img style="" src="{{ asset('storage/'.(($value->image!='') ? $value->image : '20200621_184223_0016.jpg').'') }}" class="img-fluid h-150 w-100 img-responsive" alt="...">
+                            </a>
+                            <div class="float-left px-1 py-2" style="width: 100%;">
+                                <p class="product-price-header mb-0" style="">
+                                    {{$value->description}}
+                                </p>
+                            </div>
+                            @if($value->discount > 0)
+                            <div class="d-inline-block">
+                                <div class="text-left">
+                                    <p class="product-price-header mt-0 mb-0 ml-1" style="color:#6a3137;"><del><b><i>Rp. {{ number_format($value->price, 0, ',', '.') }}</i></b> </del></p>
+                                </div>
+                            </div>
+                            <div class="float-left px-1 py-2" style="">
+                                <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value->id}}" style="">Rp. {{ number_format($value->price_promo, 0, ',', '.') }}</p>
+                            </div>
+                            @else
+                            <div class="float-left px-1 py-2" style="">
+                                <p style="line-height:1; bottom:0" class="product-price mb-0 " id="productPrice{{$value->id}}" style="">Rp. {{ number_format($value->price, 0, ',', '.') }}</p>
+                            </div>
+                            @endif
+                            <table width="100%" class="hdr_tbl_cart mt-auto" style="bottom: 0">
+                                <tbody>
+                                    <tr>
+                                        <td width="10%" align="right" valign="middle">
+                                                <input type="hidden" id="Product_id{{$value->id}}" name="Product_id" value="{{$value->id}}">
+                                                <input type="hidden" id="quantity_add{{$value->id}}" name="quantity" value="1">
+                                                @if($value->discount > 0)
+                                                <input type="hidden" id="harga{{$value->id}}" name="price" value="{{$value->price_promo}}">
+                                                @else
+                                                <input type="hidden" id="harga{{$value->id}}" name="price" value="{{$value->price}}">
+                                                @endif
+                                                <button class="btn button_minus" onclick="button_minus('{{$value->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                        </td>
+                                        <td width="10%" align="center" valign="middle">
+                                            <?php
+                                            $ses_id = \Request::header('User-Agent');
+                                            $clientIP = \Request::getClientIp(true);
+                                            $user = $ses_id.$clientIP; 
+                                            //$user = \Request::header('User-Agent'); 
+                                            $view_pesan = \DB::select("SELECT orders.session_id, orders.status, orders.username, 
+                                                        products.description, products.image, products.price, order_product.id,
+                                                        order_product.order_id,order_product.product_id,order_product.quantity
+                                                        FROM order_product, products, orders WHERE 
+                                                        orders.id = order_product.order_id AND order_product.product_id = $value->id AND 
+                                                        order_product.product_id = products.id AND orders.status = 'SUBMIT' 
+                                                        AND orders.session_id = '$user' AND orders.username IS NULL ");
+                                            $hitung = count($view_pesan);
+                                                if($hitung > 0){
+                                                    foreach ($view_pesan as $key => $k) {
+                                                    echo '<p id="show_'.$value->id.'" class="d-inline show" style="">'.$k->quantity.'</p>';
+                                                    echo '<input type="hidden" id="jmlbrg_'.$value->id.'" name="quantity" value="'.$k->quantity.'">';
+                                                    }
+                                                }
+                                                else{
+                                                    echo '<input type="hidden" id="jmlbrg_'.$value->id.'" name="quantity" value="0">';
+                                                    echo '<p id="show_'.$value->id.'" class="d-inline show" style="">0</p>';
+                                                }
+                                            ?>
+                                        </td>
+                                        <td width="10%" align="left" valign="middle">
+                                            <button class="btn button_plus" onclick="button_plus('{{$value->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    @endforeach
+                    <!--
+                    <div class="col-md-12">
+                        <div class="row justify-content-center" >
+                        <div class="page paging" style="margin-top:0; margin-bottom:1rem;">/*$product->appends(Request::all())->onEachSide(5)->links('vendor.pagination.bootstrap-4') */</div>
+                        </div>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <div id="accordion">
         <div class="card fixed-bottom" style="">
             <div id="card-cart" class="card-header" >
