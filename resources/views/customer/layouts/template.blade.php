@@ -30,6 +30,68 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-183852861-1"></script>
     <style type="text/css">
+        .paddles {
+        }
+
+        .paddle {
+            position: absolute;
+            right: 0;
+            top:35%;
+            color: #fff;
+            transition: all 0.4s;
+            background: #000000;
+            opacity: 0.4;
+            border-radius: 50px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            z-index: 1;
+            outline: none;
+            border:none;
+            cursor: pointer;
+        }
+        
+        .paddle:hover {
+            background: #6a3137;
+            color: #fff;
+        }
+        
+        .left-paddle {
+            left: 0;
+        }
+        .right-paddle {
+            right: 0;
+        }
+        
+        .paddles_hide {
+            display: none;
+        }
+
+        
+
+        .row::-webkit-scrollbar {
+            height: 12px;
+        }
+        /* line 17, sass/page/_home.scss */
+        .row::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+        }
+        /* line 24, sass/page/_home.scss */
+        .row::-webkit-scrollbar-thumb {
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            background: #6a3137;
+            -webkit-box-shadow: inset 0 0 6px #FDD8AF;
+        }
+        /* line 30, sass/page/_home.scss */
+        .row::-webkit-scrollbar-thumb:window-inactive {
+            background: rgba(255, 0, 0, 0.4);
+        }
         /*Hidden class for adding and removing*/
         .lds-dual-ring.hidden {
             display: none;
