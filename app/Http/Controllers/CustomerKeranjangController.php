@@ -73,12 +73,16 @@ class CustomerKeranjangController extends Controller
         $id_product = $request->get('Product_id');
         $quantity=$request->get('quantity');
         $price=$request->get('price');
+        $cek_promo = product::findOrFail($id_product);
         $cek_order = Order::where('session_id','=',"$id")
         ->where('status','=','SUBMIT')->whereNull('username')->first();
         if($cek_order !== null){
             $order_product = order_product::where('order_id','=',$cek_order->id)
             ->where('product_id','=',$id_product)->first();
             if($order_product!== null){
+                $order_product->price_item = $cek_promo->price;
+                $order_product->price_item_promo = $cek_promo->price_promo;
+                $order_product->discount_item = $cek_promo->discount;
                 $order_product->quantity += $quantity;
                 $order_product->save();
                 $cek_order->total_price += $price * $quantity;
@@ -87,6 +91,9 @@ class CustomerKeranjangController extends Controller
                         $new_order_product = new order_product;
                         $new_order_product->order_id =  $cek_order->id;
                         $new_order_product->product_id = $id_product;
+                        $new_order_product->price_item = $cek_promo->price;
+                        $new_order_product->price_item_promo = $cek_promo->price_promo;
+                        $new_order_product->discount_item = $cek_promo->discount;
                         $new_order_product->quantity = $quantity;
                         $new_order_product->save();
                         $cek_order->total_price += $price * $quantity;
@@ -106,6 +113,9 @@ class CustomerKeranjangController extends Controller
                 $order_product = new \App\order_product;
                 $order_product->order_id = $order->id;
                 $order_product->product_id = $request->get('Product_id');
+                $order_product->price_item = $cek_promo->price;
+                $order_product->price_item_promo = $cek_promo->price_promo;
+                $order_product->discount_item = $cek_promo->discount;
                 $order_product->quantity = $request->get('quantity');
                 $order_product->save();
             }
@@ -125,6 +135,7 @@ class CustomerKeranjangController extends Controller
         $id_product = $request->get('Product_id');
         $quantity=$request->get('quantity');
         $price=$request->get('price');
+        $cek_promo = product::findOrFail($id_product);
         $cek_order = Order::where('session_id','=',"$id")
         ->where('status','=','SUBMIT')->whereNull('username')->first();
         if($cek_order !== null){
@@ -132,6 +143,9 @@ class CustomerKeranjangController extends Controller
             ->where('product_id','=',$id_product)->first();
             if(($order_product!== null) AND ($order_product->quantity > 1)){
                 $order_product->quantity -= $quantity;
+                $order_product->price_item = $cek_promo->price;
+                $order_product->price_item_promo = $cek_promo->price_promo;
+                $order_product->discount_item = $cek_promo->discount;
                 $order_product->save();
                 $cek_order->total_price -= $price * $quantity;
                 $cek_order->save();
@@ -161,7 +175,11 @@ class CustomerKeranjangController extends Controller
         $id = $request->get('id_detil');
         $order_id = $request->get('order_id');
         $order_product = order_product::findOrFail($id);
+        $cek_promo = product::findOrFail($order_product->product_id);
         $order_product->quantity += 1;
+        $order_product->price_item = $cek_promo->price;
+        $order_product->price_item_promo = $cek_promo->price_promo;
+        $order_product->discount_item = $cek_promo->discount;
         $order_product->save();
         if($order_product->save()){
                 $order = Order::findOrFail($order_id);
@@ -199,6 +217,10 @@ class CustomerKeranjangController extends Controller
         else{
 
             $order_product = order_product::findOrFail($id);
+            $cek_promo = product::findOrFail($order_product->product_id);
+            $order_product->price_item = $cek_promo->price;
+            $order_product->price_item_promo = $cek_promo->price_promo;
+            $order_product->discount_item = $cek_promo->discount;
             $order_product->quantity -= 1;
             $order_product->save();
             if($order_product->save()){
@@ -248,6 +270,15 @@ class CustomerKeranjangController extends Controller
         $orders->email = $email;
         $orders->address = $address;
         $orders->phone = $phone;
+        if($request->has('voucher_code_hide_modal')){
+            $keyword = $request->get('voucher_code_hide_modal');
+            $vouchers_cek = \App\Voucher::where('code','=',"$keyword")->first();
+            $orders->id_voucher = $vouchers_cek->id;
+            $orders->total_price = $request->get('total_pesanan');
+        }
+        else{
+            $orders->id_voucher = NULL;
+        }
         $orders->save();
         $total_pesanan = $request->get('total_pesanan');
         if($request->has('voucher_code_hide_modal')){

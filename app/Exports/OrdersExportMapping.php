@@ -21,7 +21,15 @@ class OrdersExportMapping implements FromCollection, WithMapping, WithHeadings
     public function map($order) : array {
         $rows = [];
         foreach ($order->products as $p) {
+            if(($p->pivot->discount_item != NULL)||($p->pivot->discount_item > 0)){
+                $diskon =$p->pivot->discount_item;
+                $total= $p->pivot->price_item_promo * $p->pivot->quantity;
+            }else{
+                $diskon = 0;
+                $total= $p->pivot->price_item * $p->pivot->quantity;
+            }
             array_push($rows,[
+                $order->id,
                 $order->status,
                 $order->username,
                 $order->email,
@@ -29,8 +37,9 @@ class OrdersExportMapping implements FromCollection, WithMapping, WithHeadings
                 $order->phone,
                 $p->description,
                 $p->pivot->quantity,
-                $p->price,
-                $p->price * $p->pivot->quantity,
+                $p->pivot->price_item,
+                $diskon,
+                $total,
                 Carbon::parse($order->created_at)->toFormattedDateString()
             ]);
         }
@@ -39,6 +48,7 @@ class OrdersExportMapping implements FromCollection, WithMapping, WithHeadings
 
     public function headings() : array {
         return [
+           'Order_id',
            'Status',
            'Buyer Name',
            'Email',
@@ -47,6 +57,7 @@ class OrdersExportMapping implements FromCollection, WithMapping, WithHeadings
            'Product',
            'Quantity',
            'Price',
+           'Discount(%)',
            'Total Price',
            'Order Date'
         ] ;
