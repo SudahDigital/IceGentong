@@ -157,6 +157,7 @@
                         </a>
                     </li>
                     
+                    @can('isSuperadmin')
                     <li class="{{request()->routeIs('users.index') ? 'active' : '' }}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">people</i>
@@ -168,6 +169,7 @@
                             </li>
                         </ul>
                     </li>
+                    @endcan
 
                     <li class="{{request()->routeIs('banner.index') ? 'active' : '' }}">
                         <a href="javascript:void(0);" class="menu-toggle">

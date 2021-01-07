@@ -7,5 +7,12 @@
         </div>
     @endif
 
-    {{ __('You are logged in!') }}
+    Hi <strong>{{ auth()->user()->name }}</strong>,
+    {{ __('You are logged in as') }}
+    @can('isSuperadmin')
+        <span class="badge bg-green">Superadmin</span>
+    @elsecan('isAdmin')
+        <span class="badge bg-green">Admin</span>
+    @endcan
+    
 @endsection
