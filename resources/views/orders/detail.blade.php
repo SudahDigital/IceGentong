@@ -63,14 +63,14 @@
                         <td style="padding-top:5px;">{{number_format($p->pivot->price_item, 0, ',', '.')}}</td>
                         <td style="padding-top:5px;">{{$p->pivot->discount_item}}</td>
                         <td style="padding-top:5px;">
-                            @if(($p->pivot->price_item_promo != NULL) || ($p->pivot->price_item_promo > 0))
+                            @if(($p->pivot->price_item_promo != NULL) && ($p->pivot->price_item_promo > 0))
                             {{number_format($p->pivot->price_item_promo, 0, ',', '.')}}
                             @else
                             ---
                             @endif
                         </td>
                         <td align="right">
-                            @if(($p->pivot->discount_item != NULL) || ($p->pivot->discount_item > 0))
+                            @if(($p->pivot->discount_item != NULL) && ($p->pivot->discount_item > 0))
                             {{number_format($p->pivot->price_item_promo * $p->pivot->quantity, 0, ',', '.')}}
                             @else
                             {{number_format($p->pivot->price_item * $p->pivot->quantity, 0, ',', '.')}}
@@ -79,7 +79,11 @@
                     </tr>
                     @endforeach
                     <tr>
-                        <td colspan="5" align="right"><b>Voucher Discount</b> <small>({{$order->vouchers['description']}})</small> <b>:</b></td>
+                        <td colspan="5" align="right"><b>Voucher Discount</b> <small>
+                            @if($order->id_voucher !=NULL)
+                            {{($order->vouchers['description'])}}
+                            @endif
+                        </small> <b>:</b></td>
                         <td align="right">
                             @if(($order->id_voucher !=NULL)&&($order->vouchers['type'] == 1))
                             <b>{{$order->vouchers->discount_amount}}%</b>

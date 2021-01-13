@@ -47,6 +47,7 @@
                                 <p style="line-height: 1;" class="product-price mb-0 " id="productPrice{{$product->id}}" >Rp. {{ number_format($product->price, 0, ',', '.') }}</p>
                             </div>
                             @endif
+                            
                             <table width="100%" class="hdr_tbl_cart" >
                                 <tbody>
                                 <tr><!--
@@ -88,15 +89,21 @@
                                                 echo '<p id="show_'.$product->id.'" class="d-inline show" style="">0</p>';
                                             }
                                         ?>
+                                        <input type="hidden" id="stock{{$product->id}}" name="stock" value="{{$product->stock}}">
                                     </td>
                                     <td width="10%" align="left" valign="middle">
-                                        <button class="btn button_plus" onclick="button_plus('{{$product->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button> 
+                                        @if($product->stock > 0)
+                                        <button class="btn button_plus" onclick="button_plus('{{$product->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                        @else
+                                        <button class="btn button_plus" onclick="" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                        @endif
                                     </td>
-                                    
                                 </tr>
                                 </tbody>
                             </table>
-                                    
+                            @if($product->stock == 0)
+                                <div class="p-1 mb-0 text-dark text-center" style="border-radius:7px;background-color:#e9eff5;"><small><b>Sisa Stok {{$product->stock}}</b></small></div>
+                            @endif       
                         </div>
                     </div>
                 </div>
@@ -232,7 +239,8 @@
                             <button class="btn " type="submit" onclick="btn_code('')" style="background:#6a3137;outline:none;color:white;">Terapkan</button>
                         </div>
                     </div>
-                    <a type="button" class="btn button_add_to_pesan btn-block" data-toggle="modal" data-target="#my_modal_content" style="padding: 10px 40px; ">Beli Sekarang</a>
+                    <input type="hidden" id="order_id_cek" name="id" value="{{$item !==null ? $item->id : ''}}"/>
+                    <a type="button" id="beli_sekarang" class="btn button_add_to_pesan btn-block" onclick="show_modal()" style="padding: 10px 40px; ">Beli Sekarang</a>
                     @endif
                 </div>
             </div>
@@ -307,6 +315,28 @@
                 </form>
             </div>
             
+            </div>
+        </div>
+
+        <!-- Modal validasi stok -->
+        <div class="modal fade ml-1" id="modal_validasi" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content" style="background: #FDD8AF">
+                    <div class="modal-body">
+                        <div class="row justify-content-center">
+                            <div class="col-sm-12">
+                               <div class="text-center mb-3">Mohon maaf...</div> 
+                                <div id="body_alert">
+                                </div>
+                                <div class="text-center mt-3">Stok tidak mencukupi.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="close btn btn-block button_add_to_pesan" data-dismiss="modal">Tutup</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

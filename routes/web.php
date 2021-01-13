@@ -33,6 +33,7 @@ Route::post('/keranjang/kurang','CustomerKeranjangController@kurang')->name('cus
 Route::post('/keranjang/delete','CustomerKeranjangController@delete')->name('customer.keranjang.delete');
 Route::post('/keranjang/search_vcode','CustomerKeranjangController@voucher_code')->name('customer.keranjang.vcode');
 Route::post('/keranjang/pesan','CustomerKeranjangController@pesan')->name('customer.keranjang.pesan');
+Route::post('/keranjang/cek_order','CustomerKeranjangController@cek_order');
 Route::get('/histori','historiController@index')->name('riwayat_pemesanan');
 Route::resource('category','filterProductController');
 Route::resource('search','searchController');

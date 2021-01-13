@@ -429,22 +429,63 @@
             var email = document.getElementById("email").value;
             var address = document.getElementById("address").value;
             var phone = document.getElementById("phone").value;
+            var order_id = $('#order_id_cek').val();
             if (name != "" && email!="" && address !="" && phone !="" && phone.length > 9) {
-            Swal.fire({
-                title: 'Memesan',
-                text: "Anda melakukan pesanan melalui whatsapp",
-                icon: 'success',
-                showCancelButton: false,
-                confirmButtonText: "Ok",
-                confirmButtonColor: '#4db849'
-                }).then(function(){ 
-                    location.reload();
+                $.ajax({
+                    url : '{{URL::to('/keranjang/cek_order')}}',
+                    type:'POST',
+                    dataType: 'json',
+                    data:{
+                        order_id : order_id,
+                    },
+                    success: function(response){
+                        var len = 0;
+                        $('#body_alert').empty();
+                        if(response['data'] != null){
+                            len = response['data'].length;
+                        }
+
+                        if(len > 0){
+                            
+                            for(var i=0; i<len; i++){
+                                var desc = response['data'][i].description;
+                                
+                                var tr_str = "<li class='text-center'><small>"+desc+"</small></li>";
+                                $("#body_alert").append(tr_str);
+                            }
+                            $("#modal_validasi").modal('show');
+                        }
+                        else
+                        {
+                            Swal.fire({
+                            title: 'Memesan',
+                            text: "Anda melakukan pesanan melalui whatsapp",
+                            icon: 'success',
+                            showCancelButton: false,
+                            confirmButtonText: "Ok",
+                            confirmButtonColor: '#4db849'
+                            }).then(function(){ 
+                                location.reload();
+                            });
+                        }
+                    }
                 });
+                /*
+                Swal.fire({
+                    title: 'Memesan',
+                    text: "Anda melakukan pesanan melalui whatsapp",
+                    icon: 'success',
+                    showCancelButton: false,
+                    confirmButtonText: "Ok",
+                    confirmButtonColor: '#4db849'
+                    }).then(function(){ 
+                        location.reload();
+                    });*/
             }else{
-                alert('Anda harus mengisi data dengan lengkap & benar !');
+                alert('Anda harus mengisi data dengan lengkap  & benar !');
             }
         }
-
+        
         function button_minus(id)
         {   
             var jumlah = $('#jmlbrg_'+id).val();
@@ -545,6 +586,7 @@
             var jumlah = $('#jmlbrg_'+id).val();
             var jumlah = parseInt(jumlah) + 1;
 
+            var stock = $('#stock'+id).val();
             // AMBIL NILAI HARGA
             var harga = $('#harga'+id).val();
             var harga = parseInt(harga) * jumlah;
@@ -565,7 +607,17 @@
             if (jumlah < 0) {
             alert('Jumlah Tidak Boleh kurang dari nol')
             } 
-            else 
+            else if (jumlah > stock){
+                Swal.fire({
+                text: "Maaf, stok produk tidak mencukupi",
+                icon: 'info',
+                showCancelButton: false,
+                confirmButtonText: "Tutup",
+                confirmButtonColor: '#6a3137'
+                });
+                $(".swal2-modal").css('background-color', ' #FDD8AF')
+            }
+            else
             {
                 $('#jmlbrg_'+id).val(jumlah);
                 $('#show_'+id).html(jumlah);
@@ -757,6 +809,7 @@
             var jumlah = $('#jmlkr_'+id).val();
             var jumlah = parseInt(jumlah) + 1;
 
+            var stock = $('#stock'+id).val();
             // AMBIL NILAI HARGA
             var harga = $('#harga_kr'+id).val();
             var harga = parseInt(harga) * jumlah;
@@ -777,6 +830,16 @@
             // alert(jumlah)
             if (jumlah < 1) {
             alert('Jumlah order minimal 1')
+            }
+            else if (jumlah > stock){
+                Swal.fire({
+                text: "Maaf, stok produk tidak mencukupi",
+                icon: 'info',
+                showCancelButton: false,
+                confirmButtonText: "Tutup",
+                confirmButtonColor: '#6a3137'
+                });
+                $(".swal2-modal").css('background-color', ' #FDD8AF')
             } 
             else 
             {
@@ -939,6 +1002,47 @@
                     error: function (data) {
                     console.log('Error:', data);
                     }
+            });
+        }
+
+        function show_modal()
+        {
+            //$( "#collapse-4" ).load(window.location.href + " #collapse-4" );
+            var order_id = $('#order_id_cek').val();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url : '{{URL::to('/keranjang/cek_order')}}',
+                type:'POST',
+                dataType: 'json',
+                data:{
+                    order_id : order_id,
+                },
+                success: function(response){
+                    var len = 0;
+                    $('#body_alert').empty();
+                    if(response['data'] != null){
+                        len = response['data'].length;
+                    }
+
+                    if(len > 0){
+                        
+                        for(var i=0; i<len; i++){
+                            var desc = response['data'][i].description;
+                            
+                            var tr_str = "<li class='text-center'><small>"+desc+"</small></li>";
+                            $("#body_alert").append(tr_str);
+                        }
+                        $("#modal_validasi").modal('show');
+                    }
+                    else
+                    {
+                        $("#my_modal_content").modal('show');
+                    }
+                }
             });
         }
 

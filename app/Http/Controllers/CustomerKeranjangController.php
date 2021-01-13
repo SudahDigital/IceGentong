@@ -261,64 +261,81 @@ class CustomerKeranjangController extends Controller
 
     public function pesan(Request $request){
         $id = $request->get('id');
-        $username = $request->get('username');
-        $email = $request->get('email');
-        $address = $request->get('address');
-        $phone = $request->get('phone');
-        $orders = Order::findOrfail($id);
-        $orders->username = $username;
-        $orders->email = $email;
-        $orders->address = $address;
-        $orders->phone = $phone;
-        if($request->has('voucher_code_hide_modal')){
-            $keyword = $request->get('voucher_code_hide_modal');
-            $vouchers_cek = \App\Voucher::where('code','=',"$keyword")->first();
-            $orders->id_voucher = $vouchers_cek->id;
-            $orders->total_price = $request->get('total_pesanan');
-        }
-        else{
-            $orders->id_voucher = NULL;
-        }
-        $orders->save();
-        $total_pesanan = $request->get('total_pesanan');
-        if($request->has('voucher_code_hide_modal')){
-            $sum_novoucher = $request->get('total_novoucher');
-            $keyword = $request->get('voucher_code_hide_modal');
-            $vouchers_cek = \App\Voucher::where('code','=',"$keyword")->first();
-            $code_name = $vouchers_cek->name;
-            $type = $vouchers_cek->type;
-            $disc_amount = $vouchers_cek->discount_amount;
-            $vouchers = \App\Voucher::findOrFail($vouchers_cek->id);
-            $vouchers->uses +=1;
-            $vouchers->save();
-        }
-        $total_ongkir  = 15000;
-        $total_bayar  = $total_pesanan + $total_ongkir;
-        $href='Hello Admin Gentong,  %0ANama %3A '.$username.', %0AEmail %3A '.$email.', %0ANo. Hp %3A' .$phone.', %0AAlamat %3A' .$address.',%0AIngin membeli %3A%0A';
-        if($request->has('voucher_code_hide_modal')){
-            if ($type == 1){
-                $info_harga = 'Total Pesanan %3A Rp.'.number_format(($sum_novoucher), 0, ',', '.').'%0AOngkos Kirim %3A Rp.'.number_format(($total_ongkir), 0, ',', '.').'%0ADiskon %3A '.number_format(($disc_amount), 0, ',', '.').'% %0AJenis Diskon %3A '.$code_name.' %0ATotal Pembayaran %3A Rp.'.number_format(($total_bayar), 0, ',', '.').'%0A';
-            }else{
-                $info_harga = 'Total Pesanan %3A Rp.'.number_format(($sum_novoucher), 0, ',', '.').'%0AOngkos Kirim %3A Rp.'.number_format(($total_ongkir), 0, ',', '.').'%0ADiskon %3A Rp.'.number_format(($disc_amount), 0, ',', '.') .'%0AJenis Diskon %3A '.$code_name.' %0ATotal Pembayaran %3A Rp.'.number_format(($total_bayar), 0, ',', '.').'%0A';
+        $cek_order = DB::select("SELECT order_product.order_id, order_product.product_id,order_product.quantity, 
+                    products.stock, products.description FROM products,order_product WHERE order_product.product_id = products.id AND 
+                    order_product.quantity > products.stock AND order_product.order_id = '$id'");
+        $count_cek = count($cek_order);
+        if($count_cek > 0){
+            return view('errors/error_wa');
+        }else{
+            $cek_quantity = Order::with('products')->where('id',$id)->get();
+            foreach($cek_quantity as $q){
+                foreach($q->products as $p){
+                    $up_product = product::findOrfail($p->pivot->product_id);
+                    $up_product->stock -= $p->pivot->quantity;
+                    $up_product->save();
+                    }
+                }
+            $username = $request->get('username');
+            $email = $request->get('email');
+            $address = $request->get('address');
+            $phone = $request->get('phone');
+            $orders = Order::findOrfail($id);
+            $orders->username = $username;
+            $orders->email = $email;
+            $orders->address = $address;
+            $orders->phone = $phone;
+            if($request->has('voucher_code_hide_modal')){
+                $keyword = $request->get('voucher_code_hide_modal');
+                $vouchers_cek = \App\Voucher::where('code','=',"$keyword")->first();
+                $orders->id_voucher = $vouchers_cek->id;
+                $orders->total_price = $request->get('total_pesanan');
+            }
+            else{
+                $orders->id_voucher = NULL;
+            }
+            $orders->save();
+            $total_pesanan = $request->get('total_pesanan');
+            if($request->has('voucher_code_hide_modal')){
+                $sum_novoucher = $request->get('total_novoucher');
+                $keyword = $request->get('voucher_code_hide_modal');
+                $vouchers_cek = \App\Voucher::where('code','=',"$keyword")->first();
+                $code_name = $vouchers_cek->name;
+                $type = $vouchers_cek->type;
+                $disc_amount = $vouchers_cek->discount_amount;
+                $vouchers = \App\Voucher::findOrFail($vouchers_cek->id);
+                $vouchers->uses +=1;
+                $vouchers->save();
+            }
+            $total_ongkir  = 15000;
+            $total_bayar  = $total_pesanan + $total_ongkir;
+            $href='Hello Admin Gentong,  %0ANama %3A '.$username.', %0AEmail %3A '.$email.', %0ANo. Hp %3A' .$phone.', %0AAlamat %3A' .$address.',%0AIngin membeli %3A%0A';
+            if($request->has('voucher_code_hide_modal')){
+                if ($type == 1){
+                    $info_harga = 'Total Pesanan %3A Rp.'.number_format(($sum_novoucher), 0, ',', '.').'%0AOngkos Kirim %3A Rp.'.number_format(($total_ongkir), 0, ',', '.').'%0ADiskon %3A '.number_format(($disc_amount), 0, ',', '.').'% %0AJenis Diskon %3A '.$code_name.' %0ATotal Pembayaran %3A Rp.'.number_format(($total_bayar), 0, ',', '.').'%0A';
+                }else{
+                    $info_harga = 'Total Pesanan %3A Rp.'.number_format(($sum_novoucher), 0, ',', '.').'%0AOngkos Kirim %3A Rp.'.number_format(($total_ongkir), 0, ',', '.').'%0ADiskon %3A Rp.'.number_format(($disc_amount), 0, ',', '.') .'%0AJenis Diskon %3A '.$code_name.' %0ATotal Pembayaran %3A Rp.'.number_format(($total_bayar), 0, ',', '.').'%0A';
+                }
+            }
+            else{
+                $info_harga = 'Total Pesanan %3A Rp.'.number_format(($total_pesanan), 0, ',', '.').'%0AOngkos Kirim %3A Rp.'.number_format(($total_ongkir), 0, ',', '.').'%0ATotal Pembayaran %3A Rp.'.number_format(($total_bayar), 0, ',', '.').'%0A';
+            }
+            if($orders->save()){
+                $pesan = DB::table('order_product')
+                        ->join('orders','order_product.order_id','=','orders.id')
+                        ->join('products','order_product.product_id','=','products.id')
+                        ->where('orders.id','=',"$id")
+                        ->get();
+                foreach($pesan as $key=>$wa){
+                    $href.='*'.$wa->description.'%20(Qty %3A%20'.$wa->quantity.' Pcs)%0A';
+                }
+                $text_wa=$href.'%0A'.$info_harga;
+                $url = "https://api.whatsapp.com/send?phone=6282311988000&text=$text_wa";
+                return Redirect::to($url);
+                
             }
         }
-        else{
-            $info_harga = 'Total Pesanan %3A Rp.'.number_format(($total_pesanan), 0, ',', '.').'%0AOngkos Kirim %3A Rp.'.number_format(($total_ongkir), 0, ',', '.').'%0ATotal Pembayaran %3A Rp.'.number_format(($total_bayar), 0, ',', '.').'%0A';
-        }
-        if($orders->save()){
-            $pesan = DB::table('order_product')
-                    ->join('orders','order_product.order_id','=','orders.id')
-                    ->join('products','order_product.product_id','=','products.id')
-                    ->where('orders.id','=',"$id")
-                    ->get();
-            foreach($pesan as $key=>$wa){
-                $href.='*'.$wa->description.'%20(Qty %3A%20'.$wa->quantity.' Pcs)%0A';
-            }
-            $text_wa=$href.'%0A'.$info_harga;
-            $url = "https://api.whatsapp.com/send?phone=6282311988000&text=$text_wa";
-            return Redirect::to($url);
-            
-        }
+        
         
     }
 
@@ -561,17 +578,18 @@ class CustomerKeranjangController extends Controller
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer fixed-bottom p-3" style="background-color:#e9eff5;border-bottom-right-radius:18px;border-bottom-left-radius:18px;">';
+                    <div class="card-footer fixed-bottom p-3" style="background-color:#e9eff5;border-bottom-right-radius:18px;border-bottom-left-radius:18px;">
+                    <input type="hidden" id="order_id_cek" name="id" value="';if($item !== null){echo $item->id;}else{echo '';} echo'"/>';
                         if($total_item > 0){
                             echo '<input type="hidden" class="form-control" id="voucher_code_hide">';
-                            echo '<a type="button" class="btn btn-block button_add_to_pesan" data-toggle="modal" data-target="#my_modal_ajax">Beli Sekarang</a>';
+                            echo '<a type="button" id="beli_sekarang" class="btn btn-block button_add_to_pesan" onclick="show_modal()">Beli Sekarang</a>';
                         }
                     echo'</div>
                 </div>
             </div>
             
             <!-- Modal -->
-            <div class="modal fade ml-1" id="my_modal_ajax" role="dialog">
+            <div class="modal fade ml-1" id="my_modal_content" role="dialog">
                 <div class="modal-dialog">
                 
                 <!-- Modal content-->
@@ -622,6 +640,28 @@ class CustomerKeranjangController extends Controller
                     </form>
                 </div>
                 
+                </div>
+            </div>
+
+            <!-- Modal validasi stok -->
+            <div class="modal fade ml-1" id="modal_validasi" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content" style="background: #FDD8AF">
+                        <div class="modal-body">
+                            <div class="row justify-content-center">
+                                <div class="col-sm-12">
+                                <div class="text-center mb-3">Mohon maaf...</div> 
+                                    <div id="body_alert">
+                                    </div>
+                                    <div class="text-center mt-3">Stok tidak mencukupi.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="close btn btn-block button_add_to_pesan" data-dismiss="modal">Tutup</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>';
@@ -822,7 +862,8 @@ class CustomerKeranjangController extends Controller
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer fixed-bottom p-3" style="background-color:#e9eff5;border-bottom-right-radius:18px;border-bottom-left-radius:18px;">';
+                    <div class="card-footer fixed-bottom p-3" style="background-color:#e9eff5;border-bottom-right-radius:18px;border-bottom-left-radius:18px;">
+                    <input type="hidden" id="order_id_cek" name="id" value="';if($item !== null){echo $item->id;}else{echo '';} echo'"/>';
                         if($total_item > 0){
                         echo'<div class="input-group mb-2 mt-2">
                                 <input type="text" class="form-control" id="voucher_code" 
@@ -832,14 +873,14 @@ class CustomerKeranjangController extends Controller
                                 </div>
                             </div>';
                         echo '<input type="hidden" class="form-control" id="voucher_code_hide">';    
-                        echo '<a type="button" class="btn btn-block button_add_to_pesan" data-toggle="modal" data-target="#my_modal_ajax">Beli Sekarang</a>';
+                        echo '<a type="button" id="beli_sekarang" class="btn btn-block button_add_to_pesan" onclick="show_modal()">Beli Sekarang</a>';
                         }
                     echo'</div>
                 </div>
             </div>
             
             <!-- Modal -->
-            <div class="modal fade ml-1" id="my_modal_ajax" role="dialog">
+            <div class="modal fade ml-1" id="my_modal_content" role="dialog">
                 <div class="modal-dialog">
                 
                 <!-- Modal content-->
@@ -890,8 +931,43 @@ class CustomerKeranjangController extends Controller
                 
                 </div>
             </div>
+
+            <!-- Modal validasi stok -->
+            <div class="modal fade ml-1" id="modal_validasi" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content" style="background: #FDD8AF">
+                        <div class="modal-body">
+                            <div class="row justify-content-center">
+                                <div class="col-sm-12">
+                                <div class="text-center mb-3">Mohon maaf...</div> 
+                                    <div id="body_alert">
+                                    </div>
+                                    <div class="text-center mt-3">Stok tidak mencukupi.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="close btn btn-block button_add_to_pesan" data-dismiss="modal">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>';
         }
+    }
+
+    public function cek_order(Request $request){
+        $order_id = $request->get('order_id');
+        $cek_order = DB::select("SELECT order_product.order_id, order_product.product_id,order_product.quantity, 
+                    products.stock, products.description FROM products,order_product WHERE order_product.product_id = products.id AND 
+                    order_product.quantity > products.stock AND order_product.order_id = '$order_id'");
+        //$count_cek = count($cek_order);
+        //return $cek_order;
+        // Fetch all records
+        $cekData['data'] = $cek_order;
+        echo json_encode($cekData);
+        exit;
     }
 
 }
