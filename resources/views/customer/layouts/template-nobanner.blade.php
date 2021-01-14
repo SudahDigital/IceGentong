@@ -761,6 +761,7 @@
                                 $('#total_kr_').html(tot);
                                 $('#total_kr_val').val(tot_val);
                                 $('#total_pesan_val').val(tot_val);
+                                $('#total_pesan_val_hide').val(tot_val);
                                 if(voucher_code_hide !=""){
                                     $.ajax({
                                         url : '{{URL::to('/keranjang/apply_code')}}',
@@ -886,6 +887,7 @@
                                 $('#total_kr_').html(tot);
                                 $('#total_kr_val').val(tot_val);
                                 $('#total_pesan_val').val(tot_val);
+                                $('#total_pesan_val_hide').val(tot_val);
                                 if(voucher_code_hide !=""){
                                     $.ajax({
                                         url : '{{URL::to('/keranjang/apply_code')}}',
@@ -1009,6 +1011,7 @@
         {
             //$( "#collapse-4" ).load(window.location.href + " #collapse-4" );
             var order_id = $('#order_id_cek').val();
+            var total_pesan_val_hide = $('#total_pesan_val_hide').val();
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1041,6 +1044,10 @@
                     else
                     {
                         $("#my_modal_content").modal('show');
+                        $('#total_pesan_val').val(total_pesan_val_hide);
+                        $('#order_id_pesan').val(order_id);
+                        //$("#my_modal_content_ajax").modal('show');
+                        //$("#my_modal_content_ajax").modal('show');
                     }
                 }
             });

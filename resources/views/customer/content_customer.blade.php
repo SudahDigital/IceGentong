@@ -120,7 +120,7 @@
                                                     @if($value_top->stock > 0)
                                                     <button class="btn button_minus" onclick="button_minus('{{$value_top->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
                                                     @else
-                                                    <button class="btn button_minus" onclick="" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                                    <button disabled class="btn button_minus" onclick="" style="background:none; border:none; color:#693234;outline:none;cursor: no-drop;"><i class="fa fa-minus" aria-hidden="true"></i></button>
                                                     @endif
                                             </td>
                                             <td width="10%" align="center" valign="middle">
@@ -154,7 +154,7 @@
                                                 @if($value_top->stock > 0)
                                                 <button class="btn button_plus" onclick="button_plus('{{$value_top->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                                 @else
-                                                <button class="btn button_plus" onclick="" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                <button disabled class="btn button_plus" onclick="" style="background:none; border:none; color:#693234;outline:none;cursor: no-drop;"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                                 @endif
                                             </td>
                                         </tr>
@@ -250,7 +250,7 @@
                                             @if($value->stock > 0)
                                             <button class="btn button_minus" onclick="button_minus('{{$value->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
                                             @else
-                                            <button class="btn button_minus" onclick="" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                            <button disabled class="btn button_minus" onclick="" style="background:none; border:none; color:#693234;outline:none;cursor: no-drop;"><i class="fa fa-minus" aria-hidden="true"></i></button>
                                             @endif
                                         </td>
                                         <td width="10%" align="center" valign="middle">
@@ -284,7 +284,7 @@
                                             @if($value->stock > 0)
                                             <button class="btn button_plus" onclick="button_plus('{{$value->id}}')" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                             @else
-                                            <button class="btn button_plus" onclick="" style="background:none; border:none; color:#693234;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                            <button disabled class="btn button_plus" onclick="" style="background:none; border:none; color:#693234;outline:none;cursor: no-drop;"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                             @endif
                                         </td>
                                     </tr>
@@ -305,10 +305,10 @@
         </div>
     </div>
     
-    <div id="accordion">
-        <div class="card fixed-bottom" style="">
-            <div id="card-cart" class="card-header" >
-                <table width="100%" style="margin-bottom: 40px;">
+    <div id="accordion" class="fixed-bottom">
+        <div class="card" style="border-radius:16px;">
+            <div id="card-cart" class="card-header">
+                <table  width="100%" style="margin-bottom: 40px;">
                     <tbody>
                         <tr>
                             <td width="5%" valign="middle">
@@ -331,7 +331,7 @@
                                 @endif
                             </td>
                             <td width="5%" valign="middle" >
-                            <a id="cv" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" class="collapsed">
+                                <a id="cv" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4" class="collapsed">
                                     <i class="fas fa-chevron-up" style=""></i>
                                 </a>
                             </td>
@@ -417,115 +417,121 @@
                             </div>
                         </div>
                     </div>
+                        
                 </div>
-                <div class="card-footer fixed-bottom p-3" style="background-color:#e9eff5;border-bottom-right-radius:18px;border-bottom-left-radius:18px;">
-                    <input type="hidden" class="form-control" id="voucher_code_hide">
-                    @if($total_item > 0)
-                        <div class="input-group mb-2 mt-2">
-                            <input type="text" class="form-control" id="voucher_code" 
-                            placeholder="Gunakan Kode Diskon" aria-describedby="basic-addon2" required style="background:#ffcc94;outline:none;">
-                            <div class="input-group-append" required>
-                                <button class="btn " type="submit" onclick="btn_code('')" style="background:#6a3137;outline:none;color:white;">Terapkan</button>
-                            </div>
-                        </div>
-                        <input type="hidden" id="order_id_cek" name="id" value="{{$item !==null ? $item->id : ''}}"/> 
-                        <a type="button" id="beli_sekarang" class="btn button_add_to_pesan btn-block" onclick="show_modal()" style="padding: 10px 40px; ">Beli Sekarang</a>
-                    @endif
-                </div>
-            
-            </div>
-        </div>
-
-        <!-- Modal pesan -->
-        <div class="modal fade ml-1" id="my_modal_content" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content" style="background: #FDD8AF">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    
-                    </div>
-                    <form method="POST" target="_BLANK" action="{{ route('customer.keranjang.pesan') }}">
-                        @csrf
-                    <div class="modal-body">
-                        <div class="row justify-content-center">
-                            <div class="col-sm-12">
-                                <div class="card contact_card" style="border-radius:15px;">
-                                    <div class="card-body">
-                                        <div class="form-group">
-                                            @if($item!==null)
-                                            <input type="hidden" name="total_pesanan" id="total_pesan_val" value="{{$item->total_price}}">
-                                                @else
-                                            <input type="hidden" name="total_pesanan" id="total_pesan_val" value="0">
-                                             @endif
-                                            
-                                        <input type="text" value="{{$item_name !== null ? $item_name->username : ''}}" name="username" class="form-control contact_input @error('name') is-invalid @enderror" placeholder="Name" id="name" required autocomplete="off" autofocus value="{{ old('name') }}">
-                                            @error('name')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                        <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
-                                        <div class="form-group">
-                                            <input type="email" value="{{$item_name !== null ? $item_name->email : ''}}" name="email" class="form-control contact_input @error('email') is-invalid @enderror" placeholder="Email" id="email" required autocomplete="off" value="{{ old('email') }}">
-                                            @error('email')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                        <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
-                                        <div class="form-group">
-                                            <textarea type="text"  name="address" class="form-control contact_input @error('address') is-invalid @enderror" placeholder="Address" id="address" required autocomplete="off" value="{{ old('address') }}">{{$item_name !== null ? $item_name->address : ''}}</textarea>
-                                            @error('address')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                        <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
-                                        <div class="form-group">
-                                            <input type="text" value="{{$item_name !== null ? $item_name->phone : ''}}" name="phone"  minlength="10" maxlength="13" class="form-control contact_input" placeholder="Phone" id="phone" required autocomplete="off" onkeypress="return hanyaAngka(event)">
-                                            <!--<label for="password-confirm" class="contact_label">{{ __('Konfirmasi Kata Sandi') }}</label>-->
-                                        </div>
-                                    </div>
+                <div class="fixed-bottom">
+                    <div class="p-3" style="background-color:#e9eff5;border-bottom-right-radius:18px;border-bottom-left-radius:18px;">
+                        <input type="hidden" class="form-control" id="voucher_code_hide">
+                        @if($total_item > 0)
+                            <div class="input-group mb-2 mt-2">
+                                <input type="text" class="form-control" id="voucher_code" 
+                                placeholder="Gunakan Kode Diskon" aria-describedby="basic-addon2" required style="background:#ffcc94;outline:none;">
+                                <div class="input-group-append" required>
+                                    <button class="btn " type="submit" onclick="btn_code('')" style="background:#6a3137;outline:none;color:white;">Terapkan</button>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="hidden" id="order_id_pesan" name="id" value="{{$item !==null ? $item->id : ''}}"/>
-                        <button type="submit" class="btn btn-block bt-wa" onclick="pesan_wa()"  style="color:#fff; background-color:#6a3137; "><i class="fab fa-whatsapp" style="font-weight: bold;"></i> &nbsp;{{__('Pesan') }}</button>
-                    </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal validasi stok -->
-        <div class="modal fade ml-1" id="modal_validasi" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content" style="background: #FDD8AF">
-                    <div class="modal-body">
-                        <div class="row justify-content-center">
-                            <div class="col-sm-12">
-                               <div class="text-center mb-3">Mohon maaf...</div> 
-                                <div id="body_alert">
-                                </div>
-                                <div class="text-center mt-3">Stok tidak mencukupi.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="close btn btn-block button_add_to_pesan" data-dismiss="modal">Tutup</button>
+                            @if($item!==null)
+                                <input type="hidden" name="total_pesanan" id="total_pesan_val_hide" value="{{$item->total_price}}">
+                            @else
+                                <input type="hidden" name="total_pesanan" id="total_pesan_val_hide" value="0">
+                            @endif
+                            <input type="hidden" id="order_id_cek" name="id" value="{{$item !==null ? $item->id : ''}}"/> 
+                            <a type="button" id="beli_sekarang" class="btn button_add_to_pesan btn-block" onclick="show_modal()" style="padding: 10px 40px; ">Beli Sekarang</a>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </div>
-@endsection
 
+    <!-- Modal pesan -->
+    <div class="modal fade ml-1" id="my_modal_content" role="dialog" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <!-- Modal content-->
+            <div class="modal-content" style="background: #FDD8AF">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <form method="POST" target="_BLANK" action="{{ route('customer.keranjang.pesan') }}">
+                    @csrf
+                <div class="modal-body">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-12">
+                            <div class="card contact_card" style="border-radius:15px;">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        @if($item!==null)
+                                        <input type="hidden" name="total_pesanan" id="total_pesan_val" value="{{$item->total_price}}">
+                                            @else
+                                        <input type="hidden" name="total_pesanan" id="total_pesan_val" value="0">
+                                        @endif
+                                        
+                                    <input type="text" value="{{$item_name !== null ? $item_name->username : ''}}" name="username" class="form-control contact_input @error('name') is-invalid @enderror" placeholder="Name" id="name" required autocomplete="off" autofocus value="{{ old('name') }}">
+                                        @error('name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
+                                    <div class="form-group">
+                                        <input type="email" value="{{$item_name !== null ? $item_name->email : ''}}" name="email" class="form-control contact_input @error('email') is-invalid @enderror" placeholder="Email" id="email" required autocomplete="off" value="{{ old('email') }}">
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
+                                    <div class="form-group">
+                                        <textarea type="text"  name="address" class="form-control contact_input @error('address') is-invalid @enderror" placeholder="Address" id="address" required autocomplete="off" value="{{ old('address') }}">{{$item_name !== null ? $item_name->address : ''}}</textarea>
+                                        @error('address')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
+                                    <div class="form-group">
+                                        <input type="text" value="{{$item_name !== null ? $item_name->phone : ''}}" name="phone"  minlength="10" maxlength="13" class="form-control contact_input" placeholder="Phone" id="phone" required autocomplete="off" onkeypress="return hanyaAngka(event)">
+                                        <!--<label for="password-confirm" class="contact_label">{{ __('Konfirmasi Kata Sandi') }}</label>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="order_id_pesan" name="id" value="{{$item !==null ? $item->id : ''}}"/>
+                    <button type="submit" class="btn btn-block bt-wa" onclick="pesan_wa()"  style="color:#fff; background-color:#6a3137; "><i class="fab fa-whatsapp" style="font-weight: bold;"></i> &nbsp;{{__('Pesan') }}</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal validasi stok -->
+    <div class="modal fade ml-1" id="modal_validasi" role="dialog" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content" style="background: #FDD8AF">
+                <div class="modal-body">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-12">
+                        <div class="text-center mb-3">Mohon maaf...</div> 
+                            <div id="body_alert">
+                            </div>
+                            <div class="text-center mt-3">Stok tidak mencukupi.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="button" class="btn " data-dismiss="modal" style="color:#fff; background-color:#6a3137; ">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@endsection
 
 
