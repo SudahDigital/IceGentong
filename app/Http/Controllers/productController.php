@@ -1,9 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Gate;
 
+use App\product;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ProductsLowStock;
 
 class productController extends Controller
 {
@@ -56,13 +60,13 @@ class productController extends Controller
      */
     public function store(Request $request)
     {
-        \Validator::make($request->all(), [
+        /*\Validator::make($request->all(), [
             "Product_name" => "required|min:0|max:200",
             "description" => "required|min:0|max:1000",
             "image" => "required",
             "price" => "required|digits_between:0,10",
             "stock" => "required|digits_between:0,10"
-        ])->validate();
+        ])->validate();*/
         $new_product = new \App\product;
         $new_product->Product_name = $request->get('Product_name');
         $new_product->description = $request->get('description');
@@ -226,5 +230,25 @@ class productController extends Controller
 
     }
 
-    
+    public function low_stock(){
+        $products = \App\product::whereRaw('stock <= low_stock_treshold')->get();//->paginate(10);
+
+        return view('products.low_stock', ['products' => $products]);
+    }
+
+    public function edit_stock(){
+        return view('products.edit_stock');
+    }
+
+    public function update_low_stock(Request $request){
+        $newstock= $request->get('stock');
+        $product = DB::table('products')->whereRaw('stock <= low_stock_treshold')
+                    ->where('deleted_at',NULL)->update(array('stock' => $newstock));
+        return redirect()->back()->with('status',
+        'Stock successfully updated');
+    }
+
+    public function export_low_stock() {
+        return Excel::download( new ProductsLowStock(), 'Products_low_stock.xlsx') ;
+    }
 }

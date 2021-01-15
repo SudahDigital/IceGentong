@@ -21,7 +21,7 @@ class OrdersExportMapping implements FromCollection, WithMapping, WithHeadings
     public function map($order) : array {
         $rows = [];
         foreach ($order->products as $p) {
-            if(($p->pivot->discount_item != NULL)||($p->pivot->discount_item > 0)){
+            if(($p->pivot->discount_item != NULL)&&($p->pivot->discount_item > 0)){
                 $diskon =$p->pivot->discount_item;
                 $total= $p->pivot->price_item_promo * $p->pivot->quantity;
             }else{

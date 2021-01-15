@@ -32,16 +32,20 @@
 				<li role="presentation" class="{{Request::get('status') == 'draft' ?'active' : '' }}">
 					<a href="{{route('products.index', ['status' =>'draft'])}}">DRAFT</a>
 				</li>
-				<li role="presentation" class="">
+				<li role="presentation" class="active">
 					<a href="{{route('products.low_stock')}}">LOW STOCK</a>
 				</li>
-				<li role="presentation" class="active">
+				<li role="presentation">
 					<a href="{{route('products.trash')}}">TRUSH</a>
 				</li>
 			</ul>
 		</div>
 		<div class="col-md-6">
-			<a href="{{route('products.create')}}" class="btn btn-success pull-right">Create Product</a>
+			&nbsp;
+		</div>
+		<div class="col-md-12">
+			<a href="{{route('products.export_lowstock')}}" class="btn btn-success ">Export Excel</a>&nbsp;
+			<a href="{{route('products.edit_stock')}}" class="btn bg-cyan">Update Stock</a>
 		</div>
 	</div>
 </form>	
@@ -58,7 +62,7 @@
 				<th>Stock</th>
 				<th>Price</th>
 				<th>Status</th>
-				<th width="20%">Action</th>
+				<th width="5%">Action</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -95,50 +99,7 @@
 					@endif
 				</td>
 				<td>
-					<button type="button" class="btn btn-danger btn-xs waves-effect" data-toggle="modal" data-target="#deleteModal{{$p->id}}"><i class="material-icons">delete</i></button>&nbsp;
-					<button type="button" class="btn bg-grey waves-effect" data-toggle="modal" data-target="#restoreModal{{$p->id}}">Restore</button>
-
-					<!-- Modal Delete -->
-		            <div class="modal fade" id="deleteModal{{$p->id}}" tabindex="-1" role="dialog">
-		                <div class="modal-dialog modal-sm" role="document">
-		                    <div class="modal-content modal-col-red">
-		                        <div class="modal-header">
-		                            <h4 class="modal-title" id="deleteModalLabel">Delete Product</h4>
-		                        </div>
-		                        <div class="modal-body">
-		                           Delete permanent this product ..? 
-		                        </div>
-		                        <div class="modal-footer">
-		                        	<form action="{{route('products.delete-permanent',[$p->id])}}" method="POST">
-										@csrf
-										<input type="hidden" name="_method" value="DELETE">
-										<button type="submit" class="btn btn-link waves-effect">Delete</button>
-										<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Close</button>
-									</form>
-		                        </div>
-		                    </div>
-		                </div>
-		            </div>
-
-		           <!-- Modal Resotore -->
-				   <div class="modal fade" id="restoreModal{{$p->id}}" tabindex="-1" role="dialog">
-					<div class="modal-dialog modal-sm" role="document">
-						<div class="modal-content modal-col-green">
-							<div class="modal-header">
-								<h4 class="modal-title" id="restoreModalLabel">Restore Product</h4>
-							</div>
-							<div class="modal-body">
-							   Restore this product ..? 
-							</div>
-							<div class="modal-footer">
-								
-									<a href="{{route('products.restore', [$p->id])}}" class="btn bg-deep-orange">Restore</a>
-									<button type="button" class="btn bg-deep-orange" data-dismiss="modal">Close</button>
-								
-							</div>
-						</div>
-					</div>
-				</div>
+					<a class="btn btn-info btn-xs" href="{{route('products.edit',[$p->id])}}"><i class="material-icons">edit</i></a>
 				</td>
 			</tr>
 			@endforeach

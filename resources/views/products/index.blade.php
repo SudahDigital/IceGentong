@@ -21,7 +21,7 @@
 			<input type="submit" class="btn bg-blue pull-left" value="Filter">
 		</div>
 		-->
-		<div class="col-md-4">
+		<div class="col-md-6">
 			<ul class="nav nav-tabs tab-col-pink pull-left" >
 				<li role="presentation" class="{{Request::get('status') == NULL && Request::path() == 'products' ? 'active' : ''}}">
 					<a href="{{route('products.index')}}" aria-expanded="true" >All</a>
@@ -33,13 +33,18 @@
 					<a href="{{route('products.index', ['status' =>'draft'])}}">DRAFT</a>
 				</li>
 				<li role="presentation" class="">
+					<a href="{{route('products.low_stock')}}">LOW STOCK</a>
+				</li>
+				<li role="presentation" class="">
 					<a href="{{route('products.trash')}}" >TRUSH</a>
 				</li>
 			</ul>
 		</div>
-
-		<div class="col-md-8">
-			<a href="{{route('products.create')}}" class="btn btn-success pull-right">Create Product</a>
+		<div class="col-md-6">&nbsp;</div>
+		<div class="col-md-12">
+			<a href="" class="btn btn-success ">Import Excel (Update </a>&nbsp;
+			<a href="" class="btn btn-success ">Export Excel</a>&nbsp;
+			<a href="{{route('products.create')}}" class="btn btn-cyan pull-right">Create Product</a>
 		</div>
 		
 	</div>

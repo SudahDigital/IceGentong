@@ -91,6 +91,7 @@
         </div>
 
         <button class="btn btn-primary waves-effect" value="PUBLISH" type="submit">UPDATE</button>
+        <!--<a href="{{URL::previous()}}" class="btn btn-danger waves-effect" >CANCEL</a>-->
         
     </form>
     <!-- #END#  -->		
