@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ProductsLowStock;
+use App\Exports\AllProductExport;
+use App\Imports\ProductsImport;
+use Illuminate\Support\Arr;
 
 class productController extends Controller
 {
@@ -84,6 +87,7 @@ class productController extends Controller
             $new_product->price_promo = $request->get('price');
         }
         $new_product->stock = $request->get('stock');
+        $new_product->low_stock_treshold = $request->get('low_stock_treshold');
         if($request->has('top_product')){
             $new_product->top_product=$request->get('top_product');
         }else{
@@ -164,6 +168,7 @@ class productController extends Controller
             $product->price_promo = $request->get('price');
         }
         $product->stock = $request->get('stock');
+        $product->low_stock_treshold = $request->get('low_stock_treshold');
         if($request->has('top_product')){
             $product->top_product=$request->get('top_product');
         }else{
@@ -231,7 +236,7 @@ class productController extends Controller
     }
 
     public function low_stock(){
-        $products = \App\product::whereRaw('stock <= low_stock_treshold')->get();//->paginate(10);
+        $products = \App\product::with('categories')->whereRaw('stock < low_stock_treshold')->get();//->paginate(10);
 
         return view('products.low_stock', ['products' => $products]);
     }
@@ -242,7 +247,7 @@ class productController extends Controller
 
     public function update_low_stock(Request $request){
         $newstock= $request->get('stock');
-        $product = DB::table('products')->whereRaw('stock <= low_stock_treshold')
+        $product = DB::table('products')->whereRaw('stock < low_stock_treshold')
                     ->where('deleted_at',NULL)->update(array('stock' => $newstock));
         return redirect()->back()->with('status',
         'Stock successfully updated');
@@ -250,5 +255,33 @@ class productController extends Controller
 
     public function export_low_stock() {
         return Excel::download( new ProductsLowStock(), 'Products_low_stock.xlsx') ;
+    }
+
+    public function export_all() {
+        return Excel::download( new AllProductExport(), 'Products.xlsx') ;
+    }
+
+    public function import_product(){
+        return view('products.import_products');
+    }
+
+    public function import_data(Request $request)
+    {
+        \Validator::make($request->all(), [
+            "file" => "required|mimes:xls,xlsx"
+        ])->validate();
+        
+        $data = Excel::toArray(new ProductsImport, request()->file('file')); 
+
+        $update = collect(head($data))
+            ->each(function ($row, $key){
+                DB::table('products')
+                    ->where('id', $row['product_id'])
+                    ->update(Arr::except($row,['product_id']));   
+            });
+        
+        if($update){
+            return redirect()->route('products.import_products')->with('status', 'File successfully upload'); 
+        }
     }
 }

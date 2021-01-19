@@ -40,8 +40,11 @@
 				</li>
 			</ul>
 		</div>
-		<div class="col-md-6">
-			<a href="{{route('products.create')}}" class="btn btn-success pull-right">Create Product</a>
+		<div class="col-md-6">&nbsp;</div>
+		<div class="col-md-12">
+			<a href="{{route('products.import_products')}}" class="btn btn-success ">Import Excel (<small>Update Products</small>) </a>&nbsp;
+			<a href="{{route('products.export_all')}}" class="btn btn-success ">Export Excel</a>&nbsp;
+			<a href="{{route('products.create')}}" class="btn bg-cyan">Create Product</a>
 		</div>
 	</div>
 </form>	
@@ -56,6 +59,7 @@
 				<th>Descritption</th>
 				<th>Category</th>
 				<th>Stock</th>
+				<th>Low Stock Treshold</th>
 				<th>Price</th>
 				<th>Status</th>
 				<th width="20%">Action</th>
@@ -83,6 +87,9 @@
 				</td>
 				<td>
 					{{$p->stock}}
+				</td>
+				<td>
+					{{$p->low_stock_treshold}}
 				</td>
 				<td>
 					{{$p->price}}

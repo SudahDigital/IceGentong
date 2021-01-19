@@ -61,9 +61,12 @@ Route::get('/categories/{id}/restore', 'CategoryController@restore')->name('cate
 Route::delete('/categories/{category}/delete-permanent','CategoryController@deletePermanent')->name('categories.delete-permanent');
 Route::resource('categories','CategoryController');
 Route::get('/ajax/categories/search', 'CategoryController@ajaxSearch');
+Route::get('/products/export_all', 'productController@export_all')->name('products.export_all');
 Route::get('/products/export_lowstock', 'productController@export_low_stock')->name('products.export_lowstock');
 Route::post('/products/update_lowstock', 'productController@update_low_stock')->name('products.update_lowstock');
+Route::post('/products/import_data', 'productController@import_data')->name('products.import_data');
 Route::get('/products/low_stock', 'productController@low_stock')->name('products.low_stock');
+Route::get('/products/import_products', 'productController@import_product')->name('products.import_products');
 Route::get('/products/edit_stock', 'productController@edit_stock')->name('products.edit_stock');
 Route::get('/products/trash', 'productController@trash')->name('products.trash');
 Route::get('/products/{id}/restore', 'productController@restore')->name('products.restore');

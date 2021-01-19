@@ -42,9 +42,9 @@
 		</div>
 		<div class="col-md-6">&nbsp;</div>
 		<div class="col-md-12">
-			<a href="" class="btn btn-success ">Import Excel (Update </a>&nbsp;
-			<a href="" class="btn btn-success ">Export Excel</a>&nbsp;
-			<a href="{{route('products.create')}}" class="btn btn-cyan pull-right">Create Product</a>
+			<a href="{{route('products.import_products')}}" class="btn btn-success ">Import Excel (<small>Update Stock</small>) </a>&nbsp;
+			<a href="{{route('products.export_all')}}" class="btn btn-success ">Export Excel (<small>Products Stock</small>)</a>&nbsp;
+			<a href="{{route('products.create')}}" class="btn bg-cyan">Create Product</a>
 		</div>
 		
 	</div>
@@ -60,9 +60,10 @@
 				<th>Descritption</th>
 				<th>Category</th>
 				<th>Stock</th>
+				<th>Low Stock Treshold</th>
 				<th>Price</th>
 				<th>Status</th>
-				<th width="20%">Action</th>
+				<th width="25%">Action</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -87,6 +88,9 @@
 				</td>
 				<td>
 					{{$p->stock}}
+				</td>
+				<td>
+					{{$p->low_stock_treshold}}
 				</td>
 				<td>
 					@if($p->discount > 0)
@@ -116,7 +120,7 @@
 				<td>
 					<a class="btn btn-info btn-xs" href="{{route('products.edit',[$p->id])}}"><i class="material-icons">edit</i></a>&nbsp;
 					<button type="button" class="btn btn-danger btn-xs waves-effect" data-toggle="modal" data-target="#deleteModal{{$p->id}}"><i class="material-icons">delete</i></button>&nbsp;
-					<button type="button" class="btn bg-grey waves-effect" data-toggle="modal" data-target="#detailModal{{$p->id}}">Detail</button>
+					<button type="button" class="btn bg-grey waves-effect" data-toggle="modal" data-target="#detailModal{{$p->id}}" style="padding: 4px 8px;"><small>Detail</small></button>
 
 					<!-- Modal Delete -->
 		            <div class="modal fade" id="deleteModal{{$p->id}}" tabindex="-1" role="dialog">

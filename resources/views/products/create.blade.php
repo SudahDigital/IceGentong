@@ -54,6 +54,13 @@
             </div>
         </div>
 
+        <div class="form-group form-float">
+            <div class="form-line">
+                <input type="number" class="form-control" name="low_stock_treshold" min="0" value="0" autocomplete="off" required>
+                <label class="form-label">Low Stock Treshold</label>
+            </div>
+        </div>
+
         <h2 class="card-inside-title">Make Top Product</h2>
         <div class="form-group">
             <input type="checkbox" name="top_product" id="top_product" value="1">

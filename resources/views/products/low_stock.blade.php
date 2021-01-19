@@ -44,7 +44,8 @@
 			&nbsp;
 		</div>
 		<div class="col-md-12">
-			<a href="{{route('products.export_lowstock')}}" class="btn btn-success ">Export Excel</a>&nbsp;
+			<a href="{{route('products.import_products')}}" class="btn btn-success ">Import Excel (<small>Update Stock</small>) </a>&nbsp;
+			<a href="{{route('products.export_lowstock')}}" class="btn btn-success ">Export Excel (<small>Products Stock</small>)</a>&nbsp;
 			<a href="{{route('products.edit_stock')}}" class="btn bg-cyan">Update Stock</a>
 		</div>
 	</div>
@@ -60,6 +61,7 @@
 				<th>Descritption</th>
 				<th>Category</th>
 				<th>Stock</th>
+				<th>Low Stock Treshold</th>
 				<th>Price</th>
 				<th>Status</th>
 				<th width="5%">Action</th>
@@ -87,6 +89,9 @@
 				</td>
 				<td>
 					{{$p->stock}}
+				</td>
+				<td>
+					{{$p->low_stock_treshold}}
 				</td>
 				<td>
 					{{$p->price}}
