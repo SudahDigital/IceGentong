@@ -118,7 +118,7 @@
     <br><br><br>
 
     <div id="accordion" class="fixed-bottom">
-        <div class="card" style="">
+        <div class="card" style="border-radius:16px;">
             <div id="card-cart" class="card-header" >
                 <table width="100%" style="margin-bottom: 40px;">
                     <tbody>
