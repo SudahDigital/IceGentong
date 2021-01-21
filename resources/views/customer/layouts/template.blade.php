@@ -164,7 +164,7 @@
 
         .button_welcome {
             font-family: Open Sans;
-            background: linear-gradient(to bottom, #BB141D, #f70411); 
+            background: linear-gradient(to bottom, #6a3137, #6a3137); 
             color:white; 
             padding: 5px 15px; 
             border:none; 
@@ -188,9 +188,9 @@
         @media (max-width: 2560px){
             .button_welcome {
                 font-size: 34px;
-                padding: 10px 26px;
-                top: 37rem;
-                right: 62%;
+                padding: 12px 26px;
+                top: 42rem;
+                right: 12%;
                 font-weight: 600;
                 border-radius: 20px;
             }
@@ -205,9 +205,9 @@
         @media (max-width: 1920px){
             .button_welcome {
                 font-size: 25px;
-                padding: 5px 25px;
-                top: 28rem;
-                right: 61%;
+                padding: 10px 25px;
+                top: 32rem;
+                right: 12%;
                 font-weight: 600;
                 border-radius: 17px;
             }
@@ -222,9 +222,9 @@
         @media (max-width: 1440px){
             .button_welcome {
                 font-size: 21px;
-                padding: 5px 17px;
-                top: 21rem;
-                right: 59.5%;
+                padding: 10px 17px;
+                top: 24rem;
+                right: 10%;
                 font-weight: 600;
                 border-radius: 15px;
             }
@@ -239,9 +239,9 @@
         @media (max-width: 1366px){
             .button_welcome {
                 font-size: 19px;
-                padding: 5px 17px;
-                top: 20rem;
-                right: 60%;
+                padding: 10px 17px;
+                top: 22.4rem;
+                right: 10%;
                 font-weight: 600;
             }
 
@@ -255,9 +255,9 @@
         @media (max-width: 1024px){
             .button_welcome {
                 font-size: 15px;
-                padding: 5px 17px;
-                top: 15rem;
-                right: 57%;
+                padding: 10px 17px;
+                top: 17rem;
+                right: 9%;
                 font-weight: 600;
             }
 
@@ -271,9 +271,9 @@
         @media (max-width: 768px){
             .button_welcome {
                 font-size: 15px;
-                padding: 5px 17px;
-                top: 16rem;
-                right: 59%;
+                padding: 10px 17px;
+                top: 18.2rem;
+                right: 9.5%;
                 font-weight: 600;
                 border-radius: 14px;
             }
@@ -287,10 +287,10 @@
 
         @media (max-width: 600px){
             .button_welcome {
-                font-size: 26px;
-                padding: 7px 25px;
+                font-size: 15px;
+                padding: 7px 18px;
                 top: 27rem;
-                right: 43%;
+                right: 13%;
                 font-weight: 600;
             }
 
@@ -304,10 +304,10 @@
 
         @media (max-width: 480px){
             .button_welcome {
-                font-size: 20px;
-                padding: 5px 20px;
-                top: 22rem;
-                right: 45%;
+                font-size: 12px;
+                padding: 7px 15px;
+                top: 21.5rem;
+                right: 13%;
                 font-weight: 600;
             }
 
@@ -318,10 +318,10 @@
 
         @media (max-width: 425px){
             .button_welcome {
-                font-size: 17.5px;
-                padding: 5px 20px;
+                font-size: 11px;
+                padding: 7px 15px;
                 top: 19rem;
-                right: 43%;
+                right: 12%;
                 font-weight: 600;
             }
 
@@ -334,57 +334,61 @@
 
         @media (max-width: 411px){
             .button_welcome {
-                font-size: 17.5px;
-                padding: 5px 20px;
-                top: 18rem;
-                right: 42%;
+                font-size: 11px;
+                padding: 7px 14px;
+                top: 18.5rem;
+                right: 12%;
                 font-weight: 600;
             }
         }
 
         @media (max-width: 384px){
             .button_welcome {
-                font-size: 17px;
-                padding: 5px 18px;
-                top: 17.5rem;
-                right: 42%;
+                font-size: 10px;
+                padding: 7px 13px;
+                top: 17.2rem;
+                right: 12%;
                 font-weight: 600;
             }
         }
 
         @media (max-width: 375px){
             .button_welcome {
-                font-size: 16px;
-                padding: 5px 18px;
-                top: 17rem;
-                right: 43%;
+                font-size: 10px;
+                padding: 7px 13px;
+                top: 16.8rem;
+                right: 12%;
+                font-weight: 600;
             }
         }
 
         @media (max-width: 364px){
             .button_welcome {
-                font-size: 16px;
-                padding: 5px 18px;
-                top: 16rem;
-                right: 42%;
+                font-size: 10px;
+                padding: 7px 12px;
+                top: 16.4rem;
+                right: 12%;
+                font-weight: 600;
             }
         }
 
         @media (max-width: 338px){
             .button_welcome {
-                font-size: 15px;
-                padding: 5px 18px;
-                top: 15.5rem;
-                right: 40%;
+                font-size: 9px;
+                padding: 7px 12px;
+                top: 15.4rem;
+                right: 12%;
+                font-weight: 600;
             }
         }
 
         @media (max-width: 320px){
             .button_welcome {
-                font-size: 14px;
-                padding: 5px 18px;
+                font-size: 8px;
+                padding: 7px 12px;
                 top: 14.5rem;
-                right: 39%;
+                right: 12%;
+                font-weight: 600;
             }
         }
     
