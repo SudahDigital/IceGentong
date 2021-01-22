@@ -133,7 +133,7 @@
             <label for="CANCEL">CANCEL</label>
         </div>
 
-        <input type="submit" class="btn btn-primary waves-effect" value="UPDATE">
+        <input type="submit" class="btn btn-primary waves-effect" value="UPDATE" {{$order->status == 'CANCEL' ? 'disabled' : ''}}>
         
     </form>
     <!-- #END#  -->		

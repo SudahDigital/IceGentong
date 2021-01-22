@@ -105,7 +105,7 @@
             <input type="radio" value="CANCEL" name="status" id="CANCEL" {{$order->status == 'CANCEL' ? 'checked' : ''}}>
             <label for="CANCEL">CANCEL</label>
         </div>
-        <input type="text" name="id_voucher" value="{{$order->id_voucher}}">
+        <input type="hidden" name="id_voucher" value="{{$order->id_voucher}}">
         <input type="submit" class="btn btn-primary waves-effect" value="UPDATE">
         
     </form>
