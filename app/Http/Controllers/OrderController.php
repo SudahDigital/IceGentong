@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\OrdersExportMapping;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -93,6 +94,17 @@ class OrderController extends Controller
         $order->status = $request->get('status');
 
         $order->save();
+
+        if(($order->save()) && ($request->get('status') == 'CANCEL')){
+            $cek_quantity = \App\Order::with('products')->where('id',$id)->get();
+            foreach($cek_quantity as $q){
+                foreach($q->products as $p){
+                    $up_product = \App\product::findOrfail($p->pivot->product_id);
+                    $up_product->stock += $p->pivot->quantity;
+                    $up_product->save();
+                    }
+                }
+        }
       
         return redirect()->route('orders.detail', [$order->id])->with('status', 'Order status succesfully updated');
     }

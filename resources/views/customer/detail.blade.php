@@ -278,6 +278,8 @@
                             <div class="card mx-auto contact_card" style="border-radius:15px;">
                                 <div class="card-body">
                                         @if($item!==null)
+                                        <input type="hidden" name ="voucher_code_hide_modal" class="form-control" id="voucher_code_hide_modal">
+                                        <input type="hidden" name="total_novoucher" id="total_novoucher_val">
                                         <input type="hidden" name="total_pesanan" id="total_pesan_val" value="{{$item->total_price}}">
                                             @else
                                         <input type="hidden" name="total_pesanan" id="total_pesan_val" value="0">

@@ -352,8 +352,12 @@
                                 success: function (response){
                                 $( '#accordion' ).html(response);
                                 $('#collapse-4').addClass('show');
+                                var totpesan_val_code = document.getElementById("total_pesan_val_code").value;
+                                var voucher_no = document.getElementById("total_novoucher_val_code").value;
                                 $( '#voucher_code_hide' ).val(voucher_code);
                                 $( '#voucher_code_hide_modal' ).val(voucher_code);
+                                $( '#total_pesan_val' ).val(totpesan_val_code);
+                                $( '#total_novoucher_val' ).val(voucher_no);
                                 //x.style.display = "block";
                                 var objDiv = document.getElementById("collapse-4");
                                 objDiv.scrollTop = objDiv.scrollHeight;
@@ -405,6 +409,7 @@
                 // We get the element having id of display_info and put the response inside it
                 $( '#accordion' ).html(response);
                 $('#collapse-4').addClass('show');
+                document.getElementById("voucher_code_hide_modal").value=null;
                 x.style.display = "none";
                 var objDiv = document.getElementById("collapse-4");
                 objDiv.scrollTop = objDiv.scrollHeight;

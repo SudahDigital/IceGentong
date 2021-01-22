@@ -454,6 +454,7 @@
                 </div>
                 <form method="POST" target="_BLANK" action="{{ route('customer.keranjang.pesan') }}">
                     @csrf
+                    
                 <div class="modal-body">
                     <div class="row justify-content-center">
                         <div class="col-sm-12">
@@ -461,6 +462,8 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         @if($item!==null)
+                                        <input type="hidden" name ="voucher_code_hide_modal" class="form-control" id="voucher_code_hide_modal">
+                                        <input type="hidden" name="total_novoucher" id="total_novoucher_val">
                                         <input type="hidden" name="total_pesanan" id="total_pesan_val" value="{{$item->total_price}}">
                                             @else
                                         <input type="hidden" name="total_pesanan" id="total_pesan_val" value="0">

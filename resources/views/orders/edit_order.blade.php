@@ -43,10 +43,10 @@
 
         <div class="form-group form-float">
             <div class="form-line">
-                <input type="text" class="form-control" name="phone" minlength="10" maxlength="12" autocomplete="off" value="{{$order->phone}}" required>
+                <input type="text" class="form-control" name="phone" minlength="10" maxlength="13" autocomplete="off" value="{{$order->phone}}" required>
                 <label class="form-label">Phone </label>
             </div>
-            <div class="help-info">Min.10, Max. 12 Characters</div>
+            <div class="help-info">Min.10, Max. 13 Characters</div>
         </div>
 
         <div class="form-group form-float">
@@ -105,7 +105,7 @@
             <input type="radio" value="CANCEL" name="status" id="CANCEL" {{$order->status == 'CANCEL' ? 'checked' : ''}}>
             <label for="CANCEL">CANCEL</label>
         </div>
-
+        <input type="text" name="id_voucher" value="{{$order->id_voucher}}">
         <input type="submit" class="btn btn-primary waves-effect" value="UPDATE">
         
     </form>

@@ -84,7 +84,11 @@
 				<td>
 					<a class="btn btn-info btn-xs btn-block" href="{{route('orders.detail',[$order->id])}}">Details</a>&nbsp;
 					@can('isSuperadmin')
+						@if($order->status == "CANCEL")
+						<a style="margin-top:0;" class="btn btn-success btn-xs btn-block disabled" href="" >Edit</a>&nbsp;
+						@else
 						<a style="margin-top:0;" class="btn btn-success btn-xs btn-block" href="{{route('order_edit',[$order->id])}}">Edit</a>&nbsp;
+						@endif
 					@endcan
 				</td>
 			</tr>

@@ -583,7 +583,9 @@ class CustomerKeranjangController extends Controller
                         <div class="p-3" style="background-color:#e9eff5;border-bottom-right-radius:18px;border-bottom-left-radius:18px;">
                         <input type="hidden" id="order_id_cek" name="id" value="';if($item !== null){echo $item->id;}else{echo '';} echo'"/>';
                             if($item!==null){
-                                echo '<input type="hidden" name="total_pesanan" id="total_pesan_val_hide" value="'.$item_price.'">';
+                                echo '<input type="hidden" name="total_pesanan" id="total_pesan_val_hide" value="'.$item_price.'">
+                                <input type="hidden" name="total_pesanan" id="total_pesan_val_code" value="'.$item_price.'">
+                                <input type="hidden" name="total_novoucher" id="total_novoucher_val_code" value="'.$sum_novoucher.'">';
                             }
                             else{
                                 echo'<input type="hidden" name="total_pesanan" id="total_pesan_val_hide" value="0">';
