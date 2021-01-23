@@ -793,8 +793,8 @@
                                 success: function (response){
                                 $( '#accordion' ).html(response);
                                 $('#collapse-4').addClass('show');
-                                var totpesan_val_code = document.getElementById("total_pesan_val_code").value;
-                                var voucher_no = document.getElementById("total_novoucher_val_code").value;
+                                var totpesan_val_code = $("#total_pesan_val_code").val();
+                                var voucher_no = $("#total_novoucher_val_code").val();
                                 $( '#voucher_code_hide' ).val(voucher_code);
                                 $( '#voucher_code_hide_modal' ).val(voucher_code);
                                 $( '#total_pesan_val' ).val(totpesan_val_code);
