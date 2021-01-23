@@ -462,11 +462,13 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         @if($item!==null)
-                                        <input type="hidden" name ="voucher_code_hide_modal" class="form-control" id="voucher_code_hide_modal">
+                                        <input type="hidden" name ="voucher_code_hide_modal" id="voucher_code_hide_modal">
                                         <input type="hidden" name="total_novoucher" id="total_novoucher_val">
                                         <input type="hidden" name="total_pesanan" id="total_pesan_val" value="{{$item->total_price}}">
                                             @else
-                                        <input type="hidden" name="total_pesanan" id="total_pesan_val" value="0">
+                                            <input type="hidden" name ="voucher_code_hide_modal"  id="voucher_code_hide_modal">
+                                            <input type="hidden" name="total_novoucher" id="total_novoucher_val">
+                                            <input type="hidden" name="total_pesanan" id="total_pesan_val" >
                                         @endif
                                         
                                     <input type="text" value="{{$item_name !== null ? $item_name->username : ''}}" name="username" class="form-control contact_input @error('name') is-invalid @enderror" placeholder="Name" id="name" required autocomplete="off" autofocus value="{{ old('name') }}">

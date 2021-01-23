@@ -556,6 +556,8 @@
                                         $( '#accordion' ).html(response);
                                         //$('#collapse-4').addClass('show');
                                         //$( '#total_kr_' ).html(response);
+                                        var total_novoucher_val = $('#total_novoucher_val_code').val();
+                                        $('#total_novoucher_val').val(total_novoucher_val);
                                         $('#voucher_code_hide').val(voucher_code_hide);
                                         $('#voucher_code_hide_modal').val(voucher_code_hide);
                                         },
@@ -662,6 +664,8 @@
                                 $( '#accordion' ).html(response);
                                 //$('#collapse-4').addClass('show');
                                 //$( '#total_kr_' ).html(response);
+                                var total_novoucher_val = $('#total_novoucher_val_code').val();
+                                $('#total_novoucher_val').val(total_novoucher_val);
                                 $('#voucher_code_hide').val(voucher_code_hide);
                                 $('#voucher_code_hide_modal').val(voucher_code_hide);
                                 },
@@ -778,6 +782,8 @@
                                         $( '#accordion' ).html(response);
                                         $('#collapse-4').addClass('show');
                                         //$( '#total_kr_' ).html(response);
+                                        var total_novoucher_val = $('#total_novoucher_val_code').val();
+                                        $('#total_novoucher_val').val(total_novoucher_val);
                                         $('#voucher_code_hide').val(voucher_code_hide);
                                         $('#voucher_code_hide_modal').val(voucher_code_hide);
                                         },
@@ -865,6 +871,7 @@
                 var rupiah 	= number_string.substr(0, sisa);
                 var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
                 var voucher_code_hide = document.getElementById("voucher_code_hide").value;
+                //var total_pesan_val_hide = document.getElementById("total_pesan_val_hide").value;
                 if (ribuan) {
                 separator = sisa ? '.' : '';
                 rupiah += separator + ribuan.join('.');
@@ -892,6 +899,7 @@
                                 $('#total_kr_').html(tot);
                                 $('#total_kr_val').val(tot_val);
                                 $('#total_pesan_val').val(tot_val);
+                                //$('#total_novoucher_val').val(total_pesan_val_hide);
                                 $('#total_pesan_val_hide').val(tot_val);
                                 if(voucher_code_hide !=""){
                                     $.ajax({
@@ -903,7 +911,9 @@
                                         success: function (response){
                                         $( '#accordion' ).html(response);
                                         $('#collapse-4').addClass('show');
+                                        var total_novoucher_val = $('#total_novoucher_val_code').val();
                                         //$( '#total_kr_' ).html(response);
+                                        $('#total_novoucher_val').val(total_novoucher_val);
                                         $('#voucher_code_hide').val(voucher_code_hide);
                                         $('#voucher_code_hide_modal').val(voucher_code_hide);
                                         },
@@ -983,6 +993,8 @@
                             $( '#accordion' ).html(response);
                             $('#collapse-4').addClass('show');
                             //$( '#total_kr_' ).html(response);
+                            var total_novoucher_val = $('#total_novoucher_val_code').val();
+                            $('#total_novoucher_val').val(total_novoucher_val);
                             $('#voucher_code_hide').val(voucher_code_hide);
                             $('#voucher_code_hide_modal').val(voucher_code_hide);
                             },
