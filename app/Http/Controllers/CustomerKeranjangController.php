@@ -487,7 +487,7 @@ class CustomerKeranjangController extends Controller
                 </div>
                 <div id="collapse-4" class="collapse" data-parent="#accordion" style="" >
                     <div class="card-body" id="card-detail">
-                        <div class="col-md-12" style="padding-bottom:6rem;">
+                        <div class="col-md-12" style="padding-bottom:7rem;">
                             <table width="100%">
                                 <tbody>';
                                     foreach($keranjang as $order){
