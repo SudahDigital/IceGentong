@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Ice-Gentong</title>
 
     <link rel="icon" href="{{ asset('assets/image/logo-gentong-nav.png')}}" type="image/png" sizes="16x16">
@@ -629,7 +629,7 @@
                         <form action="{{route('search.index')}}">
                             <div class="input-group">
                                 <div class="input-group-append">
-                                        <button class="btn search_botton_navbar" type="submit" id="button-search-addon" style="border-radius: 50%;"><i class="fa fa-search"></i></button>
+                                        <button class="btn search_botton_navbar" type="submit" id="" style="border-radius: 50%;"><i class="fa fa-search"></i></button>
                                         <input class="form-control d-block search_input_navbar" name="keyword" type="text" value="{{Request::get('keyword')}}" placeholder="Search" aria-label="Search" aria-describedby="button-search-addon">
                                 </div>
                                     
@@ -1026,7 +1026,7 @@
                             console.log('Error:', data);
                             }
                         });
-            }
+                }
         }
 
         function button_plus(id)

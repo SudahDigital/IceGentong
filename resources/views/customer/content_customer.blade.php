@@ -453,7 +453,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <form method="POST" target="_BLANK" action="{{ route('customer.keranjang.pesan') }}">
-                    @csrf
+                    {{ csrf_field() }}
                     
                 <div class="modal-body">
                     <div class="row justify-content-center">
