@@ -71,7 +71,7 @@
     <!--top produk -->
     @if($top_count > 0 )
     <div id="top_product" style="background:#693234;margin-top:-2px;">
-        <div class="container ">
+        <div class="container">
             <div class="row">
                 <div class="col-md-12 mt-1 menu-wrapper">
                     <div class="row section_content flex-row flex-nowrap menu" style="overflow-x:auto;overflow-y:hidden;z-index:2222; ">
