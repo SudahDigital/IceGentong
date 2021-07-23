@@ -231,6 +231,18 @@
                             </li>
                         </ul>
                     </li>
+
+                    <li class="{{request()->routeIs('shippings.index') ? 'active' : ''}}">
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">local_shipping</i>
+                            <span>Manage Shipping</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li class="{{request()->routeIs('shippings.index') ? 'active' : '' }}">
+                                <a href="{{route('shippings.index')}}">Shipping Cost</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <!-- #Menu -->
@@ -473,6 +485,14 @@
             $(this).remove(); 
         });
         }, 3000);
+
+        function set_cost(value){
+            if(value == 'ON'){
+                $('#form_name').show();
+            }else{
+                $('#form_name').hide();
+            }
+        }
     </script>
     @yield('footer-scripts')
 </body>

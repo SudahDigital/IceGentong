@@ -307,7 +307,21 @@ class CustomerKeranjangController extends Controller
                 $vouchers->uses +=1;
                 $vouchers->save();
             }
-            $total_ongkir  = 15000;
+
+            $sql_ongkir = \App\ShippingCost::all();
+
+            $total_ongkir = 0;
+            foreach ($sql_ongkir as $key => $value) {
+                $set_cost = $value->set_cost;
+                $price    = $value->price;
+
+                $total_ongkir = 0;
+                if($set_cost == 'ON'){
+                    $total_ongkir = $price;
+                } 
+            }
+
+            // $total_ongkir  = 15000;
             $total_bayar  = $total_pesanan + $total_ongkir;
             $href='Hello Admin Gentong,  %0ANama %3A '.$username.', %0AEmail %3A '.$email.', %0ANo. Hp %3A' .$phone.', %0AAlamat %3A' .$address.',%0AIngin membeli %3A%0A';
             if($request->get('voucher_code_hide_modal')!= ""){

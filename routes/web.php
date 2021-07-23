@@ -82,6 +82,7 @@ Route::get('/vouchers/trash', 'VoucherController@trash')->name('vouchers.trash')
 Route::get('/vouchers/{id}/restore', 'voucherController@restore')->name('vouchers.restore');
 Route::delete('/vouchers/{vouchers}/delete-permanent','voucherController@deletePermanent')->name('vouchers.delete-permanent');
 Route::resource('vouchers','VoucherController');
+Route::resource('shippings','ShippingChargeController');
 
 
 
