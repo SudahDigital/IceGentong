@@ -83,6 +83,8 @@ Route::get('/vouchers/{id}/restore', 'voucherController@restore')->name('voucher
 Route::delete('/vouchers/{vouchers}/delete-permanent','voucherController@deletePermanent')->name('vouchers.delete-permanent');
 Route::resource('vouchers','VoucherController');
 Route::resource('shippings','ShippingChargeController');
+Route::get('/shippings/delete/{id}', 'ShippingChargeController@delete')->name('shippings.delete');
+Route::get('/ajax/cities/search', 'ShippingChargeController@ajaxSearch');
 
 
 

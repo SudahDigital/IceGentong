@@ -489,6 +489,20 @@
                                     </div>
                                     <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
                                     <div class="form-group">
+                                        <select id="city" name="city" class="form-control" required>
+                                            <option value="">--</option>
+                                            @foreach($cities as $key => $value)
+                                                <option id="city" value="{{$value->id}}" <?php  if($item_name !== null) if($item_name->city == $value->city_name) echo "selected";?>>{{$value->city_name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('address')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <hr style="border-top:1px solid rgba(116, 116, 116, 0.507);">
+                                    <div class="form-group">
                                         <textarea type="text"  name="address" class="form-control contact_input @error('address') is-invalid @enderror" placeholder="Address" id="address" required autocomplete="off" value="{{ old('address') }}">{{$item_name !== null ? $item_name->address : ''}}</textarea>
                                         @error('address')
                                             <span class="invalid-feedback" role="alert">

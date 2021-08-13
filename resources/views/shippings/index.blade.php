@@ -32,9 +32,9 @@
 				</li> -->
 			</ul>
 		</div>		
-		<!-- <div class="col-md-8">
-			<a href="{{route('categories.create')}}" class="btn btn-success pull-right">Create Shipping Cost</a>
-		</div> -->
+		<div class="col-md-8">
+			<a href="{{route('shippings.create')}}" class="btn btn-success pull-right">Create Shipping Cost</a>
+		</div>
 	</div>
 </form>
 <hr>
@@ -42,6 +42,7 @@
 	<table class="table table-bordered table-striped table-hover dataTable js-basic-example">
 		<thead>
 			<tr>
+				<th>City</th>
 				<th>Price</th>
 				<th>Set Cost</th>
 				<th width="20%">Actions</th>
@@ -52,65 +53,38 @@
 			@foreach($shipping as $c)
 			<?php $no++;?>
 			<tr>
+				<td>@if($c->city_name !='') 
+						{{ $c->city_name }}
+					@else 
+						Nasional
+					@endif</td>
 				<td>{{$c->price}}</td>
 				<td>{{$c->set_cost}}</td>
 				<td>
 					<a class="btn btn-info btn-xs" href="{{route('shippings.edit',[$c->id])}}"><i class="material-icons">edit</i></a>&nbsp;
-					<!-- <button type="button" class="btn btn-danger btn-xs waves-effect" data-toggle="modal" data-target="#deleteModal{{$c->id}}"><i class="material-icons">delete</i></button>&nbsp; 
-					<button type="button" class="btn bg-grey waves-effect" data-toggle="modal" data-target="#detailModal{{$c->id}}">Detail</button>-->
+					@if($c->city !='') 
+						<button type="button" class="btn btn-danger btn-xs waves-effect" data-toggle="modal" data-target="#deleteModal{{$c->id}}"><i class="material-icons">delete</i></button>&nbsp;
+					@endif 
+					<!-- <button type="button" class="btn bg-grey waves-effect" data-toggle="modal" data-target="#detailModal{{$c->id}}">Detail</button> -->
 
 					<!-- Modal Delete -->
 		            <div class="modal fade" id="deleteModal{{$c->id}}" tabindex="-1" role="dialog">
 		                <div class="modal-dialog modal-sm" role="document">
 		                    <div class="modal-content modal-col-red">
 		                        <div class="modal-header">
-		                            <h4 class="modal-title" id="deleteModalLabel">Delete Category</h4>
+		                            <h4 class="modal-title" id="deleteModalLabel">Delete Shipping Cost</h4>
 		                        </div>
 		                        <div class="modal-body">
-		                           Delete this category ..? 
+		                           Delete this Shipping Cost ..? 
 		                        </div>
 		                        <div class="modal-footer">
-		                        	<form action="{{route('categories.destroy',[$c->id])}}" method="POST">
+		                        	<form action="{{route('shippings.delete',[$c->id])}}" method="GET">
 										@csrf
 										<input type="hidden" name="_method" value="DELETE">
 										<button type="submit" class="btn btn-link waves-effect">Delete</button>
 										<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Close</button>
 									</form>
 		                        </div>
-		                    </div>
-		                </div>
-		            </div>
-					
-					<!-- Modal Detail -->
-		            <div class="modal fade" id="detailModal{{$c->id}}" tabindex="-1" role="dialog">
-		                <div class="modal-dialog" role="document">
-		                    <div class="modal-content modal-col-indigo">
-		                        <div class="modal-header">
-		                            <h4 class="modal-title" id="detailModalLabel">Detail Category</h4>
-		                        </div>
-		                        <div class="modal-body">
-		                           <b>Category Name:</b>
-		                           <br/>
-		                           {{$c->name}}
-		                           <br/>
-		                           <br/>
-		                           @if($c->image_category)
-		                           <img src="{{asset('storage/'.$c->image_category)}}" width="128px"/>
-		                           @else
-		                           No Image
-								   @endif
-								   <!--
-		                           <br/>
-		                           <br/>
-		                           <b>Category Slug:</b>
-		                           <br/>
-		                           {{$c->slug}}
-		                           -->
-		                        </div>
-		                        <div class="modal-footer">
-		                        	<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Close</button>
-								</div>
-		                        
 		                    </div>
 		                </div>
 		            </div>

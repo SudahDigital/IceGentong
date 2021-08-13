@@ -50,6 +50,9 @@ class CustomerKeranjangController extends Controller
                     ->where('session_id','=',"$session_id")
                     ->whereNull('orders.username')
                     ->count();
+
+        $cities = \App\Cities::all();
+
         $data=['total_item'=> $total_item, 
                 'keranjang'=>$keranjang,
                 'top_product'=>$top_product,
@@ -61,7 +64,8 @@ class CustomerKeranjangController extends Controller
                 'categories'=>$categories,
                 'cat_count'=>$cat_count,
                 'banner'=>$banner,
-                'banner_active'=>$banner_active];
+                'banner_active'=>$banner_active,
+                'cities'=>$cities];
        return view('customer.content_customer',$data);
     }
     
@@ -280,6 +284,7 @@ class CustomerKeranjangController extends Controller
             $email = $request->get('email');
             $address = $request->get('address');
             $phone = $request->get('phone');
+            $city = $request->get('city');
             $orders = Order::findOrfail($id);
             $orders->username = $username;
             $orders->email = $email;
@@ -308,7 +313,9 @@ class CustomerKeranjangController extends Controller
                 $vouchers->save();
             }
 
-            $sql_ongkir = \App\ShippingCost::all();
+            // $sql_ongkir = \App\ShippingCost::all();
+
+            $sql_ongkir = \App\ShippingCost::where('city','=',$city)->get();
 
             $total_ongkir = 0;
             foreach ($sql_ongkir as $key => $value) {
@@ -319,6 +326,22 @@ class CustomerKeranjangController extends Controller
                 if($set_cost == 'ON'){
                     $total_ongkir = $price;
                 } 
+            }
+
+            if($total_ongkir==0){
+                $sql_ongkir_nas = DB::table('shipping_cost')
+                            ->where('id','=','1')
+                            ->select('shipping_cost.price','shipping_cost.set_cost')->get();
+
+                foreach ($sql_ongkir_nas as $key => $value) {
+                    $set_cost = $value->set_cost;
+                    $price    = $value->price;
+
+                    $total_ongkir = 0;
+                    if($set_cost == 'ON'){
+                        $total_ongkir = $price;
+                    } 
+                }
             }
 
             // $total_ongkir  = 15000;
